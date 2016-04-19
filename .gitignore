@@ -10,6 +10,7 @@ tmp/
 .loadpath
 .recommenders
 .project
+.classpath
 
 # Java
 *.jar

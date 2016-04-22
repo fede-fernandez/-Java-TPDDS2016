@@ -7,6 +7,10 @@ import java.util.List;
 public class Servicio {
 	private String nombre;
 	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
+	
+	public Servicio(String nombre) {
+		this.nombre = nombre;
+	}
 
 	public String getNombre() {
 		return nombre;

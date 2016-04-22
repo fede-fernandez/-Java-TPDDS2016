@@ -15,6 +15,7 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 		return this.getCoordenadas().distance(unaPosicion) <= 0.1;
 	}
 	
+	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
 		return true;
 	}

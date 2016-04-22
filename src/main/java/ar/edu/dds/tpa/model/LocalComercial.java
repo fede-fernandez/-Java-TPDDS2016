@@ -8,7 +8,7 @@ import org.uqbar.geodds.Point;
 
 public class LocalComercial extends PuntoDeInteres {
 	private Rubro rubro;
-	private List<DiaYHorarioDeAtencion> diasYHhorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
+	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
 	
 	public LocalComercial(String nombre, Point coordenadas, Rubro rubro) {
 		super(nombre, coordenadas);
@@ -20,7 +20,7 @@ public class LocalComercial extends PuntoDeInteres {
 	}
 	
 	public void agregarDiaYHorarioDeAtencion(DiaYHorarioDeAtencion unDiaYHorarioDeAtencion) {
-		this.diasYHhorariosDeAtencion.add(unDiaYHorarioDeAtencion);
+		this.diasYHorariosDeAtencion.add(unDiaYHorarioDeAtencion);
 	}
 	
 	@Override
@@ -28,8 +28,9 @@ public class LocalComercial extends PuntoDeInteres {
 		return this.getCoordenadas().distance(unaPosicion) <= this.rubro.radioDeCercania() * 0.1;
 	}
 	
+	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
-		return this.diasYHhorariosDeAtencion.stream().anyMatch(
+		return this.diasYHorariosDeAtencion.stream().anyMatch(
 				diaYHorario -> diaYHorario.estaDentroDelDiaYHorarioDeAtencion(unDiaYHorario));
 	}
 }

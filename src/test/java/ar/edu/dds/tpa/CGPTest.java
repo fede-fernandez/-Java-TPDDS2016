@@ -13,9 +13,9 @@ import ar.edu.dds.tpa.model.*;
 
 public class CGPTest {
 
-	Geolocalizacion coordenadasCGPAlgunLugar;
-	Geolocalizacion posicionDeUsuario1;
-	Geolocalizacion posicionDeUsuario2;
+	Point coordenadasCGPAlgunLugar;
+	Point posicionDeUsuario1;
+	Point posicionDeUsuario2;
 	
 	Comuna comunaDeAlgunLugar;
 	
@@ -27,16 +27,15 @@ public class CGPTest {
 	
 	
 	
-	@Before
-	
+	@Before	
 	public void inicializar(){
 		
 		puntos = new ArrayList<Point>(Arrays.asList(new Point(10.0,10.0), new Point(10.0,-10.0), new Point(-10.0,10.0), new Point(-10.0,-10.0)));
 		
 		
-		coordenadasCGPAlgunLugar = new Geolocalizacion(100.0, 5.0);
-		posicionDeUsuario1 = new Geolocalizacion(5.0, 5.0);
-		posicionDeUsuario2 = new Geolocalizacion(100.0, 100.0);
+		coordenadasCGPAlgunLugar = new Point(100.0, 5.0);
+		posicionDeUsuario1 = new Point(5.0, 5.0);
+		posicionDeUsuario2 = new Point(100.0, 100.0);
 		
 		
 		comunaDeAlgunLugar = new Comuna(puntos);

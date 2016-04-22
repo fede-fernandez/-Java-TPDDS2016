@@ -1,5 +1,7 @@
 package ar.edu.dds.tpa.model;
 
+import org.uqbar.geodds.*;
+
 public class LocalComercial extends PuntoDeInteres {
 	
 	private Rubro rubro;	
@@ -9,14 +11,14 @@ public class LocalComercial extends PuntoDeInteres {
 	}
 	
 	
-	public LocalComercial(String nombre, Direccion direccion, Geolocalizacion geolocalizacion, Rubro rubro){
+	public LocalComercial(String nombre, Direccion direccion, Point geolocalizacion, Rubro rubro){
 		super(nombre,direccion,geolocalizacion);
 		this.rubro = rubro;
 	}
 	
 	@Override
-	public Boolean estaCercaDe(Geolocalizacion posicionDelUsuario){
-		return this.getGeolocalizacion().distanciaA(posicionDelUsuario) <= this.rubro.radioDeCercania() * 0.1;
+	public Boolean estaCercaDe(Point posicionDelUsuario){
+		return this.getGeolocalizacion().distance(posicionDelUsuario) <= this.rubro.radioDeCercania() * 0.1;
 	}
 
 }

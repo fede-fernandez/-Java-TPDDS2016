@@ -10,6 +10,12 @@ public abstract class PuntoDeInteres {
 	private Geolocalizacion geolocalizacion;
 	private ArrayList<Date> horariosDeAtencion = new ArrayList<Date>();
 
+	
+	public PuntoDeInteres(String nombre, Direccion direccion, Geolocalizacion geolocalizacion){
+		this.nombre = nombre;
+		this.direccion = direccion;
+		this.geolocalizacion = geolocalizacion;
+	}
 		
 	public String getNombre() {
 		return nombre;
@@ -30,4 +36,11 @@ public abstract class PuntoDeInteres {
 	public void agregarHorarioDeAtencion(Date horarioDeAtencion) {
 		this.horariosDeAtencion.add(horarioDeAtencion);
 	}
+	
+	public Boolean estaCercaDe(Geolocalizacion posicionActual){
+		return this.geolocalizacion.distanciaA(posicionActual) <= 0.5;				
+	}
+
+	
+	
 }

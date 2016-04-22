@@ -1,15 +1,23 @@
 package ar.edu.dds.tpa.model;
 
-public abstract class Geolocalizacion {
-	private double latitud;
-	private double longitud;
+import org.uqbar.geodds.Point;
+
+public class Geolocalizacion {
 	
-	public double getLatitud() {
-		return latitud;
+	private Point coordenadas;
+	
+	public Geolocalizacion(double latitud, double longitud){		
+		this.coordenadas = new Point(latitud,longitud);
+	}	
+	
+	public Point getCoordenadas() {
+		return coordenadas;
 	}
+
 	
-	public double getLongitud() {
-		return longitud;
+		
+	public double distanciaA(Geolocalizacion unPunto){
+		return coordenadas.distance(unPunto.getCoordenadas());		
 	}
 	
 }

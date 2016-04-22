@@ -19,6 +19,7 @@ public class LocalComercial extends PuntoDeInteres {
 	@Override
 	public Boolean estaCercaDe(Point posicionDelUsuario){
 		return this.getGeolocalizacion().distance(posicionDelUsuario) <= this.rubro.radioDeCercania() * 0.1;
+		//distance devuelve la distancia en kilometros
 	}
 
 }

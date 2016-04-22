@@ -12,11 +12,11 @@ public class RangoDeHorario {
 	}
 	
 	public boolean estaDespuesDelHorarioInicio(LocalTime unHorario) {
-		return horarioInicio.isAfter(unHorario);
+		return unHorario.isAfter(this.horarioInicio);
 	}
 	
 	public boolean estaAntesDelHorarioFin(LocalTime unHorario) {
-		return horarioFin.isBefore(unHorario);
+		return unHorario.isBefore(this.horarioFin);
 	}
 	
 	public boolean estaDentroDelRangoDeHorario(LocalTime unHorario) {

@@ -57,6 +57,11 @@ public class CalculoDeDisponibilidadTest {
 		vier9a1215y1330a18.agregarRangoDeHorario(de1330a18);
 		
 		unLocalDeDiario1 = new LocalComercial("Diarin", new Point(10.0, 10.0), kioscoDeDarioVerde1);
+		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(lun9a18);
+		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(mar10a17);
+		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(mier1030a19);
+		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(jue8a11y14a19);
+		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(vier9a1215y1330a18);
 	}
 	
 	@Test

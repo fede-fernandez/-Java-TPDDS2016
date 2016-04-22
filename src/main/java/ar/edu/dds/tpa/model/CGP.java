@@ -2,14 +2,16 @@ package ar.edu.dds.tpa.model;
 
 public class CGP extends PuntoDeInteres {
 	
-	public CGP(String nombre, Direccion direccion, Geolocalizacion geolocalizacion){
+	private Comuna comuna;
+	
+	public CGP(String nombre, Direccion direccion, Geolocalizacion geolocalizacion, Comuna comuna){
 		super(nombre,direccion,geolocalizacion);
+		this.comuna = comuna;
 	}
 	
-	public Boolean estaCercaDe(Geolocalizacion posicionDelUsuario, Comuna comuna){		
+	public Boolean estaCercaDe(Geolocalizacion posicionDelUsuario){		
 		
-		//return estaEnLaComuna()
-		return true;		
+		return this.comuna.estaEnComuna(posicionDelUsuario.getCoordenadas());				
 	}
 
 }

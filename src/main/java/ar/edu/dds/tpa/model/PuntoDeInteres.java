@@ -1,5 +1,7 @@
 package ar.edu.dds.tpa.model;
 
+import java.time.LocalDateTime;
+
 import org.uqbar.geodds.Point;
 
 public abstract class PuntoDeInteres {
@@ -22,4 +24,6 @@ public abstract class PuntoDeInteres {
 	public boolean estaCercaDe(Point unaPosicion){
 		return this.coordenadas.distance(unaPosicion) <= 0.5;				
 	}
+	
+	public abstract boolean estaDisponibleEn(LocalDateTime unDiaYHorario);
 }

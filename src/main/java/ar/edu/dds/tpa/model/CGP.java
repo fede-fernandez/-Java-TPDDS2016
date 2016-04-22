@@ -25,15 +25,16 @@ public class CGP extends PuntoDeInteres {
 		return this.comuna.isInside(unaPosicion);
 	}
 
+	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
 		return this.servicios.stream().anyMatch(
 				servicio -> servicio.atiendeEn(unDiaYHorario));
 	}
 
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario,
-			String unServicio) {
+			String nombreDelServicio) {
 		return this.servicios.stream()
-				.filter(servicio -> servicio.getNombre().equals(unServicio))
+				.filter(servicio -> servicio.getNombre().equals(nombreDelServicio))
 				.anyMatch(servicio -> servicio.atiendeEn(unDiaYHorario));
 	}
 }

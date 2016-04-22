@@ -5,10 +5,14 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbar.geodds.Point;
+import org.uqbar.geodds.Polygon;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import ar.edu.dds.tpa.model.*;
 
@@ -28,6 +32,12 @@ public class CalculoDeDisponibilidadTest {
 	RangoDeHorario de9a1215;
 	RangoDeHorario de1330a18;
 	LocalComercial unLocalDeDiario1;
+	CGP cgpDeFlores;
+	Servicio rentas;
+	Servicio multas;
+	List<Point> puntos;
+	Polygon comunaDeFlores;
+	Banco bancoPatagonia;
 
 	@Before
 	public void inicializar() {
@@ -62,6 +72,22 @@ public class CalculoDeDisponibilidadTest {
 		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(mier1030a19);
 		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(jue8a11y14a19);
 		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(vier9a1215y1330a18);
+		
+		rentas = new Servicio("rentas");
+		rentas.agregarDiaYHorarioDeAtencion(lun9a18);
+		rentas.agregarDiaYHorarioDeAtencion(mar10a17);
+		
+		multas = new Servicio("multas");
+		multas.agregarDiaYHorarioDeAtencion(mier1030a19);
+		multas.agregarDiaYHorarioDeAtencion(jue8a11y14a19);
+		
+		puntos = new ArrayList<Point>(Arrays.asList(new Point(10.0,10.0), new Point(10.0,-10.0), new Point(-10.0,10.0), new Point(-10.0,-10.0)));
+		comunaDeFlores = new Polygon(puntos);
+		cgpDeFlores = new CGP("CGPFlores", new Point(100.0, 5.0), comunaDeFlores);
+		cgpDeFlores.agregarServicio(rentas);
+		cgpDeFlores.agregarServicio(multas);
+		
+		bancoPatagonia = new Banco("Banco Patagonia", new Point(10.0, 10.0));
 	}
 	
 	@Test
@@ -70,8 +96,47 @@ public class CalculoDeDisponibilidadTest {
 	}
 	
 	@Test
-	public void testLocalComercialKioscoDeDiarioDisponibilidad() {
+	public void testLocalComercialKioscoDeDiarioDisponibilidadEnDiaYHorarioCorrectos() {
 		assertTrue(unLocalDeDiario1.estaDisponibleEn(LocalDateTime.of(2016, 4, 22, 10, 15, 33)));
 	}
 
+	@Test
+	public void testLocalComercialKioscoDeDiarioDisponibilidadEnDiaIncorrectoYHorarioCorrecto() {
+		assertFalse(unLocalDeDiario1.estaDisponibleEn(LocalDateTime.of(2016, 4, 23, 10, 15, 33)));
+	}
+	
+	@Test
+	public void testLocalComercialKioscoDeDiarioDisponibilidadEnDiaCorrectoYHorarioIncorrecto() {
+		assertFalse(unLocalDeDiario1.estaDisponibleEn(LocalDateTime.of(2016, 4, 22, 12, 30, 30)));
+	}
+	
+	@Test
+	public void testCGPSinServicioDefinidoDiaYHorarioCorrectos() {
+		assertTrue(cgpDeFlores.estaDisponibleEn(LocalDateTime.of(2016, 4, 18, 10, 15, 33)));
+	}
+	
+	@Test
+	public void testCGPSinServicioDefinidoDiaIncorrectoYHorarioCorrecto() {
+		assertFalse(cgpDeFlores.estaDisponibleEn(LocalDateTime.of(2016, 4, 22, 10, 15, 33)));
+	}
+	
+	@Test
+	public void testCGPConServicioDefinidoCorrectoDiaYHorarioCorrectos() {
+		assertTrue(cgpDeFlores.estaDisponibleEn(LocalDateTime.of(2016, 4, 18, 12, 30, 30), "rentas"));
+	}
+	
+	@Test
+	public void testCGPConServicioDefinidoIncorrectoDiaYHorarioCorrectos() {
+		assertFalse(cgpDeFlores.estaDisponibleEn(LocalDateTime.of(2016, 4, 18, 12, 30, 30), "multas"));
+	}
+	
+	@Test
+	public void testBancoEnDiaHabilHorarioCorrecto() {
+		assertTrue(bancoPatagonia.estaDisponibleEn(LocalDateTime.of(2016, 4, 18, 12, 30, 30)));
+	}
+	
+	@Test
+	public void testBancoEnDiaHabilHorarioIncorrecto() {
+		assertFalse(bancoPatagonia.estaDisponibleEn(LocalDateTime.of(2016, 4, 18, 19, 30, 30)));
+	}
 }

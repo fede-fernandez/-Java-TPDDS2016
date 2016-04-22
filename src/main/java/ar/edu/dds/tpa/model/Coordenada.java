@@ -1,27 +1,34 @@
 package ar.edu.dds.tpa.model;
 
-import java.math.BigDecimal;
-
-//TODO Cambiar lo de xtend a java par no usar esa dependencia.
+//TODO Cambiar lo de xtend a java para no usar esa dependencia.
 public class Coordenada {
-	BigDecimal altitud;
-	BigDecimal longitud;
+	double latitud;
+	double longitud;
 
-	public Coordenada(int altitud, int longitud) {
-		this.altitud = new BigDecimal(altitud);
-		this.longitud = new BigDecimal(longitud);
+	public Coordenada(double latitud, double longitud) {
+		this.latitud = latitud;
+		this.longitud = longitud;
 	}
-	
-	public Coordenada(double altitud, double longitud) {
-		this.altitud = new BigDecimal(altitud);
-		this.longitud = new BigDecimal(longitud);
+
+	public double getLatitud() {
+		return latitud;
 	}
-	
-	public double altitud() {
-		return this.altitud.doubleValue();
+
+	public double getLongitud() {
+		return longitud;
 	}
-	
-	public double longitud() {
-		return this.longitud.doubleValue();
+
+	public double distanciaA(Coordenada otroPunto) {
+		double radioDeLaTierra = 6371;
+		double latitudDelta = Math.toRadians(otroPunto.getLatitud() - latitud);
+		double longitudDelta = Math.toRadians(otroPunto.getLongitud()
+				- longitud);
+		double a = Math.sin(latitudDelta / 2) * Math.sin(latitudDelta / 2)
+				+ Math.cos(Math.toRadians(latitud))
+				* Math.cos(Math.toRadians(otroPunto.latitud))
+				* Math.sin(longitudDelta / 2) * Math.sin(longitudDelta / 2);
+		double distanciaAngular = 2 * Math
+				.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+		return radioDeLaTierra * distanciaAngular;
 	}
 }

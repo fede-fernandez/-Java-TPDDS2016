@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <class-diagram version="1.1.9" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
-  <class id="1" language="java" name="ar.edu.dds.tpa.model.Banco" project="tpa" 
-    file="/tpa/src/main/java/ar/edu/dds/tpa/model/Banco.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="78" y="387"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <interface id="2" language="java" name="ar.edu.dds.tpa.model.Rubro" project="tpa" 
+  <interface id="1" language="java" name="ar.edu.dds.tpa.model.Rubro" project="tpa" 
     file="/tpa/src/main/java/ar/edu/dds/tpa/model/Rubro.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="247" y="521"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -19,7 +10,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </interface>  
-  <class id="3" language="java" name="ar.edu.dds.tpa.model.CGP" project="tpa" 
+  <class id="2" language="java" name="ar.edu.dds.tpa.model.CGP" project="tpa" 
     file="/tpa/src/main/java/ar/edu/dds/tpa/model/CGP.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="405" y="389"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -28,7 +19,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="ar.edu.dds.tpa.model.Direccion" project="tpa" 
+  <class id="3" language="java" name="ar.edu.dds.tpa.model.Direccion" project="tpa" 
     file="/tpa/src/main/java/ar/edu/dds/tpa/model/Direccion.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="674" y="122"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -37,7 +28,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="5" language="java" name="ar.edu.dds.tpa.model.PuntoDeInteres" project="tpa" 
+  <class id="4" language="java" name="ar.edu.dds.tpa.model.PuntoDeInteres" project="tpa" 
     file="/tpa/src/main/java/ar/edu/dds/tpa/model/PuntoDeInteres.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="378" y="121"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -46,7 +37,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="ar.edu.dds.tpa.model.Geolocalizacion" project="tpa" 
+  <class id="5" language="java" name="ar.edu.dds.tpa.model.Geolocalizacion" project="tpa" 
     file="/tpa/src/main/java/ar/edu/dds/tpa/model/Geolocalizacion.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="88" y="103"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -55,7 +46,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="7" language="java" name="ar.edu.dds.tpa.model.DireccionEspecifica" project="tpa" 
+  <class id="6" language="java" name="ar.edu.dds.tpa.model.DireccionEspecifica" project="tpa" 
     file="/tpa/src/main/java/ar/edu/dds/tpa/model/DireccionEspecifica.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="986" y="155"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -64,25 +55,25 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="8" language="java" name="ar.edu.dds.tpa.model.LocalComercial" project="tpa" 
+  <class id="7" language="java" name="ar.edu.dds.tpa.model.LocalComercial" project="tpa" 
     file="/tpa/src/main/java/ar/edu/dds/tpa/model/LocalComercial.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="259" y="395"/>    
+    <position height="-1" width="-1" x="148" y="350"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="9" language="java" name="ar.edu.dds.tpa.model.ParadaDeColectivo" project="tpa" 
+  <class id="8" language="java" name="ar.edu.dds.tpa.model.ParadaDeColectivo" project="tpa" 
     file="/tpa/src/main/java/ar/edu/dds/tpa/model/ParadaDeColectivo.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="572" y="382"/>    
+    <position height="-1" width="-1" x="700" y="392"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="ar.edu.dds.tpa.model.KioscoDeDiario" project="tpa" 
+  <class id="9" language="java" name="ar.edu.dds.tpa.model.KioscoDeDiario" project="tpa" 
     file="/tpa/src/main/java/ar/edu/dds/tpa/model/KioscoDeDiario.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="299" y="631"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -91,7 +82,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="ar.edu.dds.tpa.model.LibreriaEscolar" project="tpa" 
+  <class id="10" language="java" name="ar.edu.dds.tpa.model.LibreriaEscolar" project="tpa" 
     file="/tpa/src/main/java/ar/edu/dds/tpa/model/LibreriaEscolar.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="159" y="633"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -100,48 +91,52 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <generalization id="12">    
-    <end type="SOURCE" refId="9"/>    
-    <end type="TARGET" refId="5"/>  
+  <generalization id="11">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
   </generalization>  
-  <association id="13">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="14" name="direccionEspecifica">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="15" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <generalization id="16">    
-    <end type="SOURCE" refId="8"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <association id="17">    
-    <end type="SOURCE" refId="8" navigable="false">      
-      <attribute id="18" name="rubro">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="19" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="20">    
-    <end type="SOURCE" refId="11"/>    
-    <end type="TARGET" refId="2"/>  
-  </realization>  
-  <realization id="21">    
+  <realization id="12">    
     <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="2"/>  
+    <end type="TARGET" refId="1"/>  
   </realization>  
+  <realization id="13">    
+    <end type="SOURCE" refId="9"/>    
+    <end type="TARGET" refId="1"/>  
+  </realization>  
+  <generalization id="14">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="15">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="16" name="direccionEspecifica">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="17" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <generalization id="18">    
+    <end type="SOURCE" refId="8"/>    
+    <end type="TARGET" refId="4"/>  
+  </generalization>  
+  <association id="19">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="20" name="direccion">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </attribute>      
+      <multiplicity id="21" minimum="0" maximum="1">        
+        <position height="0" width="0" x="0" y="0"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <association id="22">    
-    <end type="SOURCE" refId="5" navigable="false">      
+    <end type="SOURCE" refId="4" navigable="false">      
       <attribute id="23" name="geolocalizacion">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
@@ -149,27 +144,19 @@
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
+    <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="25">    
-    <end type="SOURCE" refId="3"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <generalization id="26">    
-    <end type="SOURCE" refId="1"/>    
-    <end type="TARGET" refId="5"/>  
-  </generalization>  
-  <association id="27">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="28" name="direccion">        
+  <association id="25">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="26" name="rubro">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="29" minimum="0" maximum="1">        
+      <multiplicity id="27" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
+    <end type="TARGET" refId="1" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 

@@ -3,15 +3,17 @@ package ar.edu.dds.tpa.model;
 import java.util.ArrayList;
 import java.util.Date;
 
+import org.uqbar.geodds.Point;
+
 
 public abstract class PuntoDeInteres {
 	private String nombre;
 	private Direccion direccion;
-	private Geolocalizacion geolocalizacion;
+	private Point geolocalizacion;
 	private ArrayList<Date> horariosDeAtencion = new ArrayList<Date>();
 
 	
-	public PuntoDeInteres(String nombre, Direccion direccion, Geolocalizacion geolocalizacion){
+	public PuntoDeInteres(String nombre, Direccion direccion, Point geolocalizacion){
 		this.nombre = nombre;
 		this.direccion = direccion;
 		this.geolocalizacion = geolocalizacion;
@@ -25,7 +27,7 @@ public abstract class PuntoDeInteres {
 		return direccion;
 	}
 
-	public Geolocalizacion getGeolocalizacion() {
+	public Point getGeolocalizacion() {
 		return geolocalizacion;
 	}
 
@@ -37,8 +39,8 @@ public abstract class PuntoDeInteres {
 		this.horariosDeAtencion.add(horarioDeAtencion);
 	}
 	
-	public Boolean estaCercaDe(Geolocalizacion posicionActual){
-		return this.geolocalizacion.distanciaA(posicionActual) <= 0.5;				
+	public Boolean estaCercaDe(Point posicionDelUsuario){
+		return this.geolocalizacion.distance(posicionDelUsuario) <= 0.5;				
 	}
 
 	

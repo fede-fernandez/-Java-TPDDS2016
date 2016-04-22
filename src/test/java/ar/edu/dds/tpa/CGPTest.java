@@ -17,7 +17,7 @@ public class CGPTest {
 	Point posicionDeUsuario1;
 	Point posicionDeUsuario2;
 	
-	Comuna comunaDeAlgunLugar;
+	Polygon comunaDeAlgunLugar;
 	
 	Direccion direccionDeCGPAlgunLugar;
 	
@@ -30,15 +30,13 @@ public class CGPTest {
 	@Before	
 	public void inicializar(){
 		
-		puntos = new ArrayList<Point>(Arrays.asList(new Point(10.0,10.0), new Point(10.0,-10.0), new Point(-10.0,10.0), new Point(-10.0,-10.0)));
+		puntos = new ArrayList<Point>(Arrays.asList(new Point(10.0,10.0), new Point(10.0,-10.0), new Point(-10.0,10.0), new Point(-10.0,-10.0)));		
 		
-		
-		coordenadasCGPAlgunLugar = new Point(100.0, 5.0);
+		coordenadasCGPAlgunLugar = new Point(100.0, 5.0);		
 		posicionDeUsuario1 = new Point(5.0, 5.0);
-		posicionDeUsuario2 = new Point(100.0, 100.0);
+		posicionDeUsuario2 = new Point(100.0, 100.0);		
 		
-		
-		comunaDeAlgunLugar = new Comuna(puntos);
+		comunaDeAlgunLugar = new Polygon(puntos);
 		
 		direccionDeCGPAlgunLugar = new Direccion("Calle falsa", 123);
 		

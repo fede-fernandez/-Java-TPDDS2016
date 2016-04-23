@@ -21,5 +21,6 @@ public class RangoDeHorario {
 	
 	public boolean estaDentroDelRangoDeHorario(LocalTime unHorario) {
 		return estaDespuesDelHorarioInicio(unHorario) && estaAntesDelHorarioFin(unHorario);
+		
 	}
 }

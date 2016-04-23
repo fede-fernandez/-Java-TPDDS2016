@@ -1,5 +1,6 @@
 package ar.edu.dds.tpa.model;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,10 +9,10 @@ import org.uqbar.geodds.Point;
 
 public class LocalComercial extends PuntoDeInteres {
 	private Rubro rubro;
-	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
+	private HorarioDeAtencion horarioSemanal;
 	
-	public LocalComercial(String nombre, Point coordenadas, Rubro rubro,String etiquetaPalabraClave) {
-		super(nombre, coordenadas,etiquetaPalabraClave);
+	public LocalComercial(String nombre, Point coordenadas, Rubro rubro) {
+		super(nombre, coordenadas);
 		this.rubro = rubro;
 	}
 
@@ -19,8 +20,8 @@ public class LocalComercial extends PuntoDeInteres {
 		return rubro;
 	}
 	
-	public void agregarDiaYHorarioDeAtencion(DiaYHorarioDeAtencion unDiaYHorarioDeAtencion) {
-		this.diasYHorariosDeAtencion.add(unDiaYHorarioDeAtencion);
+	public void agregarDiaYHorarioDeAtencion(DayOfWeek dia, RangoDeHorario rango) {
+		this.horarioSemanal.agregarRangoDeHorario(dia, rango);
 	}
 	
 	@Override
@@ -30,8 +31,7 @@ public class LocalComercial extends PuntoDeInteres {
 	
 	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
-		return this.diasYHorariosDeAtencion.stream().anyMatch(
-				diaYHorario -> diaYHorario.estaDentroDelDiaYHorarioDeAtencion(unDiaYHorario));
+		return this.horarioSemanal.estaDentroDeRangosDeHorario(unDiaYHorario);
 	}
 
 	@Override

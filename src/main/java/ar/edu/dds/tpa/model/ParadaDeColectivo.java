@@ -6,8 +6,8 @@ import org.uqbar.geodds.Point;
 
 public class ParadaDeColectivo extends PuntoDeInteres {
 
-	public ParadaDeColectivo(String nombreDeLinea, Point coordenadas,String etiquetaPalabraClave) {
-		super(nombreDeLinea, coordenadas,etiquetaPalabraClave);
+	public ParadaDeColectivo(String nombreDeLinea, Point coordenadas) {
+		super(nombreDeLinea, coordenadas);
 	}
 	
 	@Override

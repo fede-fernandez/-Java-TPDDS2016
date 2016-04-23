@@ -12,7 +12,7 @@ public class CGP extends PuntoDeInteres {
 	private List<Servicio> servicios = new ArrayList<Servicio>();
 
 	public CGP(String nombre, Point coordenadas, String etiquetaPalabraClave, Polygon comuna) {
-		super(nombre, coordenadas, etiquetaPalabraClave);
+		super(nombre, coordenadas);
 		this.comuna = comuna;
 
 	}
@@ -28,24 +28,22 @@ public class CGP extends PuntoDeInteres {
 
 	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
-		return this.servicios.stream().anyMatch(
-				servicio -> servicio.atiendeEn(unDiaYHorario));
+		return this.servicios.stream()
+				.anyMatch(servicio -> servicio.estaDisponibleEn(unDiaYHorario));
 	}
 
-	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario,
-			String nombreDelServicio) {
+	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario, String nombreDelServicio) {
 		return this.servicios.stream()
 				.filter(servicio -> servicio.getNombre().equals(nombreDelServicio))
-				.anyMatch(servicio -> servicio.atiendeEn(unDiaYHorario));
+				.anyMatch(servicio -> servicio.estaDisponibleEn(unDiaYHorario));
 	}
 
 	@Override
 	public boolean condicionDeBusqueda(String unTexto) {
-		 return (servicios
-				 .stream()
-				 .anyMatch(servicio -> servicio.estasIncluidoEnElNombre(unTexto))
-				 ) 
-				 || this.estaEtiquetadoPor(unTexto);
+		 return this.estaEtiquetadoPor(unTexto)
+				 || 
+				 (servicios.stream()
+				 .anyMatch(servicio -> servicio.estasIncluidoEnElNombre(unTexto)));
 	}
 
 

@@ -10,8 +10,8 @@ public class LocalComercial extends PuntoDeInteres {
 	private Rubro rubro;
 	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
 	
-	public LocalComercial(String nombre, Point coordenadas, Rubro rubro) {
-		super(nombre, coordenadas);
+	public LocalComercial(String nombre, Point coordenadas, Rubro rubro,String etiquetaPalabraClave) {
+		super(nombre, coordenadas,etiquetaPalabraClave);
 		this.rubro = rubro;
 	}
 
@@ -33,4 +33,12 @@ public class LocalComercial extends PuntoDeInteres {
 		return this.diasYHorariosDeAtencion.stream().anyMatch(
 				diaYHorario -> diaYHorario.estaDentroDelDiaYHorarioDeAtencion(unDiaYHorario));
 	}
+
+	@Override
+	public boolean condicionDeBusqueda(String unTexto) {
+		return rubro.getNombreRubro() == unTexto
+				|| this.estaEtiquetadoPor(unTexto);
+	}
+	
+
 }

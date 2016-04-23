@@ -12,8 +12,8 @@ import org.uqbar.geodds.Point;
 public class Banco extends PuntoDeInteres {
 	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
 
-	public Banco(String nombre, Point coordenadas) {
-		super(nombre, coordenadas);
+	public Banco(String nombre, Point coordenadas,String etiquetaPalabraClave) {
+		super(nombre, coordenadas,etiquetaPalabraClave);
 		RangoDeHorario de10a15 = new RangoDeHorario(LocalTime.of(10, 0), LocalTime.of(15, 0));
 		DiaYHorarioDeAtencion lunes10a15 = new DiaYHorarioDeAtencion(DayOfWeek.MONDAY);
 		lunes10a15.agregarRangoDeHorario(de10a15);
@@ -40,5 +40,10 @@ public class Banco extends PuntoDeInteres {
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
 		return this.diasYHorariosDeAtencion.stream().anyMatch(
 				diaYHorario -> diaYHorario.estaDentroDelDiaYHorarioDeAtencion(unDiaYHorario));
+	}
+
+	@Override
+	public boolean condicionDeBusqueda(String unTexto) {
+		return this.estaEtiquetadoPor(unTexto);
 	}
 }

@@ -43,9 +43,9 @@ public class CalculoDeCercaniaTest {
 
 	@Before
 	public void inicializar() {
-		bondi114 = new ParadaDeColectivo("114", new Point(200.0006, 100.0));
+		bondi114 = new ParadaDeColectivo("114", new Point(200.0006, 100.0), null);
 		
-		kioscoDeDarioVerde1 = new KioscoDeDiario();
+		kioscoDeDarioVerde1 = new KioscoDeDiario(null);
 		
 		de9a18 = new RangoDeHorario(LocalTime.of(9, 0), LocalTime.of(18, 0));
 		de10a17 = new RangoDeHorario(LocalTime.of(10, 0), LocalTime.of(17, 0));
@@ -68,7 +68,7 @@ public class CalculoDeCercaniaTest {
 		vier9a1215y1330a18.agregarRangoDeHorario(de9a1215);
 		vier9a1215y1330a18.agregarRangoDeHorario(de1330a18);
 		
-		unLocalDeDiario1 = new LocalComercial("Diarin", new Point(100.000002, 50.0), kioscoDeDarioVerde1);
+		unLocalDeDiario1 = new LocalComercial("Diarin", new Point(100.000002, 50.0), kioscoDeDarioVerde1, null);
 		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(lun9a18);
 		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(mar10a17);
 		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(mier1030a19);
@@ -85,11 +85,11 @@ public class CalculoDeCercaniaTest {
 		
 		puntos = new ArrayList<Point>(Arrays.asList(new Point(10.0,10.0), new Point(10.0,-10.0), new Point(-10.0,10.0), new Point(-10.0,-10.0)));
 		comunaDeFlores = new Polygon(puntos);
-		cgpDeFlores = new CGP("CGPFlores", new Point(100.0, 5.0), comunaDeFlores);
+		cgpDeFlores = new CGP("CGPFlores", new Point(100.0, 5.0), null, comunaDeFlores);
 		cgpDeFlores.agregarServicio(rentas);
 		cgpDeFlores.agregarServicio(multas);
 		
-		bancoPatagonia = new Banco("Banco Patagonia", new Point(10.0, 10.0));
+		bancoPatagonia = new Banco("Banco Patagonia", new Point(10.0, 10.0), null);
 		
 		posicionDeUsuario1 = new Point(100.000001,50.0);
 		posicionDeUsuario2 = new Point(200.0005,100.0);

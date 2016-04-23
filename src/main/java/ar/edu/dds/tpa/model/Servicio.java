@@ -26,4 +26,8 @@ public class Servicio {
 				diaYHorario -> diaYHorario
 						.estaDentroDelDiaYHorarioDeAtencion(unDiaYHorario));
 	}
+	
+	public boolean estasIncluidoEnElNombre(String unTexto){
+		return nombre == unTexto;
+	}
 }

@@ -29,7 +29,7 @@ public class BusquedaDePuntoTest {
 	private ParadaDeColectivo un144_2;
 	private ParadaDeColectivo un144_3;
 	
-	private Busqueda busqueda;
+	private Buscador busqueda;
 	
 	private List<PuntoDeInteres> puntosDeInteresENcontrados;
 	
@@ -52,7 +52,7 @@ public class BusquedaDePuntoTest {
 		un144_2 = new ParadaDeColectivo("144", null, "recorrido wilde");
 		un144_3 = new ParadaDeColectivo("144", null, "xxxx");
 		
-		busqueda = new Busqueda();
+		busqueda = new Buscador();
 		
 		busqueda.agregarPuntoInteres(un144_1);
 		busqueda.agregarPuntoInteres(un144_2);

@@ -21,11 +21,11 @@ public class CalculoDeCercaniaTest {
 	Point posicionDeUsuario4;
 	ParadaDeColectivo bondi114;
 	KioscoDeDiario kioscoDeDarioVerde1;
-	DiaYHorarioDeAtencion lun9a18;
-	DiaYHorarioDeAtencion mar10a17;
-	DiaYHorarioDeAtencion mier1030a19;
-	DiaYHorarioDeAtencion jue8a11y14a19;
-	DiaYHorarioDeAtencion vier9a1215y1330a18;
+	HorarioDeAtencion lun9a18;
+	HorarioDeAtencion mar10a17;
+	HorarioDeAtencion mier1030a19;
+	HorarioDeAtencion jue8a11y14a19;
+	HorarioDeAtencion vier9a1215y1330a18;
 	RangoDeHorario de9a18;
 	RangoDeHorario de10a17;
 	RangoDeHorario de1030a19;
@@ -55,16 +55,16 @@ public class CalculoDeCercaniaTest {
 		de9a1215 = new RangoDeHorario(LocalTime.of(9, 00), LocalTime.of(12, 15));
 		de1330a18 = new RangoDeHorario(LocalTime.of(13, 30), LocalTime.of(18, 00));
 		
-		lun9a18 = new DiaYHorarioDeAtencion(DayOfWeek.MONDAY);
+		lun9a18 = new HorarioDeAtencion(DayOfWeek.MONDAY);
 		lun9a18.agregarRangoDeHorario(de9a18);
-		mar10a17 = new DiaYHorarioDeAtencion(DayOfWeek.TUESDAY);
+		mar10a17 = new HorarioDeAtencion(DayOfWeek.TUESDAY);
 		mar10a17.agregarRangoDeHorario(de10a17);
-		mier1030a19 = new DiaYHorarioDeAtencion(DayOfWeek.WEDNESDAY);
+		mier1030a19 = new HorarioDeAtencion(DayOfWeek.WEDNESDAY);
 		mier1030a19.agregarRangoDeHorario(de1030a19);
-		jue8a11y14a19 = new DiaYHorarioDeAtencion(DayOfWeek.THURSDAY);
+		jue8a11y14a19 = new HorarioDeAtencion(DayOfWeek.THURSDAY);
 		jue8a11y14a19.agregarRangoDeHorario(de8a11);
 		jue8a11y14a19.agregarRangoDeHorario(de14a19);
-		vier9a1215y1330a18 = new DiaYHorarioDeAtencion(DayOfWeek.FRIDAY);
+		vier9a1215y1330a18 = new HorarioDeAtencion(DayOfWeek.FRIDAY);
 		vier9a1215y1330a18.agregarRangoDeHorario(de9a1215);
 		vier9a1215y1330a18.agregarRangoDeHorario(de1330a18);
 		

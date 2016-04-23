@@ -1,12 +1,11 @@
 package ar.edu.dds.tpa.model;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Servicio {
 	private String nombre;
-	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
+	private HorarioDeAtencion horarioSemanal;
 	
 	public Servicio(String nombre) {
 		this.nombre = nombre;
@@ -16,15 +15,12 @@ public class Servicio {
 		return nombre;
 	}
 
-	public void agregarDiaYHorarioDeAtencion(
-			DiaYHorarioDeAtencion unDiaYHorarioDeAtencion) {
-		this.diasYHorariosDeAtencion.add(unDiaYHorarioDeAtencion);
+	public void agregarDiaYHorarioDeAtencion(DayOfWeek dia, RangoDeHorario rango) {
+		this.horarioSemanal.agregarRangoDeHorario(dia, rango);
 	}
 
-	public boolean atiendeEn(LocalDateTime unDiaYHorario) {
-		return this.diasYHorariosDeAtencion.stream().anyMatch(
-				diaYHorario -> diaYHorario
-						.estaDentroDelDiaYHorarioDeAtencion(unDiaYHorario));
+	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
+		return this.horarioSemanal.estaDentroDeRangosDeHorario(unDiaYHorario);
 	}
 	
 	public boolean estasIncluidoEnElNombre(String unTexto){

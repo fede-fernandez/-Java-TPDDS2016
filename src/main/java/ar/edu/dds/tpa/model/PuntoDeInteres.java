@@ -1,19 +1,18 @@
 package ar.edu.dds.tpa.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import org.uqbar.geodds.Point;
 
 public abstract class PuntoDeInteres {
 	private String nombre;
 	private Point coordenadas;
-	private String etiquetaPalabraClave;
 
-	public PuntoDeInteres(String nombre, Point coordenadas, String etiquetaPalabraClave) {
+	public PuntoDeInteres(String nombre, Point coordenadas) {
 		super();
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
-		this.etiquetaPalabraClave = etiquetaPalabraClave;
 	}
 
 	public String getNombre() {
@@ -24,8 +23,10 @@ public abstract class PuntoDeInteres {
 		return coordenadas;
 	}
 
-	public String getEtiquetaPalabraClave() {
-		return etiquetaPalabraClave;
+	private ArrayList<String> getEtiquetas() {
+		ArrayList<String> etiquetas = new ArrayList<>();
+		etiquetas.add(this.nombre);
+		return etiquetas;
 	}
 
 	public boolean estaCercaDe(Point unaPosicion){
@@ -33,7 +34,7 @@ public abstract class PuntoDeInteres {
 	}
 	
 	public boolean estaEtiquetadoPor(String unTexto){
-		return etiquetaPalabraClave == unTexto;
+		return getEtiquetas().stream().anyMatch(etiqueta -> etiqueta.equalsIgnoreCase(unTexto));
 	}
 	
 	public abstract boolean estaDisponibleEn(LocalDateTime unDiaYHorario);

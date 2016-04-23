@@ -6,8 +6,8 @@ import org.uqbar.geodds.Point;
 
 public class ParadaDeColectivo extends PuntoDeInteres {
 
-	public ParadaDeColectivo(String nombre, Point coordenadas) {
-		super(nombre, coordenadas);
+	public ParadaDeColectivo(String nombreDeLinea, Point coordenadas,String etiquetaPalabraClave) {
+		super(nombreDeLinea, coordenadas,etiquetaPalabraClave);
 	}
 	
 	@Override
@@ -18,5 +18,11 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
 		return true;
+	}
+	
+	@Override
+	public boolean condicionDeBusqueda(String unTexto){
+		return (this.getNombre() == unTexto) ||
+				(this.estaEtiquetadoPor(unTexto));
 	}
 }

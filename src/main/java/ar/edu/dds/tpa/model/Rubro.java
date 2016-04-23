@@ -1,5 +1,17 @@
 package ar.edu.dds.tpa.model;
 
-public interface Rubro {
-	public double radioDeCercania();
+public abstract class Rubro {
+	
+	private String nombreRubro;
+	
+	public Rubro(String nombreRubro) {
+		super();
+		this.nombreRubro = nombreRubro;
+	}
+
+	public abstract double radioDeCercania();
+
+	public String getNombreRubro() {
+		return nombreRubro;
+	}
 }

@@ -4,21 +4,15 @@ import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import ar.edu.dds.tpa.model.*;
 
 public class CalculoDeDisponibilidadTest {
 	ParadaDeColectivo bondi114;
-	KioscoDeDiario kioscoDeDarioVerde1;
 	DiaYHorarioDeAtencion lun9a18;
 	DiaYHorarioDeAtencion mar10a17;
 	DiaYHorarioDeAtencion mier1030a19;
@@ -31,19 +25,15 @@ public class CalculoDeDisponibilidadTest {
 	RangoDeHorario de14a19;
 	RangoDeHorario de9a1215;
 	RangoDeHorario de1330a18;
-	LocalComercial unLocalDeDiario1;
+	LocalComercial unLocalDeDiarios1;
 	CGP cgpDeFlores;
 	Servicio rentas;
 	Servicio multas;
-	List<Point> puntos;
-	Polygon comunaDeFlores;
 	Banco bancoPatagonia;
 
 	@Before
 	public void inicializar() {
-		bondi114 = new ParadaDeColectivo("114", new Point(10.0, 10.0));
-		
-		kioscoDeDarioVerde1 = new KioscoDeDiario();
+		bondi114 = new ParadaDeColectivo("114", null);
 		
 		de9a18 = new RangoDeHorario(LocalTime.of(9, 0), LocalTime.of(18, 0));
 		de10a17 = new RangoDeHorario(LocalTime.of(10, 0), LocalTime.of(17, 0));
@@ -66,12 +56,12 @@ public class CalculoDeDisponibilidadTest {
 		vier9a1215y1330a18.agregarRangoDeHorario(de9a1215);
 		vier9a1215y1330a18.agregarRangoDeHorario(de1330a18);
 		
-		unLocalDeDiario1 = new LocalComercial("Diarin", new Point(10.0, 10.0), kioscoDeDarioVerde1);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(lun9a18);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(mar10a17);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(mier1030a19);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(jue8a11y14a19);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(vier9a1215y1330a18);
+		unLocalDeDiarios1 = new LocalComercial("Diarin", null, null);
+		unLocalDeDiarios1.agregarDiaYHorarioDeAtencion(lun9a18);
+		unLocalDeDiarios1.agregarDiaYHorarioDeAtencion(mar10a17);
+		unLocalDeDiarios1.agregarDiaYHorarioDeAtencion(mier1030a19);
+		unLocalDeDiarios1.agregarDiaYHorarioDeAtencion(jue8a11y14a19);
+		unLocalDeDiarios1.agregarDiaYHorarioDeAtencion(vier9a1215y1330a18);
 		
 		rentas = new Servicio("rentas");
 		rentas.agregarDiaYHorarioDeAtencion(lun9a18);
@@ -81,13 +71,11 @@ public class CalculoDeDisponibilidadTest {
 		multas.agregarDiaYHorarioDeAtencion(mier1030a19);
 		multas.agregarDiaYHorarioDeAtencion(jue8a11y14a19);
 		
-		puntos = new ArrayList<Point>(Arrays.asList(new Point(10.0,10.0), new Point(10.0,-10.0), new Point(-10.0,10.0), new Point(-10.0,-10.0)));
-		comunaDeFlores = new Polygon(puntos);
-		cgpDeFlores = new CGP("CGPFlores", new Point(100.0, 5.0), comunaDeFlores);
+		cgpDeFlores = new CGP("CGPFlores", null, null);
 		cgpDeFlores.agregarServicio(rentas);
 		cgpDeFlores.agregarServicio(multas);
 		
-		bancoPatagonia = new Banco("Banco Patagonia", new Point(10.0, 10.0));
+		bancoPatagonia = new Banco("Banco Patagonia", null);
 	}
 	
 	@Test
@@ -97,17 +85,17 @@ public class CalculoDeDisponibilidadTest {
 	
 	@Test
 	public void testLocalComercialKioscoDeDiarioDisponibilidadEnDiaYHorarioCorrectos() {
-		assertTrue(unLocalDeDiario1.estaDisponibleEn(LocalDateTime.of(2016, 4, 22, 10, 15, 33)));
+		assertTrue(unLocalDeDiarios1.estaDisponibleEn(LocalDateTime.of(2016, 4, 22, 10, 15, 33)));
 	}
 
 	@Test
 	public void testLocalComercialKioscoDeDiarioDisponibilidadEnDiaIncorrectoYHorarioCorrecto() {
-		assertFalse(unLocalDeDiario1.estaDisponibleEn(LocalDateTime.of(2016, 4, 23, 10, 15, 33)));
+		assertFalse(unLocalDeDiarios1.estaDisponibleEn(LocalDateTime.of(2016, 4, 23, 10, 15, 33)));
 	}
 	
 	@Test
 	public void testLocalComercialKioscoDeDiarioDisponibilidadEnDiaCorrectoYHorarioIncorrecto() {
-		assertFalse(unLocalDeDiario1.estaDisponibleEn(LocalDateTime.of(2016, 4, 22, 12, 30, 30)));
+		assertFalse(unLocalDeDiarios1.estaDisponibleEn(LocalDateTime.of(2016, 4, 22, 12, 30, 30)));
 	}
 	
 	@Test

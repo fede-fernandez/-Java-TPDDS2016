@@ -1,11 +1,10 @@
-package ar.edu.dds.tpa.model;
+package ar.edu.dds.tpa.geolocalizacion;
 
-//TODO Cambiar lo de xtend a java para no usar esa dependencia.
-public class Coordenada {
+public class Posicion {
 	double latitud;
 	double longitud;
 
-	public Coordenada(double latitud, double longitud) {
+	public Posicion(double latitud, double longitud) {
 		this.latitud = latitud;
 		this.longitud = longitud;
 	}
@@ -18,7 +17,7 @@ public class Coordenada {
 		return longitud;
 	}
 
-	public double distanciaA(Coordenada otroPunto) {
+	public double distanciaA(Posicion otroPunto) {
 		double radioDeLaTierra = 6371;
 		double latitudDelta = Math.toRadians(otroPunto.getLatitud() - latitud);
 		double longitudDelta = Math.toRadians(otroPunto.getLongitud()

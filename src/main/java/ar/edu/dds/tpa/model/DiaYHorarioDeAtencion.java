@@ -19,19 +19,15 @@ public class DiaYHorarioDeAtencion {
 	}
 
 	public boolean estaDentroDeRangosDeHorario(LocalTime unHorario) {
-		return this.rangosDeHorario.stream().anyMatch(
-				rangoDeHorario -> rangoDeHorario
-						.estaDentroDelRangoDeHorario(unHorario));
+		return this.rangosDeHorario.stream()
+				.anyMatch(rangoDeHorario -> rangoDeHorario.estaDentroDelRangoDeHorario(unHorario));
 	}
 
-	public boolean estaDentroDelDiaYHorarioDeAtencion(DayOfWeek unDia,
-			LocalTime unHorario) {
+	public boolean estaDentroDelDiaYHorarioDeAtencion(DayOfWeek unDia, LocalTime unHorario) {
 		return unDia.equals(dia) && estaDentroDeRangosDeHorario(unHorario);
 	}
 
-	public boolean estaDentroDelDiaYHorarioDeAtencion(
-			LocalDateTime unDiaYHorario) {
-		return unDiaYHorario.getDayOfWeek().equals(dia)
-				&& estaDentroDeRangosDeHorario(unDiaYHorario.toLocalTime());
+	public boolean estaDentroDelDiaYHorarioDeAtencion(LocalDateTime unDiaYHorario) {
+		return unDiaYHorario.getDayOfWeek().equals(dia) && estaDentroDeRangosDeHorario(unDiaYHorario.toLocalTime());
 	}
 }

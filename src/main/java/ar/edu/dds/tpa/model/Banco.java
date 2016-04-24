@@ -6,14 +6,16 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.uqbar.geodds.Point;
+import ar.edu.dds.tpa.geolocalizacion.Posicion;
+
 
 //TODO sacar los code smells
 public class Banco extends PuntoDeInteres {
-	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
+	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion;
 
-	public Banco(String nombre, Point coordenadas) {
+	public Banco(String nombre, Posicion coordenadas) {
 		super(nombre, coordenadas);
+		this.diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
 		RangoDeHorario de10a15 = new RangoDeHorario(LocalTime.of(10, 0), LocalTime.of(15, 0));
 		DiaYHorarioDeAtencion lunes10a15 = new DiaYHorarioDeAtencion(DayOfWeek.MONDAY);
 		lunes10a15.agregarRangoDeHorario(de10a15);

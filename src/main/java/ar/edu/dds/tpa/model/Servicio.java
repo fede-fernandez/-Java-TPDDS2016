@@ -2,6 +2,7 @@ package ar.edu.dds.tpa.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class Servicio {
@@ -26,5 +27,11 @@ public class Servicio {
 		return this.diasYHorariosDeAtencion.stream().anyMatch(
 				diaYHorario -> diaYHorario
 						.estaDentroDelDiaYHorarioDeAtencion(unDiaYHorario));
+	}
+	
+	public ArrayList<String> getEtiquetas(){
+		ArrayList<String> etiquetas = new ArrayList<>();
+		etiquetas.addAll(Arrays.asList(this.nombre.split(" ")));
+		return etiquetas;
 	}
 }

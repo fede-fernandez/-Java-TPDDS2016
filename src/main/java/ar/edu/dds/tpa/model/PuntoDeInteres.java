@@ -1,6 +1,8 @@
 package ar.edu.dds.tpa.model;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
@@ -26,4 +28,14 @@ public abstract class PuntoDeInteres {
 	}
 
 	public abstract boolean estaDisponibleEn(LocalDateTime unDiaYHorario);
+	
+	protected ArrayList<String> getEtiquetas() {
+		ArrayList<String> etiquetas = new ArrayList<>();
+		etiquetas.addAll(Arrays.asList(this.nombre.split(" ")));
+		return etiquetas;
+	}
+	
+	public boolean condicionDeBusqueda(String unTexto) {
+		return getEtiquetas().stream().anyMatch(etiqueta -> unTexto.equalsIgnoreCase(etiqueta));
+	}
 }

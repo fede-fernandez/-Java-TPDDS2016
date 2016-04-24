@@ -35,4 +35,11 @@ public class CGP extends PuntoDeInteres {
 		return this.servicios.stream().filter(servicio -> servicio.getNombre().equals(nombreDelServicio))
 				.anyMatch(servicio -> servicio.atiendeEn(unDiaYHorario));
 	}
+	
+	@Override
+	public ArrayList<String> getEtiquetas() {
+		ArrayList<String> etiquetas = super.getEtiquetas();
+		servicios.stream().map(servicio -> servicio.getEtiquetas()).forEach(etiquetasServicio -> etiquetas.addAll(etiquetasServicio));
+		return etiquetas;
+	}
 }

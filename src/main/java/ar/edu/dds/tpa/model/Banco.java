@@ -2,9 +2,6 @@ package ar.edu.dds.tpa.model;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.uqbar.geodds.Point;
 
@@ -14,13 +11,7 @@ public class Banco extends PuntoDeInteres {
 
 	public Banco(String nombre, Point coordenadas) {
 		super(nombre, coordenadas);
-		RangoDeHorario de10a15 = new RangoDeHorario(LocalTime.of(10, 0), LocalTime.of(15, 0));
-		HorarioDeAtencion horario = new HorarioDeAtencion();
-		horario.agregarRangoDeHorario(DayOfWeek.MONDAY, de10a15);
-		horario.agregarRangoDeHorario(DayOfWeek.TUESDAY, de10a15);
-		horario.agregarRangoDeHorario(DayOfWeek.WEDNESDAY, de10a15);
-		horario.agregarRangoDeHorario(DayOfWeek.THURSDAY, de10a15);
-		horario.agregarRangoDeHorario(DayOfWeek.FRIDAY, de10a15);
+		horarioSemanal = new HorarioDeAtencion();
 	}
 	
 	public void agregarDiaYHorarioDeAtencion(DayOfWeek dia, RangoDeHorario rango) {
@@ -32,8 +23,8 @@ public class Banco extends PuntoDeInteres {
 		return this.horarioSemanal.estaDentroDeRangosDeHorario(unDiaYHorario);
 	}
 
-	@Override
-	public boolean condicionDeBusqueda(String unTexto) {
-		return this.estaEtiquetadoPor(unTexto);
-	}
+//	@Override
+//	public boolean condicionDeBusqueda(String unTexto) {
+//		return this.estaEtiquetadoPor(unTexto);
+//	}
 }

@@ -2,6 +2,7 @@ package ar.edu.dds.tpa.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import org.uqbar.geodds.Point;
 
@@ -23,9 +24,9 @@ public abstract class PuntoDeInteres {
 		return coordenadas;
 	}
 
-	private ArrayList<String> getEtiquetas() {
+	protected ArrayList<String> getEtiquetas() {
 		ArrayList<String> etiquetas = new ArrayList<>();
-		etiquetas.add(this.nombre);
+		etiquetas.addAll(Arrays.asList(this.nombre.split(" ")));
 		return etiquetas;
 	}
 
@@ -39,7 +40,9 @@ public abstract class PuntoDeInteres {
 	
 	public abstract boolean estaDisponibleEn(LocalDateTime unDiaYHorario);
 	
-	public abstract boolean condicionDeBusqueda(String unTexto);
+	public boolean condicionDeBusqueda(String unTexto){
+		return getEtiquetas().stream().anyMatch(etiqueta -> unTexto.equalsIgnoreCase(etiqueta));
+	};
 
 	
 }

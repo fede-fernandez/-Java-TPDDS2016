@@ -14,6 +14,7 @@ public class LocalComercial extends PuntoDeInteres {
 	public LocalComercial(String nombre, Point coordenadas, Rubro rubro) {
 		super(nombre, coordenadas);
 		this.rubro = rubro;
+		this.horarioSemanal = new HorarioDeAtencion();
 	}
 
 	public Rubro getRubro() {
@@ -34,11 +35,17 @@ public class LocalComercial extends PuntoDeInteres {
 		return this.horarioSemanal.estaDentroDeRangosDeHorario(unDiaYHorario);
 	}
 
-	@Override
-	public boolean condicionDeBusqueda(String unTexto) {
-		return rubro.getNombreRubro() == unTexto
-				|| this.estaEtiquetadoPor(unTexto);
-	}
+//	@Override
+//	public boolean condicionDeBusqueda(String unTexto) {
+//		return rubro.getNombreRubro() == unTexto
+//				|| this.estaEtiquetadoPor(unTexto);
+//	}
 	
+	@Override
+	public ArrayList<String> getEtiquetas() {
+		ArrayList<String> etiquetas = super.getEtiquetas();
+		etiquetas.addAll(rubro.getEtiquetas());
+		return etiquetas;
+	}
 
 }

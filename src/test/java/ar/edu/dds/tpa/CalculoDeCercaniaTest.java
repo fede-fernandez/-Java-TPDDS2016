@@ -1,126 +1,77 @@
 package ar.edu.dds.tpa;
+
 import static org.junit.Assert.*;
 
-import java.time.DayOfWeek;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
 
+import ar.edu.dds.tpa.geolocalizacion.*;
 import ar.edu.dds.tpa.model.*;
 
 public class CalculoDeCercaniaTest {
-	Point posicionDeUsuario1;
-	Point posicionDeUsuario2;
-	Point posicionDeUsuario3;
-	Point posicionDeUsuario4;
+	Posicion posicionDeUsuario1;
+	Posicion posicionDeUsuario2;
+	Posicion posicionDeUsuario3;
+	Posicion posicionDeUsuario4;
 	ParadaDeColectivo bondi114;
-	KioscoDeDiario kioscoDeDarioVerde1;
-	DiaYHorarioDeAtencion lun9a18;
-	DiaYHorarioDeAtencion mar10a17;
-	DiaYHorarioDeAtencion mier1030a19;
-	DiaYHorarioDeAtencion jue8a11y14a19;
-	DiaYHorarioDeAtencion vier9a1215y1330a18;
-	RangoDeHorario de9a18;
-	RangoDeHorario de10a17;
-	RangoDeHorario de1030a19;
-	RangoDeHorario de8a11;
-	RangoDeHorario de14a19;
-	RangoDeHorario de9a1215;
-	RangoDeHorario de1330a18;
-	LocalComercial unLocalDeDiario1;
-	CGP cgpDeFlores;
-	Servicio rentas;
-	Servicio multas;
-	List<Point> puntos;
-	Polygon comunaDeFlores;
+	KioscoDeDiario kioscoDeDiarios;
+	LocalComercial unLocalDeDiarios1;
 	Banco bancoPatagonia;
+	CGP cgpDeFlores;
+	List<Posicion> puntos;
+	Poligono comunaDeFlores;
 
 	@Before
 	public void inicializar() {
-		bondi114 = new ParadaDeColectivo("114", new Point(200.0006, 100.0));
-		
-		kioscoDeDarioVerde1 = new KioscoDeDiario();
-		
-		de9a18 = new RangoDeHorario(LocalTime.of(9, 0), LocalTime.of(18, 0));
-		de10a17 = new RangoDeHorario(LocalTime.of(10, 0), LocalTime.of(17, 0));
-		de1030a19 = new RangoDeHorario(LocalTime.of(10, 30), LocalTime.of(19, 0));
-		de8a11 = new RangoDeHorario(LocalTime.of(8, 00), LocalTime.of(11, 0));
-		de14a19 = new RangoDeHorario(LocalTime.of(14, 00), LocalTime.of(19, 0));
-		de9a1215 = new RangoDeHorario(LocalTime.of(9, 00), LocalTime.of(12, 15));
-		de1330a18 = new RangoDeHorario(LocalTime.of(13, 30), LocalTime.of(18, 00));
-		
-		lun9a18 = new DiaYHorarioDeAtencion(DayOfWeek.MONDAY);
-		lun9a18.agregarRangoDeHorario(de9a18);
-		mar10a17 = new DiaYHorarioDeAtencion(DayOfWeek.TUESDAY);
-		mar10a17.agregarRangoDeHorario(de10a17);
-		mier1030a19 = new DiaYHorarioDeAtencion(DayOfWeek.WEDNESDAY);
-		mier1030a19.agregarRangoDeHorario(de1030a19);
-		jue8a11y14a19 = new DiaYHorarioDeAtencion(DayOfWeek.THURSDAY);
-		jue8a11y14a19.agregarRangoDeHorario(de8a11);
-		jue8a11y14a19.agregarRangoDeHorario(de14a19);
-		vier9a1215y1330a18 = new DiaYHorarioDeAtencion(DayOfWeek.FRIDAY);
-		vier9a1215y1330a18.agregarRangoDeHorario(de9a1215);
-		vier9a1215y1330a18.agregarRangoDeHorario(de1330a18);
-		
-		unLocalDeDiario1 = new LocalComercial("Diarin", new Point(100.000002, 50.0), kioscoDeDarioVerde1);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(lun9a18);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(mar10a17);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(mier1030a19);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(jue8a11y14a19);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(vier9a1215y1330a18);
-		
-		rentas = new Servicio("rentas");
-		rentas.agregarDiaYHorarioDeAtencion(lun9a18);
-		rentas.agregarDiaYHorarioDeAtencion(mar10a17);
-		
-		multas = new Servicio("multas");
-		multas.agregarDiaYHorarioDeAtencion(mier1030a19);
-		multas.agregarDiaYHorarioDeAtencion(jue8a11y14a19);
-		
-		puntos = new ArrayList<Point>(Arrays.asList(new Point(10.0,10.0), new Point(10.0,-10.0), new Point(-10.0,10.0), new Point(-10.0,-10.0)));
-		comunaDeFlores = new Polygon(puntos);
-		cgpDeFlores = new CGP("CGPFlores", new Point(100.0, 5.0), comunaDeFlores);
-		cgpDeFlores.agregarServicio(rentas);
-		cgpDeFlores.agregarServicio(multas);
-		
-		bancoPatagonia = new Banco("Banco Patagonia", new Point(10.0, 10.0));
-		
-		posicionDeUsuario1 = new Point(100.000001,50.0);
-		posicionDeUsuario2 = new Point(200.0005,100.0);
-		posicionDeUsuario3 = new Point(5.0, 5.0);
-		posicionDeUsuario4 = new Point(100.0, 100.0);
+		bondi114 = new ParadaDeColectivo("114", new Posicion(200.0006, 100.0));
+
+		kioscoDeDiarios = new KioscoDeDiario();
+		unLocalDeDiarios1 = new LocalComercial("Diarin", new Posicion(100.000002, 50.0), kioscoDeDiarios);
+
+		puntos = new ArrayList<Posicion>(Arrays.asList(new Posicion(10.0, 10.0), new Posicion(10.0, -10.0),
+				new Posicion(-10.0, 10.0), new Posicion(-10.0, -10.0)));
+		comunaDeFlores = new Poligono(puntos);
+		cgpDeFlores = new CGP("CGPFlores", new Posicion(100.0, 5.0), comunaDeFlores);
+
+		bancoPatagonia = new Banco("Banco Patagonia", new Posicion(100.000004, 50.0));
+
+		posicionDeUsuario1 = new Posicion(100.000001, 50.0);
+		posicionDeUsuario2 = new Posicion(200.0005, 100.0);
+		posicionDeUsuario3 = new Posicion(5.0, 5.0);
+		posicionDeUsuario4 = new Posicion(100.0, 100.0);
 	}
-	
+
 	@Test
-	public void elPrimerUsuarioEstaCercaDelKiosco(){
-		assertTrue(unLocalDeDiario1.estaCercaDe(posicionDeUsuario1));
+	public void elUsuario1EstaCercaDelBanco() {
+		assertTrue(bancoPatagonia.estaCercaDe(posicionDeUsuario1));
 	}
-	
-	
+
 	@Test
-	public void elPrimerUsuarioNoEstaCercaDeLaLibreria(){
-		assertFalse(bondi114.estaCercaDe(posicionDeUsuario1));		
+	public void elUsuario1EstaCercaDelLocalDeDiarios() {
+		assertTrue(unLocalDeDiarios1.estaCercaDe(posicionDeUsuario1));
 	}
-	
-	
+
 	@Test
-	public void elSegundoUsuarioEstaCercaDeLaLibreria(){
+	public void elUsuario2NoEstaCercaDeLaParadaDel114() {
+		assertFalse(bondi114.estaCercaDe(posicionDeUsuario1));
+	}
+
+	@Test
+	public void elUsuario3EstaCercaDeLaParadaDel114() {
 		assertTrue(bondi114.estaCercaDe(posicionDeUsuario2));
 	}
-	
+
 	@Test
-	public void elUsuarioTresEstaCercaDelCGP(){
+	public void elUsuario3EstaCercaDelCGP() {
 		assertTrue(cgpDeFlores.estaCercaDe(posicionDeUsuario3));
 	}
-	
+
 	@Test
-	public void elUsuarioCuatroNoEstaCercaDelCGP(){
+	public void elUsuario4NoEstaCercaDelCGP() {
 		assertFalse(cgpDeFlores.estaCercaDe(posicionDeUsuario4));
 	}
 }

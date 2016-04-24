@@ -2,13 +2,13 @@ package ar.edu.dds.tpa.model;
 
 import java.time.LocalDateTime;
 
-import org.uqbar.geodds.Point;
+import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 public abstract class PuntoDeInteres {
 	private String nombre;
-	private Point coordenadas;
+	private Posicion coordenadas;
 
-	public PuntoDeInteres(String nombre, Point coordenadas) {
+	public PuntoDeInteres(String nombre, Posicion coordenadas) {
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
 	}
@@ -16,14 +16,14 @@ public abstract class PuntoDeInteres {
 	public String getNombre() {
 		return nombre;
 	}
-	
-	public Point getCoordenadas() {
+
+	public Posicion getCoordenadas() {
 		return coordenadas;
 	}
-	
-	public boolean estaCercaDe(Point unaPosicion){
-		return this.coordenadas.distance(unaPosicion) <= 0.5;				
+
+	public boolean estaCercaDe(Posicion unaPosicion) {
+		return this.coordenadas.distanciaA(unaPosicion) <= 0.5;
 	}
-	
+
 	public abstract boolean estaDisponibleEn(LocalDateTime unDiaYHorario);
 }

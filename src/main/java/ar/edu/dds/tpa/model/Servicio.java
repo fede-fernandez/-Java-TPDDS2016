@@ -6,10 +6,11 @@ import java.util.List;
 
 public class Servicio {
 	private String nombre;
-	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
+	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion;
 	
 	public Servicio(String nombre) {
 		this.nombre = nombre;
+		this.diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
 	}
 
 	public String getNombre() {

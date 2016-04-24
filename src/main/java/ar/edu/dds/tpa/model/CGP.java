@@ -4,16 +4,17 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.uqbar.geodds.Point;
-import org.uqbar.geodds.Polygon;
+import ar.edu.dds.tpa.geolocalizacion.Posicion;
+import ar.edu.dds.tpa.geolocalizacion.Poligono;
 
 public class CGP extends PuntoDeInteres {
-	private Polygon comuna;
-	private List<Servicio> servicios = new ArrayList<Servicio>();
+	private Poligono comuna;
+	private List<Servicio> servicios;
 
-	public CGP(String nombre, Point coordenadas, Polygon comuna) {
+	public CGP(String nombre, Posicion coordenadas, Poligono comuna) {
 		super(nombre, coordenadas);
 		this.comuna = comuna;
+		this.servicios = new ArrayList<Servicio>();
 	}
 
 	public void agregarServicio(Servicio unServicio) {
@@ -21,20 +22,17 @@ public class CGP extends PuntoDeInteres {
 	}
 
 	@Override
-	public boolean estaCercaDe(Point unaPosicion) {
-		return this.comuna.isInside(unaPosicion);
+	public boolean estaCercaDe(Posicion unaPosicion) {
+		return this.comuna.incluyeA(unaPosicion);
 	}
 
 	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
-		return this.servicios.stream().anyMatch(
-				servicio -> servicio.atiendeEn(unDiaYHorario));
+		return this.servicios.stream().anyMatch(servicio -> servicio.atiendeEn(unDiaYHorario));
 	}
 
-	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario,
-			String nombreDelServicio) {
-		return this.servicios.stream()
-				.filter(servicio -> servicio.getNombre().equals(nombreDelServicio))
+	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario, String nombreDelServicio) {
+		return this.servicios.stream().filter(servicio -> servicio.getNombre().equals(nombreDelServicio))
 				.anyMatch(servicio -> servicio.atiendeEn(unDiaYHorario));
 	}
 }

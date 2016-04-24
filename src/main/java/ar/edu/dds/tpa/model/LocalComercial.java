@@ -4,33 +4,34 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.uqbar.geodds.Point;
+import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 public class LocalComercial extends PuntoDeInteres {
 	private Rubro rubro;
-	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
-	
-	public LocalComercial(String nombre, Point coordenadas, Rubro rubro) {
+	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion;
+
+	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro) {
 		super(nombre, coordenadas);
 		this.rubro = rubro;
+		this.diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
 	}
 
 	public Rubro getRubro() {
 		return rubro;
 	}
-	
+
 	public void agregarDiaYHorarioDeAtencion(DiaYHorarioDeAtencion unDiaYHorarioDeAtencion) {
 		this.diasYHorariosDeAtencion.add(unDiaYHorarioDeAtencion);
 	}
-	
+
 	@Override
-	public boolean estaCercaDe(Point unaPosicion){
-		return this.getCoordenadas().distance(unaPosicion) <= this.rubro.radioDeCercania() * 0.1;
+	public boolean estaCercaDe(Posicion unaPosicion) {
+		return this.getCoordenadas().distanciaA(unaPosicion) <= this.rubro.radioDeCercania() * 0.1;
 	}
-	
+
 	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
-		return this.diasYHorariosDeAtencion.stream().anyMatch(
-				diaYHorario -> diaYHorario.estaDentroDelDiaYHorarioDeAtencion(unDiaYHorario));
+		return this.diasYHorariosDeAtencion.stream()
+				.anyMatch(diaYHorario -> diaYHorario.estaDentroDelDiaYHorarioDeAtencion(unDiaYHorario));
 	}
 }

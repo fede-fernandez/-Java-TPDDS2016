@@ -20,9 +20,9 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 		return true;
 	}
 	
-	@Override
-	public boolean condicionDeBusqueda(String unTexto){
-		return (this.getNombre() == unTexto) ||
-				(this.estaEtiquetadoPor(unTexto));
-	}
+//	@Override
+//	public boolean condicionDeBusqueda(String unTexto){
+//		return (this.getNombre() == unTexto) ||
+//				(this.estaEtiquetadoPor(unTexto));
+//	}
 }

@@ -38,19 +38,20 @@ public class BusquedaDePuntoTest {
 	@Before
 	public void initialize(){
 		
-		unBanco = new Banco(null, null, "palabra clave");
+		unBanco = new Banco("Ciudad", null);
 		
-		unCGP = new CGP("CGP Balbanera", null, "asesoramiento legal", null);
+		unCGP = new CGP("CGP Balbanera", null, null);
+		unCGP.agregarServicio(new Servicio("Rentas"));
 		
-		kioscoDeDario = new KioscoDeDiario("kiosco De Diarios");
-		unLocal = new LocalComercial(null, null, kioscoDeDario, "palabra clave");
+		kioscoDeDario = new KioscoDeDiario("Kiosco De Diarios");
+		unLocal = new LocalComercial("El matutino", null, kioscoDeDario);
 		
 		libreriaEscolar = new LibreriaEscolar("libreria escolar");
-		unLocal2 = new LocalComercial(null, null, libreriaEscolar, "xxxxxx");
+		unLocal2 = new LocalComercial("El ateneo", null, libreriaEscolar);
 		
-		un144_1 = new ParadaDeColectivo("144", null, "palabra clave");
-		un144_2 = new ParadaDeColectivo("144", null, "recorrido wilde");
-		un144_3 = new ParadaDeColectivo("144", null, "xxxx");
+		un144_1 = new ParadaDeColectivo("144", null);
+		un144_2 = new ParadaDeColectivo("144", null);
+		un144_3 = new ParadaDeColectivo("144", null);
 		
 		busqueda = new Buscador();
 		
@@ -66,15 +67,6 @@ public class BusquedaDePuntoTest {
 		
 	}
 	
-
-	
-	@Test
-	public void busqueda_del_144_por_palabra_clave(){
-
-		puntosDeInteresENcontrados.add(un144_2);
-		
-		Assert.assertEquals(puntosDeInteresENcontrados, busqueda.buscarPorTextoLibre("recorrido wilde"));
-	}
 	
 	@Test
 	public void busqueda_de_todos_los_144(){
@@ -91,7 +83,7 @@ public class BusquedaDePuntoTest {
 
 		puntosDeInteresENcontrados.add(unLocal);
 		
-		Assert.assertEquals(puntosDeInteresENcontrados, busqueda.buscarPorTextoLibre("kiosco De Diarios"));
+		Assert.assertEquals(puntosDeInteresENcontrados, busqueda.buscarPorTextoLibre("Kiosco De Diarios"));
 	}
 	
 	@Test
@@ -102,24 +94,13 @@ public class BusquedaDePuntoTest {
 		Assert.assertEquals(puntosDeInteresENcontrados, busqueda.buscarPorTextoLibre("libreria escolar"));
 	}
 	
-	@Test
-	public void busqueda_por_palabra_clave(){
-
-		puntosDeInteresENcontrados.add(un144_1);
-		puntosDeInteresENcontrados.add(unLocal);
-		puntosDeInteresENcontrados.add(unBanco);
-		
-		Assert.assertEquals(puntosDeInteresENcontrados, busqueda.buscarPorTextoLibre("palabra clave"));
-		
-	}
-	
 	
 	@Test
 	public void busqueda_por_parte_de_un_servicio_CGP(){
 
 		puntosDeInteresENcontrados.add(unCGP);
 		
-		Assert.assertEquals(puntosDeInteresENcontrados, busqueda.buscarPorTextoLibre("asesoramiento legal"));	
+		Assert.assertEquals(puntosDeInteresENcontrados, busqueda.buscarPorTextoLibre("Rentas"));	
 	}
 	
 	

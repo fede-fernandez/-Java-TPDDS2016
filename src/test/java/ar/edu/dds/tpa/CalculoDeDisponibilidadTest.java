@@ -19,11 +19,6 @@ import ar.edu.dds.tpa.model.*;
 public class CalculoDeDisponibilidadTest {
 	ParadaDeColectivo bondi114;
 	KioscoDeDiario kioscoDeDarioVerde1;
-	HorarioDeAtencion lun9a18;
-	HorarioDeAtencion mar10a17;
-	HorarioDeAtencion mier1030a19;
-	HorarioDeAtencion jue8a11y14a19;
-	HorarioDeAtencion vier9a1215y1330a18;
 	RangoDeHorario de9a18;
 	RangoDeHorario de10a17;
 	RangoDeHorario de1030a19;
@@ -41,7 +36,7 @@ public class CalculoDeDisponibilidadTest {
 
 	@Before
 	public void inicializar() {
-		bondi114 = new ParadaDeColectivo("114", new Point(10.0, 10.0), null);
+		bondi114 = new ParadaDeColectivo("114", new Point(10.0, 10.0));
 		
 		kioscoDeDarioVerde1 = new KioscoDeDiario(null);
 		
@@ -53,41 +48,38 @@ public class CalculoDeDisponibilidadTest {
 		de9a1215 = new RangoDeHorario(LocalTime.of(9, 00), LocalTime.of(12, 15));
 		de1330a18 = new RangoDeHorario(LocalTime.of(13, 30), LocalTime.of(18, 00));
 		
-		lun9a18 = new HorarioDeAtencion(DayOfWeek.MONDAY);
-		lun9a18.agregarRangoDeHorario(de9a18);
-		mar10a17 = new HorarioDeAtencion(DayOfWeek.TUESDAY);
-		mar10a17.agregarRangoDeHorario(de10a17);
-		mier1030a19 = new HorarioDeAtencion(DayOfWeek.WEDNESDAY);
-		mier1030a19.agregarRangoDeHorario(de1030a19);
-		jue8a11y14a19 = new HorarioDeAtencion(DayOfWeek.THURSDAY);
-		jue8a11y14a19.agregarRangoDeHorario(de8a11);
-		jue8a11y14a19.agregarRangoDeHorario(de14a19);
-		vier9a1215y1330a18 = new HorarioDeAtencion(DayOfWeek.FRIDAY);
-		vier9a1215y1330a18.agregarRangoDeHorario(de9a1215);
-		vier9a1215y1330a18.agregarRangoDeHorario(de1330a18);
 		
-		unLocalDeDiario1 = new LocalComercial("Diarin", new Point(10.0, 10.0), kioscoDeDarioVerde1, null);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(lun9a18);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(mar10a17);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(mier1030a19);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(jue8a11y14a19);
-		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(vier9a1215y1330a18);
 		
+		unLocalDeDiario1 = new LocalComercial("Diarin", new Point(10.0, 10.0), kioscoDeDarioVerde1);
+		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(DayOfWeek.MONDAY, de9a18);
+		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(DayOfWeek.TUESDAY, de10a17);
+		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(DayOfWeek.WEDNESDAY, de1030a19);
+		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(DayOfWeek.THURSDAY, de8a11);
+		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(DayOfWeek.THURSDAY, de14a19);
+//		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(vier9a1215y1330a18);
+		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(DayOfWeek.FRIDAY, de9a1215);
+		unLocalDeDiario1.agregarDiaYHorarioDeAtencion(DayOfWeek.FRIDAY, de1330a18);
 		rentas = new Servicio("rentas");
-		rentas.agregarDiaYHorarioDeAtencion(lun9a18);
-		rentas.agregarDiaYHorarioDeAtencion(mar10a17);
+		rentas.agregarDiaYHorarioDeAtencion(DayOfWeek.MONDAY, de9a18);
+		rentas.agregarDiaYHorarioDeAtencion(DayOfWeek.TUESDAY, de10a17);
 		
 		multas = new Servicio("multas");
-		multas.agregarDiaYHorarioDeAtencion(mier1030a19);
-		multas.agregarDiaYHorarioDeAtencion(jue8a11y14a19);
+		multas.agregarDiaYHorarioDeAtencion(DayOfWeek.WEDNESDAY, de1030a19);
+		multas.agregarDiaYHorarioDeAtencion(DayOfWeek.THURSDAY, de8a11);
+		multas.agregarDiaYHorarioDeAtencion(DayOfWeek.THURSDAY, de14a19);
 		
 		puntos = new ArrayList<Point>(Arrays.asList(new Point(10.0,10.0), new Point(10.0,-10.0), new Point(-10.0,10.0), new Point(-10.0,-10.0)));
 		comunaDeFlores = new Polygon(puntos);
-		cgpDeFlores = new CGP("CGPFlores", new Point(100.0, 5.0), null, comunaDeFlores);
+		cgpDeFlores = new CGP("CGPFlores", new Point(100.0, 5.0), comunaDeFlores);
 		cgpDeFlores.agregarServicio(rentas);
 		cgpDeFlores.agregarServicio(multas);
 		
-		bancoPatagonia = new Banco("Banco Patagonia", new Point(10.0, 10.0), null);
+		bancoPatagonia = new Banco("Banco Patagonia", new Point(10.0, 10.0));
+		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.MONDAY, new RangoDeHorario(LocalTime.of(10, 0), LocalTime.of(15, 0)));
+		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.TUESDAY, new RangoDeHorario(LocalTime.of(10, 0), LocalTime.of(15, 0)));
+		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.WEDNESDAY, new RangoDeHorario(LocalTime.of(10, 0), LocalTime.of(15, 0)));
+		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.THURSDAY, new RangoDeHorario(LocalTime.of(10, 0), LocalTime.of(15, 0)));
+		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.FRIDAY, new RangoDeHorario(LocalTime.of(10, 0), LocalTime.of(15, 0)));
 	}
 	
 	@Test

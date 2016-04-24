@@ -2,6 +2,8 @@ package ar.edu.dds.tpa.model;
 
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Servicio {
 	private String nombre;
@@ -9,6 +11,7 @@ public class Servicio {
 	
 	public Servicio(String nombre) {
 		this.nombre = nombre;
+		this.horarioSemanal = new HorarioDeAtencion();
 	}
 
 	public String getNombre() {
@@ -25,5 +28,11 @@ public class Servicio {
 	
 	public boolean estasIncluidoEnElNombre(String unTexto){
 		return nombre == unTexto;
+	}
+	
+	public ArrayList<String> getEtiquetas(){
+		ArrayList<String> etiquetas = new ArrayList<>();
+		etiquetas.addAll(Arrays.asList(this.nombre.split(" ")));
+		return etiquetas;
 	}
 }

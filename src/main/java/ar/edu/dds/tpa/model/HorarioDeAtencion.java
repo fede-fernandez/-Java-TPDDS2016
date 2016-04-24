@@ -16,6 +16,9 @@ public class HorarioDeAtencion {
 	}
 
 	public boolean estaDentroDeRangosDeHorario(LocalDateTime diaYHora) {
+		if (!horarioSemanal.containsKey(diaYHora.getDayOfWeek())){
+			return false;
+		}
 		return horarioSemanal.get(diaYHora.getDayOfWeek())
 				.stream()
 				.anyMatch(rango -> rango.estaDentroDelRangoDeHorario(diaYHora.toLocalTime()));

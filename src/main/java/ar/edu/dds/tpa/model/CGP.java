@@ -11,7 +11,7 @@ public class CGP extends PuntoDeInteres {
 	private Polygon comuna;
 	private List<Servicio> servicios = new ArrayList<Servicio>();
 
-	public CGP(String nombre, Point coordenadas, String etiquetaPalabraClave, Polygon comuna) {
+	public CGP(String nombre, Point coordenadas, Polygon comuna) {
 		super(nombre, coordenadas);
 		this.comuna = comuna;
 
@@ -38,13 +38,19 @@ public class CGP extends PuntoDeInteres {
 				.anyMatch(servicio -> servicio.estaDisponibleEn(unDiaYHorario));
 	}
 
+//	@Override
+//	public boolean condicionDeBusqueda(String unTexto) {
+//		 return this.estaEtiquetadoPor(unTexto)
+//				 || 
+//				 (servicios.stream()
+//				 .anyMatch(servicio -> servicio.estasIncluidoEnElNombre(unTexto)));
+//	}
+
 	@Override
-	public boolean condicionDeBusqueda(String unTexto) {
-		 return this.estaEtiquetadoPor(unTexto)
-				 || 
-				 (servicios.stream()
-				 .anyMatch(servicio -> servicio.estasIncluidoEnElNombre(unTexto)));
+	public ArrayList<String> getEtiquetas(){
+		
+		ArrayList<String> etiquetas = super.getEtiquetas();
+		servicios.stream().map(servicio -> servicio.getEtiquetas()).forEach(etiquetasServicio -> etiquetas.addAll(etiquetasServicio));
+		return etiquetas;
 	}
-
-
 }

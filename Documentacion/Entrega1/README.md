@@ -14,7 +14,7 @@
 
 Nos centramos mas que nada en cualidades de diseño :
 
-- Simplicidad: nos concentramos en el enunciado lo que corresponda a la entrega, no agregamos funcionalidades que no pedía (por ejemplo obtener información del punto de interés).
+-Simplicidad: nos concentramos en el enunciado lo que corresponda a la entrega, no agregamos funcionalidades que no pedía (por ejemplo obtener información del punto de interés).
 
 -Flexibilidad: La extensibilidad fue clave, se puede agregar un punto de interés distinto ( uno que no tenga comportamiento pedido al enunciado)  y no habría problema, bastaría con crear una clase aparte que herede de la clase abstracta “punto de interés”y agregar su comportamiento. Lo mismo aplica para rubros ( en ese caso lo implementamos como interface).
 

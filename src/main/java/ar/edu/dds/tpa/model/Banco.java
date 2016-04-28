@@ -11,10 +11,12 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 //TODO sacar los code smells
 public class Banco extends PuntoDeInteres {
+	private List<Servicio> servicios;
 	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion;
 
 	public Banco(String nombre, Posicion coordenadas) {
 		super(nombre, coordenadas);
+		this.servicios = new ArrayList<Servicio>();
 		this.diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
 		RangoDeHorario de10a15 = new RangoDeHorario(LocalTime.of(10, 0), LocalTime.of(15, 0));
 		DiaYHorarioDeAtencion lunes10a15 = new DiaYHorarioDeAtencion(DayOfWeek.MONDAY);
@@ -34,6 +36,10 @@ public class Banco extends PuntoDeInteres {
 		this.agregarDiaYHorarioDeAtencion(viernes10a15);
 	}
 	
+	public void agregarServicio(Servicio unServicio) {
+		this.servicios.add(unServicio);
+	}
+	
 	public void agregarDiaYHorarioDeAtencion(DiaYHorarioDeAtencion unDiaYHorarioDeAtencion) {
 		this.diasYHorariosDeAtencion.add(unDiaYHorarioDeAtencion);
 	}
@@ -42,5 +48,11 @@ public class Banco extends PuntoDeInteres {
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
 		return this.diasYHorariosDeAtencion.stream().anyMatch(
 				diaYHorario -> diaYHorario.estaDentroDelDiaYHorarioDeAtencion(unDiaYHorario));
+	}
+	
+	@Override
+	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario, String nombreDelServicio) {
+		return this.servicios.stream().filter(servicio -> servicio.getNombre().equals(nombreDelServicio))
+				.anyMatch(servicio -> servicio.atiendeEn(unDiaYHorario));
 	}
 }

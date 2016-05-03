@@ -50,7 +50,6 @@ public class Banco extends PuntoDeInteres {
 				diaYHorario -> diaYHorario.estaDentroDelDiaYHorarioDeAtencion(unDiaYHorario));
 	}
 	
-	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario, String nombreDelServicio) {
 		return this.servicios.stream().filter(servicio -> servicio.getNombre().equals(nombreDelServicio))
 				.anyMatch(servicio -> servicio.atiendeEn(unDiaYHorario));

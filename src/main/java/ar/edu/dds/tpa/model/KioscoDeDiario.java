@@ -1,14 +1,15 @@
 package ar.edu.dds.tpa.model;
 
 
-public class KioscoDeDiario implements Rubro {
+public class KioscoDeDiario implements Rubro {	
 	
-		
-	
-	public int radioDeCercania(){
-		return 2;
+	@Override
+	public double radioDeCercania() {
+		return 2.00;
 	}
-	
-	
 
+	@Override
+	public String nombre() {
+		return "Kiosco de Diario";
+	}
 }

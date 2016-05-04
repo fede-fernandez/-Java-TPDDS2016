@@ -1,47 +1,48 @@
 package ar.edu.dds.tpa.model;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Arrays;
 
-import org.uqbar.geodds.Point;
+import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 
 public abstract class PuntoDeInteres {
 	private String nombre;
-	private Direccion direccion;
-	private Point geolocalizacion;
-	private ArrayList<Date> horariosDeAtencion = new ArrayList<Date>();
 
-	
-	public PuntoDeInteres(String nombre, Direccion direccion, Point geolocalizacion){
+	private Posicion coordenadas;
+
+	public PuntoDeInteres(String nombre, Posicion coordenadas) {
 		this.nombre = nombre;
-		this.direccion = direccion;
-		this.geolocalizacion = geolocalizacion;
+		this.coordenadas = coordenadas;
 	}
-		
+	
+
 	public String getNombre() {
 		return nombre;
 	}
 
-	public Direccion getDireccion() {
-		return direccion;
+	public Posicion getCoordenadas() {
+		return coordenadas;
 	}
 
-	public Point getGeolocalizacion() {
-		return geolocalizacion;
+
+	public boolean estaCercaDe(Posicion unaPosicion) {
+		return this.coordenadas.distanciaA(unaPosicion) <= 0.5;
 	}
 
-	public ArrayList<Date> getHorariosDeAtencion() {
-		return horariosDeAtencion;
-	}
-
-	public void agregarHorarioDeAtencion(Date horarioDeAtencion) {
-		this.horariosDeAtencion.add(horarioDeAtencion);
+	public abstract boolean estaDisponibleEn(LocalDateTime unDiaYHorario);
+	
+	protected ArrayList<String> getEtiquetas() {
+		ArrayList<String> etiquetas = new ArrayList<>();
+		etiquetas.addAll(Arrays.asList(this.nombre.split(" ")));
+		return etiquetas;
 	}
 	
-	public Boolean estaCercaDe(Point posicionDelUsuario){
-		return this.geolocalizacion.distance(posicionDelUsuario) <= 0.5;				
+	public boolean condicionDeBusqueda(String unTexto) {
+		return getEtiquetas().stream().anyMatch(etiqueta -> unTexto.equalsIgnoreCase(etiqueta));
 	}
+	
 
 	
 	

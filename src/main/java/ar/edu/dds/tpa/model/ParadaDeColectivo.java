@@ -1,17 +1,24 @@
 package ar.edu.dds.tpa.model;
 
-import org.uqbar.geodds.*;
+
+import java.time.LocalDateTime;
+
+import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 public class ParadaDeColectivo extends PuntoDeInteres {
 	
-	public ParadaDeColectivo(String nombre, Direccion direccion, Point geolocalizacion){
-		super(nombre,direccion,geolocalizacion);
+
+	public ParadaDeColectivo(String nombre, Posicion coordenadas) {
+		super(nombre, coordenadas);
 	}
-	
 	
 	@Override
-	public Boolean estaCercaDe(Point posicionDelUsuario) {
-		return this.getGeolocalizacion().distance(posicionDelUsuario) <= 0.1;
+	public boolean estaCercaDe(Posicion unaPosicion) {
+		return this.getCoordenadas().distanciaA(unaPosicion) <= 0.1;
 	}
-
+	
+	@Override
+	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
+		return true;
+	}
 }

@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -12,10 +13,9 @@ import java.util.Arrays;
 import java.util.List;
 
 import ar.edu.dds.tpa.model.*;
-import ar.edu.dds.tpa.model.HorarioDeAtencion.Dia;
 
 public class CalculoDeDisponibilidadTest {
-	List<Dia> deLunesAViernes;
+	List<DayOfWeek> deLunesAViernes;
 	ParadaDeColectivo colectivo114;
 	LocalComercial unLocalDeDiarios1;
 	CGP cgpDeFlores;
@@ -25,8 +25,8 @@ public class CalculoDeDisponibilidadTest {
 
 	@Before
 	public void inicializar() {
-		deLunesAViernes = new ArrayList<Dia>();
-		deLunesAViernes.addAll(Arrays.asList(Dia.LUNES, Dia.MARTES, Dia.MIERCOLES, Dia.JUEVES, Dia.VIERNES));
+		deLunesAViernes = new ArrayList<DayOfWeek>();
+		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));
 
 		colectivo114 = new ParadaDeColectivo("114", null);
 

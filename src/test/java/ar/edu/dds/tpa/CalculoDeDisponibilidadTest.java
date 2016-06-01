@@ -84,11 +84,13 @@ public class CalculoDeDisponibilidadTest {
 		cgpDeFlores.agregarServicio(multas);
 		
 		bancoPatagonia = new Banco("Banco Patagonia", new Point(10.0, 10.0));
-		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.MONDAY, de10a15);
-		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.TUESDAY, de10a15);
-		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.WEDNESDAY, de10a15);
-		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.THURSDAY, de10a15);
-		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.FRIDAY, de10a15);
+//		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.MONDAY, de10a15);
+//		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.TUESDAY, de10a15);
+//		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.WEDNESDAY, de10a15);
+//		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.THURSDAY, de10a15);
+//		bancoPatagonia.agregarDiaYHorarioDeAtencion(DayOfWeek.FRIDAY, de10a15);
+		bancoPatagonia.agregarServicio(multas);
+		bancoPatagonia.agregarServicio(rentas);
 	}
 	
 	@Test

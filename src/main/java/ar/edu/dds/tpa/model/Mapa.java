@@ -4,7 +4,9 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class Buscador {
+import componentes_externos.BuscadorDeCGPLento_Impostor;
+
+public class Mapa {
 	
 	private List<PuntoDeInteres> puntosDeInteres = new ArrayList<>();
 	
@@ -18,10 +20,11 @@ public class Buscador {
 
 		List<String> palabrasClave = Arrays.asList(unaFrase.split(" "));
 		
-		return puntosDeInteres.stream()
-    				.filter(elem -> palabrasClave.stream()
-    						.anyMatch(palabra -> elem.condicionDeBusqueda(palabra)))
-    				.collect(Collectors.toList());
+		List<PuntoDeInteres> resultado = puntosDeInteres.stream().filter(elem -> palabrasClave.stream().anyMatch(palabra -> elem.condicionDeBusqueda(palabra))).collect(Collectors.toList());
+		
+		resultado.addAll(new BuscadorDeCGPLento_Impostor().buscar(palabrasClave));
+		
+		return resultado; 
 	}
 		
 }

@@ -29,7 +29,7 @@ public class BusquedaDePuntoTest {
 	private ParadaDeColectivo un144_2;
 	private ParadaDeColectivo un144_3;
 	
-	private Buscador busqueda;
+	private Mapa busqueda;
 	
 	private List<PuntoDeInteres> puntosDeInteresENcontrados;
 	
@@ -53,7 +53,7 @@ public class BusquedaDePuntoTest {
 		un144_2 = new ParadaDeColectivo("144", null);
 		un144_3 = new ParadaDeColectivo("144", null);
 		
-		busqueda = new Buscador();
+		busqueda = new Mapa();
 		
 		busqueda.agregarPuntoInteres(un144_1);
 		busqueda.agregarPuntoInteres(un144_2);

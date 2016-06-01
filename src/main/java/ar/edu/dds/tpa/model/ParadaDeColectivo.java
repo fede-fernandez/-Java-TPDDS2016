@@ -12,7 +12,7 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 	
 	@Override
 	public boolean estaCercaDe(Posicion unaPosicion) {
-		return this.getCoordenadas().distanciaA(unaPosicion) <= 0.1;
+		return getCoordenadas().distanciaA(unaPosicion) <= 0.1;
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 package ar.edu.dds.tpa.model;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -7,7 +8,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
-import ar.edu.dds.tpa.model.HorarioDeAtencion.Dia;
 
 public class LocalComercial extends PuntoDeInteres {
 	private Rubro rubro;
@@ -23,11 +23,11 @@ public class LocalComercial extends PuntoDeInteres {
 		return rubro;
 	}
 
-	public void agregarHorarioDeAtencion(Dia unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
+	public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
 		horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);
 	}
 	
-	public void agregarHorarioDeAtencion(List<Dia> dias, LocalTime horarioDesde, LocalTime horarioHasta) {
+	public void agregarHorarioDeAtencion(List<DayOfWeek> dias, LocalTime horarioDesde, LocalTime horarioHasta) {
 		horarioDeAtencion.agregarHorarioDeAtencion(dias, horarioDesde, horarioHasta);
 	}
 

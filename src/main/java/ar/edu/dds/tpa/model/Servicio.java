@@ -1,14 +1,13 @@
 package ar.edu.dds.tpa.model;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import ar.edu.dds.tpa.model.HorarioDeAtencion.Dia;
-
-//TODO: Comportamiento repetido en horarios de atencion
+//TODO: Comportamiento repetido en horarios de atencion con localcomercial
 public class Servicio {
 	private String nombre;
 	private HorarioDeAtencion horarioDeAtencion;
@@ -22,11 +21,11 @@ public class Servicio {
 		return nombre;
 	}
 
-	public void agregarHorarioDeAtencion(Dia unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
+	public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
 		horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);
 	}
 	
-	public void agregarHorarioDeAtencion(List<Dia> dias, LocalTime horarioDesde, LocalTime horarioHasta) {
+	public void agregarHorarioDeAtencion(List<DayOfWeek> dias, LocalTime horarioDesde, LocalTime horarioHasta) {
 		horarioDeAtencion.agregarHorarioDeAtencion(dias, horarioDesde, horarioHasta);
 	}
 
@@ -34,7 +33,7 @@ public class Servicio {
 		return horarioDeAtencion.seAtiendeEn(unDiaYHorario);
 	}
 	
-	public boolean atiendeEn(Dia unDia, LocalTime unHorario) {
+	public boolean atiendeEn(DayOfWeek unDia, LocalTime unHorario) {
 		return horarioDeAtencion.seAtiendeEn(unDia, unHorario);
 	}
 	

@@ -7,10 +7,13 @@ import java.util.stream.Collectors;
 
 public class Buscador {
 	private List<PuntoDeInteres> puntosDeInteres;
+	private List<ObserverBuscador> observadores;
+	
 
 	public Buscador() {
 		puntosDeInteres = new ArrayList<>();
 	}
+	
 
 	public void agregarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres) {
 		puntosDeInteres.add(unPuntoDeInteres);
@@ -22,5 +25,10 @@ public class Buscador {
 		return puntosDeInteres.stream()
 				.filter(elem -> palabrasClave.stream().anyMatch(palabra -> elem.condicionDeBusqueda(palabra)))
 				.collect(Collectors.toList());
+	}
+	
+	
+	public void agregarObservador(ObserverBuscador observer){
+		this.observadores.add(observer);
 	}
 }

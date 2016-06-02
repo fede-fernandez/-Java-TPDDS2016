@@ -45,4 +45,10 @@ public abstract class PuntoDeInteres {
 	};
 
 	
+	@Override
+	public boolean equals(Object otro) {
+		return otro != null &&
+			   (otro == this ||
+			   Math.abs(this.coordenadas.distance(((PuntoDeInteres)otro).getCoordenadas())) <= 0.2);
+	}
 }

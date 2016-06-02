@@ -24,7 +24,7 @@ public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 	}
 
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario, String nombreDelServicio) {
-		return servicios.stream().filter(servicio -> servicio.getNombre().equals(nombreDelServicio))
+		return servicios.stream().filter(servicio -> servicio.getNombre().equalsIgnoreCase(nombreDelServicio))
 				.anyMatch(servicio -> servicio.atiendeEn(unDiaYHorario));
 	}
 	

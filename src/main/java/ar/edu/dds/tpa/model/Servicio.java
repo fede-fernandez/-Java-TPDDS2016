@@ -7,11 +7,15 @@ import java.util.Arrays;
 
 public class Servicio {
 	private String nombre;
-	private HorarioDeAtencion horarioSemanal;
+	private HorarioDeAtencion horarioSemanal = new HorarioDeAtencion();;
 	
 	public Servicio(String nombre) {
 		this.nombre = nombre;
-		this.horarioSemanal = new HorarioDeAtencion();
+	}
+	
+	public Servicio(String nombre, HorarioDeAtencion horario){
+		this(nombre);
+		this.horarioSemanal = horario;
 	}
 
 	public String getNombre() {

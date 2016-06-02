@@ -8,12 +8,12 @@ import org.uqbar.geodds.Point;
 
 public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 
+	protected List<Servicio> servicios = new ArrayList<Servicio>();
+	
 	public PuntoDeInteresConServicios(String nombre, Point coordenadas) {
 		super(nombre, coordenadas);
 		// TODO Auto-generated constructor stub
 	}
-
-	private List<Servicio> servicios = new ArrayList<Servicio>();
 
 	public void agregarServicio(Servicio unServicio) {
 		this.servicios.add(unServicio);
@@ -33,7 +33,6 @@ public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 
 	@Override
 	public ArrayList<String> getEtiquetas(){
-		
 		ArrayList<String> etiquetas = super.getEtiquetas();
 		servicios.stream().map(servicio -> servicio.getEtiquetas()).forEach(etiquetasServicio -> etiquetas.addAll(etiquetasServicio));
 		return etiquetas;

@@ -13,9 +13,13 @@ public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 		super(nombre, coordenadas);
 		servicios = new ArrayList<Servicio>();
 	}
-	
+
 	public void agregarServicio(Servicio unServicio) {
 		servicios.add(unServicio);
+	}
+	
+	public List<Servicio> getServicios() {
+		return servicios;
 	}
 	
 	@Override

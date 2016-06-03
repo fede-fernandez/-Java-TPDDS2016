@@ -14,10 +14,11 @@ import ar.edu.dds.tpa.model.Servicio;
 public class BancoServiceAdapter {
 	public List<Banco> obtenerBancosDeJSON(String bancosEnJSON) {
 		List<Banco> bancos = new ArrayList<Banco>();
+		List<BancoDelServicio> bancosDelServicio = new ArrayList<BancoDelServicio>();
 		Type listaDeBancos = new TypeToken<List<BancoDelServicio>>() {}.getType();
 		Gson gson = new Gson();
-		gson.fromJson(bancosEnJSON, listaDeBancos);
-		
+		bancosDelServicio = gson.fromJson(bancosEnJSON, listaDeBancos);
+		bancosDelServicio.stream().forEach(unBancoDelServicio -> bancos.add(parsearBancoDelServicioABanco(unBancoDelServicio)));
 		return bancos;
 	}
 	

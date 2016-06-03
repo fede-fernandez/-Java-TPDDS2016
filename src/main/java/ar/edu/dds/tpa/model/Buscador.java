@@ -7,7 +7,7 @@ import java.util.stream.Collectors;
 
 public class Buscador {
 	private List<PuntoDeInteres> puntosDeInteres;
-	private List<ObserverBuscador> observadores;
+	
 	
 
 	public Buscador() {
@@ -27,8 +27,4 @@ public class Buscador {
 				.collect(Collectors.toList());
 	}
 	
-	
-	public void agregarObservador(ObserverBuscador observer){
-		this.observadores.add(observer);
-	}
 }

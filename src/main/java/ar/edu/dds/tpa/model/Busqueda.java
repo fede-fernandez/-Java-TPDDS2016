@@ -11,7 +11,7 @@ public class Busqueda {
 	private String fraseBuscada;
 	private int cantidadDeResultados;
 	private Duration tiempoDeRespuesta;	
-	private LocalDateTime fechaDeBusqueda;
+	private LocalDate fechaDeBusqueda;
 	private List<PuntoDeInteres> puntosDeInteresEncontrados;
 	
 	
@@ -19,7 +19,7 @@ public class Busqueda {
 		this.fraseBuscada = fraseBuscada;
 		this.cantidadDeResultados = puntosDeInteresEncontrados.size();
 		this.tiempoDeRespuesta = tiempoDeRespuesta;
-		this.fechaDeBusqueda = LocalDateTime.now();
+		this.fechaDeBusqueda = LocalDate.now();
 		this.puntosDeInteresEncontrados = puntosDeInteresEncontrados;
 	}
 	
@@ -39,7 +39,7 @@ public class Busqueda {
 	}
 
 
-	public LocalDateTime getFechaDeBusqueda() {
+	public LocalDate getFechaDeBusqueda() {
 		return fechaDeBusqueda;
 	}
 	

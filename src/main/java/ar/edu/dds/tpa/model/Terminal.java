@@ -31,8 +31,10 @@ public class Terminal {
 	}
 
 	public List<PuntoDeInteres> buscarPorTextoLibre(String unaFrase) {
-		busquedasRealizadas.add(new BusquedaRealizada(unaFrase, LocalDate.now()));
-		return mapa.buscarPorTextoLibre(unaFrase);
+		List<PuntoDeInteres> puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>();
+		puntosDeInteresEncontrados = mapa.buscarPorTextoLibre(unaFrase);
+		busquedasRealizadas.add(new BusquedaRealizada(unaFrase, (int) puntosDeInteresEncontrados.stream().count(), LocalDate.now()));
+		return puntosDeInteresEncontrados;
 	}
 	
 	public int cantidadDeBusquedasPorFecha(LocalDate unaFecha) {

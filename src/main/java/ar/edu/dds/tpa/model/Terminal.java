@@ -42,9 +42,11 @@ public class Terminal{
 	}
 	
 	
-	public long cantidadDeBusquedasPorFecha(LocalDateTime fecha){
+	public long cantidadDeBusquedasPorFecha(LocalDate fecha){
 		return busquedasRealizadas.stream().filter(unaBusqueda -> fecha.equals(unaBusqueda.getFechaDeBusqueda())).count();
 	}
+	
+	
 	
 	
 

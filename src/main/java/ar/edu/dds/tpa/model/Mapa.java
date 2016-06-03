@@ -19,25 +19,29 @@ public class Mapa {
 	public void agregarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres) {
 		puntosDeInteres.add(unPuntoDeInteres);
 	}
-	
+
 	public void sacarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres) {
 		puntosDeInteres.remove(unPuntoDeInteres);
 	}
-	
+
 	public void modificarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado) {
 		puntosDeInteres.remove(unPuntoDeInteres);
 		puntosDeInteres.add(puntoDeInteresModificado);
 	}
-	
+
 	public void agregarBuscadorExterno(BuscadorExterno unBuscadorExterno) {
 		buscadoresExternos.add(unBuscadorExterno);
 	}
 
 	public List<PuntoDeInteres> buscarPorTextoLibre(String unaFrase) {
 		List<String> palabrasClave = Arrays.asList(unaFrase.split(" "));
-
-		return puntosDeInteres.stream()
+		List<PuntoDeInteres> puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>();
+		puntosDeInteresEncontrados.addAll(puntosDeInteres.stream()
 				.filter(elem -> palabrasClave.stream().anyMatch(palabra -> elem.condicionDeBusqueda(palabra)))
-				.collect(Collectors.toList());
+				.collect(Collectors.toList()));
+		if (puntosDeInteresEncontrados.isEmpty())
+			buscadoresExternos.stream()
+					.forEach(unBuscador -> puntosDeInteresEncontrados.addAll(unBuscador.buscarPorTextoLibre(unaFrase)));
+		return puntosDeInteresEncontrados;
 	}
 }

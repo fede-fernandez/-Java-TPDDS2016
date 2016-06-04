@@ -15,9 +15,22 @@ public class Mapa {
 	private List<PuntoDeInteres> resultadosExternos = new ArrayList<>();
 	
 	
+	
+	/*************ABM Puntos de interes****************/
 	public void agregarPuntoInteres(PuntoDeInteres UnPunto) {
 		puntosDeInteres.add(UnPunto);
 	}
+	
+	public void eliminarPuntoDeInteres(PuntoDeInteres unPunto){
+		puntosDeInteres.remove(unPunto);
+	}
+	
+	public void modificarPuntoDeInteres(PuntoDeInteres puntoOriginal, PuntoDeInteres puntoModificado){
+		this.eliminarPuntoDeInteres(puntoOriginal);
+		this.agregarPuntoInteres(puntoModificado);
+	}
+	
+	/*************************************************/
 	
 	public List<PuntoDeInteres> buscarPorTextoLibre(String unaFrase){
 
@@ -43,6 +56,7 @@ public class Mapa {
 	public List<PuntoDeInteres> getResultadosExternos() {
 		return resultadosExternos;
 	}
+	
 }
 
 

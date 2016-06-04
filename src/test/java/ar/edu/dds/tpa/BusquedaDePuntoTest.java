@@ -4,14 +4,15 @@ import static org.junit.Assert.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
+import org.uqbar.geodds.Point;
 
 import ar.edu.dds.tpa.model.*;
-import componentes_externos.BuscadorDeCGPLento;
+import componentes_externos.BuscadorDeBancos_Impostor;
 import componentes_externos.BuscadorDeCGPLento_Impostor;
 import componentes_externos.CentroDTO;
 import componentes_externos.RangosServicioDTO;
@@ -38,14 +39,16 @@ public class BusquedaDePuntoTest {
 	
 	private Mapa mapa;
 	
-	private List<PuntoDeInteres> puntosDeInteresENcontrados;
+	private List<PuntoDeInteres> puntosDeInteresEncontrados;
 	
 	private BuscadorDeCGPLento_Impostor buscadorDeCGPLento;
 
 	private CentroDTO centroDTO;
+	private CentroDTO otroCentroDTO;
 
 	private ServicioDTO servicioDTO;
 	
+	private BuscadorDeBancos_Impostor buscadorDeBancos;
 	
 	@Before
 	public void initialize(){
@@ -75,7 +78,7 @@ public class BusquedaDePuntoTest {
 		mapa.agregarPuntoInteres(unBanco);
 		mapa.agregarPuntoInteres(unCGP);
 	
-		puntosDeInteresENcontrados = new ArrayList<>();
+		puntosDeInteresEncontrados = new ArrayList<>();
 		
 		
 		
@@ -90,49 +93,79 @@ public class BusquedaDePuntoTest {
 		centroDTO.setTelefono("555-5555");
 		centroDTO.addServiciosDTO(servicioDTO);
 		
+		otroCentroDTO = new CentroDTO();
+		otroCentroDTO.setComuna(2);
+		otroCentroDTO.setZona("Zona cheta");
+		otroCentroDTO.setDirector("Rolando Mota");
+		otroCentroDTO.setDomicilioCompleto("Calle Posta 321");
+		otroCentroDTO.setTelefono("555-5555");
+		otroCentroDTO.addServiciosDTO(servicioDTO);
+		
 		
 		buscadorDeCGPLento = new BuscadorDeCGPLento_Impostor();
 		buscadorDeCGPLento.agregarCentro(centroDTO);
+		buscadorDeCGPLento.agregarCentro(otroCentroDTO);
 		
 		
 		
 		mapa.agregarBuscadorExterno(buscadorDeCGPLento);
+		
+		String jsonBancos = "[\n" + 
+				"		                     { \"banco\": \"Banco de la Plaza\",\n" + 
+				"		                         \"x\": -35.9338322,\n" + 
+				"		                         \"y\": 72.348353,\n" + 
+				"		                         \"sucursal\": \"Avellaneda\",\n" + 
+				"		                         \"gerente\": \"Javier Loeschbor\",\n" + 
+				"		                         \"servicios\": [ \"cobro cheques\", \"depósitos\", \"extracciones\", \"transferencias\", \"créditos\", \"\", \"\", \"\" ]\n" + 
+				"		                      },\n" + 
+				"		                      { \"banco\": \"Banco de la Plaza\",\n" + 
+				"		                         \"x\": -35.9345681,\n" + 
+				"		                         \"y\": 72.344546,\n" + 
+				"		                         \"sucursal\": \"Caballito\",\n" + 
+				"		                         \"gerente\": \"Fabián Fantaguzzi\",\n" + 
+				"		                         \"servicios\": [ \"depósitos\", \"extracciones\", \"transferencias\", \"seguros\", \"\", \"\", \"\", \"\" ]\n" + 
+				"		                      }\n" + 
+				"		                   ]";
+		buscadorDeBancos = new BuscadorDeBancos_Impostor();
+		buscadorDeBancos.parsearJSON(jsonBancos);
+		
+		mapa.agregarBuscadorExterno(buscadorDeBancos);
 	}
 	
 	
 	@Test
 	public void busqueda_de_todos_los_144(){
 
-		puntosDeInteresENcontrados.add(un144_1);
-		puntosDeInteresENcontrados.add(un144_2);
-		puntosDeInteresENcontrados.add(un144_3);
+		puntosDeInteresEncontrados.add(un144_1);
+		puntosDeInteresEncontrados.add(un144_2);
+		puntosDeInteresEncontrados.add(un144_3);
 		
-		Assert.assertEquals(puntosDeInteresENcontrados, mapa.buscarPorTextoLibre("144"));
+		Assert.assertEquals(puntosDeInteresEncontrados, mapa.buscarPorTextoLibre("144"));
 	}
 	
 	@Test
 	public void busqueda_por_rubro(){
 
-		puntosDeInteresENcontrados.add(unLocal);
+		puntosDeInteresEncontrados.add(unLocal);
 		
-		Assert.assertEquals(puntosDeInteresENcontrados, mapa.buscarPorTextoLibre("Kiosco De Diarios"));
+		Assert.assertEquals(puntosDeInteresEncontrados, mapa.buscarPorTextoLibre("Kiosco De Diarios"));
 	}
 	
 	@Test
 	public void busqueda_por_rubro_de_una_libreria(){
 
-		puntosDeInteresENcontrados.add(unLocal2);
+		puntosDeInteresEncontrados.add(unLocal2);
 		
-		Assert.assertEquals(puntosDeInteresENcontrados, mapa.buscarPorTextoLibre("libreria escolar"));
+		Assert.assertEquals(puntosDeInteresEncontrados, mapa.buscarPorTextoLibre("libreria escolar"));
 	}
 	
 	
 	@Test
 	public void busqueda_por_parte_de_un_servicio_CGP(){
 
-		puntosDeInteresENcontrados.add(unCGP);
+		puntosDeInteresEncontrados.add(unCGP);
 		
-		Assert.assertEquals(puntosDeInteresENcontrados, mapa.buscarPorTextoLibre("Rentas"));	
+		Assert.assertEquals(puntosDeInteresEncontrados, mapa.buscarPorTextoLibre("Rentas"));	
 	}
 	
 	
@@ -140,7 +173,7 @@ public class BusquedaDePuntoTest {
 	
 	@Test
 	public void busqueda_de_nombre_inexistente(){
-		Assert.assertEquals(puntosDeInteresENcontrados, mapa.buscarPorTextoLibre("un nombre inexistente"));
+		Assert.assertEquals(puntosDeInteresEncontrados, mapa.buscarPorTextoLibre("un nombre inexistente"));
 		
 	}
 	
@@ -152,7 +185,39 @@ public class BusquedaDePuntoTest {
 	
 	@Test
 	public void busqueda_de_cgp_en_buscador_externo_lento_sin_resultado() throws Exception {
-		mapa.buscarPorTextoLibre("2");
+		mapa.buscarPorTextoLibre("1000"); //No hay cgp con comuna 1000
 		Assert.assertTrue(mapa.getResultadosExternos().isEmpty());
+	}
+	
+	@Test
+	public void busqueda_de_cgp_en_buscador_externo_lento_devuelve_un_solo_resultado() throws Exception {
+		mapa.buscarPorTextoLibre("1");
+		Assert.assertTrue(mapa.getResultadosExternos().size()==1);
+	}
+	
+	@Test
+	public void busqueda_de_banco_en_buscador_externo_con_resultado() throws Exception {
+		mapa.buscarPorTextoLibre("Banco plaza");
+		Assert.assertTrue(mapa.getResultadosExternos().contains(new Banco("Banco de la Plaza", new Point(-35.9338322, 72.348353))));
+	}
+	
+	@Test
+	public void busqueda_de_banco_en_buscador_externo_sin_resultado() throws Exception {
+		mapa.buscarPorTextoLibre("inexistente");
+		Assert.assertTrue(mapa.getResultadosExternos().isEmpty());
+	}
+	
+	@Test
+	public void busqueda_de_banco_en_buscador_externo_devuelve_dos_resultados() throws Exception {
+		mapa.buscarPorTextoLibre("Banco plaza");
+		Assert.assertTrue(mapa.getResultadosExternos().size()==2);
+	}
+	
+	@Test
+	public void busqueda_en_buscador_externo_devuelve_dos_bancos_y_un_cgp() throws Exception {
+		mapa.buscarPorTextoLibre("Banco plaza 2");
+		Assert.assertTrue(mapa.getResultadosExternos().size()==3 &&  //Tiene 3 elementos
+							mapa.getResultadosExternos().contains(otroCentroDTO.toPuntoDeInteres()) && //Uno es otroCentroDTO
+							mapa.getResultadosExternos().stream().filter(punto -> punto.getClass()==Banco.class).collect(Collectors.toList()).size()==2); //Los otros dos son del tipo banco
 	}
 }

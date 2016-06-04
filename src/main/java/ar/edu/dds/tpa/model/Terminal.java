@@ -1,23 +1,28 @@
 package ar.edu.dds.tpa.model;
 
+import java.time.Duration;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
+import ar.edu.dds.tpa.observer.BusquedaObserver;
 
 public class Terminal {
 	private String nombre;
 	private Posicion coordenadas;
 	private Mapa mapa;
 	private List<BusquedaRealizada> busquedasRealizadas;
-	
+	private List<BusquedaObserver> observadoresDeBusqueda;
+
 	public Terminal(String nombre, Posicion coordenadas) {
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
 		busquedasRealizadas = new ArrayList<BusquedaRealizada>();
+		observadoresDeBusqueda = new ArrayList<BusquedaObserver>();
 	}
-	
+
 	public String getNombre() {
 		return nombre;
 	}
@@ -31,17 +36,40 @@ public class Terminal {
 	}
 
 	public List<PuntoDeInteres> buscarPorTextoLibre(String unaFrase) {
+		Instant comienzoDeBusqueda = Instant.now();
 		List<PuntoDeInteres> puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>();
 		puntosDeInteresEncontrados = mapa.buscarPorTextoLibre(unaFrase);
-		busquedasRealizadas.add(new BusquedaRealizada(unaFrase, (int) puntosDeInteresEncontrados.stream().count(), LocalDate.now()));
+		Instant finalizacionDeBusqueda = Instant.now();
+
+		BusquedaRealizada busquedaRealizada = new BusquedaRealizada(unaFrase,
+				cantidadDeResultadosArrojados(puntosDeInteresEncontrados),
+				Duration.between(comienzoDeBusqueda, finalizacionDeBusqueda));
+
+		agregarBusquedaRealizada(busquedaRealizada);
+
 		return puntosDeInteresEncontrados;
 	}
-	
-	public int cantidadDeBusquedasPorFecha(LocalDate unaFecha) {
-		return (int) busquedasRealizadas.stream().filter(unaBusqueda -> unaBusqueda.getFechaDeBusqueda().equals(unaFecha)).count();
+
+	public void agregarBusquedaRealizada(BusquedaRealizada unaBusquedaRealizada) {
+		busquedasRealizadas.add(unaBusquedaRealizada);
+		observadoresDeBusqueda.forEach(unObservadorDeBusqueda -> unObservadorDeBusqueda.informar(unaBusquedaRealizada));
 	}
-	
+
+	public int cantidadDeResultadosArrojados(List<PuntoDeInteres> puntosDeInteresEncontrados) {
+		return puntosDeInteresEncontrados.size();
+	}
+
+	public int cantidadDeBusquedasPorFecha(LocalDate unaFecha) {
+		return (int) busquedasRealizadas.stream()
+				.filter(unaBusqueda -> unaBusqueda.getFechaDeBusqueda().equals(unaFecha)).count();
+	}
+
 	public int cantidadDeBusquedasPorTexto(String unTexto) {
-		return (int) busquedasRealizadas.stream().filter(unaBusqueda -> unaBusqueda.getTextoBuscado().equals(unTexto)).count();
+		return (int) busquedasRealizadas.stream().filter(unaBusqueda -> unaBusqueda.getTextoBuscado().equals(unTexto))
+				.count();
+	}
+
+	public void registrarObserverDeBusqueda(BusquedaObserver observadorDeBusqueda) {
+		observadoresDeBusqueda.add(observadorDeBusqueda);
 	}
 }

@@ -10,7 +10,6 @@ import java.util.List;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 public class Banco extends PuntoDeInteresConServicios {
-	
 	private HorarioDeAtencion horarioDeAtencionBancario;
 
 	public Banco(String nombre, Posicion coordenadas) {

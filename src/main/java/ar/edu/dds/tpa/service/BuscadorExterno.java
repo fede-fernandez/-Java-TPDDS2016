@@ -1,4 +1,4 @@
-package ar.edu.dds.tpa.services;
+package ar.edu.dds.tpa.service;
 
 import java.util.List;
 

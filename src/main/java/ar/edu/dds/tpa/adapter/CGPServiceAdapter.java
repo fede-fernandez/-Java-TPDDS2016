@@ -1,5 +1,10 @@
 package ar.edu.dds.tpa.adapter;
 
-public class CGPServiceAdapter {
+import java.util.List;
 
+import ar.edu.dds.tpa.adapter.model.CentroDTO;
+import ar.edu.dds.tpa.model.CGP;
+
+public interface CGPServiceAdapter {
+	public List<CGP> obtenerCGPsDeListaCentrosDTO(List<CentroDTO> centrosDTO);
 }

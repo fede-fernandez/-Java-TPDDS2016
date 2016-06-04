@@ -66,6 +66,9 @@ public class CalculoDeCercaniaTest {
 		posicionDeUsuario2 = new Point(200.0005,100.0);
 		posicionDeUsuario3 = new Point(5.0, 5.0);
 		posicionDeUsuario4 = new Point(100.0, 100.0);
+		
+		
+		
 	}
 	
 	@Test

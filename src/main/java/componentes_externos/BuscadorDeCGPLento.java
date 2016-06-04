@@ -5,21 +5,13 @@ import java.util.List;
 
 public class BuscadorDeCGPLento extends BuscadorExterno {
 
-	protected List<PuntosDTO> centros = new ArrayList<>();
+	protected List<CentroDTO> centros = new ArrayList<>();
 
 	public BuscadorDeCGPLento(){
 		this.puntosDTO = this::getCentros;
 	}
 	
-	public List<PuntosDTO> getCentros() {
+	public List<CentroDTO> getCentros() {
 		return centros;
 	}
-
-	private void addCentro(CentroDTO centro) {
-		this.centros.add(centro);
-	}
-	
-	
-
-
 }

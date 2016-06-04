@@ -1,7 +1,6 @@
 package componentes_externos;
 
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 import ar.edu.dds.tpa.model.Mapa;
@@ -11,7 +10,7 @@ public abstract class BuscadorExterno {
 
 	@FunctionalInterface
 	protected static interface ObtenerPuntosDeInteres{
-		List<PuntosDTO> getPuntosDTO();
+		List<? extends PuntosDTO> getPuntosDTO();
 	}
 	
 	public ObtenerPuntosDeInteres puntosDTO;

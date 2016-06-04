@@ -7,10 +7,10 @@ import org.uqbar.geodds.Point;
 
 //TODO sacar los code smells
 public class Banco extends PuntoDeInteresConServicios {
-	private HorarioDeAtencion horarioSemanal;
+	//private HorarioDeAtencion horarioSemanal;
 
 	public Banco(String nombre, Point coordenadas) {
 		super(nombre, coordenadas);
-		horarioSemanal = new HorarioDeAtencion();
+		//horarioSemanal = new HorarioDeAtencion();
 	}
 }

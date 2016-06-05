@@ -1,37 +1,45 @@
 package ar.edu.dds.tpa.model;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//TODO: Comportamiento repetido en horarios de atencion con localcomercial
 public class Servicio {
 	private String nombre;
-	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion;
+	private HorarioDeAtencion horarioDeAtencion;
 	
 	public Servicio(String nombre) {
 		this.nombre = nombre;
-		this.diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
+		horarioDeAtencion = new HorarioDeAtencion();
 	}
 
 	public String getNombre() {
 		return nombre;
 	}
 
-	public void agregarDiaYHorarioDeAtencion(
-			DiaYHorarioDeAtencion unDiaYHorarioDeAtencion) {
-		this.diasYHorariosDeAtencion.add(unDiaYHorarioDeAtencion);
+	public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
+		horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);
+	}
+	
+	public void agregarHorarioDeAtencion(List<DayOfWeek> dias, LocalTime horarioDesde, LocalTime horarioHasta) {
+		horarioDeAtencion.agregarHorarioDeAtencion(dias, horarioDesde, horarioHasta);
 	}
 
 	public boolean atiendeEn(LocalDateTime unDiaYHorario) {
-		return this.diasYHorariosDeAtencion.stream().anyMatch(
-				diaYHorario -> diaYHorario
-						.estaDentroDelDiaYHorarioDeAtencion(unDiaYHorario));
+		return horarioDeAtencion.seAtiendeEn(unDiaYHorario);
+	}
+	
+	public boolean atiendeEn(DayOfWeek unDia, LocalTime unHorario) {
+		return horarioDeAtencion.seAtiendeEn(unDia, unHorario);
 	}
 	
 	public ArrayList<String> getEtiquetas(){
 		ArrayList<String> etiquetas = new ArrayList<>();
-		etiquetas.addAll(Arrays.asList(this.nombre.split(" ")));
+		etiquetas.addAll(Arrays.asList(nombre.split(" ")));
 		return etiquetas;
 	}
 }

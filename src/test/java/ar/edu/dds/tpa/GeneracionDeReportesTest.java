@@ -71,9 +71,9 @@ public class GeneracionDeReportesTest {
 		Assert.assertEquals(4,administrador.obtenerReporteDeResultadosTotalesDeUnaBusqueda(terminalAbasto, "colectivo"));
 	}
 	
-
-	
-	
-	
-
+	@Test (expected = FaltaDePermisosExcepcion.class)
+	public void excepcionDeFaltaDePermisos() throws FaltaDePermisosExcepcion {
+		terminalAbasto.desactivarReportes();
+		administrador.obtenerReporteDeResultadosParcialesDeUnaBusqueda(terminalAbasto, "Banco");
+	}
 }

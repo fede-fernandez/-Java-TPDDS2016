@@ -6,22 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
-import org.junit.rules.ExpectedException;
 import org.junit.Assert;
 
 import ar.edu.dds.tpa.excepcion.FaltaDePermisosExcepcion;
 import ar.edu.dds.tpa.model.Administrador;
-import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.Terminal;
 import ar.edu.dds.tpa.model.BusquedaRealizada;;
 
 public class GeneracionDeReportesTest {
 
 	
-	Administrador administrador;
-	Mapa mapa;	
+	Administrador administrador;	
 	Terminal terminalAbasto;	
 	BusquedaRealizada busquedaDeBanco;
 	BusquedaRealizada busquedaDeColectivo;
@@ -33,9 +29,7 @@ public class GeneracionDeReportesTest {
 	
 	@Before
 	public void inicializar(){
-		administrador = new Administrador(null);
-		mapa = new Mapa();
-		administrador.setMapa(mapa);
+		administrador = new Administrador(null);		
 		terminalAbasto = new Terminal("Terminal Abasto", null);		
 		administrador.agregarTerminal(terminalAbasto);
 		administrador.agregarMapaATerminales();

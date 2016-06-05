@@ -19,7 +19,7 @@ public class BusquedaDePuntoTest {
 	private ParadaDeColectivo un144_1;
 	private ParadaDeColectivo un144_2;
 	private ParadaDeColectivo un144_3;
-	private Buscador busqueda;
+	private Mapa busqueda;
 	private List<PuntoDeInteres> puntosDeInteresEncontrados;
 	
 	@Before
@@ -39,7 +39,7 @@ public class BusquedaDePuntoTest {
 		un144_2 = new ParadaDeColectivo("144", null);
 		un144_3 = new ParadaDeColectivo("144", null);
 		
-		busqueda = new Buscador();
+		busqueda = new Mapa();
 		
 		busqueda.agregarPuntoDeInteres(un144_1);
 		busqueda.agregarPuntoDeInteres(un144_2);

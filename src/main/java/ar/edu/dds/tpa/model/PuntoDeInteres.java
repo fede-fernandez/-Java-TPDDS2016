@@ -28,14 +28,14 @@ public abstract class PuntoDeInteres {
 
 
 	public boolean estaCercaDe(Posicion unaPosicion) {
-		return this.coordenadas.distanciaA(unaPosicion) <= 0.5;
+		return coordenadas.distanciaA(unaPosicion) <= 0.5;
 	}
 
 	public abstract boolean estaDisponibleEn(LocalDateTime unDiaYHorario);
 	
 	protected ArrayList<String> getEtiquetas() {
 		ArrayList<String> etiquetas = new ArrayList<>();
-		etiquetas.addAll(Arrays.asList(this.nombre.split(" ")));
+		etiquetas.addAll(Arrays.asList(nombre.split(" ")));
 		return etiquetas;
 	}
 	

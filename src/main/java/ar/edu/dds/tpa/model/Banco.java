@@ -5,56 +5,31 @@ import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
+public class Banco extends PuntoDeInteresConServicios {
+	private HorarioDeAtencion horarioDeAtencionBancario;
 
-//TODO sacar los code smells
-public class Banco extends PuntoDeInteres {
-	
-	
-	private List<Servicio> servicios;
-	private List<DiaYHorarioDeAtencion> diasYHorariosDeAtencion;
 
 	public Banco(String nombre, Posicion coordenadas) {
 		super(nombre, coordenadas);
-		this.servicios = new ArrayList<Servicio>();
-		this.diasYHorariosDeAtencion = new ArrayList<DiaYHorarioDeAtencion>();
-		RangoDeHorario de10a15 = new RangoDeHorario(LocalTime.of(10, 0), LocalTime.of(15, 0));
-		DiaYHorarioDeAtencion lunes10a15 = new DiaYHorarioDeAtencion(DayOfWeek.MONDAY);
-		lunes10a15.agregarRangoDeHorario(de10a15);
-		DiaYHorarioDeAtencion martes10a15 = new DiaYHorarioDeAtencion(DayOfWeek.TUESDAY);
-		martes10a15.agregarRangoDeHorario(de10a15);
-		DiaYHorarioDeAtencion miercoles10a15 = new DiaYHorarioDeAtencion(DayOfWeek.WEDNESDAY);
-		miercoles10a15.agregarRangoDeHorario(de10a15);
-		DiaYHorarioDeAtencion jueves10a15 = new DiaYHorarioDeAtencion(DayOfWeek.THURSDAY);
-		jueves10a15.agregarRangoDeHorario(de10a15);
-		DiaYHorarioDeAtencion viernes10a15 = new DiaYHorarioDeAtencion(DayOfWeek.FRIDAY);
-		viernes10a15.agregarRangoDeHorario(de10a15);
-		this.agregarDiaYHorarioDeAtencion(lunes10a15);
-		this.agregarDiaYHorarioDeAtencion(martes10a15);
-		this.agregarDiaYHorarioDeAtencion(miercoles10a15);
-		this.agregarDiaYHorarioDeAtencion(jueves10a15);
-		this.agregarDiaYHorarioDeAtencion(viernes10a15);
+		List<DayOfWeek> deLunesAViernes = new ArrayList<DayOfWeek>();
+		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));
+		horarioDeAtencionBancario = new HorarioDeAtencion();
+		horarioDeAtencionBancario.agregarHorarioDeAtencion(deLunesAViernes,  LocalTime.of(10, 0), LocalTime.of(15, 0));
 	}
 	
-	public void agregarServicio(Servicio unServicio) {
-		this.servicios.add(unServicio);
-	}
-	
-	public void agregarDiaYHorarioDeAtencion(DiaYHorarioDeAtencion unDiaYHorarioDeAtencion) {
-		this.diasYHorariosDeAtencion.add(unDiaYHorarioDeAtencion);
-	}
-
 	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
-		return this.diasYHorariosDeAtencion.stream().anyMatch(
-				diaYHorario -> diaYHorario.estaDentroDelDiaYHorarioDeAtencion(unDiaYHorario));
+		return horarioDeAtencionBancario.seAtiendeEn(unDiaYHorario);
 	}
 	
+	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario, String nombreDelServicio) {
-		return this.servicios.stream().filter(servicio -> servicio.getNombre().equals(nombreDelServicio))
-				.anyMatch(servicio -> servicio.atiendeEn(unDiaYHorario));
+		return getServicios().stream().anyMatch(servicio -> servicio.getNombre().equalsIgnoreCase(nombreDelServicio))
+				&& estaDisponibleEn(unDiaYHorario);
 	}
 }

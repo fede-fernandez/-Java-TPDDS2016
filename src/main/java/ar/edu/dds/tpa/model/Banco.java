@@ -1,5 +1,6 @@
 package ar.edu.dds.tpa.model;
 
+
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -11,6 +12,7 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 public class Banco extends PuntoDeInteresConServicios {
 	private HorarioDeAtencion horarioDeAtencionBancario;
+
 
 	public Banco(String nombre, Posicion coordenadas) {
 		super(nombre, coordenadas);

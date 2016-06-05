@@ -1,7 +1,10 @@
 package ar.edu.dds.tpa.model;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import ar.edu.dds.tpa.excepcion.FaltaDePermisosExcepcion;
 
 public class Administrador {
 	private Mapa mapa;
@@ -39,5 +42,19 @@ public class Administrador {
 	
 	public void modificarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado) {
 		mapa.modificarPuntoDeInteres(unPuntoDeInteres, puntoDeInteresModificado);
+	}
+	
+	
+	
+	public int obtenerReporteDeBusquedaPorFecha(Terminal unaTerminal, LocalDate unaFecha) throws FaltaDePermisosExcepcion{
+		return unaTerminal.cantidadDeBusquedasPorFecha(unaFecha);	
+	}
+	
+	public List<Integer> obtenerReporteDeResultadosParcialesDeUnaBusqueda(Terminal unaTerminal, String unTexto) throws FaltaDePermisosExcepcion{
+		return unaTerminal.resultadosParcialesDeUnaBusqueda(unTexto);
+	}
+	
+	public int obtenerReporteDeResultadosTotalesDeUnaBusqueda(Terminal unaTerminal, String unTexto) throws FaltaDePermisosExcepcion{
+		return unaTerminal.cantidadTotalDeResultadosDeUnaBusqueda(unTexto);
 	}
 }

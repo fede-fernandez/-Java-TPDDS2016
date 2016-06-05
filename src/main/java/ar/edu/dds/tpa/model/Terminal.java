@@ -1,3 +1,4 @@
+
 package ar.edu.dds.tpa.model;
 
 import java.time.LocalDate;
@@ -5,7 +6,9 @@ import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
+import ar.edu.dds.tpa.excepcion.FaltaDePermisosExcepcion;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.observer.BusquedaObserver;
 
@@ -15,12 +18,14 @@ public class Terminal {
 	private Mapa mapa;
 	private List<BusquedaRealizada> busquedasRealizadas;
 	private List<BusquedaObserver> observadoresDeBusqueda;
-
+	private boolean permisoParaGenerarReportes;
+	
 	public Terminal(String nombre, Posicion coordenadas) {
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
 		busquedasRealizadas = new ArrayList<BusquedaRealizada>();
 		observadoresDeBusqueda = new ArrayList<BusquedaObserver>();
+		permisoParaGenerarReportes = false;
 	}
 
 	public String getNombre() {
@@ -59,17 +64,49 @@ public class Terminal {
 		return puntosDeInteresEncontrados.size();
 	}
 
-	public int cantidadDeBusquedasPorFecha(LocalDate unaFecha) {
-		return (int) busquedasRealizadas.stream()
-				.filter(unaBusqueda -> unaBusqueda.getFechaDeBusqueda().equals(unaFecha)).count();
-	}
-
-	public int cantidadDeBusquedasPorTexto(String unTexto) {
-		return (int) busquedasRealizadas.stream().filter(unaBusqueda -> unaBusqueda.getTextoBuscado().equals(unTexto))
-				.count();
-	}
-
 	public void registrarObserverDeBusqueda(BusquedaObserver observadorDeBusqueda) {
 		observadoresDeBusqueda.add(observadorDeBusqueda);
+	}
+	
+	public void borrarObserverDeBusqueda(BusquedaObserver observadorDeBusqueda) {
+		observadoresDeBusqueda.remove(observadorDeBusqueda);
+	}
+	
+	public int cantidadDeBusquedasPorFecha(LocalDate fecha) throws FaltaDePermisosExcepcion {
+		if (permisoParaGenerarReportes) {
+			return (int)busquedasRealizadas.stream().filter(unaBusqueda -> fecha.equals(unaBusqueda.getFechaDeBusqueda())).count();			
+		} else {
+			throw new FaltaDePermisosExcepcion("No contas con los permisos para generar el reporte");
+		}
+	}
+	
+	public List<Integer> resultadosParcialesDeUnaBusqueda(String unTexto) throws FaltaDePermisosExcepcion {
+		if (permisoParaGenerarReportes) {
+			return busquedasRealizadas.stream()
+					.filter(unaBusqueda -> unaBusqueda.getTextoBuscado().equals(unTexto))
+					.map(unaBusquedaFiltrada -> unaBusquedaFiltrada.getCantidadDeResultados())
+					.collect(Collectors.toList());			
+		} else {
+			throw new FaltaDePermisosExcepcion("No contas con los permisos para generar el reporte");
+		}		
+	}
+	
+	public int cantidadTotalDeResultadosDeUnaBusqueda(String unTexto) throws FaltaDePermisosExcepcion {
+		if (permisoParaGenerarReportes) {
+			return resultadosParcialesDeUnaBusqueda(unTexto).stream()
+					.mapToInt(unaCantidad -> unaCantidad.intValue())
+					.sum();			
+		} else {
+			throw new FaltaDePermisosExcepcion("No contas con los permisos para generar el reporte");
+		}
+		
+	}
+	
+	public void activarReportes() {
+		permisoParaGenerarReportes = true;
+	}
+	
+	public void desactivarReportes() {
+		permisoParaGenerarReportes = false;
 	}
 }

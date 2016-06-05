@@ -6,14 +6,17 @@ import java.util.Arrays;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
+
 public abstract class PuntoDeInteres {
 	private String nombre;
+
 	private Posicion coordenadas;
 
 	public PuntoDeInteres(String nombre, Posicion coordenadas) {
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
 	}
+	
 
 	public String getNombre() {
 		return nombre;
@@ -22,6 +25,7 @@ public abstract class PuntoDeInteres {
 	public Posicion getCoordenadas() {
 		return coordenadas;
 	}
+
 
 	public boolean estaCercaDe(Posicion unaPosicion) {
 		return coordenadas.distanciaA(unaPosicion) <= 0.5;
@@ -38,4 +42,8 @@ public abstract class PuntoDeInteres {
 	public boolean condicionDeBusqueda(String unTexto) {
 		return getEtiquetas().stream().anyMatch(etiqueta -> unTexto.equalsIgnoreCase(etiqueta));
 	}
+	
+
+	
+	
 }

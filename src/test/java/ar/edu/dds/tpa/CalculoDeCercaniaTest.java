@@ -23,7 +23,7 @@ public class CalculoDeCercaniaTest {
 	Banco bancoPatagonia;
 	CGP cgpDeFlores;
 	List<Posicion> puntos;
-	Poligono comunaDeFlores;
+	Poligono barrioDeFlores;
 
 	@Before
 	public void inicializar() {
@@ -34,8 +34,10 @@ public class CalculoDeCercaniaTest {
 
 		puntos = new ArrayList<Posicion>(Arrays.asList(new Posicion(10.0, 10.0), new Posicion(10.0, -10.0),
 				new Posicion(-10.0, 10.0), new Posicion(-10.0, -10.0)));
-		comunaDeFlores = new Poligono(puntos);
-		cgpDeFlores = new CGP("CGPFlores", new Posicion(100.0, 5.0), comunaDeFlores);
+		barrioDeFlores = new Poligono(puntos);
+		
+		cgpDeFlores = new CGP("CGPFlores", new Posicion(100.0, 5.0));
+		cgpDeFlores.agregarZonaDeCobertura(barrioDeFlores);
 
 		bancoPatagonia = new Banco("Banco Patagonia", new Posicion(100.000004, 50.0));
 

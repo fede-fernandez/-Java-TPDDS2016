@@ -1,18 +1,17 @@
 package ar.edu.dds.tpa.model;
 
-import java.time.Duration;
 import java.time.LocalDate;
 
 public class BusquedaRealizada {
 	private String textoBuscado;
 	private int cantidadDeResultados;
 	private LocalDate fechaDeBusqueda;
-	private Duration tiempoDeRespuesta;
+	private double tiempoDeRespuesta;
 
-	public BusquedaRealizada(String textoBuscado, int cantidadDeResultados, Duration tiempoDeRespuesta) {
+	public BusquedaRealizada(String textoBuscado, int cantidadDeResultados, LocalDate fechaDeBusqueda, double tiempoDeRespuesta) {
 		this.textoBuscado = textoBuscado;
 		this.cantidadDeResultados = cantidadDeResultados;
-		this.fechaDeBusqueda = LocalDate.now();
+		this.fechaDeBusqueda = fechaDeBusqueda;
 		this.tiempoDeRespuesta = tiempoDeRespuesta;
 	}
 
@@ -28,7 +27,7 @@ public class BusquedaRealizada {
 		return fechaDeBusqueda;
 	}
 	
-	public double getTiempoDeRespuestaEnSegundos() {
-		return tiempoDeRespuesta.toMillis() * 1000; //Un segundo = 1000 milisegundos
+	public double getTiempoDeRespuesta() {
+		return tiempoDeRespuesta;
 	}
 }

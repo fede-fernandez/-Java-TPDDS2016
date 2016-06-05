@@ -26,7 +26,7 @@ public class BusquedaDePuntoTest {
 	public void inicializar(){	
 		unBanco = new Banco("Ciudad", null);
 		
-		unCGP = new CGP("CGP Balbanera", null, null);
+		unCGP = new CGP("CGP Balbanera", null);
 		unCGP.agregarServicio(new Servicio("Rentas"));
 		
 		kioscoDeDario = new KioscoDeDiario();

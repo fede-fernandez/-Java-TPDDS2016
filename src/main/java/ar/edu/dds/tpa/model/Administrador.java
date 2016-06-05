@@ -1,13 +1,28 @@
 package ar.edu.dds.tpa.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Administrador {
 	private Mapa mapa;
 	private List<Terminal> terminales;
+	private String mail;
+	
+	public Administrador(String mail) {
+		this.mail = mail;
+		terminales = new ArrayList<Terminal>();
+	}
 	
 	public void setMapa(Mapa mapa) {
 		this.mapa = mapa;
+	}
+	
+	public String getMail() {
+		return mail;
+	}
+	
+	public void agregarTerminal(Terminal unaTerminal) {
+		terminales.add(unaTerminal);
 	}
 	
 	public void agregarMapaATerminales() {

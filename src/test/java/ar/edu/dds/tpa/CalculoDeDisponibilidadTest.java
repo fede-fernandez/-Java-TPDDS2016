@@ -40,7 +40,7 @@ public class CalculoDeDisponibilidadTest {
 		multas = new Servicio("Multas");
 		multas.agregarHorarioDeAtencion(DayOfWeek.THURSDAY, LocalTime.of(12, 15), LocalTime.of(19, 20));
 
-		cgpDeFlores = new CGP("CGPFlores", null, null);
+		cgpDeFlores = new CGP("CGPFlores", null);
 		cgpDeFlores.agregarServicio(rentas);
 		cgpDeFlores.agregarServicio(multas);
 		

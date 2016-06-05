@@ -21,9 +21,7 @@ public class HorarioDeAtencion {
 	// agregarHorarioDeAtencion(dia, horarioDesde, horarioHasta)
 	// Agrega a la coleccion el dia (si no existe)
 	// Si existe se le agrega el rango de horario (horarioInicio, horarioFin)
-	// synchronized permite que los objetos se instancien una unica vez
-	// (thread-safe).
-	public synchronized void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
+	public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
 		RangoDeHorario rangoDeHorario = new RangoDeHorario(horarioDesde, horarioHasta);
 		horarioDeAtencion.putIfAbsent(unDia, new ArrayList<RangoDeHorario>());
 		horarioDeAtencion.get(unDia).add(rangoDeHorario);

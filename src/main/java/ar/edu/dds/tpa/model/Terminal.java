@@ -1,8 +1,8 @@
 package ar.edu.dds.tpa.model;
 
-import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,14 +36,14 @@ public class Terminal {
 	}
 
 	public List<PuntoDeInteres> buscarPorTextoLibre(String unaFrase) {
-		Instant comienzoDeBusqueda = Instant.now();
+		LocalDateTime comienzoDeBusqueda = LocalDateTime.now();
 		List<PuntoDeInteres> puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>();
 		puntosDeInteresEncontrados = mapa.buscarPorTextoLibre(unaFrase);
-		Instant finalizacionDeBusqueda = Instant.now();
+		LocalDateTime finalizacionDeBusqueda = LocalDateTime.now();
 
 		BusquedaRealizada busquedaRealizada = new BusquedaRealizada(unaFrase,
-				cantidadDeResultadosArrojados(puntosDeInteresEncontrados),
-				Duration.between(comienzoDeBusqueda, finalizacionDeBusqueda));
+				cantidadDeResultadosArrojados(puntosDeInteresEncontrados), LocalDate.now(),
+				ChronoUnit.SECONDS.between(comienzoDeBusqueda, finalizacionDeBusqueda));
 
 		agregarBusquedaRealizada(busquedaRealizada);
 

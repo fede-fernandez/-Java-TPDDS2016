@@ -20,6 +20,10 @@ public class Servicio {
 	public String getNombre() {
 		return nombre;
 	}
+	
+	public HorarioDeAtencion getHorarioDeAtencion() {
+		return horarioDeAtencion;
+	}
 
 	public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
 		horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);

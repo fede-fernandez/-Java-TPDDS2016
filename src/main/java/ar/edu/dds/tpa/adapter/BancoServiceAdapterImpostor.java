@@ -1,5 +1,6 @@
 package ar.edu.dds.tpa.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ar.edu.dds.tpa.model.Banco;
@@ -9,8 +10,9 @@ public class BancoServiceAdapterImpostor implements BancoServiceAdapter {
 	
 	@Override
 	public List<Banco> obtenerBancosDeJSON(String bancosEnJSON) {
+		List<Banco> bancosDelServicioImpostor = new ArrayList<Banco>();
 		seLlamoAlBancoServiceAdapter = true;
-		return null;
+		return bancosDelServicioImpostor;
 	}
 
 	public boolean seLlamoAlBancoServiceAdapter() {

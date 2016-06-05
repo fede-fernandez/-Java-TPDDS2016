@@ -20,8 +20,6 @@ public class Terminal {
 	private List<BusquedaObserver> observadoresDeBusqueda;
 	private boolean permisoParaGenerarReportes;
 	
-	
-
 	public Terminal(String nombre, Posicion coordenadas) {
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
@@ -66,31 +64,23 @@ public class Terminal {
 		return puntosDeInteresEncontrados.size();
 	}
 
-
 	public void registrarObserverDeBusqueda(BusquedaObserver observadorDeBusqueda) {
 		observadoresDeBusqueda.add(observadorDeBusqueda);
 	}
 	
-	public void borrarObserverDeBusqueda(BusquedaObserver observadorDeBusqueda){
+	public void borrarObserverDeBusqueda(BusquedaObserver observadorDeBusqueda) {
 		observadoresDeBusqueda.remove(observadorDeBusqueda);
 	}
 	
-	
-	
-	
-	
-	public int cantidadDeBusquedasPorFecha(LocalDate fecha) throws FaltaDePermisosExcepcion{
-		
+	public int cantidadDeBusquedasPorFecha(LocalDate fecha) throws FaltaDePermisosExcepcion {
 		if (permisoParaGenerarReportes) {
 			return (int)busquedasRealizadas.stream().filter(unaBusqueda -> fecha.equals(unaBusqueda.getFechaDeBusqueda())).count();			
 		} else {
 			throw new FaltaDePermisosExcepcion("No contas con los permisos para generar el reporte");
 		}
-		
-		
 	}
 	
-	public List<Integer> resultadosParcialesDeUnaBusqueda(String unTexto) throws FaltaDePermisosExcepcion{
+	public List<Integer> resultadosParcialesDeUnaBusqueda(String unTexto) throws FaltaDePermisosExcepcion {
 		if (permisoParaGenerarReportes) {
 			return busquedasRealizadas.stream()
 					.filter(unaBusqueda -> unaBusqueda.getTextoBuscado().equals(unTexto))
@@ -98,12 +88,10 @@ public class Terminal {
 					.collect(Collectors.toList());			
 		} else {
 			throw new FaltaDePermisosExcepcion("No contas con los permisos para generar el reporte");
-		}
-		
-		
+		}		
 	}
 	
-	public int cantidadTotalDeResultadosDeUnaBusqueda(String unTexto) throws FaltaDePermisosExcepcion{
+	public int cantidadTotalDeResultadosDeUnaBusqueda(String unTexto) throws FaltaDePermisosExcepcion {
 		if (permisoParaGenerarReportes) {
 			return resultadosParcialesDeUnaBusqueda(unTexto).stream()
 					.mapToInt(unaCantidad -> unaCantidad.intValue())
@@ -114,13 +102,11 @@ public class Terminal {
 		
 	}
 	
-	
-	public void activarReportes(){
+	public void activarReportes() {
 		permisoParaGenerarReportes = true;
 	}
 	
-	public void desactivarReportes(){
+	public void desactivarReportes() {
 		permisoParaGenerarReportes = false;
 	}
-	
 }

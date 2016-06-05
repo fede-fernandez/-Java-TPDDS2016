@@ -59,7 +59,7 @@ public class GeneracionDeReportesTest {
 	
 	@Test
 	public void cantidadDeBusquedasRealizadasEl4DeFebreroDe2016EsTresTest() throws FaltaDePermisosExcepcion{
-		Assert.assertTrue(administrador.obtenerReporteDeBusquedaPorFecha(terminalAbasto, cuatroDeFebreroDe2016) == 3);
+		Assert.assertEquals(3, administrador.obtenerReporteDeBusquedaPorFecha(terminalAbasto, cuatroDeFebreroDe2016));
 	}
 	
 	@Test
@@ -74,7 +74,7 @@ public class GeneracionDeReportesTest {
 	
 	@Test
 	public void cantidadDeResultadosTotalesDeColectivoSonCuatroTest() throws FaltaDePermisosExcepcion{
-		Assert.assertTrue(administrador.obtenerReporteDeResultadosTotalesDeUnaBusqueda(terminalAbasto, "colectivo") == 4);
+		Assert.assertEquals(4,administrador.obtenerReporteDeResultadosTotalesDeUnaBusqueda(terminalAbasto, "colectivo"));
 	}
 	
 

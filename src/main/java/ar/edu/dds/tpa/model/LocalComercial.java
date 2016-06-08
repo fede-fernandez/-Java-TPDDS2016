@@ -31,8 +31,8 @@ public class LocalComercial extends PuntoDeInteres {
 		horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);
 	}
 	
-	public void agregarHorarioDeAtencion(List<DayOfWeek> dias, LocalTime horarioDesde, LocalTime horarioHasta) {
-		horarioDeAtencion.agregarHorarioDeAtencion(dias, horarioDesde, horarioHasta);
+	public void agregarHorarioDeAtencionComunEnVariosDias(List<DayOfWeek> dias, LocalTime horarioDesde, LocalTime horarioHasta) {
+		horarioDeAtencion.agregarHorarioDeAtencionComunEnVariosDias(dias, horarioDesde, horarioHasta);
 	}
 
 	@Override

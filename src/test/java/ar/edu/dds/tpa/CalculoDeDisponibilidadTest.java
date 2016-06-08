@@ -32,7 +32,7 @@ public class CalculoDeDisponibilidadTest {
 		colectivo114 = new ParadaDeColectivo("114", null);
 
 		unLocalDeDiarios1 = new LocalComercial("Diarin", null, null);
-		unLocalDeDiarios1.agregarHorarioDeAtencion(deLunesAViernes, LocalTime.of(9, 30), LocalTime.of(18, 30));
+		unLocalDeDiarios1.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(9, 30), LocalTime.of(18, 30));
 
 		rentas = new Servicio("Rentas");
 		rentas.agregarHorarioDeAtencion(DayOfWeek.TUESDAY, LocalTime.of(10, 30), LocalTime.of(16, 45));
@@ -45,8 +45,8 @@ public class CalculoDeDisponibilidadTest {
 		cgpDeFlores.agregarServicio(multas);
 		
 		depositos = new Servicio("Depositos");
-		depositos.agregarHorarioDeAtencion(deLunesAViernes, LocalTime.of(8, 0), LocalTime.of(11, 30));
-		depositos.agregarHorarioDeAtencion(deLunesAViernes, LocalTime.of(14, 15), LocalTime.of(20, 15));
+		depositos.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(8, 0), LocalTime.of(11, 30));
+		depositos.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(14, 15), LocalTime.of(20, 15));
 		
 		bancoPatagonia = new Banco("Banco Patagonia", null);
 		bancoPatagonia.agregarServicio(depositos);

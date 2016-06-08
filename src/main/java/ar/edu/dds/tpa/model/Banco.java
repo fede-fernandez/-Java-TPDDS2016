@@ -19,7 +19,7 @@ public class Banco extends PuntoDeInteresConServicios {
 		List<DayOfWeek> deLunesAViernes = new ArrayList<DayOfWeek>();
 		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));
 		horarioDeAtencionBancario = new HorarioDeAtencion();
-		horarioDeAtencionBancario.agregarHorarioDeAtencion(deLunesAViernes,  LocalTime.of(10, 0), LocalTime.of(15, 0));
+		horarioDeAtencionBancario.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes,  LocalTime.of(10, 0), LocalTime.of(15, 0));
 	}
 	
 	@Override

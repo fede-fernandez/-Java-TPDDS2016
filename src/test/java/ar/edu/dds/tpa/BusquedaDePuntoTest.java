@@ -10,17 +10,17 @@ import org.junit.Test;
 import ar.edu.dds.tpa.model.*;
 
 public class BusquedaDePuntoTest {
-	private Banco unBanco;
-	private CGP unCGP;
-	private LocalComercial unLocal;
-	private KioscoDeDiario kioscoDeDario;
-	private LocalComercial unLocal2;
-	private LibreriaEscolar libreriaEscolar;
-	private ParadaDeColectivo un144_1;
-	private ParadaDeColectivo un144_2;
-	private ParadaDeColectivo un144_3;
-	private Mapa busqueda;
-	private List<PuntoDeInteres> puntosDeInteresEncontrados;
+	 Banco unBanco;
+	 CGP unCGP;
+	 LocalComercial unLocal;
+	 Rubro kioscoDeDario;
+	 LocalComercial unLocal2;
+	 Rubro libreriaEscolar;
+	 ParadaDeColectivo un144_1;
+	 ParadaDeColectivo un144_2;
+	 ParadaDeColectivo un144_3;
+	 Mapa busqueda;
+	 List<PuntoDeInteres> puntosDeInteresEncontrados;
 	
 	@Before
 	public void inicializar(){	
@@ -29,10 +29,10 @@ public class BusquedaDePuntoTest {
 		unCGP = new CGP("CGP Balbanera", null);
 		unCGP.agregarServicio(new Servicio("Rentas"));
 		
-		kioscoDeDario = new KioscoDeDiario();
+		kioscoDeDario = new Rubro("Kiosco de diarios", 2.00);
 		unLocal = new LocalComercial("El matutino", null, kioscoDeDario);
 		
-		libreriaEscolar = new LibreriaEscolar();
+		libreriaEscolar = new Rubro("Libreria escolar", 5.00);
 		unLocal2 = new LocalComercial("El ateneo", null, libreriaEscolar);
 		
 		un144_1 = new ParadaDeColectivo("144", null);

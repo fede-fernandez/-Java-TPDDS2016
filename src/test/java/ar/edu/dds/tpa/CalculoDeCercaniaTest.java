@@ -18,7 +18,7 @@ public class CalculoDeCercaniaTest {
 	Posicion posicionDeUsuario3;
 	Posicion posicionDeUsuario4;
 	ParadaDeColectivo bondi114;
-	KioscoDeDiario kioscoDeDiarios;
+	Rubro kioscoDeDiarios;
 	LocalComercial unLocalDeDiarios1;
 	Banco bancoPatagonia;
 	CGP cgpDeFlores;
@@ -29,7 +29,7 @@ public class CalculoDeCercaniaTest {
 	public void inicializar() {
 		bondi114 = new ParadaDeColectivo("114", new Posicion(200.0006, 100.0));
 
-		kioscoDeDiarios = new KioscoDeDiario();
+		kioscoDeDiarios = new Rubro("Kiosco de diarios",2.00);
 		unLocalDeDiarios1 = new LocalComercial("Diarin", new Posicion(100.000002, 50.0), kioscoDeDiarios);
 
 		puntos = new ArrayList<Posicion>(Arrays.asList(new Posicion(10.0, 10.0), new Posicion(10.0, -10.0),

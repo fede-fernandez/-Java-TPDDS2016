@@ -13,8 +13,34 @@ public class HistorialDeBusquedas {
 		historial.add(busqueda);
 	}
 	
+	
 	public List<LocalDate> fechasDeBusquedas(){
-		return historial.stream().map(unaBusqueda -> unaBusqueda.getFechaDeBusqueda()).distinct().collect(Collectors.toList());
+		return historial.stream()
+				.map(unaBusqueda -> unaBusqueda.getFechaDeBusqueda())
+				.distinct()
+				.collect(Collectors.toList());
+	}
+	
+	
+	public List<String> textosBuscados(){
+		return historial.stream()
+				.map(unaBusqueda -> unaBusqueda.getTextoBuscado())
+				.collect(Collectors.toList());
+	}
+	
+	
+	public int cantidadDeResultadosTotales(){
+		return historial.stream()
+				.mapToInt(unaBusqueda -> unaBusqueda.getCantidadDeResultados())
+				.sum();
+	}
+	
+	
+	public int cantidadDeBusquedasEnUnaFecha(LocalDate unaFecha){
+		return historial.parallelStream()
+				.filter(unaBusqueda -> unaBusqueda.getFechaDeBusqueda().equals(unaFecha))
+				.mapToInt(unaBusquedaFiltrada -> unaBusquedaFiltrada.getCantidadDeResultados())
+				.sum();
 	}
 
 }

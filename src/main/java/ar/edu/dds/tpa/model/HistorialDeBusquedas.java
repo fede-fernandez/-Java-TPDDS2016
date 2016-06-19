@@ -42,11 +42,10 @@ public class HistorialDeBusquedas {
 	}
 	
 	
-	public int cantidadDeBusquedasEnUnaFecha(LocalDate unaFecha){
-		return historial.parallelStream()
+	public long cantidadDeBusquedasEnUnaFecha(LocalDate unaFecha){
+		return historial.stream()
 				.filter(unaBusqueda -> unaBusqueda.getFechaDeBusqueda().equals(unaFecha))
-				.mapToInt(unaBusquedaFiltrada -> unaBusquedaFiltrada.getCantidadDeResultados())
-				.sum();
+				.count();
 	}
 	
 	

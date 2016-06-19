@@ -48,5 +48,13 @@ public class HistorialDeBusquedas {
 				.mapToInt(unaBusquedaFiltrada -> unaBusquedaFiltrada.getCantidadDeResultados())
 				.sum();
 	}
+	
+	
+	public List<Integer> resultadosParcialesPorBusqueda(String textoBuscado){
+		return historial.parallelStream()
+				.filter(unaBusqueda -> unaBusqueda.getTextoBuscado().equals(textoBuscado))
+				.map(unaBusquedaFiltrada -> (Integer)unaBusquedaFiltrada.getCantidadDeResultados())
+				.collect(Collectors.toList());
+	}
 
 }

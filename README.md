@@ -24,6 +24,7 @@ TP 2016 del Grupo 12 del curso K3053 Viernes Noche. Docente Franco Bulgarelli
 
 ###[Enunciado 1° Entrega](https://docs.google.com/document/d/17XAw_kcKj4MopI6coFzR_VE8Hg-6MFJkXd0nA0IU-aM/edit)
 ###[Enunciado 2° Entrega](https://docs.google.com/document/d/1hOUCw5lyVd0AG2IwgfFyyW02YcMEfoMKhuw7xsqR4Xw/edit)
+###[Enunciado 4° Entrega](https://docs.google.com/document/d/1MSf0zRpzrh0_ykWDaF-wm9a4D4vZ3_WdKL__945MM8c/edit)
 ###[Grupo de Facebook](https://www.facebook.com/groups/269933970012691/)
 
 ---
@@ -32,7 +33,7 @@ TP 2016 del Grupo 12 del curso K3053 Viernes Noche. Docente Franco Bulgarelli
 |#|Fecha|
 |---|---|
 |1|22/04|
-|2 (Pre)|03/06|
-|2|01/07|
-|3|30/09|
-|4|11/11
+|2|03/06|
+|3|01/07|
+|4|30/09|
+|5|11/11|

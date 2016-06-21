@@ -17,11 +17,14 @@ public class BancoServiceAdapterReal implements BancoServiceAdapter {
 	@Override
 	public List<Banco> obtenerBancosDeJSON(String bancosEnJSON) {
 		List<Banco> bancos = new ArrayList<Banco>();
-		List<BancoDelServicio> bancosDelServicio = new ArrayList<BancoDelServicio>();
-		Type listaDeBancos = new TypeToken<List<BancoDelServicio>>() {}.getType();
-		Gson gson = new Gson();
-		bancosDelServicio = gson.fromJson(bancosEnJSON, listaDeBancos);
-		bancosDelServicio.stream().forEach(unBancoDelServicio -> bancos.add(parsearBancoDelServicioABanco(unBancoDelServicio)));
+		if(!bancosEnJSON.isEmpty()) {	
+			List<BancoDelServicio> bancosDelServicio = new ArrayList<BancoDelServicio>();
+			Type listaDeBancos = new TypeToken<List<BancoDelServicio>>() {}.getType();
+			Gson gson = new Gson();
+			bancosDelServicio = gson.fromJson(bancosEnJSON, listaDeBancos);
+			bancosDelServicio.stream().forEach(unBancoDelServicio -> 
+				bancos.add(parsearBancoDelServicioABanco(unBancoDelServicio)));
+		}
 		return bancos;
 	}
 	

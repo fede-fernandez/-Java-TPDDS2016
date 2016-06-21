@@ -13,9 +13,7 @@ public class BusquedaDePuntoTest {
 	private Banco unBanco;
 	private CGP unCGP;
 	private LocalComercial unLocal;
-	private KioscoDeDiario kioscoDeDario;
 	private LocalComercial unLocal2;
-	private LibreriaEscolar libreriaEscolar;
 	private ParadaDeColectivo un144_1;
 	private ParadaDeColectivo un144_2;
 	private ParadaDeColectivo un144_3;
@@ -28,12 +26,10 @@ public class BusquedaDePuntoTest {
 		
 		unCGP = new CGP("CGP Balbanera", null);
 		unCGP.agregarServicio(new Servicio("Rentas"));
+
+		unLocal = new LocalComercial("El matutino", null, new Rubro("Kiosco de diario", 0));
 		
-		kioscoDeDario = new KioscoDeDiario();
-		unLocal = new LocalComercial("El matutino", null, kioscoDeDario);
-		
-		libreriaEscolar = new LibreriaEscolar();
-		unLocal2 = new LocalComercial("El ateneo", null, libreriaEscolar);
+		unLocal2 = new LocalComercial("El ateneo", null, new Rubro("Libreria Escolar", 0));
 		
 		un144_1 = new ParadaDeColectivo("144", null);
 		un144_2 = new ParadaDeColectivo("144", null);

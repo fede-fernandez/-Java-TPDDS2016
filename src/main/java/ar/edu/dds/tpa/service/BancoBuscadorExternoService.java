@@ -25,6 +25,9 @@ public class BancoBuscadorExternoService implements BuscadorExterno {
 
 		palabrasClave.forEach(unaPalabraClave -> puntosDeInteresEncontrados.addAll(adapterDeBancoService
 				.obtenerBancosDeJSON(servicioDeConsultaDeBancos.getSucursalesBancosByNombreBanco(unaPalabraClave))));
+		
+		palabrasClave.forEach(unaPalabraClave -> puntosDeInteresEncontrados.addAll(adapterDeBancoService
+				.obtenerBancosDeJSON(servicioDeConsultaDeBancos.getSucursalesBancosByServicio(unaPalabraClave))));
 
 		return puntosDeInteresEncontrados.stream().distinct().collect(Collectors.toList());
 	}

@@ -78,7 +78,7 @@ public class BusquedaDePOIsConServiciosExternosTest {
 	@Test
 	public void seObtuvoElBancoDeSucursalCaballitoDelServicioExternoDeBancos() {
 		resultadosDeLaBusqueda.addAll(terminalFlores.buscarPorTextoLibre("seguros"));
-		Assert.assertTrue(resultadosDeLaBusqueda.stream().allMatch(unResultado -> unResultado.getCoordenadas().getLongitud() == -35.9345681));
+		Assert.assertTrue(resultadosDeLaBusqueda.stream().anyMatch(unResultado -> unResultado.getCoordenadas().getLongitud() == -35.9345681));
 	}
 
 	@Test

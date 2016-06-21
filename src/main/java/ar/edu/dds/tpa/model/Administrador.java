@@ -44,8 +44,6 @@ public class Administrador {
 		mapa.modificarPuntoDeInteres(unPuntoDeInteres, puntoDeInteresModificado);
 	}
 	
-	
-	
 	public int obtenerReporteDeBusquedaPorFecha(Terminal unaTerminal, LocalDate unaFecha) throws FaltaDePermisosExcepcion{
 		return unaTerminal.cantidadDeBusquedasPorFecha(unaFecha);	
 	}

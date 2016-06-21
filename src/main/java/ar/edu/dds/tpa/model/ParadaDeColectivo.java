@@ -1,13 +1,10 @@
 package ar.edu.dds.tpa.model;
 
-
 import java.time.LocalDateTime;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 public class ParadaDeColectivo extends PuntoDeInteres {
-	
-
 	public ParadaDeColectivo(String nombre, Posicion coordenadas) {
 		super(nombre, coordenadas);
 	}

@@ -26,7 +26,7 @@ public class BancoServiceImpostor implements BancoService {
 				"]");
 		}
 		else {
-			return "";
+			return "[]";
 		}
 	}
 	
@@ -56,7 +56,7 @@ public class BancoServiceImpostor implements BancoService {
 					"}]");
 		}
 		else {
-			return "";
+			return "[]";
 		}
 	}
 	

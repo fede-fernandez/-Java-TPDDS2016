@@ -52,8 +52,4 @@ public class AdministradorABMDePOITest {
 		Assert.assertTrue(terminalFlores.buscarPorTextoLibre("bondi").contains(paradaDel7Modificada) &&
 				!terminalFlores.buscarPorTextoLibre("colectivo").contains(paradaDel7));
 	}
-	
-
-
-
 }

@@ -37,7 +37,7 @@ public class LocalComercial extends PuntoDeInteres {
 
 	@Override
 	public boolean estaCercaDe(Posicion unaPosicion) {
-		return getCoordenadas().distanciaA(unaPosicion) <= rubro.radioDeCercania() * 0.1;
+		return getCoordenadas().distanciaA(unaPosicion) <= rubro.getRadioDeCercania() * 0.1;
 	}
 
 	@Override
@@ -48,7 +48,7 @@ public class LocalComercial extends PuntoDeInteres {
 	@Override
 	public ArrayList<String> getEtiquetas() {
 		ArrayList<String> etiquetas = super.getEtiquetas();
-		etiquetas.addAll(Arrays.asList(rubro.nombre().split(" ")));
+		etiquetas.addAll(Arrays.asList(rubro.getNombre().split(" ")));
 		return etiquetas;
 	}
 }

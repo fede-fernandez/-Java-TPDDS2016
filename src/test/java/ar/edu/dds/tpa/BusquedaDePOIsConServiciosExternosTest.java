@@ -1,13 +1,17 @@
 package ar.edu.dds.tpa;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.dds.tpa.adapter.BancoServiceAdapterImpostor;
+import ar.edu.dds.tpa.adapter.BancoServiceAdapterReal;
 import ar.edu.dds.tpa.adapter.CGPServiceAdapterImpostor;
 import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.model.Mapa;
+import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.Terminal;
 import ar.edu.dds.tpa.service.BancoBuscadorExternoService;
 import ar.edu.dds.tpa.service.BancoServiceImpostor;
@@ -17,7 +21,7 @@ import ar.edu.dds.tpa.service.CGPServiceImpostor;
 public class BusquedaDePOIsConServiciosExternosTest {
 	BancoBuscadorExternoService bancoBuscadorExternoService;
 	BancoServiceImpostor bancoServiceImpostor;
-	BancoServiceAdapterImpostor bancoServiceAdapterImpostor;
+	BancoServiceAdapterReal bancoServiceAdapterReal;
 
 	CGPBuscadorExternoService cgpBuscadorExternoService;
 	CGPServiceImpostor cgpServiceImpostor;
@@ -26,6 +30,8 @@ public class BusquedaDePOIsConServiciosExternosTest {
 	Administrador administrador;
 	Mapa mapa;
 	Terminal terminalFlores;
+	
+	List<PuntoDeInteres> resultadosDeLaBusqueda;
 
 	@Before
 	public void inicializar() {
@@ -37,9 +43,9 @@ public class BusquedaDePOIsConServiciosExternosTest {
 		administrador.agregarMapaATerminales();
 
 		bancoServiceImpostor = new BancoServiceImpostor();
-		bancoServiceAdapterImpostor = new BancoServiceAdapterImpostor();
+		bancoServiceAdapterReal = new BancoServiceAdapterReal();
 		bancoBuscadorExternoService = new BancoBuscadorExternoService(bancoServiceImpostor,
-				bancoServiceAdapterImpostor);
+				bancoServiceAdapterReal);
 
 		cgpServiceImpostor = new CGPServiceImpostor();
 		cgpServiceAdapterImpostor = new CGPServiceAdapterImpostor();
@@ -47,13 +53,32 @@ public class BusquedaDePOIsConServiciosExternosTest {
 
 		mapa.agregarBuscadorExterno(bancoBuscadorExternoService);
 		mapa.agregarBuscadorExterno(cgpBuscadorExternoService);
+		
+		resultadosDeLaBusqueda = new ArrayList<PuntoDeInteres>();
 	}
 
 	@Test
-	public void seLlamoAlServicioDeBancosPorqueNoSeEncontroLocalmente() {
-		terminalFlores.buscarPorTextoLibre("Banco que no existe localmente");
-		Assert.assertTrue(bancoServiceImpostor.seLlamoAlBancoService()
-				&& bancoServiceAdapterImpostor.seLlamoAlBancoServiceAdapter());
+	public void seLlamoAlServicioDeBancos() {
+		terminalFlores.buscarPorTextoLibre("Banco de la Plaza");
+		Assert.assertTrue(bancoServiceImpostor.seLlamoAlBancoService());
+	}
+	
+	@Test
+	public void seObtuvoUnBancoDelServicioExterno() {
+		resultadosDeLaBusqueda.addAll(terminalFlores.buscarPorTextoLibre("Banco de la Plaza"));
+		Assert.assertTrue(resultadosDeLaBusqueda.stream().anyMatch(unResultado -> unResultado.getNombre().equals("Banco de la Plaza")));
+	}
+	
+	@Test
+	public void seObtuvoElBancoDeSucursalAvellanedaDelServicioExternoDeBancos() {
+		resultadosDeLaBusqueda.addAll(terminalFlores.buscarPorTextoLibre("cobro"));
+		Assert.assertTrue(resultadosDeLaBusqueda.stream().allMatch(unResultado -> unResultado.getCoordenadas().getLongitud() == -35.9338322));
+	}
+	
+	@Test
+	public void seObtuvoElBancoDeSucursalCaballitoDelServicioExternoDeBancos() {
+		resultadosDeLaBusqueda.addAll(terminalFlores.buscarPorTextoLibre("seguros"));
+		Assert.assertTrue(resultadosDeLaBusqueda.stream().allMatch(unResultado -> unResultado.getCoordenadas().getLongitud() == -35.9345681));
 	}
 
 	@Test

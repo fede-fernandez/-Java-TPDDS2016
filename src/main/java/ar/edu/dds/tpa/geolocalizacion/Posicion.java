@@ -4,19 +4,19 @@ public class Posicion {
 	double latitud;
 	double longitud;
 
-	public Posicion(double latitud, double longitud) {
-		this.latitud = latitud;
+	public Posicion(double longitud, double latitud) {
 		this.longitud = longitud;
+		this.latitud = latitud;
 	}
-
-	public double getLatitud() {
-		return latitud;
-	}
-
+	
 	public double getLongitud() {
 		return longitud;
 	}
-
+	
+	public double getLatitud() {
+		return latitud;
+	}
+	
 	public double distanciaA(Posicion otroPunto) {
 		double radioDeLaTierra = 6371;
 		double latitudDelta = Math.toRadians(otroPunto.getLatitud() - latitud);

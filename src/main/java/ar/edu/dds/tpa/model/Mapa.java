@@ -36,20 +36,15 @@ public class Mapa {
 	public List<PuntoDeInteres> buscarPorTextoLibre(String unaFrase) {
 		List<String> palabrasClave = Arrays.asList(unaFrase.split(" "));
 		List<PuntoDeInteres> puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>();
-		
-		
+
 		puntosDeInteresEncontrados.addAll(puntosDeInteres.stream()
 				.filter(unPuntoDeInteres -> palabrasClave.stream()
 						.anyMatch(unaPalabraClave -> unPuntoDeInteres.condicionDeBusqueda(unaPalabraClave)))
 				.collect(Collectors.toList()));
-		
-		/*Si no encuentra puntos de interes localmente, se llaman a buscadores externos, se agregan los resultados localmente*/
-		if (puntosDeInteresEncontrados.isEmpty()) {
-			buscadoresExternos.stream()
-					.forEach(unBuscador -> puntosDeInteresEncontrados.addAll(unBuscador.buscarPorTextoLibre(unaFrase)));
-			puntosDeInteresEncontrados.forEach(unPuntoDeInteres -> agregarPuntoDeInteres(unPuntoDeInteres));
-		}
 
-		return puntosDeInteresEncontrados;
+		buscadoresExternos.stream()
+				.forEach(unBuscador -> puntosDeInteresEncontrados.addAll(unBuscador.buscarPorTextoLibre(unaFrase)));
+
+		return puntosDeInteresEncontrados.stream().distinct().collect(Collectors.toList());
 	}
 }

@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.dds.tpa.adapter.BancoServiceAdapterReal;
-import ar.edu.dds.tpa.adapter.CGPServiceAdapterImpostor;
+import ar.edu.dds.tpa.adapter.CGPServiceAdapterReal;
 import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
@@ -25,7 +25,7 @@ public class BusquedaDePOIsConServiciosExternosTest {
 
 	CGPBuscadorExternoService cgpBuscadorExternoService;
 	CGPServiceImpostor cgpServiceImpostor;
-	CGPServiceAdapterImpostor cgpServiceAdapterImpostor;
+	CGPServiceAdapterReal cgpServiceAdapterReal;
 
 	Administrador administrador;
 	Mapa mapa;
@@ -48,8 +48,8 @@ public class BusquedaDePOIsConServiciosExternosTest {
 				bancoServiceAdapterReal);
 
 		cgpServiceImpostor = new CGPServiceImpostor();
-		cgpServiceAdapterImpostor = new CGPServiceAdapterImpostor();
-		cgpBuscadorExternoService = new CGPBuscadorExternoService(cgpServiceImpostor, cgpServiceAdapterImpostor);
+		cgpServiceAdapterReal = new CGPServiceAdapterReal();
+		cgpBuscadorExternoService = new CGPBuscadorExternoService(cgpServiceImpostor, cgpServiceAdapterReal);
 
 		mapa.agregarBuscadorExterno(bancoBuscadorExternoService);
 		mapa.agregarBuscadorExterno(cgpBuscadorExternoService);
@@ -72,7 +72,7 @@ public class BusquedaDePOIsConServiciosExternosTest {
 	@Test
 	public void seObtuvoElBancoDeSucursalAvellanedaDelServicioExternoDeBancos() {
 		resultadosDeLaBusqueda.addAll(terminalFlores.buscarPorTextoLibre("cobro"));
-		Assert.assertTrue(resultadosDeLaBusqueda.stream().allMatch(unResultado -> unResultado.getCoordenadas().getLongitud() == -35.9338322));
+		Assert.assertTrue(resultadosDeLaBusqueda.stream().anyMatch(unResultado -> unResultado.getCoordenadas().getLongitud() == -35.9338322));
 	}
 	
 	@Test
@@ -82,9 +82,14 @@ public class BusquedaDePOIsConServiciosExternosTest {
 	}
 
 	@Test
-	public void seLlamoAlServicioDeCGPSPorqueNoSeEncontroLocalmente() {
-		terminalFlores.buscarPorTextoLibre("CGP que no existe localmente");
-		Assert.assertTrue(
-				cgpServiceImpostor.seLlamoAlCGPService() && cgpServiceAdapterImpostor.seLlamoAlCGPServiceAdapter());
+	public void seLlamoAlServicioDeCGPSExternos() {
+		terminalFlores.buscarPorTextoLibre("Flores");
+		Assert.assertTrue(cgpServiceImpostor.seLlamoAlCGPService());
+	}
+	
+	@Test
+	public void seObtuvoElCGPDelServicioExterno() {
+		terminalFlores.buscarPorTextoLibre("Flores");
+		Assert.assertTrue(resultadosDeLaBusqueda.stream().allMatch(unResultado -> unResultado.getNombre().equals("Centros de Gestion y Participacion CGP N° 7")));
 	}
 }

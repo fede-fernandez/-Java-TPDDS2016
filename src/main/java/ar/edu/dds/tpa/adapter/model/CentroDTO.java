@@ -11,6 +11,16 @@ public class CentroDTO {
 	private String telefono;
 	private List<ServicioDTO> serviciosDTO = new ArrayList<>();
 	
+	public CentroDTO(int comuna, String zona, String director, String domicilioCompleto, String telefono,
+			List<ServicioDTO> serviciosDTO) {
+		this.comuna = comuna;
+		this.zona = zona;
+		this.director = director;
+		this.domicilioCompleto = domicilioCompleto;
+		this.telefono = telefono;
+		this.serviciosDTO = serviciosDTO;
+	}
+
 	public int getComuna() {
 		return comuna;
 	}

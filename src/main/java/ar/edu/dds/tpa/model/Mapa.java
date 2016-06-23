@@ -36,6 +36,7 @@ public class Mapa {
 	public List<PuntoDeInteres> buscarPorTextoLibre(String unaFrase) {
 		List<PuntoDeInteres> puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>();
 		List<String> palabrasDeFrase = Arrays.asList(unaFrase.split(" "));
+		
 		puntosDeInteresEncontrados.addAll(puntosDeInteres.stream()
 				.filter(unPuntoDeInteres -> palabrasDeFrase.stream()
 						.anyMatch(unaPalabra -> unPuntoDeInteres.contienePalabraClave(unaPalabra)))
@@ -45,5 +46,15 @@ public class Mapa {
 				.forEach(unBuscador -> puntosDeInteresEncontrados.addAll(unBuscador.buscarPorTextoLibre(unaFrase)));
 
 		return puntosDeInteresEncontrados.stream().distinct().collect(Collectors.toList());
+	}
+	
+	//TODO: to do, esto deberia estar en otro lugar, mapa es buscar localmente, si es externo deberia pedirlo de otro lado, una clase buscador
+	
+	public List<PuntoDeInteres> buscarExternamente(String unaFrase) {
+		return null;
+	}
+	
+	public List<PuntoDeInteres> buscarLocalmente(String unaFrase) {
+		return null;
 	}
 }

@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import ar.edu.dds.tpa.model.*;
 
-public class BusquedaDePuntoTest {
+public class BusquedaDePOIsLocalesTest {
 	private Banco unBanco;
 	private CGP unCGP;
 	private LocalComercial kioscoDeDario;
@@ -65,8 +65,18 @@ public class BusquedaDePuntoTest {
 	}
 	
 	@Test
+	public void busquedaPorNombreKioscoDeDiarios(){	
+		Assert.assertEquals(1, mapa.buscarPorTextoLibre("matutino").size());
+	}
+	
+	@Test
 	public void busquedaPorRubroKioscoDeDiarios(){	
 		Assert.assertEquals(1, mapa.buscarPorTextoLibre("Kiosco De Diarios").size());
+	}
+	
+	@Test
+	public void busquedaPorNombreLibreriaEscolar(){
+		Assert.assertEquals(1, mapa.buscarPorTextoLibre("ateneo").size());
 	}
 	
 	@Test
@@ -78,7 +88,12 @@ public class BusquedaDePuntoTest {
 	public void busquedaPorServicioEnCGP(){
 		Assert.assertEquals(1, mapa.buscarPorTextoLibre("Rentas").size());	
 	}
-
+	
+	@Test
+	public void busquedaPorServicioEnMayusculasEnCGP(){
+		Assert.assertEquals(1, mapa.buscarPorTextoLibre("RENTAS").size());	
+	}
+	
 	@Test
 	public void busquedaPorNombreInexistente(){
 		Assert.assertEquals(0, mapa.buscarPorTextoLibre("nombre inexistente").size());	

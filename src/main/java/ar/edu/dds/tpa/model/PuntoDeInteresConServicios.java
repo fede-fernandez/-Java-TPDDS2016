@@ -9,8 +9,8 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 	private List<Servicio> servicios;
 
-	public PuntoDeInteresConServicios(String nombre, Posicion coordenadas) {
-		super(nombre, coordenadas);
+	public PuntoDeInteresConServicios(String nombre, Posicion coordenadas,String etiquetaPalabraClave) {
+		super(nombre, coordenadas, etiquetaPalabraClave);
 		servicios = new ArrayList<Servicio>();
 	}
 

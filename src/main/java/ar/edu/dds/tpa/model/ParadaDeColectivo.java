@@ -8,8 +8,8 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 public class ParadaDeColectivo extends PuntoDeInteres {
 	
 
-	public ParadaDeColectivo(String nombre, Posicion coordenadas) {
-		super(nombre, coordenadas);
+	public ParadaDeColectivo(String nombre, Posicion coordenadas,String etiquetaPalabraClave) {
+		super(nombre, coordenadas, etiquetaPalabraClave);
 	}
 	
 	@Override

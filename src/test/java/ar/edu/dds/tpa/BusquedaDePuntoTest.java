@@ -24,20 +24,20 @@ public class BusquedaDePuntoTest {
 	
 	@Before
 	public void inicializar(){	
-		unBanco = new Banco("Ciudad", null);
+		unBanco = new Banco("Ciudad", null, "etiqueta_banco");
 		
-		unCGP = new CGP("CGP Balbanera", null);
+		unCGP = new CGP("CGP Balbanera", null, null);
 		unCGP.agregarServicio(new Servicio("Rentas"));
 		
 		kioscoDeDario = new Rubro("Kiosco de diarios", 2.00);
-		unLocal = new LocalComercial("El matutino", null, kioscoDeDario);
+		unLocal = new LocalComercial("El matutino", null, kioscoDeDario, null);
 		
 		libreriaEscolar = new Rubro("Libreria escolar", 5.00);
-		unLocal2 = new LocalComercial("El ateneo", null, libreriaEscolar);
+		unLocal2 = new LocalComercial("El ateneo", null, libreriaEscolar, null);
 		
-		un144_1 = new ParadaDeColectivo("144", null);
-		un144_2 = new ParadaDeColectivo("144", null);
-		un144_3 = new ParadaDeColectivo("144", null);
+		un144_1 = new ParadaDeColectivo("144", null, "Ciudad");
+		un144_2 = new ParadaDeColectivo("144", null, "Ciudad");
+		un144_3 = new ParadaDeColectivo("144", null, "Ciudad");
 		
 		busqueda = new Mapa();
 		
@@ -59,6 +59,12 @@ public class BusquedaDePuntoTest {
 		puntosDeInteresEncontrados.add(un144_2);
 		puntosDeInteresEncontrados.add(un144_3);
 		Assert.assertEquals(puntosDeInteresEncontrados, busqueda.buscarPorTextoLibre("144"));
+	}
+	
+	@Test
+	public void busquedaPorEtiquetaDeUnBanco(){
+		puntosDeInteresEncontrados.add(unBanco);	
+		Assert.assertEquals(puntosDeInteresEncontrados, busqueda.buscarPorTextoLibre("etiqueta_banco"));
 	}
 	
 	@Test

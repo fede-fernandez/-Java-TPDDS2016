@@ -12,13 +12,13 @@ import ar.edu.dds.tpa.model.*;
 public class BusquedaDePuntoTest {
 	private Banco unBanco;
 	private CGP unCGP;
-	private LocalComercial unLocal;
-	private LocalComercial unLocal2;
-	private ParadaDeColectivo un144_1;
-	private ParadaDeColectivo un144_2;
-	private ParadaDeColectivo un144_3;
-	private Mapa busqueda;
-	private List<PuntoDeInteres> puntosDeInteresEncontrados;
+	private LocalComercial kioscoDeDario;
+	private LocalComercial libreriaEscolar;
+	private ParadaDeColectivo paradaDel114EnRivadaviaYNazca;
+	private ParadaDeColectivo paradaDel114EnPasajeMozart;
+	private ParadaDeColectivo paradaDel114EnPrimeraJunta;
+	private Mapa mapa;
+	private List<PuntoDeInteres> baseDeConocimientosDePuntosDeInteres;
 	
 	@Before
 	public void inicializar(){	
@@ -27,65 +27,65 @@ public class BusquedaDePuntoTest {
 		unCGP = new CGP("CGP Balbanera", null);
 		unCGP.agregarServicio(new Servicio("Rentas"));
 
-		unLocal = new LocalComercial("El matutino", null, new Rubro("Kiosco de diario", 0));
+		kioscoDeDario = new LocalComercial("El matutino", null, new Rubro("Kiosco de diario", 0));
 		
-		unLocal2 = new LocalComercial("El ateneo", null, new Rubro("Libreria Escolar", 0));
+		libreriaEscolar = new LocalComercial("El ateneo", null, new Rubro("Libreria Escolar", 0));
 		
-		un144_1 = new ParadaDeColectivo("144", null);
-		un144_2 = new ParadaDeColectivo("144", null);
-		un144_3 = new ParadaDeColectivo("144", null);
+		paradaDel114EnRivadaviaYNazca = new ParadaDeColectivo("144 Rivadavia y Nazca", null);
+		paradaDel114EnPasajeMozart = new ParadaDeColectivo("144 Pasaje Mozart ", null);
+		paradaDel114EnPrimeraJunta = new ParadaDeColectivo("144 Primera Junta", null);
 		
-		busqueda = new Mapa();
+		mapa = new Mapa();
 		
-		busqueda.agregarPuntoDeInteres(un144_1);
-		busqueda.agregarPuntoDeInteres(un144_2);
-		busqueda.agregarPuntoDeInteres(un144_3);
-		busqueda.agregarPuntoDeInteres(unLocal);
-		busqueda.agregarPuntoDeInteres(unLocal2);
-		busqueda.agregarPuntoDeInteres(unBanco);
-		busqueda.agregarPuntoDeInteres(unCGP);
+		mapa.agregarPuntoDeInteres(paradaDel114EnRivadaviaYNazca);
+		mapa.agregarPuntoDeInteres(paradaDel114EnPasajeMozart);
+		mapa.agregarPuntoDeInteres(paradaDel114EnPrimeraJunta);
+		mapa.agregarPuntoDeInteres(kioscoDeDario);
+		mapa.agregarPuntoDeInteres(libreriaEscolar);
+		mapa.agregarPuntoDeInteres(unBanco);
+		mapa.agregarPuntoDeInteres(unCGP);
 	
-		puntosDeInteresEncontrados = new ArrayList<>();
+		baseDeConocimientosDePuntosDeInteres = new ArrayList<>();
 		
 	}
 
 	@Test
 	public void busquedaDeColectivos114(){
-		puntosDeInteresEncontrados.add(un144_1);
-		puntosDeInteresEncontrados.add(un144_2);
-		puntosDeInteresEncontrados.add(un144_3);
-		Assert.assertEquals(puntosDeInteresEncontrados, busqueda.buscarPorTextoLibre("144"));
+		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnRivadaviaYNazca);
+		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnPasajeMozart);
+		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnPrimeraJunta);
+		Assert.assertEquals(baseDeConocimientosDePuntosDeInteres, mapa.buscarPorTextoLibre("144"));
 	}
 	
 	@Test
 	public void busquedaDeColectivos101(){
-		puntosDeInteresEncontrados.add(un144_1);
-		puntosDeInteresEncontrados.add(un144_2);
-		puntosDeInteresEncontrados.add(un144_3);
-		Assert.assertNotEquals(puntosDeInteresEncontrados, busqueda.buscarPorTextoLibre("101"));
+		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnRivadaviaYNazca);
+		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnPasajeMozart);
+		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnPrimeraJunta);
+		Assert.assertNotEquals(baseDeConocimientosDePuntosDeInteres, mapa.buscarPorTextoLibre("101"));
 	}
 	
 	@Test
 	public void busquedaPorRubroKioscoDeDiarios(){
-		puntosDeInteresEncontrados.add(unLocal);	
-		Assert.assertEquals(puntosDeInteresEncontrados, busqueda.buscarPorTextoLibre("Kiosco De Diarios"));
+		baseDeConocimientosDePuntosDeInteres.add(kioscoDeDario);	
+		Assert.assertEquals(baseDeConocimientosDePuntosDeInteres, mapa.buscarPorTextoLibre("Kiosco De Diarios"));
 	}
 	
 	@Test
 	public void busquedaPorRubroLibreriaEscolar(){
-		puntosDeInteresEncontrados.add(unLocal2);
-		Assert.assertEquals(puntosDeInteresEncontrados, busqueda.buscarPorTextoLibre("libreria escolar"));
+		baseDeConocimientosDePuntosDeInteres.add(libreriaEscolar);
+		Assert.assertEquals(baseDeConocimientosDePuntosDeInteres, mapa.buscarPorTextoLibre("libreria escolar"));
 	}
 	
 	@Test
 	public void busquedaPorServicioEnCGP(){
-		puntosDeInteresEncontrados.add(unCGP);
-		Assert.assertEquals(puntosDeInteresEncontrados, busqueda.buscarPorTextoLibre("Rentas"));	
+		baseDeConocimientosDePuntosDeInteres.add(unCGP);
+		Assert.assertEquals(baseDeConocimientosDePuntosDeInteres, mapa.buscarPorTextoLibre("Rentas"));	
 	}
 
 	@Test
 	public void busquedaPorNombreInexistente(){
-		busqueda.buscarPorTextoLibre("Nombre que no existe");
-		Assert.assertEquals(0, puntosDeInteresEncontrados.size());	
+		mapa.buscarPorTextoLibre("Nombre que no existe");
+		Assert.assertEquals(0, baseDeConocimientosDePuntosDeInteres.size());	
 	}
 }

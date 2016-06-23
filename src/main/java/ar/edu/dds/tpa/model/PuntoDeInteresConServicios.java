@@ -16,6 +16,7 @@ public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 
 	public void agregarServicio(Servicio unServicio) {
 		servicios.add(unServicio);
+		super.agregarPalabraClave(unServicio.getNombre());
 	}
 	
 	public List<Servicio> getServicios() {
@@ -30,12 +31,5 @@ public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario, String nombreDelServicio) {
 		return servicios.stream().filter(servicio -> servicio.getNombre().equalsIgnoreCase(nombreDelServicio))
 				.anyMatch(servicio -> servicio.atiendeEn(unDiaYHorario));
-	}
-	
-	@Override
-	public ArrayList<String> getEtiquetas() {
-		ArrayList<String> etiquetas = super.getEtiquetas();
-		servicios.stream().map(servicio -> servicio.getEtiquetas()).forEach(etiquetasServicio -> etiquetas.addAll(etiquetasServicio));
-		return etiquetas;
 	}
 }

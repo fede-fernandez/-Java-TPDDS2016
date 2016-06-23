@@ -16,8 +16,8 @@ public class LocalComercial extends PuntoDeInteres {
 	private Rubro rubro;
 	private HorarioDeAtencion horarioDeAtencion;
 
-	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro,String etiquetaPalabraClave) {
-		super(nombre, coordenadas, etiquetaPalabraClave);
+	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro) {
+		super(nombre, coordenadas);
 		this.rubro = rubro;
 		horarioDeAtencion = new HorarioDeAtencion();
 	}

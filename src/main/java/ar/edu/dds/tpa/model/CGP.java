@@ -13,8 +13,8 @@ public class CGP extends PuntoDeInteresConServicios {
 	
 	private List<Poligono> zonasDeCobertura;
 
-	public CGP(String nombre, Posicion coordenadas,String etiquetaPalabraClave) {
-		super(nombre, coordenadas,etiquetaPalabraClave);
+	public CGP(String nombre, Posicion coordenadas) {
+		super(nombre, coordenadas);
 		zonasDeCobertura = new ArrayList<Poligono>();
 	}
 

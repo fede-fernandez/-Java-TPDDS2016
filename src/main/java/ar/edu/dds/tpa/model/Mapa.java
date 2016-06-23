@@ -43,13 +43,13 @@ public class Mapa {
 						.anyMatch(unaPalabraClave -> unPuntoDeInteres.condicionDeBusqueda(unaPalabraClave)))
 				.collect(Collectors.toList()));
 		
-		/*Si no encuentra puntos de interes localmente, se llaman a buscadores externos, se agregan los resultados localmente*/
+		/*Si no encuentra puntos de interes localmente, se llaman a buscadores externos, se agregan los resultados localmentee*/
 		if (puntosDeInteresEncontrados.isEmpty()) {
 			buscadoresExternos.stream()
 					.forEach(unBuscador -> puntosDeInteresEncontrados.addAll(unBuscador.buscarPorTextoLibre(unaFrase)));
 			puntosDeInteresEncontrados.forEach(unPuntoDeInteres -> agregarPuntoDeInteres(unPuntoDeInteres));
 		}
-
+ 
 		return puntosDeInteresEncontrados;
 	}
 }

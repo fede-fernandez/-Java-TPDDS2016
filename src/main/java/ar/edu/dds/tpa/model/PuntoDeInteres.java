@@ -11,13 +11,10 @@ public abstract class PuntoDeInteres {
 	private String nombre;
 
 	private Posicion coordenadas;
-	
-	protected String etiquetaPalabraClave;
 
-	public PuntoDeInteres(String nombre, Posicion coordenadas,String etiquetaPalabraClave) {
+	public PuntoDeInteres(String nombre, Posicion coordenadas) {
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
-		this.etiquetaPalabraClave = etiquetaPalabraClave;
 	}
 	
 
@@ -38,7 +35,6 @@ public abstract class PuntoDeInteres {
 	
 	protected ArrayList<String> getEtiquetas() {
 		ArrayList<String> etiquetas = new ArrayList<>();
-		etiquetas.add(etiquetaPalabraClave);
 		etiquetas.addAll(Arrays.asList(nombre.split(" ")));
 		return etiquetas;
 	}

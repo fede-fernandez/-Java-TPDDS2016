@@ -29,9 +29,9 @@ public class CalculoDeDisponibilidadTest {
 		deLunesAViernes = new ArrayList<DayOfWeek>();
 		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));
 
-		colectivo114 = new ParadaDeColectivo("114", null, null);
+		colectivo114 = new ParadaDeColectivo("114", null);
 
-		unLocalDeDiarios1 = new LocalComercial("Diarin", null, null, null);
+		unLocalDeDiarios1 = new LocalComercial("Diarin", null, null);
 		unLocalDeDiarios1.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(9, 30), LocalTime.of(18, 30));
 
 		rentas = new Servicio("Rentas");
@@ -40,7 +40,7 @@ public class CalculoDeDisponibilidadTest {
 		multas = new Servicio("Multas");
 		multas.agregarHorarioDeAtencion(DayOfWeek.THURSDAY, LocalTime.of(12, 15), LocalTime.of(19, 20));
 
-		cgpDeFlores = new CGP("CGPFlores", null, null);
+		cgpDeFlores = new CGP("CGPFlores", null);
 		cgpDeFlores.agregarServicio(rentas);
 		cgpDeFlores.agregarServicio(multas);
 		
@@ -48,7 +48,7 @@ public class CalculoDeDisponibilidadTest {
 		depositos.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(8, 0), LocalTime.of(11, 30));
 		depositos.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(14, 15), LocalTime.of(20, 15));
 		
-		bancoPatagonia = new Banco("Banco Patagonia", null, null);
+		bancoPatagonia = new Banco("Banco Patagonia", null);
 		bancoPatagonia.agregarServicio(depositos);
 	}
 

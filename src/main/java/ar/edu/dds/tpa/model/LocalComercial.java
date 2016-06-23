@@ -3,8 +3,6 @@ package ar.edu.dds.tpa.model;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
@@ -17,6 +15,7 @@ public class LocalComercial extends PuntoDeInteres {
 		super(nombre, coordenadas);
 		this.rubro = rubro;
 		horarioDeAtencion = new HorarioDeAtencion();
+		super.agregarPalabraClave(rubro.getNombre());
 	}
 
 	public Rubro getRubro() {
@@ -39,12 +38,5 @@ public class LocalComercial extends PuntoDeInteres {
 	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
 		return horarioDeAtencion.seAtiendeEn(unDiaYHorario);
-	}
-	
-	@Override
-	public ArrayList<String> getEtiquetas() {
-		ArrayList<String> etiquetas = super.getEtiquetas();
-		etiquetas.addAll(Arrays.asList(rubro.getNombre().split(" ")));
-		return etiquetas;
 	}
 }

@@ -34,12 +34,11 @@ public class Mapa {
 	}
 
 	public List<PuntoDeInteres> buscarPorTextoLibre(String unaFrase) {
-		List<String> palabrasClave = Arrays.asList(unaFrase.split(" "));
 		List<PuntoDeInteres> puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>();
-
+		List<String> palabrasDeFrase = Arrays.asList(unaFrase.split(" "));
 		puntosDeInteresEncontrados.addAll(puntosDeInteres.stream()
-				.filter(unPuntoDeInteres -> palabrasClave.stream()
-						.anyMatch(unaPalabraClave -> unPuntoDeInteres.condicionDeBusqueda(unaPalabraClave)))
+				.filter(unPuntoDeInteres -> palabrasDeFrase.stream()
+						.anyMatch(unaPalabra -> unPuntoDeInteres.contienePalabraClave(unaPalabra)))
 				.collect(Collectors.toList()));
 
 		buscadoresExternos.stream()

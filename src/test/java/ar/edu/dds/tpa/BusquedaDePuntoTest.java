@@ -46,46 +46,46 @@ public class BusquedaDePuntoTest {
 		mapa.agregarPuntoDeInteres(unCGP);
 	
 		baseDeConocimientosDePuntosDeInteres = new ArrayList<>();
-		
-	}
-
-	@Test
-	public void busquedaDeColectivos114(){
 		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnRivadaviaYNazca);
 		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnPasajeMozart);
 		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnPrimeraJunta);
-		Assert.assertEquals(baseDeConocimientosDePuntosDeInteres, mapa.buscarPorTextoLibre("144"));
+		baseDeConocimientosDePuntosDeInteres.add(kioscoDeDario);
+		baseDeConocimientosDePuntosDeInteres.add(libreriaEscolar);
+		baseDeConocimientosDePuntosDeInteres.add(unCGP);
+	}
+
+	@Test
+	public void busquedaDeColectivos114(){	
+		Assert.assertEquals(3, mapa.buscarPorTextoLibre("144").size());
 	}
 	
 	@Test
 	public void busquedaDeColectivos101(){
-		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnRivadaviaYNazca);
-		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnPasajeMozart);
-		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnPrimeraJunta);
-		Assert.assertNotEquals(baseDeConocimientosDePuntosDeInteres, mapa.buscarPorTextoLibre("101"));
+		Assert.assertEquals(0, mapa.buscarPorTextoLibre("101").size());
 	}
 	
 	@Test
-	public void busquedaPorRubroKioscoDeDiarios(){
-		baseDeConocimientosDePuntosDeInteres.add(kioscoDeDario);	
-		Assert.assertEquals(baseDeConocimientosDePuntosDeInteres, mapa.buscarPorTextoLibre("Kiosco De Diarios"));
+	public void busquedaPorRubroKioscoDeDiarios(){	
+		Assert.assertEquals(1, mapa.buscarPorTextoLibre("Kiosco De Diarios").size());
 	}
 	
 	@Test
 	public void busquedaPorRubroLibreriaEscolar(){
-		baseDeConocimientosDePuntosDeInteres.add(libreriaEscolar);
-		Assert.assertEquals(baseDeConocimientosDePuntosDeInteres, mapa.buscarPorTextoLibre("libreria escolar"));
+		Assert.assertEquals(1, mapa.buscarPorTextoLibre("libreria escolar").size());
 	}
 	
 	@Test
 	public void busquedaPorServicioEnCGP(){
-		baseDeConocimientosDePuntosDeInteres.add(unCGP);
-		Assert.assertEquals(baseDeConocimientosDePuntosDeInteres, mapa.buscarPorTextoLibre("Rentas"));	
+		Assert.assertEquals(1, mapa.buscarPorTextoLibre("Rentas").size());	
 	}
 
 	@Test
 	public void busquedaPorNombreInexistente(){
-		mapa.buscarPorTextoLibre("Nombre que no existe");
-		Assert.assertEquals(0, baseDeConocimientosDePuntosDeInteres.size());	
+		Assert.assertEquals(0, mapa.buscarPorTextoLibre("nombre inexistente").size());	
+	}
+	
+	@Test
+	public void busquedaPorPalabraFruta(){
+		Assert.assertEquals(0, mapa.buscarPorTextoLibre("fruta").size());	
 	}
 }

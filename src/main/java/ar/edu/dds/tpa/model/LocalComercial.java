@@ -15,7 +15,9 @@ public class LocalComercial extends PuntoDeInteres {
 		super(nombre, coordenadas);
 		this.rubro = rubro;
 		horarioDeAtencion = new HorarioDeAtencion();
-		super.agregarPalabraClave(rubro.getNombre());
+		if(rubro != null) {
+			super.agregarPalabraClave(rubro.getNombre());
+		}
 	}
 
 	public Rubro getRubro() {

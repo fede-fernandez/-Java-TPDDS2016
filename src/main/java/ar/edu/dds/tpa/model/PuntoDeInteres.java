@@ -15,7 +15,7 @@ public abstract class PuntoDeInteres {
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
 		palabrasClave = new ArrayList<String>();
-		palabrasClave.add(nombre);
+		agregarPalabraClave(nombre);
 	}
 	
 	public String getNombre() {

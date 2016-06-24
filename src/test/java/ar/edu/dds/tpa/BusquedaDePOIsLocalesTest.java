@@ -24,7 +24,7 @@ public class BusquedaDePOIsLocalesTest {
 	public void inicializar(){	
 		unBanco = new Banco("Ciudad", null);
 		
-		unCGP = new CGP("CGP Balbanera", null);
+		unCGP = new CGP("CGP Balvanera", null);
 		unCGP.agregarServicio(new Servicio("Rentas"));
 
 		kioscoDeDario = new LocalComercial("El matutino", null, new Rubro("Kiosco de diario", 0));
@@ -55,13 +55,23 @@ public class BusquedaDePOIsLocalesTest {
 	}
 
 	@Test
-	public void busquedaDeColectivos114(){	
-		Assert.assertEquals(3, mapa.buscarPorTextoLibre("144").size());
+	public void busquedaDeBancoCiudad(){	
+		Assert.assertEquals(1, mapa.buscarPorTextoLibre("Ciudad").size());
+	}
+	
+	@Test
+	public void busquedaDeCGPBalvanera(){	
+		Assert.assertEquals(1, mapa.buscarPorTextoLibre("Balvanera").size());
 	}
 	
 	@Test
 	public void busquedaDeColectivos101(){
 		Assert.assertEquals(0, mapa.buscarPorTextoLibre("101").size());
+	}
+	
+	@Test
+	public void busquedaDeColectivos114(){	
+		Assert.assertEquals(3, mapa.buscarPorTextoLibre("144").size());
 	}
 	
 	@Test

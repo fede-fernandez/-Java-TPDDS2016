@@ -42,7 +42,7 @@ public class CalculoDeCercaniaTest {
 
 		posicionDeUsuario1 = new Posicion(100.000001, 50.0);
 		posicionDeUsuario2 = new Posicion(200.0005, 100.0);
-		posicionDeUsuario3 = new Posicion(5.0, 5.0);
+		posicionDeUsuario3 = new Posicion(5.0, 4.0);
 		posicionDeUsuario4 = new Posicion(100.0, 100.0);
 	}
 
@@ -57,12 +57,12 @@ public class CalculoDeCercaniaTest {
 	}
 
 	@Test
-	public void elUsuario2NoEstaCercaDeLaParadaDel114() {
+	public void elUsuario1NoEstaCercaDeLaParadaDel114() {
 		assertFalse(bondi114.estaCercaDe(posicionDeUsuario1));
 	}
 
 	@Test
-	public void elUsuario3EstaCercaDeLaParadaDel114() {
+	public void elUsuario2EstaCercaDeLaParadaDel114() {
 		assertTrue(bondi114.estaCercaDe(posicionDeUsuario2));
 	}
 

@@ -24,10 +24,4 @@ public class Banco extends PuntoDeInteresConServicios {
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
 		return horarioDeAtencionBancario.seAtiendeEn(unDiaYHorario);
 	}
-	
-	@Override
-	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario, String nombreDelServicio) {
-		return getServicios().stream().anyMatch(servicio -> servicio.getNombre().equalsIgnoreCase(nombreDelServicio))
-				&& estaDisponibleEn(unDiaYHorario);
-	}
 }

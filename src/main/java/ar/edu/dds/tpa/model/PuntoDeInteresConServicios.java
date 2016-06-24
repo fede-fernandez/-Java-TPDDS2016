@@ -19,10 +19,6 @@ public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 		super.agregarPalabraClave(unServicio.getNombre());
 	}
 	
-	public List<Servicio> getServicios() {
-		return servicios;
-	}
-	
 	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
 		return servicios.stream().anyMatch(servicio -> servicio.atiendeEn(unDiaYHorario));

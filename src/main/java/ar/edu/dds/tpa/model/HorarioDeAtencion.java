@@ -22,8 +22,7 @@ public class HorarioDeAtencion {
 		horarioDeAtencion.get(unDia).add(rangoDeHorario);
 	}
 
-	public void agregarHorarioDeAtencionComunEnVariosDias(List<DayOfWeek> dias, LocalTime horarioDesde,
-			LocalTime horarioHasta) {
+	public void agregarHorarioDeAtencion(List<DayOfWeek> dias, LocalTime horarioDesde, LocalTime horarioHasta) {
 		dias.stream().forEach(unDia -> agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta));
 	}
 

@@ -12,22 +12,22 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;
 
-import ar.edu.dds.tpa.model.BusquedaRealizada;
-import ar.edu.dds.tpa.model.HistorialDeBusquedas;
-import ar.edu.dds.tpa.model.Terminal;
+import ar.edu.dds.tpa.model.Busqueda;
+import ar.edu.dds.tpa.model.HistorialDeBusqueda;
+
 
 
 public class HistorialDeBusquedasTest {
 	
 	
-	private HistorialDeBusquedas historial;
+	private HistorialDeBusqueda historial;
 	
 	private LocalDate cuatroDeFebreroDe2016;
 	private LocalDate diezDeEneroDe2016;
 	
-	private BusquedaRealizada busquedaParadaCinco;
-	private BusquedaRealizada busquedaLibreria;
-	private BusquedaRealizada busquedaParadaDos;
+	private Busqueda busquedaParadaCinco;
+	private Busqueda busquedaLibreria;
+	private Busqueda busquedaParadaDos;
 	
 	private List<LocalDate> fechasDeBusqueda;
 	
@@ -40,15 +40,15 @@ public class HistorialDeBusquedasTest {
 		
 		fechasDeBusqueda = Arrays.asList(cuatroDeFebreroDe2016, diezDeEneroDe2016);
 		
-		busquedaParadaCinco = new BusquedaRealizada("Parada 5", 10, cuatroDeFebreroDe2016, 5.0);
-		busquedaLibreria = new BusquedaRealizada("Libreria", 20, cuatroDeFebreroDe2016, 5.0);
-		busquedaParadaDos = new BusquedaRealizada("Parada 2", 30, diezDeEneroDe2016, 5.0);
+		busquedaParadaCinco = new Busqueda("Parada 5", 10, cuatroDeFebreroDe2016, 5.0);
+		busquedaLibreria = new Busqueda("Libreria", 20, cuatroDeFebreroDe2016, 5.0);
+		busquedaParadaDos = new Busqueda("Parada 2", 30, diezDeEneroDe2016, 5.0);
 		
 		historial = new HistorialDeBusquedas();
 		
-		historial.registrarBusqueda(busquedaParadaCinco);
-		historial.registrarBusqueda(busquedaLibreria);
-		historial.registrarBusqueda(busquedaParadaDos);
+		historial.agregarBusqueda(busquedaParadaCinco);
+		historial.agregarBusqueda(busquedaLibreria);
+		historial.agregarBusqueda(busquedaParadaDos);
 		
 		
 		

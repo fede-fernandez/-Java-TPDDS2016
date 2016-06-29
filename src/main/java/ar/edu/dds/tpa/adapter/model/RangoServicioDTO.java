@@ -7,6 +7,14 @@ public class RangoServicioDTO {
 	private int horarioHasta;
 	private int minutosHasta;
 	
+	public RangoServicioDTO(int numeroDia, int horarioDesde, int minutosDesde, int horarioHasta, int minutosHasta) {
+		this.numeroDia = numeroDia;
+		this.horarioDesde = horarioDesde;
+		this.minutosDesde = minutosDesde;
+		this.horarioHasta = horarioHasta;
+		this.minutosHasta = minutosHasta;
+	}
+
 	public int getNumeroDia() {
 		return numeroDia;
 	}

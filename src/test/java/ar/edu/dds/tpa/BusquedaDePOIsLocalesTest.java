@@ -59,61 +59,61 @@ public class BusquedaDePOIsLocalesTest {
 
 	@Test
 	public void busquedaDeBancoCiudad(){
-		Assert.assertEquals(1, buscador.buscar("Ciudad").size());
+		Assert.assertEquals(1, buscador.buscar("Ciudad", null).size());
 	}
 	
 	@Test
 	public void busquedaDeCGPBalvanera(){	
-		Assert.assertEquals(1, buscador.buscar("Balvanera").size());
+		Assert.assertEquals(1, buscador.buscar("Balvanera", null).size());
 	}
 	
 	@Test
 	public void busquedaDeColectivos101(){
-		Assert.assertEquals(0, buscador.buscar("101").size());
+		Assert.assertEquals(0, buscador.buscar("101", null).size());
 	}
 	
 	@Test
 	public void busquedaDeColectivos114(){	
-		Assert.assertEquals(3, buscador.buscar("144").size());
+		Assert.assertEquals(3, buscador.buscar("144", null).size());
 	}
 	
 	@Test
 	public void busquedaPorNombreKioscoDeDiarios(){	
-		Assert.assertEquals(1, buscador.buscar("matutino").size());
+		Assert.assertEquals(1, buscador.buscar("matutino", null).size());
 	}
 	
 	@Test
 	public void busquedaPorRubroKioscoDeDiarios(){	
-		Assert.assertEquals(1, buscador.buscar("Kiosco De Diarios").size());
+		Assert.assertEquals(1, buscador.buscar("Kiosco De Diarios", null).size());
 	}
 	
 	@Test
 	public void busquedaPorNombreLibreriaEscolar(){
-		Assert.assertEquals(1, buscador.buscar("ateneo").size());
+		Assert.assertEquals(1, buscador.buscar("ateneo", null).size());
 	}
 	
 	@Test
 	public void busquedaPorRubroLibreriaEscolar(){
-		Assert.assertEquals(1, buscador.buscar("libreria escolar").size());
+		Assert.assertEquals(1, buscador.buscar("libreria escolar", null).size());
 	}
 	
 	@Test
 	public void busquedaPorServicioEnCGP(){
-		Assert.assertEquals(1, buscador.buscar("Rentas").size());	
+		Assert.assertEquals(1, buscador.buscar("Rentas", null).size());	
 	}
 	
 	@Test
 	public void busquedaPorServicioEnMayusculasEnCGP(){
-		Assert.assertEquals(1, buscador.buscar("RENTAS").size());	
+		Assert.assertEquals(1, buscador.buscar("RENTAS", null).size());	
 	}
 	
 	@Test
 	public void busquedaPorNombreInexistente(){
-		Assert.assertEquals(0, buscador.buscar("nombre inexistente").size());	
+		Assert.assertEquals(0, buscador.buscar("nombre inexistente", null).size());	
 	}
 	
 	@Test
 	public void busquedaPorPalabraFruta(){
-		Assert.assertEquals(0, buscador.buscar("fruta").size());	
+		Assert.assertEquals(0, buscador.buscar("fruta", null).size());	
 	}
 }

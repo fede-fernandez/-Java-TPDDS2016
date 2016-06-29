@@ -15,13 +15,13 @@ public class Buscador {
 	private Mapa mapaLocal;
 	private List<BuscadorExterno> buscadoresExternos;
 	private List<BusquedaObserver> observadoresDeBusqueda;
-	private List<Busqueda> historialDeBusqueda;
+	private HistorialDeBusqueda historialDeBusqueda;
 
 	public Buscador(Mapa unMapa) {
 		mapaLocal = unMapa;
 		buscadoresExternos = new ArrayList<BuscadorExterno>();
 		observadoresDeBusqueda = new ArrayList<BusquedaObserver>();
-		historialDeBusqueda = new ArrayList<Busqueda>();
+		historialDeBusqueda = new HistorialDeBusqueda();
 	}
 
 	public void registrarBusqueda(Usuario usuario, String textoBuscado, int cantidadDeResultados,
@@ -29,8 +29,8 @@ public class Buscador {
 		double duracionDeBusqueda = ChronoUnit.SECONDS.between(tiempoDeInicio, tiempoDeFin);
 		Busqueda busquedaRealizada = new Busqueda(usuario, textoBuscado, cantidadDeResultados, LocalDate.now(),
 				duracionDeBusqueda);
-		historialDeBusqueda.add(busquedaRealizada);
-
+		observadoresDeBusqueda.forEach(unObservadorDeBusqueda -> unObservadorDeBusqueda.informar(busquedaRealizada));
+		historialDeBusqueda.agregarBusqueda(busquedaRealizada);
 	}
 
 	public List<PuntoDeInteres> buscar(String unaFrase, Usuario unUsuario) {
@@ -72,8 +72,12 @@ public class Buscador {
 	public void agregarBuscadorExterno(BuscadorExterno unBuscadorExterno) {
 		buscadoresExternos.add(unBuscadorExterno);
 	}
-	
+
 	public void agregarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
 		observadoresDeBusqueda.add(unObservadorDeBusqueda);
+	}
+	
+	public HistorialDeBusqueda getHistorialDeBusqueda() {
+		return historialDeBusqueda;
 	}
 }

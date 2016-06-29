@@ -1,47 +1,44 @@
 package ar.edu.dds.tpa;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.dds.tpa.model.Administrador;
-import ar.edu.dds.tpa.model.BusquedaRealizada;
+import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.Mapa;
-import ar.edu.dds.tpa.model.Terminal;
 import ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta;
 import ar.edu.dds.tpa.service.MailServiceImpostor;
 
 public class BusquedaQueTardaNotificarPorMailTest {
 	Administrador administrador;
 	Mapa mapa;
-	Terminal terminalFlores;
+	Buscador buscador;
 	NotificadorDeBusquedaLenta notificadorDeBusquedaLenta;
 	MailServiceImpostor envioDeMailServiceImpostor;
 
 	@Before
 	public void inicializar() {
-		administrador = new Administrador(null);
 		mapa = new Mapa();
 		administrador = new Administrador("elAdminDelSistema@puntosdeinteres.com");
-		terminalFlores = new Terminal(null, null);
-		administrador.agregarTerminal(terminalFlores);
-		administrador.agregarMapaATerminales();
 		envioDeMailServiceImpostor = new MailServiceImpostor();
 		notificadorDeBusquedaLenta = new NotificadorDeBusquedaLenta(60, envioDeMailServiceImpostor, administrador);
-		terminalFlores.registrarObserverDeBusqueda(notificadorDeBusquedaLenta);
+		buscador = new Buscador(mapa);
+		buscador.agregarObservadorDeBusqueda(notificadorDeBusquedaLenta);
 	}
 	
 	@Test
 	public void seNotificaAlAdministradorUnaBusquedaLenta() {
-		BusquedaRealizada busquedaRealizada = new BusquedaRealizada(null, 0, null, 180);
-		terminalFlores.agregarBusquedaRealizada(busquedaRealizada);
+		buscador.registrarBusqueda(null, null, 0, LocalDateTime.now(), LocalDateTime.now().plus(Duration.ofHours(1)));
 		Assert.assertTrue(envioDeMailServiceImpostor.seLlamoAlServicioDeEnvioDeMail());
 	}
 	
 	@Test
 	public void noSeNotificaAlAdministradorUnaBusquedaRapida() {
-		BusquedaRealizada busquedaRealizada = new BusquedaRealizada(null, 0, null, 15);
-		terminalFlores.agregarBusquedaRealizada(busquedaRealizada);
+		buscador.registrarBusqueda(null, null, 0, LocalDateTime.now(), LocalDateTime.now());
 		Assert.assertFalse(envioDeMailServiceImpostor.seLlamoAlServicioDeEnvioDeMail());
 	}
 }

@@ -9,14 +9,14 @@ import ar.edu.dds.tpa.model.BusquedaRealizada;
 import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.Terminal;
 import ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta;
-import ar.edu.dds.tpa.service.EnvioDeMailServiceImpostor;
+import ar.edu.dds.tpa.service.MailServiceImpostor;
 
 public class BusquedaQueTardaNotificarPorMailTest {
 	Administrador administrador;
 	Mapa mapa;
 	Terminal terminalFlores;
 	NotificadorDeBusquedaLenta notificadorDeBusquedaLenta;
-	EnvioDeMailServiceImpostor envioDeMailServiceImpostor;
+	MailServiceImpostor envioDeMailServiceImpostor;
 
 	@Before
 	public void inicializar() {
@@ -26,7 +26,7 @@ public class BusquedaQueTardaNotificarPorMailTest {
 		terminalFlores = new Terminal(null, null);
 		administrador.agregarTerminal(terminalFlores);
 		administrador.agregarMapaATerminales();
-		envioDeMailServiceImpostor = new EnvioDeMailServiceImpostor();
+		envioDeMailServiceImpostor = new MailServiceImpostor();
 		notificadorDeBusquedaLenta = new NotificadorDeBusquedaLenta(60, envioDeMailServiceImpostor, administrador);
 		terminalFlores.registrarObserverDeBusqueda(notificadorDeBusquedaLenta);
 	}

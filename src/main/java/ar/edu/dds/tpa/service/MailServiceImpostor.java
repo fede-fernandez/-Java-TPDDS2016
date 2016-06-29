@@ -1,6 +1,6 @@
 package ar.edu.dds.tpa.service;
 
-public class EnvioDeMailServiceImpostor implements EnvioDeMailService {
+public class MailServiceImpostor implements MailService {
 	private boolean seLlamoAlServicioDeEnvioDeMail = false;
 
 	@Override

@@ -9,47 +9,41 @@ import ar.edu.dds.tpa.model.*;
 public class AdministradorABMDePOITest {
 	Administrador administrador;
 	Mapa mapa;
-	Terminal terminalFlores;
-	Terminal terminalAbasto;
 	ParadaDeColectivo paradaDel7;
 	Banco bancoSantanderRio;
+	Buscador buscador;
 
 	@Before
 	public void inicializar() {
 		administrador = new Administrador(null);
 		mapa = new Mapa();
-		administrador.setMapa(mapa);
-		terminalFlores = new Terminal("Terminal Flores", null);
-		terminalAbasto = new Terminal("Terminal Abasto", null);
 		paradaDel7 = new ParadaDeColectivo("parada del colectivo linea 7", null);
 		bancoSantanderRio = new Banco("Banco Santander Rio Sucursal Ramos Mejia", null);
-		administrador.agregarTerminal(terminalFlores);
-		administrador.agregarTerminal(terminalAbasto);
-		administrador.agregarMapaATerminales();
+		buscador = new Buscador(mapa);
 	}
 	
 	@Test
 	public void altaDePuntoDeInteres() {
-		administrador.agregarPuntoDeInteres(bancoSantanderRio);
+		administrador.agregarPuntoDeInteres(bancoSantanderRio, mapa);
 		
-		Assert.assertTrue(terminalFlores.buscarPorTextoLibre("santander").contains(bancoSantanderRio));
+		Assert.assertTrue(buscador.buscar("santander").contains(bancoSantanderRio));
 	}
 	
 	@Test
 	public void bajaDePuntoDeInteres() {
-		administrador.agregarPuntoDeInteres(paradaDel7);
-		administrador.sacarPuntoDeInteres(paradaDel7);
+		administrador.agregarPuntoDeInteres(paradaDel7, mapa);
+		administrador.sacarPuntoDeInteres(paradaDel7, mapa);
 		
-		Assert.assertFalse(terminalFlores.buscarPorTextoLibre("7").contains(paradaDel7));
+		Assert.assertFalse(buscador.buscar("7").contains(paradaDel7));
 	}
 	
 	@Test
 	public void modificacionDePuntoDeInteres() {
-		administrador.agregarPuntoDeInteres(paradaDel7);
+		administrador.agregarPuntoDeInteres(paradaDel7, mapa);
 		ParadaDeColectivo paradaDel7Modificada = new ParadaDeColectivo("terminal de bondi 7", null);
-		administrador.modificarPuntoDeInteres(paradaDel7, paradaDel7Modificada);
+		administrador.modificarPuntoDeInteres(paradaDel7, paradaDel7Modificada, mapa);
 		
-		Assert.assertTrue(terminalFlores.buscarPorTextoLibre("bondi").contains(paradaDel7Modificada) &&
-				!terminalFlores.buscarPorTextoLibre("colectivo").contains(paradaDel7));
+		Assert.assertTrue(buscador.buscar("bondi").contains(paradaDel7Modificada) &&
+				!buscador.buscar("colectivo").contains(paradaDel7));
 	}
 }

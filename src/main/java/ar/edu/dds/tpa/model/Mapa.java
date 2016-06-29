@@ -1,19 +1,13 @@
 package ar.edu.dds.tpa.model;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
-
-import ar.edu.dds.tpa.service.BuscadorExterno;
 
 public class Mapa {
 	private List<PuntoDeInteres> puntosDeInteres;
-	private List<BuscadorExterno> buscadoresExternos;
 
 	public Mapa() {
-		puntosDeInteres = new ArrayList<>();
-		buscadoresExternos = new ArrayList<>();
+		puntosDeInteres = new ArrayList<PuntoDeInteres>();
 	}
 
 	public void agregarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres) {
@@ -29,32 +23,7 @@ public class Mapa {
 		puntosDeInteres.add(puntoDeInteresModificado);
 	}
 
-	public void agregarBuscadorExterno(BuscadorExterno unBuscadorExterno) {
-		buscadoresExternos.add(unBuscadorExterno);
-	}
-
-	public List<PuntoDeInteres> buscarPorTextoLibre(String unaFrase) {
-		List<PuntoDeInteres> puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>();
-		List<String> palabrasDeFrase = Arrays.asList(unaFrase.split(" "));
-		
-		puntosDeInteresEncontrados.addAll(puntosDeInteres.stream()
-				.filter(unPuntoDeInteres -> palabrasDeFrase.stream()
-						.anyMatch(unaPalabra -> unPuntoDeInteres.contienePalabraClave(unaPalabra)))
-				.collect(Collectors.toList()));
-
-		buscadoresExternos.stream()
-				.forEach(unBuscador -> puntosDeInteresEncontrados.addAll(unBuscador.buscarPorTextoLibre(unaFrase)));
-
-		return puntosDeInteresEncontrados.stream().distinct().collect(Collectors.toList());
-	}
-	
-	//TODO: to do, esto deberia estar en otro lugar, mapa es buscar localmente, si es externo deberia pedirlo de otro lado, una clase buscador
-	
-	public List<PuntoDeInteres> buscarExternamente(String unaFrase) {
-		return null;
-	}
-	
-	public List<PuntoDeInteres> buscarLocalmente(String unaFrase) {
-		return null;
+	public List<PuntoDeInteres> obtenerPuntosDeInteres() {
+		return puntosDeInteres;
 	}
 }

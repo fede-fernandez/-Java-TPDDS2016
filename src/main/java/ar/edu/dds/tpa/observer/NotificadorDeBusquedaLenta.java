@@ -1,18 +1,18 @@
 package ar.edu.dds.tpa.observer;
 
+import ar.edu.dds.tpa.adapter.EnvioDeMail;
 import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.model.Busqueda;
-import ar.edu.dds.tpa.service.MailService;
 
 public class NotificadorDeBusquedaLenta implements BusquedaObserver {
 	private double tiempoMaximoDeDemoraEnSegundos;
 	private Administrador administradorAContactar;
-	private MailService servicioDeEnvioDeMail;
+	private EnvioDeMail enviadorDeMails;
 
-	public NotificadorDeBusquedaLenta(double tiempoMaximoDeDemora, MailService servicioDeEnvioDeMail, Administrador administradorAContactar) {
+	public NotificadorDeBusquedaLenta(double tiempoMaximoDeDemora, EnvioDeMail enviadorDeMails, Administrador administradorAContactar) {
 		this.tiempoMaximoDeDemoraEnSegundos = tiempoMaximoDeDemora;
-		this.servicioDeEnvioDeMail = servicioDeEnvioDeMail;
 		this.administradorAContactar = administradorAContactar;
+		this.enviadorDeMails = enviadorDeMails;
 	}
 
 	@Override
@@ -22,7 +22,7 @@ public class NotificadorDeBusquedaLenta implements BusquedaObserver {
 			String mensajeAEnviar = "La busqueda de la palabra: " + unaBusquedaRealizada.getTextoBuscado() + " demoro "
 					+ unaBusquedaRealizada.getTiempoDeRespuesta() + " segundos.";
 			
-			servicioDeEnvioDeMail.enviarMailA(administradorAContactar.getMail(), asuntoDelMensaje, mensajeAEnviar);
+			enviadorDeMails.enviarMail(administradorAContactar.getMail(), asuntoDelMensaje, mensajeAEnviar);
 		}
 	}
 }

@@ -18,7 +18,6 @@ public class PlanificadorDeProcesosTest {
 	public void inicializar() {
 		planificador = new PlanificadorDeProcesos();
 		procesoImpostor = new ProcesoImpostor();
-		
 	}
 	
 	@Test
@@ -29,10 +28,9 @@ public class PlanificadorDeProcesosTest {
 	}
 	
 	@Test
-	public void noSeEjecutoElProcesoPlanificadoAlHorarioDado() throws InterruptedException {
+	public void noSeEjecutoElProcesoPlanificadoAlHorarioDadoPorqueTodaviaNoEsHora() throws InterruptedException {
 		planificador.planificar(procesoImpostor, LocalDateTime.now().plus(1, ChronoUnit.HOURS));
 		Thread.sleep(1000);
 		Assert.assertFalse(procesoImpostor.seLlamoAlProcesoImpostor());
 	}
-
 }

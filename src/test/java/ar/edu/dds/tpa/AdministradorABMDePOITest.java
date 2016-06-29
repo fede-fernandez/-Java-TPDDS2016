@@ -26,7 +26,7 @@ public class AdministradorABMDePOITest {
 	public void altaDePuntoDeInteres() {
 		administrador.agregarPuntoDeInteres(bancoSantanderRio, mapa);
 		
-		Assert.assertTrue(buscador.buscar("santander").contains(bancoSantanderRio));
+		Assert.assertTrue(buscador.buscar("santander", null).contains(bancoSantanderRio));
 	}
 	
 	@Test
@@ -34,7 +34,7 @@ public class AdministradorABMDePOITest {
 		administrador.agregarPuntoDeInteres(paradaDel7, mapa);
 		administrador.sacarPuntoDeInteres(paradaDel7, mapa);
 		
-		Assert.assertFalse(buscador.buscar("7").contains(paradaDel7));
+		Assert.assertFalse(buscador.buscar("7", null).contains(paradaDel7));
 	}
 	
 	@Test
@@ -43,7 +43,7 @@ public class AdministradorABMDePOITest {
 		ParadaDeColectivo paradaDel7Modificada = new ParadaDeColectivo("terminal de bondi 7", null);
 		administrador.modificarPuntoDeInteres(paradaDel7, paradaDel7Modificada, mapa);
 		
-		Assert.assertTrue(buscador.buscar("bondi").contains(paradaDel7Modificada) &&
-				!buscador.buscar("colectivo").contains(paradaDel7));
+		Assert.assertTrue(buscador.buscar("bondi", null).contains(paradaDel7Modificada) &&
+				!buscador.buscar("colectivo", null).contains(paradaDel7));
 	}
 }

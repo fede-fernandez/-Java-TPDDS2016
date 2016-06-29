@@ -1,5 +1,8 @@
 package ar.edu.dds.tpa.procesos;
 
-public interface Proceso extends Runnable {
-	public void ejecutar();
+public abstract class Proceso implements Runnable {
+	public void run() {
+		ejecutar();
+	}
+	public abstract void ejecutar();
 }

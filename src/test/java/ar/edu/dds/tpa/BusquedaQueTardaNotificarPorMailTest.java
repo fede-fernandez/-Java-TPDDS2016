@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.edu.dds.tpa.adapter.EnvioDeMail;
 import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.Mapa;
@@ -18,6 +19,7 @@ public class BusquedaQueTardaNotificarPorMailTest {
 	Mapa mapa;
 	Buscador buscador;
 	NotificadorDeBusquedaLenta notificadorDeBusquedaLenta;
+	EnvioDeMail envioDeMail;
 	MailServiceImpostor envioDeMailServiceImpostor;
 
 	@Before
@@ -25,7 +27,8 @@ public class BusquedaQueTardaNotificarPorMailTest {
 		mapa = new Mapa();
 		administrador = new Administrador("elAdminDelSistema@puntosdeinteres.com");
 		envioDeMailServiceImpostor = new MailServiceImpostor();
-		notificadorDeBusquedaLenta = new NotificadorDeBusquedaLenta(60, envioDeMailServiceImpostor, administrador);
+		envioDeMail = new EnvioDeMail(envioDeMailServiceImpostor);
+		notificadorDeBusquedaLenta = new NotificadorDeBusquedaLenta(60, envioDeMail, administrador);
 		buscador = new Buscador(mapa);
 		buscador.agregarObservadorDeBusqueda(notificadorDeBusquedaLenta);
 	}

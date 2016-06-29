@@ -1,6 +1,6 @@
 package ar.edu.dds.tpa.procesos;
 
-public class ProcesoImpostor implements Proceso {
+public class ProcesoImpostor extends Proceso {
 	private boolean seLlamoAlProcesoImpostor = false;
 
 	@Override
@@ -10,11 +10,5 @@ public class ProcesoImpostor implements Proceso {
 	
 	public boolean seLlamoAlProcesoImpostor() {
 		return seLlamoAlProcesoImpostor;
-	}
-
-	@Override
-	public void run() {
-		ejecutar();
-		
 	}
 }

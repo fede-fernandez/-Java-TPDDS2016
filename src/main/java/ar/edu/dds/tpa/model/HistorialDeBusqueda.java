@@ -30,8 +30,8 @@ public class HistorialDeBusqueda {
 		return busquedasRealizadas.stream().mapToInt(unaBusqueda -> unaBusqueda.getCantidadDeResultados()).sum();
 	}
 
-	public long cantidadDeBusquedasEnUnaFecha(LocalDate unaFecha) {
-		return busquedasRealizadas.stream().filter(unaBusqueda -> unaBusqueda.getFechaDeBusqueda().equals(unaFecha))
+	public int cantidadDeBusquedasEnUnaFecha(LocalDate unaFecha) {
+		return (int)busquedasRealizadas.stream().filter(unaBusqueda -> unaBusqueda.getFechaDeBusqueda().equals(unaFecha))
 				.count();
 	}
 
@@ -41,4 +41,22 @@ public class HistorialDeBusqueda {
 				.map(unaBusquedaFiltrada -> (Integer) unaBusquedaFiltrada.getCantidadDeResultados())
 				.collect(Collectors.toList());
 	}
+
+	public List<Busqueda> getBusquedasRealizadas() {
+		return busquedasRealizadas;
+	}
+	
+	public List<String> nombresDeUsuarios(){
+		return busquedasRealizadas.stream().map(unaBusqueda -> unaBusqueda.getUsuario().getNombre()).distinct()
+				.collect(Collectors.toList());		
+	}
+	
+	public int cantidadDeResultadosTotalesDeUnUsuario(String unNombreDeUsuario){
+		return busquedasRealizadas.stream()
+				.filter(unaBusqueda -> unaBusqueda.getUsuario().getNombre().equals(unNombreDeUsuario))
+				.mapToInt(unaBusquedaFiltrada -> unaBusquedaFiltrada.getCantidadDeResultados())
+				.sum();
+	}
+	
+	
 }

@@ -1,24 +1,21 @@
 package ar.edu.dds.tpa;
 
+import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
-import java.util.List;
+import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.Assert;
 
 import ar.edu.dds.tpa.model.Busqueda;
 import ar.edu.dds.tpa.model.HistorialDeBusqueda;
 import ar.edu.dds.tpa.model.Usuario;
 
+public class GeneracionDeReportesPostaTest {
 
-
-public class HistorialDeBusquedasTest {
-	
-	
 	private HistorialDeBusqueda historial;
 	
 	private LocalDate cuatroDeFebreroDe2016;
@@ -28,18 +25,16 @@ public class HistorialDeBusquedasTest {
 	private Busqueda busquedaLibreria;
 	private Busqueda busquedaParadaDos;
 	
-	private List<LocalDate> fechasDeBusqueda;
-	
 	private Usuario usuario;
 	
-	
+	private int cantidadDeBusquedasDelCuatroDeFebrero;
+	private int cantidadDeBusquedasDelDiezDeEnero;
+
 	@Before
 	public void inicializar(){
 		
 		cuatroDeFebreroDe2016 = LocalDate.of(2016, Month.FEBRUARY, 4);
 		diezDeEneroDe2016 = LocalDate.of(2016, Month.JANUARY, 10);
-		
-		fechasDeBusqueda = Arrays.asList(cuatroDeFebreroDe2016, diezDeEneroDe2016);
 		
 		usuario = new Usuario();
 		
@@ -54,20 +49,10 @@ public class HistorialDeBusquedasTest {
 		historial.agregarBusqueda(busquedaParadaDos);		
 		
 	}
-
-	@Test
-	public void filtradoDeFechasDeBusquedasDistintas() {
-		Assert.assertTrue(historial.fechasDeBusquedas().containsAll(fechasDeBusqueda));
-	}
 	
 	@Test
-	public void resultadosTotalesSonSesenta(){
-		Assert.assertEquals(60, historial.cantidadDeResultadosTotales());
-	}
-	
-	@Test
-	public void enCuatroDeFebreroSeRealizaronDosBusquedas(){
-		Assert.assertEquals(2, historial.cantidadDeBusquedasEnUnaFecha(cuatroDeFebreroDe2016));
+	public void reporteQueTotalizaLasBusquedasPorFecha() {
+		assertEquals(2, historial.cantidadDeBusquedasEnUnaFecha(cuatroDeFebreroDe2016));			
 	}
 
 }

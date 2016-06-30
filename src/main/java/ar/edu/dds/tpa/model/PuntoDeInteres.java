@@ -9,6 +9,7 @@ import org.uqbar.geodds.Point;
 public abstract class PuntoDeInteres {
 	private String nombre;
 	private Point coordenadas;
+	private LocalDateTime fechaBaja;
 
 	public PuntoDeInteres(String nombre, Point coordenadas) {
 		super();
@@ -30,6 +31,14 @@ public abstract class PuntoDeInteres {
 		return etiquetas;
 	}
 
+	public LocalDateTime getFechaBaja() {
+		return fechaBaja;
+	}
+
+	public void setFechaBaja(LocalDateTime fechaBaja) {
+		this.fechaBaja = fechaBaja;
+	}
+
 	public boolean estaCercaDe(Point unaPosicion){
 		return this.coordenadas.distance(unaPosicion) <= 0.5;				
 	}
@@ -45,10 +54,17 @@ public abstract class PuntoDeInteres {
 	};
 
 	
+	
 	@Override
-	public boolean equals(Object otro) {
+	public boolean equals(Object otro) {		
+		//Nos referimos al mismo punto de interes si ambos objetos son exactamente el mismo, o si tienen el mismo nombre y la ubicacion es aproximadamente la misma con un leve margen de error (2mm)
 		return otro != null &&
 			   (otro == this ||
-			   Math.abs(this.coordenadas.distance(((PuntoDeInteres)otro).getCoordenadas())) <= 0.0000002);
+				   (Math.abs(this.coordenadas.distance(((PuntoDeInteres)otro).getCoordenadas())) <= 0.0000002 
+				   && this.getNombre().equals(((PuntoDeInteres)otro).getNombre())));
+	}
+
+	public boolean estaActivo() {
+		return fechaBaja == null || fechaBaja.isAfter(LocalDateTime.now());
 	}
 }

@@ -1,10 +1,8 @@
 package ar.edu.dds.tpa;
 
-import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,6 +12,7 @@ import org.junit.Assert;
 
 import ar.edu.dds.tpa.model.Busqueda;
 import ar.edu.dds.tpa.model.HistorialDeBusqueda;
+import ar.edu.dds.tpa.model.Usuario;
 
 
 
@@ -31,6 +30,8 @@ public class HistorialDeBusquedasTest {
 	
 	private List<LocalDate> fechasDeBusqueda;
 	
+	private Usuario usuario;
+	
 	
 	@Before
 	public void inicializar(){
@@ -40,11 +41,13 @@ public class HistorialDeBusquedasTest {
 		
 		fechasDeBusqueda = Arrays.asList(cuatroDeFebreroDe2016, diezDeEneroDe2016);
 		
-		busquedaParadaCinco = new Busqueda("Parada 5", 10, cuatroDeFebreroDe2016, 5.0);
-		busquedaLibreria = new Busqueda("Libreria", 20, cuatroDeFebreroDe2016, 5.0);
-		busquedaParadaDos = new Busqueda("Parada 2", 30, diezDeEneroDe2016, 5.0);
+		usuario = new Usuario();
 		
-		historial = new HistorialDeBusquedas();
+		busquedaParadaCinco = new Busqueda(usuario,"Parada 5", 10, cuatroDeFebreroDe2016, 5.0);
+		busquedaLibreria = new Busqueda(usuario,"Libreria", 20, cuatroDeFebreroDe2016, 5.0);
+		busquedaParadaDos = new Busqueda(usuario,"Parada 2", 30, diezDeEneroDe2016, 5.0);
+		
+		historial = new HistorialDeBusqueda();
 		
 		historial.agregarBusqueda(busquedaParadaCinco);
 		historial.agregarBusqueda(busquedaLibreria);

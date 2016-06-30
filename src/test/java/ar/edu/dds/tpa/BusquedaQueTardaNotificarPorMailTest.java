@@ -8,9 +8,11 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.dds.tpa.adapter.EnvioDeMail;
+import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.Mapa;
+import ar.edu.dds.tpa.model.Usuario;
 import ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta;
 import ar.edu.dds.tpa.service.MailServiceImpostor;
 
@@ -21,6 +23,7 @@ public class BusquedaQueTardaNotificarPorMailTest {
 	NotificadorDeBusquedaLenta notificadorDeBusquedaLenta;
 	EnvioDeMail envioDeMail;
 	MailServiceImpostor envioDeMailServiceImpostor;
+	Usuario usuario;
 
 	@Before
 	public void inicializar() {
@@ -30,18 +33,19 @@ public class BusquedaQueTardaNotificarPorMailTest {
 		envioDeMail = new EnvioDeMail(envioDeMailServiceImpostor);
 		notificadorDeBusquedaLenta = new NotificadorDeBusquedaLenta(60, envioDeMail, administrador);
 		buscador = new Buscador(mapa);
-		buscador.agregarObservadorDeBusqueda(notificadorDeBusquedaLenta);
+		usuario = new Usuario("Pepe",new Posicion(5.0, 6.0),5);
+		usuario.agregarObservadorDeBusqueda(notificadorDeBusquedaLenta);
 	}
 	
 	@Test
 	public void seNotificaAlAdministradorUnaBusquedaLenta() {
-		buscador.registrarBusqueda(null, null, 0, LocalDateTime.now(), LocalDateTime.now().plus(Duration.ofHours(1)));
+		buscador.registrarBusqueda(usuario, null, 0, LocalDateTime.now(), LocalDateTime.now().plus(Duration.ofHours(1)));
 		Assert.assertTrue(envioDeMailServiceImpostor.seLlamoAlServicioDeEnvioDeMail());
 	}
 	
 	@Test
 	public void noSeNotificaAlAdministradorUnaBusquedaRapida() {
-		buscador.registrarBusqueda(null, null, 0, LocalDateTime.now(), LocalDateTime.now());
+		buscador.registrarBusqueda(usuario, null, 0, LocalDateTime.now(), LocalDateTime.now());
 		Assert.assertFalse(envioDeMailServiceImpostor.seLlamoAlServicioDeEnvioDeMail());
 	}
 }

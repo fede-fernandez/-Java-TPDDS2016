@@ -7,10 +7,8 @@ import ar.edu.dds.tpa.criterio.Criterio;
 
 public class GestorDeAccionesDeUsuarios{	
 	
-	public void ejecutar(List<Usuario> usuarios, Criterio criterio, Accion accion){
-		
-		
-				
+	public void ejecutar(List<Usuario> usuarios, Criterio criterio, Accion accion){		
+		usuarios.stream().filter(unUsuario -> criterio.filtrarUsuarios(unUsuario)).forEach(unUsuarioFiltrado -> accion.realizarAccion(unUsuarioFiltrado));				
 	}
 	
 	

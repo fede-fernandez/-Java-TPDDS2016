@@ -1,5 +1,8 @@
 package ar.edu.dds.tpa.procesos;
 
+import ar.edu.dds.tpa.procesos.estado.EstadoDeProceso;
+import ar.edu.dds.tpa.procesos.fallos.AccionEnCasoDeFalloDeProceso;
+
 public abstract class Proceso implements Runnable {
 	private EstadoDeProceso estado;
 	private AccionEnCasoDeFalloDeProceso accionEnCasoDeFallo;
@@ -17,6 +20,8 @@ public abstract class Proceso implements Runnable {
 	public void enCasoDeFalloHacer(AccionEnCasoDeFalloDeProceso unaAccionEnCasoDeFallo) {
 		accionEnCasoDeFallo = unaAccionEnCasoDeFallo;
 	}
+	
+	public boolean estaEnEjecucion() {
+		return estado.estaEnEjecucion();
+	}
 }
-//Aplicar state
-//estaEjecutando en estadoejecutado devuelve true, proceso tiene boolean y le manda ese mensaje al estado

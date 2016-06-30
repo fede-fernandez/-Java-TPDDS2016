@@ -14,6 +14,9 @@ public class Usuario {
 	private int comuna;
 	private List<BusquedaObserver> observadoresDeBusqueda;
 	
+	public Usuario(){
+		
+	}	
 	
 	public Usuario(String nombre, Posicion coordenadas, int comuna) {
 		this.nombre = nombre;

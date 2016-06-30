@@ -36,7 +36,7 @@ public class Mapa {
 
 		List<String> palabrasClave = Arrays.asList(unaFrase.split(" "));
 		
-		List<PuntoDeInteres> resultado = puntosDeInteres.stream().filter(punto -> palabrasClave.stream().anyMatch(palabra -> punto.condicionDeBusqueda(palabra))).collect(Collectors.toList());
+		List<PuntoDeInteres> resultado = puntosDeInteres.stream().filter(punto -> punto.estaActivo() && palabrasClave.stream().anyMatch(palabra -> punto.condicionDeBusqueda(palabra))).collect(Collectors.toList());
 		
 		buscadoresExternos.stream().forEach(buscador -> buscador.buscar(palabrasClave, this));
 		
@@ -55,6 +55,10 @@ public class Mapa {
 	
 	public List<PuntoDeInteres> getResultadosExternos() {
 		return resultadosExternos;
+	}
+
+	public void darDeBaja(BajaPuntoDeInteres puntoADarDeBaja) {
+		puntosDeInteres.stream().filter(puntoADarDeBaja::equals).findFirst().ifPresent(punto -> punto.setFechaBaja(puntoADarDeBaja.getFechaBaja()));
 	}
 	
 }

@@ -97,9 +97,15 @@ Una alternativa a esta implementación podía ser: tener que cada acción sea un
 
 En caso de que un proceso falle, no debe tirar ninguna excepción de Java, simplemente la clase `Proceso` posee el método fallar(), el cual activa la acción a realizar en caso de fallo.
 
+`NotificarAlAdministrador` necesita utilizar un servicio de envio de mails, gracias a la entrega anterior, se había desarrollado un adaptador de este servicio, junto con los mocks respectivos, el cual encajó perfectamente a esta acción, debido a la flexibilidad que ofrecía la clase modelada anteriormente.
+
+Algo que resultó de aprendizaje durante la implementación de `ReintentarEjecucion` fue que no se utilizó ningún ciclo while o for para manejar la cantidad de veces que se estaba ejecutando o volviéndose a ejecutar el proceso, ya que se está utilizando el método `ejecutar`, quien puede volver a llamar a `fallar()` para que se produzca dicho bucle. 
+
+Debido a `ReintentarEjecucion` que debe conocer la cantidad de veces que se ejecutó un proceso, se decidió realizarlo de la forma STATEFUL. Las ventajas y desventajas frente a hacerlo STATELESS fueron:
+1) si se hacía stateless, la clase `Proceso` debería tener un contador de veces que se ejecutó, pero este atributo no sería de utilidad a menos que se aplique dicho accionar frente a fallo.
+2) al hacerlo stateful, se crea una instancia de un estado por cada proceso, ocupando más memoria y perdiendo performance. La performance fue lo último a tener en cuenta en el diseño, por lo que la idea de hacerlo stateful iba ganando puntos.
+3) al hacerlo stateful, se sabe que cada acción frente a fallo tiene el mismo comportamiento, por lo que habrían varias instancias de algo que realiza la misma tarea, frente a stateless se solucionaría esto.
+
 Para los resultados de ejecución se colocaron como atributo dentro de cada Proceso, el cual conoce el mensaje finalizar(), se utilizó este mensaje ya que no hay forma de conocer si terminó un proceso utilizando la alternativa que elegimos. El mensaje finalizar() almacena los resultados de dicha ejecución.
 Una alternativa que se planteó fue crear una clase llamada `ProcesosFinalizados`, la cual contendría cada proceso finalizado, junto con su resultado de ejecución. Finalmente no se decidió utilizar, porque existiría redundancia de datos o repetición de datos, ya que el planificador de procesos tiene una cola de procesos, cada proceso conoce su estado, por lo que de esa cola se podría filtrar cada proceso con el estado finalizado y se obtendrían así dichos procesos.
-
-
-
 

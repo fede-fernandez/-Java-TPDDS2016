@@ -26,4 +26,9 @@ public class Mapa {
 	public List<PuntoDeInteres> obtenerPuntosDeInteres() {
 		return puntosDeInteres;
 	}
+	
+	public void darDeBaja(BajaPuntoDeInteres puntoADarDeBaja) {
+		puntosDeInteres.stream().filter(puntoADarDeBaja::equals).findFirst().ifPresent(punto -> punto.setFechaBaja(puntoADarDeBaja.getFechaBaja()));
+	}
+	
 }

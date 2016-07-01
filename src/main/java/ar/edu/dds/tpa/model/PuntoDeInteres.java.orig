@@ -2,17 +2,28 @@ package ar.edu.dds.tpa.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+<<<<<<< HEAD
 import java.util.List;
+=======
+import java.util.Arrays;
+>>>>>>> Emi
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 public abstract class PuntoDeInteres {
 	private String nombre;
+<<<<<<< HEAD
 	private Posicion coordenadas;
 	private List<String> palabrasClave;
-	private LocalDateTime fechaBaja;
 
 	public PuntoDeInteres(String nombre, Posicion coordenadas) {
+=======
+	private Point coordenadas;
+	private LocalDateTime fechaBaja;
+
+	public PuntoDeInteres(String nombre, Point coordenadas) {
+		super();
+>>>>>>> Emi
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
 		palabrasClave = new ArrayList<String>();
@@ -23,6 +34,7 @@ public abstract class PuntoDeInteres {
 		return nombre;
 	}
 
+<<<<<<< HEAD
 	public Posicion getCoordenadas() {
 		return coordenadas;
 	}
@@ -50,6 +62,17 @@ public abstract class PuntoDeInteres {
 		agregarPalabraClave(nombre);
 
 	}
+}
+=======
+	public Point getCoordenadas() {
+		return coordenadas;
+	}
+
+	protected ArrayList<String> getEtiquetas() {
+		ArrayList<String> etiquetas = new ArrayList<>();
+		etiquetas.addAll(Arrays.asList(this.nombre.split(" ")));
+		return etiquetas;
+	}
 
 	public LocalDateTime getFechaBaja() {
 		return fechaBaja;
@@ -59,12 +82,28 @@ public abstract class PuntoDeInteres {
 		this.fechaBaja = fechaBaja;
 	}
 
+	public boolean estaCercaDe(Point unaPosicion){
+		return this.coordenadas.distance(unaPosicion) <= 0.5;				
+	}
+	
+	public boolean estaEtiquetadoPor(String unTexto){
+		return getEtiquetas().stream().anyMatch(etiqueta -> etiqueta.equalsIgnoreCase(unTexto));
+	}
+	
+	public abstract boolean estaDisponibleEn(LocalDateTime unDiaYHorario);
+	
+	public boolean condicionDeBusqueda(String unTexto){
+		return getEtiquetas().stream().anyMatch(etiqueta -> unTexto.equalsIgnoreCase(etiqueta));
+	};
+
+	
+	
 	@Override
 	public boolean equals(Object otro) {		
 		//Nos referimos al mismo punto de interes si ambos objetos son exactamente el mismo, o si tienen el mismo nombre y la ubicacion es aproximadamente la misma con un leve margen de error (2mm)
 		return otro != null &&
 			   (otro == this ||
-				   (Math.abs(this.coordenadas.distanciaA(((PuntoDeInteres)otro).getCoordenadas())) <= 0.0000002 
+				   (Math.abs(this.coordenadas.distance(((PuntoDeInteres)otro).getCoordenadas())) <= 0.0000002 
 				   && this.getNombre().equals(((PuntoDeInteres)otro).getNombre())));
 	}
 
@@ -72,3 +111,4 @@ public abstract class PuntoDeInteres {
 		return fechaBaja == null || fechaBaja.isAfter(LocalDateTime.now());
 	}
 }
+>>>>>>> Emi

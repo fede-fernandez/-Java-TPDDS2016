@@ -43,12 +43,12 @@ public class BuscadorDeBancos implements BuscadorExterno {
 			Gson gson = new Gson();
 			bancosDelServicio = gson.fromJson(bancosEnJSON, listaDeBancos);
 			bancosDelServicio.stream()
-					.forEach(unBancoDelServicio -> bancos.add(parsearBancoDelServicioABanco(unBancoDelServicio)));
+					.forEach(unBancoDelServicio -> bancos.add(convertirBancoDelServicioABanco(unBancoDelServicio)));
 		}
 		return bancos;
 	}
 
-	public Banco parsearBancoDelServicioABanco(BancoDelServicio bancoDelServicio) {
+	public Banco convertirBancoDelServicioABanco(BancoDelServicio bancoDelServicio) {
 		Banco banco = new Banco(bancoDelServicio.getBanco(),
 				new Posicion(bancoDelServicio.getX(), bancoDelServicio.getY()));
 		bancoDelServicio.getServicios().stream().forEach(unServicio -> banco.agregarServicio(new Servicio(unServicio)));

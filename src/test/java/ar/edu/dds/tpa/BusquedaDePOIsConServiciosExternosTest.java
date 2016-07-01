@@ -44,36 +44,42 @@ public class BusquedaDePOIsConServiciosExternosTest {
 	@Test
 	public void seLlamoAlServicioDeBancos() {
 		buscador.buscar("Banco de la Plaza", null);
+		
 		Assert.assertTrue(bancoServiceImpostor.seLlamoAlBancoService());
 	}
 	
 	@Test
 	public void seObtuvoUnBancoDelServicioExterno() {
 		resultadosDeLaBusqueda.addAll(buscador.buscar("Banco de la Plaza", null));
+		
 		Assert.assertTrue(resultadosDeLaBusqueda.stream().anyMatch(unResultado -> unResultado.getNombre().equals("Banco de la Plaza")));
 	}
 	
 	@Test
 	public void seObtuvoElBancoDeSucursalAvellanedaDelServicioExternoDeBancos() {
 		resultadosDeLaBusqueda.addAll(buscador.buscar("cobro", null));
+		
 		Assert.assertTrue(resultadosDeLaBusqueda.stream().anyMatch(unResultado -> unResultado.getCoordenadas().getLongitud() == -35.9338322));
 	}
 	
 	@Test
 	public void seObtuvoElBancoDeSucursalCaballitoDelServicioExternoDeBancos() {
 		resultadosDeLaBusqueda.addAll(buscador.buscar("seguros", null));
+		
 		Assert.assertTrue(resultadosDeLaBusqueda.stream().anyMatch(unResultado -> unResultado.getCoordenadas().getLongitud() == -35.9345681));
 	}
 
 	@Test
 	public void seLlamoAlServicioDeCGPSExternos() {
 		buscador.buscar("Flores", null);
+		
 		Assert.assertTrue(cgpServiceImpostor.seLlamoAlCGPService());
 	}
 	
 	@Test
 	public void seObtuvoElCGPDelServicioExterno() {
 		buscador.buscar("Flores", null);
+		
 		Assert.assertTrue(resultadosDeLaBusqueda.stream().allMatch(unResultado -> unResultado.getNombre().equals("Centros de Gestion y Participacion CGP N° 7")));
 	}
 }

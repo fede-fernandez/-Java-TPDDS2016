@@ -7,7 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.dds.tpa.adapter.EnvioDeMail;
+import ar.edu.dds.tpa.adapter.EnviadorDeMail;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.model.Buscador;
@@ -21,7 +21,7 @@ public class BusquedaQueTardaNotificarPorMailTest {
 	Mapa mapa;
 	Buscador buscador;
 	NotificadorDeBusquedaLenta notificadorDeBusquedaLenta;
-	EnvioDeMail envioDeMail;
+	EnviadorDeMail enviadorDeMail;
 	MailServiceImpostor envioDeMailServiceImpostor;
 	Usuario usuario;
 
@@ -30,8 +30,8 @@ public class BusquedaQueTardaNotificarPorMailTest {
 		mapa = new Mapa();
 		administrador = new Administrador("elAdminDelSistema@puntosdeinteres.com");
 		envioDeMailServiceImpostor = new MailServiceImpostor();
-		envioDeMail = new EnvioDeMail(envioDeMailServiceImpostor);
-		notificadorDeBusquedaLenta = new NotificadorDeBusquedaLenta(60, envioDeMail, administrador);
+		enviadorDeMail = new EnviadorDeMail(envioDeMailServiceImpostor);
+		notificadorDeBusquedaLenta = new NotificadorDeBusquedaLenta(60, enviadorDeMail, administrador);
 		buscador = new Buscador(mapa);
 		usuario = new Usuario("Pepe",new Posicion(5.0, 6.0),5);
 		usuario.agregarObservadorDeBusqueda(notificadorDeBusquedaLenta);
@@ -39,13 +39,13 @@ public class BusquedaQueTardaNotificarPorMailTest {
 	
 	@Test
 	public void seNotificaAlAdministradorUnaBusquedaLenta() {
-		buscador.registrarBusqueda(usuario, null, 0, LocalDateTime.now(), LocalDateTime.now().plus(Duration.ofHours(1)));
+		buscador.registrarBusqueda(usuario, null, 0, LocalDateTime.now(), LocalDateTime.now().plus(Duration.ofHours(1)));		
 		Assert.assertTrue(envioDeMailServiceImpostor.seLlamoAlServicioDeEnvioDeMail());
 	}
 	
 	@Test
 	public void noSeNotificaAlAdministradorUnaBusquedaRapida() {
-		buscador.registrarBusqueda(usuario, null, 0, LocalDateTime.now(), LocalDateTime.now());
+		buscador.registrarBusqueda(usuario, null, 0, LocalDateTime.now(), LocalDateTime.now());		
 		Assert.assertFalse(envioDeMailServiceImpostor.seLlamoAlServicioDeEnvioDeMail());
 	}
 }

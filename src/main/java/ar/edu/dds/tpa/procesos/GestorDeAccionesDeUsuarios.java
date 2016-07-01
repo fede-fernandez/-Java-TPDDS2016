@@ -2,6 +2,8 @@ package ar.edu.dds.tpa.procesos;
 
 import java.util.List;
 import ar.edu.dds.tpa.model.Usuario;
+import ar.edu.dds.tpa.procesos.estado.EstadoDeProceso;
+import ar.edu.dds.tpa.procesos.fallos.AccionEnCasoDeFalloDeProceso;
 import ar.edu.dds.tpa.accion.AccionDeUsuario;
 import ar.edu.dds.tpa.criterio.Criterio;
 
@@ -11,6 +13,7 @@ public class GestorDeAccionesDeUsuarios extends Proceso{
 	private Criterio criterio;
 	private AccionDeUsuario accion;
 	
+
 	
 	public GestorDeAccionesDeUsuarios(List<Usuario> usuarios, Criterio criterio, AccionDeUsuario accion) {
 		this.usuarios = usuarios;

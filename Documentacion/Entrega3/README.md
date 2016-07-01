@@ -70,6 +70,42 @@ El Buscador conoce los orígenes de datos locales (el Mapa) y los externos (busc
 ---
 
 ## Decisiones de diseño (Entrega 3)
+Se partió de la idea de que los tres procesos deben tener alguna característica en común para poder agruparlos, como eran procesos muy distintos se decidió aplicar el patrón de diseño *Command* porque se abstrae de lo que realiza el proceso, sólamente importa que conozca el mensaje ejecutar() para poder actuar.
 
 
+
+Se modeló una clase `PlanificadorDeProcesos` la cual conoce los procesos a ejecutar. Para la implementación, surgieron varias ideas:
+- Crear un hilo que se vaya fijando el tiempo y comparando si alguno de los horarios planificados para el proceso coincide con el mismo. Si coincidía, se ejecutaba dicho proceso. Esta opción requería investigar sobre threads en Java, sincronización y demás, como no se disponía de mucho tiempo para comprender estas tecnologías, se descartó por el momento.
+- Utilizar el patrón Observer, donde de alguna manera le llegaría el mensaje "esHoraDeEjecutar(unProceso)" y lo ejecutaría, esta alternativa sirve para poder hacer mejores tests, ya que el resto de las alternativas requieren temporalidad.
+- Utilizar una biblioteca externa llamada *Quartz*, que simplifica la ejecución de tareas a determinado tiempo. Al igual que la alternativa de hacer el thread, se descartó por falta de tiempo.
+- Utilizar una biblioteca de Java, Executor, que ejecuta el método `run()` de una clase que implemente la interface *Runnable*. Se optó por esta alternativa, ya que era la más sencilla de aplicar y cumplía con lo pedido, tuvimos que adaptar el funcionamiento de Executor al proceso para que ejecute el método `run()` que solicita dicha interface.
+
+No se pudo realizar el punto BONUS de la entrega ya que la alternativa optada requería más investigación, tal vez no se podía implementar en dicha alternativa, por lo que la opción de crear el hilo sería la más ideal, ya que nosotros estaríamos manejando el algoritmo de planeación de procesos.
+
+En un principio, `Proceso` era una interface de Java, pero luego, al ver que había comportamiento en común en cuanto a los resultados de ejecución o manejo de errores, pasó a ser una clase abstracta con métodos que deleguen el manejo de errores a ot
+
+Se utilizó el patrón State para modelar los estados de los procesos: EnEspera, Ejecutando, Fallido, Finalizado. Otras opciones tenidas en cuenta, que no eran mantenibles eran: crear un atributo booleano por cada estado, crear un atributo del tipo String que indique el estado, luego utilizar sentencias if para consultar el estado, lo que haría que quede muy acoplada la clase `Proceso`. Se optó por una alternativa más objetosa: cosificar los estados.
+
+El uso de dicho patrón serviría para realizar el punto BONUS, ya que teniendo una cola de procesos, si alguno de ellos está en el estado EJECUCION, no debería haber otro proceso ejecutándose.
+Otra alternativa a esto era el uso de semáforos, pero esto iba a ensuciar el código con sincronismo entre procesos y lo iba a hacer más difícil de comprender.
+
+Para el manejo de errores se creó una interface `AccionEnCasoDeFallo` la cual es atributo de la clase `Proceso`, se decidió inyectar esta dependencia dentro del proceso, ya que permite más flexibilidad a la hora de configurar cómo se quiere actuar frente a la falla de cada proceso en específico, si se configuraba desde el planificador de procesos, se aplicaría el mismo manejo de error para todos los procesos por igual.
+`NotificarAlAdministrador`, `ReintentarEjecucion`, `NoHacerNada` implementan dicha interface, nuevamente se aplicó el patrón State, ya que cada acción tenía comportamientos muy diferentes, por lo que cada una debe utilizar el método `ejecutar()`
+El caso de `ReintentarEjecucion` permite que se pueda configurar si se desea notificar al administrador o no, por lo que la acción `NotificarAlAdministrador` es reutilizable para este caso.
+
+Una alternativa a esta implementación podía ser: tener que cada acción sea un booleano, atributo dentro del proceso y dependiendo de esos valores, el proceso actúa frente al error. Código no mantenible, tiene mucho acoplamiento dentro de la clase Proceso.
+
+En caso de que un proceso falle, no debe tirar ninguna excepción de Java, simplemente la clase `Proceso` posee el método fallar(), el cual activa la acción a realizar en caso de fallo.
+
+`NotificarAlAdministrador` necesita utilizar un servicio de envio de mails, gracias a la entrega anterior, se había desarrollado un adaptador de este servicio, junto con los mocks respectivos, el cual encajó perfectamente a esta acción, debido a la flexibilidad que ofrecía la clase modelada anteriormente.
+
+Algo que resultó de aprendizaje durante la implementación de `ReintentarEjecucion` fue que no se utilizó ningún ciclo while o for para manejar la cantidad de veces que se estaba ejecutando o volviéndose a ejecutar el proceso, ya que se está utilizando el método `ejecutar`, quien puede volver a llamar a `fallar()` para que se produzca dicho bucle. 
+
+Debido a `ReintentarEjecucion` que debe conocer la cantidad de veces que se ejecutó un proceso, se decidió realizarlo de la forma STATEFUL. Las ventajas y desventajas frente a hacerlo STATELESS fueron:
+1) si se hacía stateless, la clase `Proceso` debería tener un contador de veces que se ejecutó, pero este atributo no sería de utilidad a menos que se aplique dicho accionar frente a fallo.
+2) al hacerlo stateful, se crea una instancia de un estado por cada proceso, ocupando más memoria y perdiendo performance. La performance fue lo último a tener en cuenta en el diseño, por lo que la idea de hacerlo stateful iba ganando puntos.
+3) al hacerlo stateful, se sabe que cada acción frente a fallo tiene el mismo comportamiento, por lo que habrían varias instancias de algo que realiza la misma tarea, frente a stateless se solucionaría esto.
+
+Para los resultados de ejecución se colocaron como atributo dentro de cada Proceso, el cual conoce el mensaje finalizar(), se utilizó este mensaje ya que no hay forma de conocer si terminó un proceso utilizando la alternativa que elegimos. El mensaje finalizar() almacena los resultados de dicha ejecución.
+Una alternativa que se planteó fue crear una clase llamada `ProcesosFinalizados`, la cual contendría cada proceso finalizado, junto con su resultado de ejecución. Finalmente no se decidió utilizar, porque existiría redundancia de datos o repetición de datos, ya que el planificador de procesos tiene una cola de procesos, cada proceso conoce su estado, por lo que de esa cola se podría filtrar cada proceso con el estado finalizado y se obtendrían así dichos procesos.
 

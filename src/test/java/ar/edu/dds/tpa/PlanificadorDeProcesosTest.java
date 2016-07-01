@@ -31,7 +31,6 @@ public class PlanificadorDeProcesosTest {
 	@Before
 	public void inicializar() {
 		planificador = new PlanificadorDeProcesos();
-		procesoImpostor = new ProcesoImpostor();
 		servicioDeMailImpostor = new MailServiceImpostor();
 		enviadorDeMail = new EnviadorDeMail(servicioDeMailImpostor);
 		administrador = new Administrador("mailDelAdministrador@puntosDeInteres.com.ar");
@@ -39,16 +38,18 @@ public class PlanificadorDeProcesosTest {
 	
 	@Test
 	public void seEjecutoElProcesoPlanificadoQueSeEjecuteEnElMomento() throws InterruptedException {
+		procesoImpostor = new ProcesoImpostor();
 		planificador.planificar(procesoImpostor, LocalDateTime.now());
-		Thread.sleep(5);
+		Thread.sleep(50);
 		
 		Assert.assertTrue(procesoImpostor.seLlamoAlProcesoImpostor());
 	}
 	
 	@Test
 	public void noSeEjecutoElProcesoPlanificadoAlHorarioDadoPorqueTodaviaNoEsHora() throws InterruptedException {
+		procesoImpostor = new ProcesoImpostor();
 		planificador.planificar(procesoImpostor, LocalDateTime.now().plus(1, ChronoUnit.HOURS));
-		Thread.sleep(5);
+		Thread.sleep(10);
 		
 		Assert.assertFalse(procesoImpostor.seLlamoAlProcesoImpostor());
 	}
@@ -59,7 +60,7 @@ public class PlanificadorDeProcesosTest {
 		reintentarEjecucion = new ReintentarEjecucion(procesoQueFallaImpostor, 3, false);
 		procesoQueFallaImpostor.enCasoDeFalloHacer(reintentarEjecucion);		
 		planificador.planificar(procesoQueFallaImpostor, LocalDateTime.now());
-		Thread.sleep(5);
+		Thread.sleep(50);
 		
 		Assert.assertEquals(4, procesoQueFallaImpostor.vecesQueSeEjecuto());
 	}
@@ -71,7 +72,7 @@ public class PlanificadorDeProcesosTest {
 		reintentarEjecucion.administradorANotificar(administrador, enviadorDeMail);
 		procesoQueFallaImpostor.enCasoDeFalloHacer(reintentarEjecucion);		
 		planificador.planificar(procesoQueFallaImpostor, LocalDateTime.now());
-		Thread.sleep(5);
+		Thread.sleep(50);
 		
 		Assert.assertTrue(servicioDeMailImpostor.seLlamoAlServicioDeEnvioDeMail());
 	}
@@ -81,8 +82,50 @@ public class PlanificadorDeProcesosTest {
 		procesoQueFallaImpostor = new ProcesoQueFallaImpostor();
 		procesoQueFallaImpostor.enCasoDeFalloHacer(noHacerNada);		
 		planificador.planificar(procesoQueFallaImpostor, LocalDateTime.now());
-		Thread.sleep(5);
+		Thread.sleep(50);
 		
 		Assert.assertEquals(1, procesoQueFallaImpostor.vecesQueSeEjecuto());
+	}
+	
+	@Test
+	public void resultadoDeEjecucionDeUnProcesoNombreDelEstado() throws InterruptedException {
+		procesoImpostor = new ProcesoImpostor();
+		planificador.planificar(procesoImpostor, LocalDateTime.now().plus(1, ChronoUnit.HOURS));
+		procesoImpostor.finalizar(2);
+		Thread.sleep(50);
+		
+		Assert.assertEquals("Finalizado", procesoImpostor.obtenerResultadoDeEjecucion().getEstadoDeProceso().nombreDelEstado());
+	}
+	
+	@Test
+	public void resultadoDeEjecucionDeUnProcesoCantidadDeElementosAfectados() throws InterruptedException {
+		procesoImpostor = new ProcesoImpostor();
+		planificador.planificar(procesoImpostor, LocalDateTime.now().plus(1, ChronoUnit.HOURS));
+		procesoImpostor.finalizar(2);
+		Thread.sleep(50);
+		
+		Assert.assertEquals(2, procesoImpostor.obtenerResultadoDeEjecucion().getCantidadDeElementosAfectados());
+	}
+	
+	@Test
+	public void resultadoDeEjecucionDeUnProcesoQueFallaNombreDelEstado() throws InterruptedException {
+		procesoQueFallaImpostor = new ProcesoQueFallaImpostor();
+		procesoQueFallaImpostor.enCasoDeFalloHacer(noHacerNada);		
+		planificador.planificar(procesoQueFallaImpostor, LocalDateTime.now());
+		procesoQueFallaImpostor.finalizar(0);
+		Thread.sleep(50);
+		
+		Assert.assertEquals("Fallido", procesoQueFallaImpostor.obtenerResultadoDeEjecucion().getEstadoDeProceso().nombreDelEstado());
+	}
+		
+	@Test
+	public void resultadoDeEjecucionDeUnProcesoQueFallaCantidadDeElementosAfectados() throws InterruptedException {
+		procesoQueFallaImpostor = new ProcesoQueFallaImpostor();
+		procesoQueFallaImpostor.enCasoDeFalloHacer(noHacerNada);		
+		planificador.planificar(procesoQueFallaImpostor, LocalDateTime.now());
+		procesoQueFallaImpostor.finalizar(0);
+		Thread.sleep(50);
+		
+		Assert.assertEquals(0, procesoQueFallaImpostor.obtenerResultadoDeEjecucion().getCantidadDeElementosAfectados());
 	}
 }

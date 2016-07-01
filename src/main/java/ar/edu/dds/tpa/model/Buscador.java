@@ -29,7 +29,9 @@ public class Buscador {
 		Busqueda busquedaRealizada = new Busqueda(usuario, textoBuscado, cantidadDeResultados, LocalDate.now(),
 				duracionDeBusqueda);
 		
-		usuario.notificarBusqueda(busquedaRealizada);
+		if (usuario != null) {
+			usuario.notificarBusqueda(busquedaRealizada);			
+		}		
 		
 		historialDeBusqueda.agregarBusqueda(busquedaRealizada);
 	}

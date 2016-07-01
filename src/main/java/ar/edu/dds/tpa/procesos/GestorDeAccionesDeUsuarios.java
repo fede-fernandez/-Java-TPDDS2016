@@ -6,6 +6,7 @@ import ar.edu.dds.tpa.accion.AccionDeUsuario;
 import ar.edu.dds.tpa.criterio.Criterio;
 
 public class GestorDeAccionesDeUsuarios extends Proceso {
+
 	private List<Usuario> usuarios;
 	private Criterio criterio;
 	private AccionDeUsuario accion;
@@ -19,5 +20,12 @@ public class GestorDeAccionesDeUsuarios extends Proceso {
 	public void ejecutar() {
 		usuarios.stream().filter(unUsuario -> criterio.filtrarUsuarios(unUsuario))
 				.forEach(unUsuarioFiltrado -> accion.realizarAccion(unUsuarioFiltrado));
+		
+		this.finalizar(this.cantidadDeUsuariosAfectados());
 	}
+
+	private int cantidadDeUsuariosAfectados() {
+		return (int) usuarios.stream().filter(unUsuario -> criterio.filtrarUsuarios(unUsuario)).count();
+	}
+
 }

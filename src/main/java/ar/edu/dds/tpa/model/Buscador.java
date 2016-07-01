@@ -58,7 +58,8 @@ public class Buscador {
 		List<PuntoDeInteres> puntosDeInteresEncontradosLocalmente = new ArrayList<PuntoDeInteres>();
 		
 		puntosDeInteresEncontradosLocalmente.addAll(mapaLocal.obtenerPuntosDeInteres().stream()
-				.filter(unPuntoDeInteres -> palabrasDeBusqueda.stream()
+				.filter(unPuntoDeInteres -> unPuntoDeInteres.estaActivo() && 
+						palabrasDeBusqueda.stream()
 						.anyMatch(unaPalabra -> unPuntoDeInteres.contienePalabraClave(unaPalabra)))
 				.collect(Collectors.toList()));
 		

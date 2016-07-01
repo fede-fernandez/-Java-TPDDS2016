@@ -1,33 +1,26 @@
 package ar.edu.dds.tpa;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
-import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
+import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.Banco;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.CGP;
-import ar.edu.dds.tpa.model.DarDeBajaPuntosDeInteres;
 import ar.edu.dds.tpa.model.LocalComercial;
 import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.Rubro;
 import ar.edu.dds.tpa.model.Servicio;
-import ar.edu.dds.tpa.model.ServicioPuntosDeInteresBajados;
 import ar.edu.dds.tpa.model.ServicioPuntosDeInteresBajados_Impostor;
-import componentes_externos.BuscadorDeBancos_Impostor;
-import componentes_externos.BuscadorDeCGPLento_Impostor;
-import componentes_externos.CentroDTO;
-import componentes_externos.RangosServicioDTO;
-import componentes_externos.ServicioDTO;
+import ar.edu.dds.tpa.procesos.DarDeBajaPuntosDeInteres;
 
 public class DarDeBajaPuntosDeInteresTest {
 

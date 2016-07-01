@@ -1,6 +1,11 @@
-package ar.edu.dds.tpa.model;
+package ar.edu.dds.tpa.procesos;
 
-public class DarDeBajaPuntosDeInteres {
+import ar.edu.dds.tpa.model.Mapa;
+import ar.edu.dds.tpa.model.ServicioPuntosDeInteresBajados;
+import ar.edu.dds.tpa.procesos.Proceso;
+
+
+public class DarDeBajaPuntosDeInteres extends Proceso {
 
 	ServicioPuntosDeInteresBajados servicioBajas;
 	Mapa mapa;

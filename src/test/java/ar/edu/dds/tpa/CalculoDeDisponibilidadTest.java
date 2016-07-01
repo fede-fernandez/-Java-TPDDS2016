@@ -45,8 +45,8 @@ public class CalculoDeDisponibilidadTest {
 		cgpDeFlores.agregarServicio(multas);
 		
 		depositos = new Servicio("Depositos");
-		depositos.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(8, 0), LocalTime.of(11, 30));
-		depositos.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(14, 15), LocalTime.of(20, 15));
+		depositos.agregarHorarioDeAtencion(deLunesAViernes, LocalTime.of(8, 0), LocalTime.of(11, 30));
+		depositos.agregarHorarioDeAtencion(deLunesAViernes, LocalTime.of(14, 15), LocalTime.of(20, 15));
 		
 		bancoPatagonia = new Banco("Banco Patagonia", null);
 		bancoPatagonia.agregarServicio(depositos);

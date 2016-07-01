@@ -2,22 +2,22 @@ package ar.edu.dds.tpa.model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
-
 public abstract class PuntoDeInteres {
 	private String nombre;
-
 	private Posicion coordenadas;
+	private List<String> palabrasClave;
 
 	public PuntoDeInteres(String nombre, Posicion coordenadas) {
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
+		palabrasClave = new ArrayList<String>();
+		agregarPalabraClave(nombre);
 	}
 	
-
 	public String getNombre() {
 		return nombre;
 	}
@@ -25,25 +25,22 @@ public abstract class PuntoDeInteres {
 	public Posicion getCoordenadas() {
 		return coordenadas;
 	}
-
-
+	
+	public List<String> getPalabrasClave() {
+		return palabrasClave;
+	}
+	
+	public void agregarPalabraClave(String unaPalabraClave) {
+		palabrasClave.add(unaPalabraClave.toLowerCase());
+	}
+	
 	public boolean estaCercaDe(Posicion unaPosicion) {
 		return coordenadas.distanciaA(unaPosicion) <= 0.5;
 	}
 
 	public abstract boolean estaDisponibleEn(LocalDateTime unDiaYHorario);
 	
-	protected ArrayList<String> getEtiquetas() {
-		ArrayList<String> etiquetas = new ArrayList<>();
-		etiquetas.addAll(Arrays.asList(nombre.split(" ")));
-		return etiquetas;
+	public boolean contienePalabraClave(String unaPalabra) {
+		return palabrasClave.stream().anyMatch(unaPalabraClave -> unaPalabraClave.contains(unaPalabra.toLowerCase()));
 	}
-	
-	public boolean condicionDeBusqueda(String unTexto) {
-		return getEtiquetas().stream().anyMatch(etiqueta -> unTexto.equalsIgnoreCase(etiqueta));
-	}
-	
-
-	
-	
 }

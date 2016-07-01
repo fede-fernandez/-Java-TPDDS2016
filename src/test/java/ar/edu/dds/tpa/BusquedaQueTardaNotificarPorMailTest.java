@@ -1,47 +1,51 @@
 package ar.edu.dds.tpa;
 
+import java.time.Duration;
+import java.time.LocalDateTime;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.edu.dds.tpa.adapter.EnviadorDeMail;
+import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.Administrador;
-import ar.edu.dds.tpa.model.BusquedaRealizada;
+import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.Mapa;
-import ar.edu.dds.tpa.model.Terminal;
+import ar.edu.dds.tpa.model.Usuario;
 import ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta;
-import ar.edu.dds.tpa.service.EnvioDeMailServiceImpostor;
+import ar.edu.dds.tpa.service.MailServiceImpostor;
 
 public class BusquedaQueTardaNotificarPorMailTest {
 	Administrador administrador;
 	Mapa mapa;
-	Terminal terminalFlores;
+	Buscador buscador;
 	NotificadorDeBusquedaLenta notificadorDeBusquedaLenta;
-	EnvioDeMailServiceImpostor envioDeMailServiceImpostor;
+	EnviadorDeMail enviadorDeMail;
+	MailServiceImpostor envioDeMailServiceImpostor;
+	Usuario usuario;
 
 	@Before
 	public void inicializar() {
-		administrador = new Administrador(null);
 		mapa = new Mapa();
 		administrador = new Administrador("elAdminDelSistema@puntosdeinteres.com");
-		terminalFlores = new Terminal(null, null);
-		administrador.agregarTerminal(terminalFlores);
-		administrador.agregarMapaATerminales();
-		envioDeMailServiceImpostor = new EnvioDeMailServiceImpostor();
-		notificadorDeBusquedaLenta = new NotificadorDeBusquedaLenta(60, envioDeMailServiceImpostor, administrador);
-		terminalFlores.registrarObserverDeBusqueda(notificadorDeBusquedaLenta);
+		envioDeMailServiceImpostor = new MailServiceImpostor();
+		enviadorDeMail = new EnviadorDeMail(envioDeMailServiceImpostor);
+		notificadorDeBusquedaLenta = new NotificadorDeBusquedaLenta(60, enviadorDeMail, administrador);
+		buscador = new Buscador(mapa);
+		usuario = new Usuario("Pepe",new Posicion(5.0, 6.0),5);
+		usuario.agregarObservadorDeBusqueda(notificadorDeBusquedaLenta);
 	}
 	
 	@Test
 	public void seNotificaAlAdministradorUnaBusquedaLenta() {
-		BusquedaRealizada busquedaRealizada = new BusquedaRealizada(null, 0, null, 180);
-		terminalFlores.agregarBusquedaRealizada(busquedaRealizada);
+		buscador.registrarBusqueda(usuario, null, 0, LocalDateTime.now(), LocalDateTime.now().plus(Duration.ofHours(1)));		
 		Assert.assertTrue(envioDeMailServiceImpostor.seLlamoAlServicioDeEnvioDeMail());
 	}
 	
 	@Test
 	public void noSeNotificaAlAdministradorUnaBusquedaRapida() {
-		BusquedaRealizada busquedaRealizada = new BusquedaRealizada(null, 0, null, 15);
-		terminalFlores.agregarBusquedaRealizada(busquedaRealizada);
+		buscador.registrarBusqueda(usuario, null, 0, LocalDateTime.now(), LocalDateTime.now());		
 		Assert.assertFalse(envioDeMailServiceImpostor.seLlamoAlServicioDeEnvioDeMail());
 	}
 }

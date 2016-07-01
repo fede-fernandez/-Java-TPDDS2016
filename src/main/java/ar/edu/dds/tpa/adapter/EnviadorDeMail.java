@@ -2,10 +2,10 @@ package ar.edu.dds.tpa.adapter;
 
 import ar.edu.dds.tpa.service.MailService;
 
-public class EnvioDeMail {
+public class EnviadorDeMail {
 	private MailService servicioDeMail;
 	
-	public EnvioDeMail(MailService servicioDeMail) {
+	public EnviadorDeMail(MailService servicioDeMail) {
 		this.servicioDeMail = servicioDeMail;
 	}
 

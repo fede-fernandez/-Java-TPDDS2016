@@ -6,6 +6,11 @@ public class ServicioDTO {
 	private String nombreServicio;
 	private List<RangoServicioDTO> rangosServicioDTO;
 	
+	public ServicioDTO(String nombreServicio, List<RangoServicioDTO> rangosServicioDTO) {
+		this.nombreServicio = nombreServicio;
+		this.rangosServicioDTO = rangosServicioDTO;
+	}
+
 	public String getNombreServicio() {
 		return nombreServicio;
 	}

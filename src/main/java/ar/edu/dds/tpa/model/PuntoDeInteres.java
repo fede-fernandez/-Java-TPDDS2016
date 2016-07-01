@@ -43,4 +43,10 @@ public abstract class PuntoDeInteres {
 	public boolean contienePalabraClave(String unaPalabra) {
 		return palabrasClave.stream().anyMatch(unaPalabraClave -> unaPalabraClave.contains(unaPalabra.toLowerCase()));
 	}
+	
+	public void borrarPalabrasClaves(){
+		palabrasClave = new ArrayList<String>();
+		agregarPalabraClave(nombre);
+
+	}
 }

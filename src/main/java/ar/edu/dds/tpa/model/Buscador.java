@@ -64,6 +64,8 @@ public class Buscador {
 		
 		return puntosDeInteresEncontradosLocalmente;
 	}
+	
+	
 
 	public List<PuntoDeInteres> buscarExternamente(List<String> palabrasDeBusqueda) {
 		

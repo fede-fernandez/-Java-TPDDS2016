@@ -1,6 +1,6 @@
 cache:
   directories:
-  - $HOME/.m2
+    - "$HOME/.m2"
 
 language: java
 
@@ -8,8 +8,9 @@ jdk:
   - oraclejdk8
 
 after_script:
+  - mvn clean package
   - "./.utility/.coverage.sh"
 
-global:
-    secure: e11Lo035ZIv6LQzBGpiokyrPMgcSjQ8JIKvi2YzNTjC5jnGZbZUmi4BDdS69Rx4ohVce5HpSecR1MrIfCkFbpz6Iml1tuWBRDOR1/K2i6EW8veW6KlgnYnqI9t6lGbsHI/odNEsWaYNkeg3zMAww4FdFfVfdI+mlFMZq2OThpXwLk6Mxzwsib7ptxdj1VGBvykJm0JifQWqqe+5p1NpLD6dmb/8CkbWOzhcPU3HfseYs9wdwN20J2CgCJHKf8ywKo/QztCx+rJ+T2hf7Jtb7zFWB/8d+3oP00s1AUuWDZ2ZyvDQe9aGZFsC2WmecQggSUwROVeq9dmDvhSxdh55TE9dayVPsbjWxHyuWuxjFhbp78rnlGc4wk4tTTVGXdxbU1z/9Z/a7wx4xCVAO6LrWl9gkofav+rN97/o5ktImdtn2zQlCclqYctagR4FcWjAFm9OlZzBAhkx8VnuM/gk2plI/OI9zbH1gGIhsIwy+hgYNMF4nV1AkNpyPmTHuWNVkKVITQt51N2FNdPorKFNQwc7mHJaxIx/z/IdNjx1qxMvt24yuJEOL4WQqkIWqsssh3sv4wBa22rwqrEZStG8vAQ1e0Al0aWieN4+nDaiH/QnZOJ/sPF3mQ3nC8SGBTnG3N2GVfvaOaVOMVySo3L3ETWUlE3WiwPz5G/rsOKU2zJQ=
-
+env:
+  global:
+    secure: N54uHDoiYqTxCcwRcVoJDiFC3Luncq+U20e2fatJTfVe1YrHtXQY90N1rjb1jlc8t7kIcHUi29Cct+Rt7Be1iru6peXj0MLoEaTek3TSiFZaK7o5Rwfd0UY8Nx0biBdylYnccH4MfK4SCzmUuI7WFwTS0t/nO+Tb/wo1Tp5rZo0uqgvp/gWL7BbhLvEBBDo7eNI7jsFqFZVeklAV70Np6vsTg9YLw9DOU0JAEI0opDOdseIwtxGtBxXWUh4bizH2MtfhCHNyS401sacgA3pEfEIWFnk+wuk5/jP6whTaqc5PXlMx/msO9c8zzFY2FfJR7kwDWqFXjj9x5QyZE+/EULHG+GaKcSo4qc7SYXlTDvlim3CKCJHMatwKTV5QmJMpYNaUwhzjWwmcy+Gs90APUJLzO0ekyNnL02QNPsQq8ottL4b8wd5yy4IGXSBtTnJoBIcRBVYnB3SgNIJrPo1mxZh8obvVGaMKi0cgnW6fQQ3BPbiGpdD9Np20+S4MKuYINZ7264dzS8fA1h4nWgp4kTzPLU3mNMa4reNrgFmPqBwvQsES6Aok/HakuiWJ0xXP7yXWspYb3umFlyhfdxJFhPpkIH/6NUQ8vQhkwnsjd/NFf+uwKfqFmZ1R+vgperGeagcjlMK8de2xaWwx28BqxkEiSMXN2O5QWGAVlPgHJTA=

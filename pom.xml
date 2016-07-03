@@ -28,7 +28,7 @@
 			<scope>test</scope>
 		</dependency>
 		<!-- #################### JUNIT #################### -->
-		
+
 		<!-- #################### GSON #################### -->
 		<dependency>
 		    <groupId>com.google.code.gson</groupId>
@@ -36,7 +36,7 @@
 		    <version>${gson.version}</version>
 		</dependency>
 		<!-- #################### GSON #################### -->
-		
+
 		<!-- #################### JERSEY #################### -->
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
@@ -44,11 +44,33 @@
 			<version>${jersey.version}</version>
 		</dependency>
 		<!-- #################### JERSEY #################### -->
-						
+
 	</dependencies>
 
 	<build>
 		<plugins>
+
+      <!-- JACOCO -->
+      <plugin>
+        <groupId>org.jacoco</groupId>
+        <artifactId>jacoco-maven-plugin</artifactId>
+        <version>0.7.6.201602180812</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>prepare-agent</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>report</id>
+            <phase>test</phase>
+            <goals>
+              <goal>report</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.1</version>

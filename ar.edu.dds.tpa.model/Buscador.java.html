@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Buscador.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpa</a> &gt; <a href="index.source.html" class="el_package">ar.edu.dds.tpa.model</a> &gt; <span class="el_source">Buscador.java</span></div><h1>Buscador.java</h1><pre class="source lang-java linenums">package ar.edu.dds.tpa.model;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import ar.edu.dds.tpa.adapter.BuscadorExterno;
+
+public class Buscador {
+	private Mapa mapaLocal;
+	private List&lt;BuscadorExterno&gt; buscadoresExternos;
+	
+	private HistorialDeBusqueda historialDeBusqueda;
+
+<span class="fc" id="L19">	public Buscador(Mapa unMapa) {</span>
+<span class="fc" id="L20">		mapaLocal = unMapa;</span>
+<span class="fc" id="L21">		buscadoresExternos = new ArrayList&lt;BuscadorExterno&gt;();</span>
+<span class="fc" id="L22">		historialDeBusqueda = new HistorialDeBusqueda();</span>
+<span class="fc" id="L23">	}</span>
+
+	public void registrarBusqueda(Usuario usuario, String textoBuscado, int cantidadDeResultados,
+			LocalDateTime tiempoDeInicio, LocalDateTime tiempoDeFin) {
+		
+<span class="fc" id="L28">		double duracionDeBusqueda = ChronoUnit.SECONDS.between(tiempoDeInicio, tiempoDeFin);</span>
+<span class="fc" id="L29">		Busqueda busquedaRealizada = new Busqueda(usuario, textoBuscado, cantidadDeResultados, LocalDate.now(),</span>
+				duracionDeBusqueda);
+		
+<span class="fc bfc" id="L32" title="All 2 branches covered.">		if (usuario != null) {</span>
+<span class="fc" id="L33">			usuario.notificarBusqueda(busquedaRealizada);			</span>
+		}		
+		
+<span class="fc" id="L36">		historialDeBusqueda.agregarBusqueda(busquedaRealizada);</span>
+<span class="fc" id="L37">	}</span>
+
+	public List&lt;PuntoDeInteres&gt; buscar(String unaFrase, Usuario unUsuario) {
+		
+<span class="fc" id="L41">		LocalDateTime comienzoDeBusqueda = LocalDateTime.now();</span>
+<span class="fc" id="L42">		List&lt;PuntoDeInteres&gt; puntosDeInteresEncontrados = new ArrayList&lt;PuntoDeInteres&gt;();</span>
+
+<span class="fc" id="L44">		puntosDeInteresEncontrados.addAll(buscarLocalmente(obtenerPalabrasDeUnaFrase(unaFrase)));</span>
+<span class="fc" id="L45">		puntosDeInteresEncontrados.addAll(buscarExternamente(obtenerPalabrasDeUnaFrase(unaFrase)));</span>
+
+<span class="fc" id="L47">		registrarBusqueda(unUsuario, unaFrase, cantidadDeResultadosDeUnaBusqueda(puntosDeInteresEncontrados),</span>
+<span class="fc" id="L48">				comienzoDeBusqueda, LocalDateTime.now());</span>
+		
+<span class="fc" id="L50">		return puntosDeInteresEncontrados;</span>
+	}
+
+	public List&lt;String&gt; obtenerPalabrasDeUnaFrase(String unaFrase) {
+<span class="fc" id="L54">		return Arrays.asList(unaFrase.split(&quot; &quot;));</span>
+	}
+
+	public List&lt;PuntoDeInteres&gt; buscarLocalmente(List&lt;String&gt; palabrasDeBusqueda) {
+<span class="fc" id="L58">		List&lt;PuntoDeInteres&gt; puntosDeInteresEncontradosLocalmente = new ArrayList&lt;PuntoDeInteres&gt;();</span>
+		
+<span class="fc" id="L60">		puntosDeInteresEncontradosLocalmente.addAll(mapaLocal.obtenerPuntosDeInteres().stream()</span>
+<span class="fc bfc" id="L61" title="All 2 branches covered.">				.filter(unPuntoDeInteres -&gt; unPuntoDeInteres.estaActivo() &amp;&amp; </span>
+<span class="fc" id="L62">						palabrasDeBusqueda.stream()</span>
+<span class="fc bfc" id="L63" title="All 2 branches covered.">						.anyMatch(unaPalabra -&gt; unPuntoDeInteres.contienePalabraClave(unaPalabra)))</span>
+<span class="fc" id="L64">				.collect(Collectors.toList()));</span>
+		
+<span class="fc" id="L66">		return puntosDeInteresEncontradosLocalmente;</span>
+	}
+	
+	
+
+	public List&lt;PuntoDeInteres&gt; buscarExternamente(List&lt;String&gt; palabrasDeBusqueda) {
+		
+<span class="fc" id="L73">		List&lt;PuntoDeInteres&gt; puntosDeInteresEncontradosExternamente = new ArrayList&lt;PuntoDeInteres&gt;();</span>
+		
+<span class="fc" id="L75">		buscadoresExternos.stream().forEach(unBuscador -&gt; puntosDeInteresEncontradosExternamente</span>
+<span class="fc" id="L76">				.addAll(unBuscador.buscarPuntosDeInteresDelServicio(palabrasDeBusqueda)));</span>
+		
+<span class="fc" id="L78">		return puntosDeInteresEncontradosExternamente;</span>
+	}
+
+	public int cantidadDeResultadosDeUnaBusqueda(List&lt;PuntoDeInteres&gt; resultados) {
+<span class="fc" id="L82">		return resultados.size();</span>
+	}
+
+	public void agregarBuscadorExterno(BuscadorExterno unBuscadorExterno) {
+<span class="fc" id="L86">		buscadoresExternos.add(unBuscadorExterno);</span>
+<span class="fc" id="L87">	}</span>
+	
+	public HistorialDeBusqueda getHistorialDeBusqueda() {
+<span class="nc" id="L90">		return historialDeBusqueda;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

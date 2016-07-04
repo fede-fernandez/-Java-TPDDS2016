@@ -1,6 +1,5 @@
 package ar.edu.dds.tpa.model;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;;

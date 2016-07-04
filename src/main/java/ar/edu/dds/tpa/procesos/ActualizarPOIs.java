@@ -62,8 +62,7 @@ public class ActualizarPOIs extends Proceso {
 			}
 
 		} else {
-			String palabraClave;
-			palabraClave = this.leerPalabra('\n');
+			this.leerPalabra('\n');
 			// saltear linea
 		}
 
@@ -85,8 +84,7 @@ public class ActualizarPOIs extends Proceso {
 			} while (caracter != (-1) && caracter != condicionDeCorte);
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			fallar();
 		}
 
 		caracterRetorno = (char) caracter;
@@ -109,8 +107,7 @@ public class ActualizarPOIs extends Proceso {
 			return buffer;
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			fallar();
 
 		}
 
@@ -119,5 +116,3 @@ public class ActualizarPOIs extends Proceso {
 	}
 
 }
-	
-	

@@ -4,8 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,7 +14,6 @@ import ar.edu.dds.tpa.model.CGP;
 import ar.edu.dds.tpa.model.LocalComercial;
 import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.ParadaDeColectivo;
-import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.Rubro;
 import ar.edu.dds.tpa.model.Servicio;
 import ar.edu.dds.tpa.model.ServicioPuntosDeInteresBajados_Impostor;
@@ -41,7 +38,6 @@ public class DarDeBajaPuntosDeInteresTest {
 	
 	private Buscador buscador;
 	
-	private List<PuntoDeInteres> puntosDeInteresEncontrados;
 	
 	private DarDeBajaPuntosDeInteres bajaPuntosDeInteres;
 	ServicioPuntosDeInteresBajados_Impostor servicioBajas;
@@ -51,7 +47,7 @@ public class DarDeBajaPuntosDeInteresTest {
 		
 		unBanco = new Banco("Ciudad", new Posicion(10,10));
 		
-		unCGP = new CGP("CGP Balbanera", new Posicion(-1, -1));
+		unCGP = new CGP("CGP Balvanera", new Posicion(-1, -1));
 		unCGP.agregarServicio(new Servicio("Rentas"));
 		
 		Rubro kioscoDeDario = new Rubro("Kiosco De Diarios", 2);
@@ -73,10 +69,6 @@ public class DarDeBajaPuntosDeInteresTest {
 		mapa.agregarPuntoDeInteres(unLocal2);
 		mapa.agregarPuntoDeInteres(unBanco);
 		mapa.agregarPuntoDeInteres(unCGP);
-	
-		puntosDeInteresEncontrados = new ArrayList<>();
-		
-		
 	
 		
 		String jsonDarDeBaja = "[{\"nombre\" : \"144\",\"x\" : 1,\"y\" : 1,\"dia\" : 30,\"mes\" : 6,\"anio\" : 2016}, {\"nombre\" : \"El_ateneo\",\"x\" : 100,\"y\" : 100,\"dia\" : 30,\"mes\" : 6,\"anio\" : 2016}, {\"nombre\" : \"Mal_nombre\",\"x\" : 2,\"y\" : 2,\"dia\" : 30,\"mes\" : 6,\"anio\" : 2016}]";

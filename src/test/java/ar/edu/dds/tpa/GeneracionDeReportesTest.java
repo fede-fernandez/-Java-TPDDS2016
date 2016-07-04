@@ -4,8 +4,6 @@ import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -27,9 +25,6 @@ public class GeneracionDeReportesTest {
 	
 	private Usuario usuario;
 	
-	private int cantidadDeBusquedasDelCuatroDeFebrero;
-	private int cantidadDeBusquedasDelDiezDeEnero;
-
 	@Before
 	public void inicializar(){
 		
@@ -54,5 +49,4 @@ public class GeneracionDeReportesTest {
 	public void reporteQueTotalizaLasBusquedasPorFecha() {
 		assertEquals(2, historial.cantidadDeBusquedasEnUnaFecha(cuatroDeFebreroDe2016));			
 	}
-
 }

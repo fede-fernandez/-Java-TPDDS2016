@@ -20,9 +20,7 @@ public class ServicioPuntosDeInteresBajados_Impostor extends ServicioPuntosDeInt
 	
 	@Override
 	public List<BajaPuntoDeInteres> obtenerPuntosABajar() {
-		// TODO Auto-generated method stub
 		fueLlamado = true;
 		return super.obtenerPuntosABajar();
 	}
-	
 }

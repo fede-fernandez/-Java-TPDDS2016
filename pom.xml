@@ -31,9 +31,9 @@
 
 		<!-- #################### GSON #################### -->
 		<dependency>
-		    <groupId>com.google.code.gson</groupId>
-		    <artifactId>gson</artifactId>
-		    <version>${gson.version}</version>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>${gson.version}</version>
 		</dependency>
 		<!-- #################### GSON #################### -->
 
@@ -49,27 +49,28 @@
 
 	<build>
 		<plugins>
-
-      <!-- JACOCO -->
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.7.6.201602180812</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>report</id>
-            <phase>test</phase>
-            <goals>
-              <goal>report</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
+		
+			<!-- #################### ECLEMMA #################### -->
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.7.6.201602180812</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>test</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<!-- #################### ECLEMMA #################### -->
 
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
@@ -79,6 +80,7 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
+			
 		</plugins>
 		<finalName>${artifactId}</finalName>
 	</build>

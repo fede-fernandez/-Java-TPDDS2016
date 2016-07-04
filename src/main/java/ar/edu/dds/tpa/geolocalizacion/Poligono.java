@@ -18,8 +18,6 @@ public class Poligono {
 		superficie.add(unaCoordenada);
 	}
 
-	// TODO Usar operaciones sobre listas, pero esto estaba en la libreria de
-	// geodds que nos dieron!!
 	public boolean incluyeA(Posicion unaCoordenada) {
 		int j = this.superficie.size() - 1;
 		boolean estaIncluido = false;

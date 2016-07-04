@@ -22,15 +22,4 @@ public class Administrador {
 	public void modificarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado, Mapa enUnMapa) {
 		enUnMapa.modificarPuntoDeInteres(unPuntoDeInteres, puntoDeInteresModificado);
 	}	
-//	public int obtenerReporteDeBusquedaPorFecha(Terminal unaTerminal, LocalDate unaFecha) throws FaltaDePermisosExcepcion{
-//		return unaTerminal.cantidadDeBusquedasPorFecha(unaFecha);	
-//	}
-//	
-//	public List<Integer> obtenerReporteDeResultadosParcialesDeUnaBusqueda(Terminal unaTerminal, String unTexto) throws FaltaDePermisosExcepcion{
-//		return unaTerminal.resultadosParcialesDeUnaBusqueda(unTexto);
-//	}
-//	
-//	public int obtenerReporteDeResultadosTotalesDeUnaBusqueda(Terminal unaTerminal, String unTexto) throws FaltaDePermisosExcepcion{
-//		return unaTerminal.cantidadTotalDeResultadosDeUnaBusqueda(unTexto);
-//	}
 }

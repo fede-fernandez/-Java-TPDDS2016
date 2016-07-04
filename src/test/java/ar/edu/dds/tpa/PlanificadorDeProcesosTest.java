@@ -88,13 +88,13 @@ public class PlanificadorDeProcesosTest {
 	}
 	
 	@Test
-	public void resultadoDeEjecucionDeUnProcesoNombreDelEstado() throws InterruptedException {
+	public void resultadoDeEjecucionDeUnProcesoEstado() throws InterruptedException {
 		procesoImpostor = new ProcesoImpostor();
 		planificador.planificar(procesoImpostor, LocalDateTime.now().plus(1, ChronoUnit.HOURS));
 		procesoImpostor.finalizar(2);
 		Thread.sleep(50);
 		
-		Assert.assertEquals("Finalizado", procesoImpostor.obtenerResultadoDeEjecucion().getEstadoDeProceso().nombreDelEstado());
+		Assert.assertTrue(procesoImpostor.obtenerResultadoDeEjecucion().seFinalizoElProceso());
 	}
 	
 	@Test
@@ -108,14 +108,14 @@ public class PlanificadorDeProcesosTest {
 	}
 	
 	@Test
-	public void resultadoDeEjecucionDeUnProcesoQueFallaNombreDelEstado() throws InterruptedException {
+	public void resultadoDeEjecucionDeUnProcesoQueFallaEstado() throws InterruptedException {
 		procesoQueFallaImpostor = new ProcesoQueFallaImpostor();
 		procesoQueFallaImpostor.enCasoDeFalloHacer(noHacerNada);		
 		planificador.planificar(procesoQueFallaImpostor, LocalDateTime.now());
 		procesoQueFallaImpostor.finalizar(0);
 		Thread.sleep(50);
 		
-		Assert.assertEquals("Fallido", procesoQueFallaImpostor.obtenerResultadoDeEjecucion().getEstadoDeProceso().nombreDelEstado());
+		Assert.assertTrue(procesoQueFallaImpostor.obtenerResultadoDeEjecucion().seFinalizoElProceso());
 	}
 		
 	@Test

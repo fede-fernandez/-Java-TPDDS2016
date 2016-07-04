@@ -1,8 +1,8 @@
 package ar.edu.dds.tpa.geolocalizacion;
 
 public class Posicion {
-	private double latitud;
 	private double longitud;
+	private double latitud;
 
 	public Posicion(double longitud, double latitud) {
 		this.longitud = longitud;

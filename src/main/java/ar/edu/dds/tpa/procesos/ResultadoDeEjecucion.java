@@ -2,36 +2,31 @@ package ar.edu.dds.tpa.procesos;
 
 import java.time.LocalDateTime;
 
-import ar.edu.dds.tpa.procesos.estado.EstadoDeProceso;
-
 public class ResultadoDeEjecucion {
 	private LocalDateTime horarioDeInicio;
-	private EstadoDeProceso estadoDeProceso;
 	private int cantidadDeElementosAfectados;
+	private boolean finalizoElProceso;
 
-	public ResultadoDeEjecucion(LocalDateTime horarioDeInicio, EstadoDeProceso estadoDeProceso) {
+	public ResultadoDeEjecucion(LocalDateTime horarioDeInicio) {
 		this.horarioDeInicio = horarioDeInicio;
-		this.estadoDeProceso = estadoDeProceso;
 		this.cantidadDeElementosAfectados = 0;
+		finalizoElProceso = false;
+	}
+	
+	public void establecerComoFinalizado(int cantidadDeElementosAfectados) {
+		this.cantidadDeElementosAfectados = cantidadDeElementosAfectados;
+		finalizoElProceso = true;
 	}
 
 	public LocalDateTime getHorarioDeInicio() {
 		return horarioDeInicio;
 	}
 
-	public EstadoDeProceso getEstadoDeProceso() {
-		return estadoDeProceso;
-	}
-
-	public void setEstadoDeProceso(EstadoDeProceso estadoDeProceso) {
-		this.estadoDeProceso = estadoDeProceso;
-	}
-
 	public int getCantidadDeElementosAfectados() {
 		return cantidadDeElementosAfectados;
 	}
-
-	public void setCantidadDeElementosAfectados(int cantidadDeElementosAfectados) {
-		this.cantidadDeElementosAfectados = cantidadDeElementosAfectados;
+	
+	public boolean seFinalizoElProceso() {
+		return finalizoElProceso;
 	}
 }

@@ -80,7 +80,7 @@ public class ActualizarPOIsTest {
 		puntosDeInteresEncontrados = new ArrayList<>();
 		
 		
-		proceso1 = new ActualizarPOIs(buscador,"/home/utnso/Escritorio/prueva.txt");
+		proceso1 = new ActualizarPOIs(buscador,"recursos/localesComercialesAActualizar.txt");
 		proceso1.ejecutar();
 	}
 	

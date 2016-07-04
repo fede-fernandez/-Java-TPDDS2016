@@ -31,9 +31,4 @@ public class HorarioDeAtencion {
 				&& horarioDeAtencion.get(unDiaYHorario.getDayOfWeek()).stream().anyMatch(
 						rangoDeHorario -> rangoDeHorario.estaDentroDelRangoDeHorario(unDiaYHorario.toLocalTime()));
 	}
-
-	public boolean seAtiendeEn(DayOfWeek unDia, LocalTime unHorario) {
-		return horarioDeAtencion.containsKey(unDia) && horarioDeAtencion.get(unDia).stream()
-				.anyMatch(rangoDeHorario -> rangoDeHorario.estaDentroDelRangoDeHorario(unHorario));
-	}
 }

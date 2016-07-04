@@ -3,8 +3,6 @@ package ar.edu.dds.tpa.model;
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 //TODO: Comportamiento repetido en horarios de atencion con localcomercial
@@ -20,10 +18,6 @@ public class Servicio {
 	public String getNombre() {
 		return nombre;
 	}
-	
-	public HorarioDeAtencion getHorarioDeAtencion() {
-		return horarioDeAtencion;
-	}
 
 	public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
 		horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);
@@ -35,15 +29,5 @@ public class Servicio {
 
 	public boolean atiendeEn(LocalDateTime unDiaYHorario) {
 		return horarioDeAtencion.seAtiendeEn(unDiaYHorario);
-	}
-	
-	public boolean atiendeEn(DayOfWeek unDia, LocalTime unHorario) {
-		return horarioDeAtencion.seAtiendeEn(unDia, unHorario);
-	}
-	
-	public ArrayList<String> getEtiquetas(){
-		ArrayList<String> etiquetas = new ArrayList<>();
-		etiquetas.addAll(Arrays.asList(nombre.split(" ")));
-		return etiquetas;
 	}
 }

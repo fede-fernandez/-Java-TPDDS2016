@@ -31,10 +31,5 @@ public class HorarioDeAtencion {
 <span class="fc bfc" id="L31" title="All 2 branches covered.">				&amp;&amp; horarioDeAtencion.get(unDiaYHorario.getDayOfWeek()).stream().anyMatch(</span>
 <span class="fc" id="L32">						rangoDeHorario -&gt; rangoDeHorario.estaDentroDelRangoDeHorario(unDiaYHorario.toLocalTime()));</span>
 	}
-
-	public boolean seAtiendeEn(DayOfWeek unDia, LocalTime unHorario) {
-<span class="nc bnc" id="L36" title="All 2 branches missed.">		return horarioDeAtencion.containsKey(unDia) &amp;&amp; horarioDeAtencion.get(unDia).stream()</span>
-<span class="nc bnc" id="L37" title="All 2 branches missed.">				.anyMatch(rangoDeHorario -&gt; rangoDeHorario.estaDentroDelRangoDeHorario(unHorario));</span>
-	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -3,8 +3,6 @@
 import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 //TODO: Comportamiento repetido en horarios de atencion con localcomercial
@@ -12,39 +10,25 @@ public class Servicio {
 	private String nombre;
 	private HorarioDeAtencion horarioDeAtencion;
 	
-<span class="fc" id="L15">	public Servicio(String nombre) {</span>
-<span class="fc" id="L16">		this.nombre = nombre;</span>
-<span class="fc" id="L17">		horarioDeAtencion = new HorarioDeAtencion();</span>
-<span class="fc" id="L18">	}</span>
+<span class="fc" id="L13">	public Servicio(String nombre) {</span>
+<span class="fc" id="L14">		this.nombre = nombre;</span>
+<span class="fc" id="L15">		horarioDeAtencion = new HorarioDeAtencion();</span>
+<span class="fc" id="L16">	}</span>
 
 	public String getNombre() {
-<span class="fc" id="L21">		return nombre;</span>
-	}
-	
-	public HorarioDeAtencion getHorarioDeAtencion() {
-<span class="nc" id="L25">		return horarioDeAtencion;</span>
+<span class="fc" id="L19">		return nombre;</span>
 	}
 
 	public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
-<span class="fc" id="L29">		horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);</span>
-<span class="fc" id="L30">	}</span>
+<span class="fc" id="L23">		horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);</span>
+<span class="fc" id="L24">	}</span>
 	
 	public void agregarHorarioDeAtencion(List&lt;DayOfWeek&gt; dias, LocalTime horarioDesde, LocalTime horarioHasta) {
-<span class="fc" id="L33">		horarioDeAtencion.agregarHorarioDeAtencion(dias, horarioDesde, horarioHasta);</span>
-<span class="fc" id="L34">	}</span>
+<span class="fc" id="L27">		horarioDeAtencion.agregarHorarioDeAtencion(dias, horarioDesde, horarioHasta);</span>
+<span class="fc" id="L28">	}</span>
 
 	public boolean atiendeEn(LocalDateTime unDiaYHorario) {
-<span class="fc" id="L37">		return horarioDeAtencion.seAtiendeEn(unDiaYHorario);</span>
-	}
-	
-	public boolean atiendeEn(DayOfWeek unDia, LocalTime unHorario) {
-<span class="nc" id="L41">		return horarioDeAtencion.seAtiendeEn(unDia, unHorario);</span>
-	}
-	
-	public ArrayList&lt;String&gt; getEtiquetas(){
-<span class="nc" id="L45">		ArrayList&lt;String&gt; etiquetas = new ArrayList&lt;&gt;();</span>
-<span class="nc" id="L46">		etiquetas.addAll(Arrays.asList(nombre.split(&quot; &quot;)));</span>
-<span class="nc" id="L47">		return etiquetas;</span>
+<span class="fc" id="L31">		return horarioDeAtencion.seAtiendeEn(unDiaYHorario);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

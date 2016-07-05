@@ -3,11 +3,11 @@
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.WebResource;
 
-<span class="nc" id="L6">public class BajaDePuntoDeInteresServiceReal implements BajaDePuntoDeInteresService {</span>
+<span class="nc" id="L6">public class BajaDePuntoDeInteresServiceReal extends ServicioExternoWeb implements BajaDePuntoDeInteresService {</span>
 	@Override
 	public String obtenerPuntosDeInteresADarDeBaja() {
 <span class="nc" id="L9">		Client cliente = Client.create();</span>
-<span class="nc" id="L10">		WebResource recursoWeb = cliente.resource(&quot;http://demo3537367.mockable.io/trash/pois&quot;);</span>
+<span class="nc" id="L10">		WebResource recursoWeb = cliente.resource(propiedades().obtenerValorDe(&quot;URLServicioDeBajaDePOIs&quot;));</span>
 <span class="nc" id="L11">		return recursoWeb.get(String.class);</span>
 	}
 }

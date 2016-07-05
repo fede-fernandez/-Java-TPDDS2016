@@ -27,7 +27,8 @@ tpa,ar.edu.dds.tpa.adapter.model,RangoServicioDTO,0,33,0,0,0,12,0,6,0,6
 tpa,ar.edu.dds.tpa.adapter.model,BancoDelServicio,6,15,0,0,2,5,2,5,2,5
 tpa,ar.edu.dds.tpa.adapter.model,ServicioDTO,0,15,0,0,0,6,0,3,0,3
 tpa,ar.edu.dds.tpa.service,BancoServiceImpostor,0,174,0,6,0,13,0,7,0,4
-tpa,ar.edu.dds.tpa.service,BajaDePuntoDeInteresServiceReal,14,0,0,0,4,0,2,0,2,0
+tpa,ar.edu.dds.tpa.service,ServicioExternoWeb,12,0,0,0,4,0,2,0,2,0
+tpa,ar.edu.dds.tpa.service,BajaDePuntoDeInteresServiceReal,17,0,0,0,4,0,2,0,2,0
 tpa,ar.edu.dds.tpa.service,CGPServiceImpostor,0,61,0,2,0,12,0,4,0,3
 tpa,ar.edu.dds.tpa.service,MailServiceImpostor,0,13,0,0,0,5,0,3,0,3
 tpa,ar.edu.dds.tpa.geolocalizacion,Posicion,0,75,0,0,0,16,0,4,0,4
@@ -54,3 +55,4 @@ tpa,ar.edu.dds.tpa.procesos,ProcesoImpostor,0,13,0,0,0,5,0,3,0,3
 tpa,ar.edu.dds.tpa.procesos,PlanificadorDeProcesos,0,29,0,0,0,7,0,2,0,2
 tpa,ar.edu.dds.tpa.procesos,Proceso,0,28,0,0,0,11,0,6,0,6
 tpa,ar.edu.dds.tpa.procesos,DarDeBajaPuntosDeInteres,3,23,0,0,1,7,1,4,1,4
+tpa,ar.edu.dds.tpa.properties,Propiedades,30,0,0,0,10,0,2,0,2,0

@@ -16,6 +16,7 @@
 		<junit.version>4.12</junit.version>
 		<gson.version>2.6.2</gson.version>
 		<jersey.version>1.19.1</jersey.version>
+		<surefire.version>2.12.4</surefire.version>
 	</properties>
 
 	<dependencies>
@@ -45,11 +46,19 @@
 		</dependency>
 		<!-- #################### JERSEY #################### -->
 
+		<!-- #################### SUREFIRE JUNIT4 #################### -->
+		<dependency>
+			<groupId>org.apache.maven.surefire</groupId>
+			<artifactId>surefire-junit4</artifactId>
+			<version>${surefire.version}</version>
+		</dependency>
+		<!-- #################### SUREFIRE JUNIT4 #################### -->
+
 	</dependencies>
 
 	<build>
 		<plugins>
-		
+
 			<!-- #################### ECLEMMA #################### -->
 			<plugin>
 				<groupId>org.jacoco</groupId>
@@ -80,7 +89,7 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
-			
+
 		</plugins>
 		<finalName>${project.artifactId}</finalName>
 	</build>

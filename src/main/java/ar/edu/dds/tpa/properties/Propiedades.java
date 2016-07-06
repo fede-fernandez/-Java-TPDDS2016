@@ -1,7 +1,6 @@
 package ar.edu.dds.tpa.properties;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
@@ -12,10 +11,8 @@ public class Propiedades {
 		propiedades = new Properties();
 		try {
 			propiedades.load(new FileInputStream(rutaDelArchivoProperties));
-		} catch (FileNotFoundException error) {
-			System.out.println("Se produjo un error al cargar las propiedades.");
-		} catch (IOException error) {
-			System.out.println("Se produjo un error al leer las propiedades.");
+		} catch (IOException excepcion) {
+			throw new RuntimeException(excepcion);
 		}
 	}
 

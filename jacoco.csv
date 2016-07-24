@@ -49,7 +49,7 @@ tpa,ar.edu.dds.tpa.observer,NotificadorDeBusquedaLenta,0,46,0,2,0,11,0,3,0,2
 tpa,ar.edu.dds.tpa.procesos,GestorDeAccionesDeUsuarios,0,50,0,0,0,10,0,6,0,6
 tpa,ar.edu.dds.tpa.procesos,ProcesoQueFallaImpostor,0,18,0,0,0,6,0,3,0,3
 tpa,ar.edu.dds.tpa.procesos,ResultadoDeEjecucion,3,25,0,0,1,10,1,4,1,4
-tpa,ar.edu.dds.tpa.procesos,ActualizarPOIs,12,125,2,12,6,32,2,12,0,7
+tpa,ar.edu.dds.tpa.procesos,ActualizarPOIs,8,129,1,13,5,33,1,13,0,7
 tpa,ar.edu.dds.tpa.procesos,ActualizarLocalesComerciales,3,0,0,0,1,0,1,0,1,0
 tpa,ar.edu.dds.tpa.procesos,ProcesoImpostor,0,13,0,0,0,5,0,3,0,3
 tpa,ar.edu.dds.tpa.procesos,PlanificadorDeProcesos,0,29,0,0,0,7,0,2,0,2

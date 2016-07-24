@@ -45,7 +45,7 @@ public class ActualizarPOIs extends Proceso {
 
 <span class="fc" id="L46">		pisBuscados = buscador.buscar(nombreDeFantasia,null);</span>
 
-<span class="pc bpc" id="L48" title="1 of 2 branches missed.">		if (pisBuscados.size() != 0) {</span>
+<span class="fc bfc" id="L48" title="All 2 branches covered.">		if (pisBuscados.size() != 0) {</span>
 
 <span class="fc" id="L50">			pisBuscados.stream().forEach(p1 -&gt; p1.borrarPalabrasClaves());</span>
 			// borrar todas las palabras claves de esos punto de interes
@@ -62,7 +62,7 @@ public class ActualizarPOIs extends Proceso {
 <span class="fc" id="L62">			}</span>
 
 		} else {
-<span class="nc" id="L65">			this.leerPalabra('\n');</span>
+<span class="fc" id="L65">			this.leerPalabra('\n');</span>
 			// saltear linea
 		}
 

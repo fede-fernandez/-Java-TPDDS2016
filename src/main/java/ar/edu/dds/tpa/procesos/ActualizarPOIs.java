@@ -1,39 +1,32 @@
 package ar.edu.dds.tpa.procesos;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
-
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
-
+import ar.edu.dds.tpa.manejoDeArchivos.*;
 
 public class ActualizarPOIs extends Proceso {
 
-	private char caracterRetorno;
 	private Buscador buscador;
-	private BufferedReader buffer;
-	private String pathArchivo;
+	private Archivo miArchivo;
 
 	public ActualizarPOIs(Buscador buscador, String pathArchivo) {
 		super();
 		this.buscador = buscador;
-		this.pathArchivo = pathArchivo;
+		this.miArchivo = new Archivo(pathArchivo);
 	}
-	
-
 
 	public void ejecutar() {
 
 		String nombreDeFantasia;
-		buffer = this.abrirArchivo();
+		this.abrirArchivo();
 
-		while (caracterRetorno != 'f') {
-			nombreDeFantasia = this.leerPalabra(';');
+		while (miArchivo.distintoDeFinDeArchivo()) {
+			nombreDeFantasia = leerNombreDeFantasia();
 			this.actualizarPalabrasClaves(nombreDeFantasia);
 		}
 
@@ -41,77 +34,76 @@ public class ActualizarPOIs extends Proceso {
 
 	public void actualizarPalabrasClaves(String nombreDeFantasia) {
 
-		List<PuntoDeInteres> pisBuscados = new ArrayList<>();
+		List<PuntoDeInteres> pisEncontrados = new ArrayList<>();
 
-		pisBuscados = buscador.buscar(nombreDeFantasia,null);
+		pisEncontrados = buscador.buscar(nombreDeFantasia, null);
 
-		if (pisBuscados.size() != 0) {
+		if (hayPuntosDeInteres(pisEncontrados)) {
 
-			pisBuscados.stream().forEach(p1 -> p1.borrarPalabrasClaves());
-			// borrar todas las palabras claves de esos punto de interes
+			borrarPalabrasClaves(pisEncontrados);
 
-			while (caracterRetorno != '\n' && caracterRetorno != 'f') {
+			while (miArchivo.hayPalabrasClaves()) {
 
 				String palabraClave;
 
-				palabraClave = this.leerPalabra(' ');
-				// armar palabra clave
+				palabraClave = leerPalabraClave();
 
-				pisBuscados.stream().forEach(p1 -> p1.agregarPalabraClave(palabraClave));
+				setearPalabraClave(pisEncontrados, palabraClave);
 
 			}
 
 		} else {
-			this.leerPalabra('\n');
-			// saltear linea
+
+			saltearLineaDeArchivo();
 		}
 
 	}
 
+	public void saltearLineaDeArchivo() {
+		this.leerPalabra('\n');
+	}
+
+	public void setearPalabraClave(List<PuntoDeInteres> pisEncontrados, String palabraClave) {
+		pisEncontrados.stream().forEach(p1 -> p1.agregarPalabraClave(palabraClave));
+	}
+
+	public String leerPalabraClave() {
+		return this.leerPalabra(' ');
+	}
+
+	public void borrarPalabrasClaves(List<PuntoDeInteres> pisEncontrados) {
+		pisEncontrados.stream().forEach(p1 -> p1.borrarPalabrasClaves());
+	}
+
+	public boolean hayPuntosDeInteres(List<PuntoDeInteres> pisBuscados) {
+		return pisBuscados.size() != 0;
+	}
+
+	public String leerNombreDeFantasia() {
+		return this.leerPalabra(';');
+	}
+
 	public String leerPalabra(char condicionDeCorte) {
-		String palabraClave = "";
-		int caracter = 1;
 
 		try {
-			caracter = buffer.read();
-
-			do {
-
-				palabraClave = palabraClave + (char) caracter;
-
-				caracter = buffer.read();
-
-			} while (caracter != (-1) && caracter != condicionDeCorte);
+			return miArchivo.leerPalabra(condicionDeCorte);
 
 		} catch (IOException e) {
 			fallar();
 		}
-
-		caracterRetorno = (char) caracter;
-
-		if (caracter == (-1)) {
-			caracterRetorno = 'f';
-		}
-
-		return palabraClave;
+		return null;
 
 	}
 
-	public BufferedReader abrirArchivo() {
+	public void abrirArchivo() {
 
-		FileReader archivo;
 		try {
-			archivo = new FileReader(pathArchivo);
 
-			buffer = new BufferedReader(archivo);
-			return buffer;
+			miArchivo.abrirArchivo();
 
 		} catch (FileNotFoundException e) {
 			fallar();
-
 		}
-
-		return null;
 
 	}
 

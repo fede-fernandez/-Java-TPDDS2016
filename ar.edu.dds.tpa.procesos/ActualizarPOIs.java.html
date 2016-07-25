@@ -1,119 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>ActualizarPOIs.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpa</a> &gt; <a href="index.source.html" class="el_package">ar.edu.dds.tpa.procesos</a> &gt; <span class="el_source">ActualizarPOIs.java</span></div><h1>ActualizarPOIs.java</h1><pre class="source lang-java linenums">package ar.edu.dds.tpa.procesos;
 
-import java.io.BufferedReader;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.List;
 import java.util.ArrayList;
 
-
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
-
+import ar.edu.dds.tpa.manejoDeArchivos.*;
 
 public class ActualizarPOIs extends Proceso {
 
-	private char caracterRetorno;
 	private Buscador buscador;
-	private BufferedReader buffer;
-	private String pathArchivo;
+	private Archivo miArchivo;
 
 	public ActualizarPOIs(Buscador buscador, String pathArchivo) {
-<span class="fc" id="L23">		super();</span>
-<span class="fc" id="L24">		this.buscador = buscador;</span>
-<span class="fc" id="L25">		this.pathArchivo = pathArchivo;</span>
-<span class="fc" id="L26">	}</span>
-	
-
+<span class="fc" id="L18">		super();</span>
+<span class="fc" id="L19">		this.buscador = buscador;</span>
+<span class="fc" id="L20">		this.miArchivo = new Archivo(pathArchivo);</span>
+<span class="fc" id="L21">	}</span>
 
 	public void ejecutar() {
 
 		String nombreDeFantasia;
-<span class="fc" id="L33">		buffer = this.abrirArchivo();</span>
+<span class="fc" id="L26">		this.abrirArchivo();</span>
 
-<span class="fc bfc" id="L35" title="All 2 branches covered.">		while (caracterRetorno != 'f') {</span>
-<span class="fc" id="L36">			nombreDeFantasia = this.leerPalabra(';');</span>
-<span class="fc" id="L37">			this.actualizarPalabrasClaves(nombreDeFantasia);</span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">		while (miArchivo.distintoDeFinDeArchivo()) {</span>
+<span class="fc" id="L29">			nombreDeFantasia = leerNombreDeFantasia();</span>
+<span class="fc" id="L30">			this.actualizarPalabrasClaves(nombreDeFantasia);</span>
 		}
 
-<span class="fc" id="L40">	}</span>
+<span class="fc" id="L33">	}</span>
 
 	public void actualizarPalabrasClaves(String nombreDeFantasia) {
 
-<span class="fc" id="L44">		List&lt;PuntoDeInteres&gt; pisBuscados = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L37">		List&lt;PuntoDeInteres&gt; pisEncontrados = new ArrayList&lt;&gt;();</span>
 
-<span class="fc" id="L46">		pisBuscados = buscador.buscar(nombreDeFantasia,null);</span>
+<span class="fc" id="L39">		pisEncontrados = buscador.buscar(nombreDeFantasia, null);</span>
 
-<span class="fc bfc" id="L48" title="All 2 branches covered.">		if (pisBuscados.size() != 0) {</span>
+<span class="fc bfc" id="L41" title="All 2 branches covered.">		if (hayPuntosDeInteres(pisEncontrados)) {</span>
 
-<span class="fc" id="L50">			pisBuscados.stream().forEach(p1 -&gt; p1.borrarPalabrasClaves());</span>
-			// borrar todas las palabras claves de esos punto de interes
+<span class="fc" id="L43">			borrarPalabrasClaves(pisEncontrados);</span>
 
-<span class="pc bpc" id="L53" title="1 of 4 branches missed.">			while (caracterRetorno != '\n' &amp;&amp; caracterRetorno != 'f') {</span>
+<span class="fc bfc" id="L45" title="All 2 branches covered.">			while (miArchivo.hayPalabrasClaves()) {</span>
 
 				String palabraClave;
 
-<span class="fc" id="L57">				palabraClave = this.leerPalabra(' ');</span>
-				// armar palabra clave
+<span class="fc" id="L49">				palabraClave = leerPalabraClave();</span>
 
-<span class="fc" id="L60">				pisBuscados.stream().forEach(p1 -&gt; p1.agregarPalabraClave(palabraClave));</span>
+<span class="fc" id="L51">				setearPalabraClave(pisEncontrados, palabraClave);</span>
 
-<span class="fc" id="L62">			}</span>
+<span class="fc" id="L53">			}</span>
 
 		} else {
-<span class="fc" id="L65">			this.leerPalabra('\n');</span>
-			// saltear linea
+
+<span class="fc" id="L57">			saltearLineaDeArchivo();</span>
 		}
 
-<span class="fc" id="L69">	}</span>
+<span class="fc" id="L60">	}</span>
+
+	public void saltearLineaDeArchivo() {
+<span class="fc" id="L63">		this.leerPalabra('\n');</span>
+<span class="fc" id="L64">	}</span>
+
+	public void setearPalabraClave(List&lt;PuntoDeInteres&gt; pisEncontrados, String palabraClave) {
+<span class="fc" id="L67">		pisEncontrados.stream().forEach(p1 -&gt; p1.agregarPalabraClave(palabraClave));</span>
+<span class="fc" id="L68">	}</span>
+
+	public String leerPalabraClave() {
+<span class="fc" id="L71">		return this.leerPalabra(' ');</span>
+	}
+
+	public void borrarPalabrasClaves(List&lt;PuntoDeInteres&gt; pisEncontrados) {
+<span class="fc" id="L75">		pisEncontrados.stream().forEach(p1 -&gt; p1.borrarPalabrasClaves());</span>
+<span class="fc" id="L76">	}</span>
+
+	public boolean hayPuntosDeInteres(List&lt;PuntoDeInteres&gt; pisBuscados) {
+<span class="fc bfc" id="L79" title="All 2 branches covered.">		return pisBuscados.size() != 0;</span>
+	}
+
+	public String leerNombreDeFantasia() {
+<span class="fc" id="L83">		return this.leerPalabra(';');</span>
+	}
 
 	public String leerPalabra(char condicionDeCorte) {
-<span class="fc" id="L72">		String palabraClave = &quot;&quot;;</span>
-<span class="fc" id="L73">		int caracter = 1;</span>
 
 		try {
-<span class="fc" id="L76">			caracter = buffer.read();</span>
+<span class="fc" id="L89">			return miArchivo.leerPalabra(condicionDeCorte);</span>
 
-			do {
-
-<span class="fc" id="L80">				palabraClave = palabraClave + (char) caracter;</span>
-
-<span class="fc" id="L82">				caracter = buffer.read();</span>
-
-<span class="fc bfc" id="L84" title="All 4 branches covered.">			} while (caracter != (-1) &amp;&amp; caracter != condicionDeCorte);</span>
-
-<span class="nc" id="L86">		} catch (IOException e) {</span>
-<span class="nc" id="L87">			fallar();</span>
-<span class="fc" id="L88">		}</span>
-
-<span class="fc" id="L90">		caracterRetorno = (char) caracter;</span>
-
-<span class="fc bfc" id="L92" title="All 2 branches covered.">		if (caracter == (-1)) {</span>
-<span class="fc" id="L93">			caracterRetorno = 'f';</span>
+<span class="nc" id="L91">		} catch (IOException e) {</span>
+<span class="nc" id="L92">			fallar();</span>
 		}
-
-<span class="fc" id="L96">		return palabraClave;</span>
+<span class="nc" id="L94">		return null;</span>
 
 	}
 
-	public BufferedReader abrirArchivo() {
+	public void abrirArchivo() {
 
-		FileReader archivo;
 		try {
-<span class="fc" id="L104">			archivo = new FileReader(pathArchivo);</span>
 
-<span class="fc" id="L106">			buffer = new BufferedReader(archivo);</span>
-<span class="fc" id="L107">			return buffer;</span>
+<span class="fc" id="L102">			miArchivo.abrirArchivo();</span>
 
-<span class="nc" id="L109">		} catch (FileNotFoundException e) {</span>
-<span class="nc" id="L110">			fallar();</span>
+<span class="nc" id="L104">		} catch (FileNotFoundException e) {</span>
+<span class="nc" id="L105">			fallar();</span>
+<span class="fc" id="L106">		}</span>
 
-		}
-
-<span class="nc" id="L114">		return null;</span>
-
-	}
+<span class="fc" id="L108">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

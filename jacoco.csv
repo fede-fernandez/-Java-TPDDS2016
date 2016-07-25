@@ -1,4 +1,5 @@
 GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+tpa,ar.edu.dds.tpa.manejoDeArchivos,Archivo,0,81,1,11,0,18,1,10,0,5
 tpa,ar.edu.dds.tpa.model,BajaPuntoDeInteres,33,43,0,4,15,6,9,7,9,5
 tpa,ar.edu.dds.tpa.model,ParadaDeColectivo,0,18,0,2,0,4,0,4,0,3
 tpa,ar.edu.dds.tpa.model,ServicioPuntosDeInteresBajados.new TypeToken() {...},0,6,0,0,0,1,0,1,0,1
@@ -22,10 +23,6 @@ tpa,ar.edu.dds.tpa.model,PuntoDeInteres,13,98,5,9,2,21,6,14,2,11
 tpa,ar.edu.dds.tpa.reporte,ReporteDeCantidadDeBusquedasPorFecha,31,0,0,0,6,0,3,0,3,0
 tpa,ar.edu.dds.tpa.reporte,ReporteDeResultadosPorBusqueda,11,0,0,0,4,0,2,0,2,0
 tpa,ar.edu.dds.tpa.reporte,ReporteDeCantidadDeResultadosTotalesPorUsuario,30,0,0,0,6,0,3,0,3,0
-tpa,ar.edu.dds.tpa.adapter.model,CentroDTO,12,32,0,0,4,11,4,3,4,3
-tpa,ar.edu.dds.tpa.adapter.model,RangoServicioDTO,0,33,0,0,0,12,0,6,0,6
-tpa,ar.edu.dds.tpa.adapter.model,BancoDelServicio,6,15,0,0,2,5,2,5,2,5
-tpa,ar.edu.dds.tpa.adapter.model,ServicioDTO,0,15,0,0,0,6,0,3,0,3
 tpa,ar.edu.dds.tpa.service,BancoServiceImpostor,0,174,0,6,0,13,0,7,0,4
 tpa,ar.edu.dds.tpa.service,ServicioExternoWeb,12,0,0,0,4,0,2,0,2,0
 tpa,ar.edu.dds.tpa.service,BajaDePuntoDeInteresServiceReal,17,0,0,0,4,0,2,0,2,0
@@ -33,6 +30,13 @@ tpa,ar.edu.dds.tpa.service,CGPServiceImpostor,0,61,0,2,0,12,0,4,0,3
 tpa,ar.edu.dds.tpa.service,MailServiceImpostor,0,13,0,0,0,5,0,3,0,3
 tpa,ar.edu.dds.tpa.geolocalizacion,Posicion,0,75,0,0,0,16,0,4,0,4
 tpa,ar.edu.dds.tpa.geolocalizacion,Poligono,14,109,2,16,5,18,4,9,2,2
+tpa,ar.edu.dds.tpa.procesos.fallos,NoHacerNada,4,0,0,0,2,0,2,0,2,0
+tpa,ar.edu.dds.tpa.procesos.fallos,ReintentarEjecucion,0,60,0,6,0,18,0,7,0,4
+tpa,ar.edu.dds.tpa.procesos.fallos,NotificarAlAdministrador,0,34,0,0,0,8,0,2,0,2
+tpa,ar.edu.dds.tpa.adapter.model,CentroDTO,12,32,0,0,4,11,4,3,4,3
+tpa,ar.edu.dds.tpa.adapter.model,RangoServicioDTO,0,33,0,0,0,12,0,6,0,6
+tpa,ar.edu.dds.tpa.adapter.model,BancoDelServicio,6,15,0,0,2,5,2,5,2,5
+tpa,ar.edu.dds.tpa.adapter.model,ServicioDTO,0,15,0,0,0,6,0,3,0,3
 tpa,ar.edu.dds.tpa.criterio,FiltradoPorComuna,1,14,1,1,0,4,1,2,0,2
 tpa,ar.edu.dds.tpa.criterio,FiltradoSelectivo,21,0,2,0,4,0,4,0,3,0
 tpa,ar.edu.dds.tpa.criterio,SinFiltrado,5,0,0,0,2,0,2,0,2,0
@@ -42,14 +46,11 @@ tpa,ar.edu.dds.tpa.adapter,BuscadorDeBancos.new TypeToken() {...},0,6,0,0,0,1,0,
 tpa,ar.edu.dds.tpa.adapter,EnviadorDeMail,0,13,0,0,0,5,0,2,0,2
 tpa,ar.edu.dds.tpa.accion,ActivadorDeNotificadorDeBusquedaLenta,11,0,0,0,5,0,2,0,2,0
 tpa,ar.edu.dds.tpa.accion,DesactivadorDeNotificadorDeBusquedaLenta,0,11,0,0,0,5,0,2,0,2
-tpa,ar.edu.dds.tpa.procesos.fallos,NoHacerNada,4,0,0,0,2,0,2,0,2,0
-tpa,ar.edu.dds.tpa.procesos.fallos,ReintentarEjecucion,0,60,0,6,0,18,0,7,0,4
-tpa,ar.edu.dds.tpa.procesos.fallos,NotificarAlAdministrador,0,34,0,0,0,8,0,2,0,2
 tpa,ar.edu.dds.tpa.observer,NotificadorDeBusquedaLenta,0,46,0,2,0,11,0,3,0,2
 tpa,ar.edu.dds.tpa.procesos,GestorDeAccionesDeUsuarios,0,50,0,0,0,10,0,6,0,6
 tpa,ar.edu.dds.tpa.procesos,ProcesoQueFallaImpostor,0,18,0,0,0,6,0,3,0,3
 tpa,ar.edu.dds.tpa.procesos,ResultadoDeEjecucion,3,25,0,0,1,10,1,4,1,4
-tpa,ar.edu.dds.tpa.procesos,ActualizarPOIs,8,129,1,13,5,33,1,13,0,7
+tpa,ar.edu.dds.tpa.procesos,ActualizarPOIs,8,107,0,8,5,32,0,17,0,13
 tpa,ar.edu.dds.tpa.procesos,ActualizarLocalesComerciales,3,0,0,0,1,0,1,0,1,0
 tpa,ar.edu.dds.tpa.procesos,ProcesoImpostor,0,13,0,0,0,5,0,3,0,3
 tpa,ar.edu.dds.tpa.procesos,PlanificadorDeProcesos,0,29,0,0,0,7,0,2,0,2

@@ -1,12 +1,17 @@
 package ar.edu.dds.tpa.model;
 
 import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
+
 public abstract class PuntoDeInteres {
+	
 	private String nombre;
 	private Posicion coordenadas;
 	private List<String> palabrasClave;
@@ -61,7 +66,8 @@ public abstract class PuntoDeInteres {
 
 	@Override
 	public boolean equals(Object otro) {		
-		//Nos referimos al mismo punto de interes si ambos objetos son exactamente el mismo, o si tienen el mismo nombre y la ubicacion es aproximadamente la misma con un leve margen de error (2mm)
+		//Nos referimos al mismo punto de interes si ambos objetos son exactamente el mismo, 
+		//o si tienen el mismo nombre y la ubicacion es aproximadamente la misma con un leve margen de error (2mm)
 		return otro != null &&
 			   (otro == this ||
 				   (Math.abs(this.coordenadas.distanciaA(((PuntoDeInteres)otro).getCoordenadas())) <= 0.0000002 

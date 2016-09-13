@@ -5,9 +5,20 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-//TODO: Comportamiento repetido en horarios de atencion con localcomercial
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+
+@Entity
 public class Servicio {
+	
+	  @Id
+	  @GeneratedValue
+	  private Long id;
+	
 	private String nombre;
+	
 	private HorarioDeAtencion horarioDeAtencion;
 	
 	public Servicio(String nombre) {

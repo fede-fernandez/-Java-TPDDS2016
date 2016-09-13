@@ -8,7 +8,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class HorarioDeAtencion {
+	
+	
+	  @Id
+	  @GeneratedValue
+	  private Long id;
 
 	private Map<DayOfWeek, List<RangoDeHorario>> horarioDeAtencion;
 

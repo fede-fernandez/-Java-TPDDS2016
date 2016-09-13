@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.Transient;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 @Entity
 public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
+	
+	@Transient 
 	private List<Servicio> servicios;
 
 	public PuntoDeInteresConServicios(String nombre, Posicion coordenadas) {

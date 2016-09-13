@@ -5,10 +5,19 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Transient;
+
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
+
+@Entity 
 public class LocalComercial extends PuntoDeInteres {
+	
+	@Transient 
 	private Rubro rubro;
+	
+	@Transient 
 	private HorarioDeAtencion horarioDeAtencion;
 
 	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro) {

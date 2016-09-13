@@ -5,16 +5,45 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 
+@Entity
+@Table(name="PuntoDeInteres")
+
 public abstract class PuntoDeInteres {
 	
+	@Id
+	@GeneratedValue
+	@Column(name="id_pi")
+	private Long id;
+	
 	private String nombre;
+	
+	@OneToOne(cascade={CascadeType.ALL})
+	@JoinColumn(name="posicion")
 	private Posicion coordenadas;
+	
+	@ElementCollection
+	@CollectionTable(name = "Palabras_Claves", joinColumns=@JoinColumn(name="id_clave"))
+	@Column(name="palabrasClave")
 	private List<String> palabrasClave;
+	
+	@Transient
 	private LocalDateTime fechaBaja;
 
 	public PuntoDeInteres(String nombre, Posicion coordenadas) {

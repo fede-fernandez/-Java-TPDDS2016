@@ -7,6 +7,19 @@
   
     <persistence-unit name="db" transaction-type="RESOURCE_LOCAL">
     	<provider>org.hibernate.ejb.HibernatePersistence</provider>
+
+    	<class>ar.edu.dds.tpa.model.PuntoDeInteres</class>
+    	<class>ar.edu.dds.tpa.geolocalizacion.Posicion</class>
+<!--    <class>canchas.Predio</class>
+    	<class>canchas.Color</class>
+    	<class>canchas.Fabricante</class>
+    	<class>canchas.Inscripcion</class>
+    	<class>canchas.Jugador</class>
+		<class>canchas.JugadorAmateur</class>
+    	<class>canchas.JugadorSemiProfesional</class>
+    	<class>canchas.JugadorProfesional</class>
+    	<class>canchas.Paleta</class>
+    	<class>canchas.Reserva</class> -->
     	
     	
     	 
@@ -14,7 +27,7 @@
 	    <property name="hibernate.archive.autodetection" value="class"/>        
         
             <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver" /> 
-            <property name="hibernate.connection.url" value="jdbc:mysql://localhost/politics" /> 
+            <property name="hibernate.connection.url" value="jdbc:mysql://localhost/dds" /> 
             <property name="hibernate.connection.username" value="root" /> 
             <property name="hibernate.connection.password" value="leodb" /> 
 

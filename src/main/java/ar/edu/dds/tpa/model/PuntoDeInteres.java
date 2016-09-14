@@ -27,7 +27,7 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 @Entity
 @Table(name="PuntoDeInteres")
-@DiscriminatorColumn(name="tipo_jugador")
+@DiscriminatorColumn(name="tipo")
 @Inheritance(strategy=InheritanceType.SINGLE_TABLE)
 public abstract class PuntoDeInteres {
 	

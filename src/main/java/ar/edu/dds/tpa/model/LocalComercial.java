@@ -6,6 +6,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
@@ -14,7 +15,7 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 @Entity 
 public class LocalComercial extends PuntoDeInteres {
 	
-	@Transient 
+	@ManyToOne
 	private Rubro rubro;
 	
 	@Transient 

@@ -10,16 +10,16 @@
 
     	<class>ar.edu.dds.tpa.model.PuntoDeInteres</class>
     	<class>ar.edu.dds.tpa.geolocalizacion.Posicion</class>
-<!--    <class>canchas.Predio</class>
-    	<class>canchas.Color</class>
-    	<class>canchas.Fabricante</class>
-    	<class>canchas.Inscripcion</class>
-    	<class>canchas.Jugador</class>
-		<class>canchas.JugadorAmateur</class>
-    	<class>canchas.JugadorSemiProfesional</class>
-    	<class>canchas.JugadorProfesional</class>
-    	<class>canchas.Paleta</class>
-    	<class>canchas.Reserva</class> -->
+        <class>ar.edu.dds.tpa.model.ParadaDeColectivo</class>
+    	<class>ar.edu.dds.tpa.model.PuntoDeInteresConServicios</class>
+    	<class>ar.edu.dds.tpa.model.Servicio</class>
+    	<class>ar.edu.dds.tpa.model.LocalComercial</class>
+    	<class>ar.edu.dds.tpa.model.Banco</class>
+		<class>ar.edu.dds.tpa.model.CGP</class>
+    	<class>ar.edu.dds.tpa.model.Rubro</class>
+<!--     	<class>ar.edu.dds.tpa.geolocalizacion.Posicion</class>
+    	<class>ar.edu.dds.tpa.geolocalizacion.Posicion</class>
+    	<class></class> -->
     	
     	
     	 

@@ -15,4 +15,6 @@ public class BaseDeDatos implements WithGlobalEntityManager {
 	public PuntoDeInteres obtenerPuntoInteres(Long id_pi){
 		return entityManager().find(PuntoDeInteres.class, id_pi);
 	}
+	
+	
 }

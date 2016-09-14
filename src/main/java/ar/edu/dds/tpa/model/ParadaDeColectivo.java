@@ -21,4 +21,5 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
 		return true;
 	}
+
 }

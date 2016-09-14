@@ -34,7 +34,7 @@ public abstract class PuntoDeInteres {
 	@Id
 	@GeneratedValue
 	@Column(name="id_pi")
-	private Long id;
+	private Long id_pi;
 	
 	private String nombre;
 	
@@ -59,6 +59,11 @@ public abstract class PuntoDeInteres {
 	
 	public String getNombre() {
 		return nombre;
+	}
+	
+	
+	public Long getID() {
+		return id_pi;
 	}
 
 	public Posicion getCoordenadas() {

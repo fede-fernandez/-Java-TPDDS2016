@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
@@ -71,6 +72,19 @@ public class PersistenciaPIsTest extends AbstractPersistenceTest implements With
 	   db.guardar(unLocalDeDiarios1);
 	   assertEquals(db.obtenerPuntoInteres(unLocalDeDiarios1.getID()), unLocalDeDiarios1);
 	   
+	  }
+	  
+	  
+	  @Test
+	  public void persisteDeUnaListaDePOIs() {
+	  ParadaDeColectivo bondi114 = new ParadaDeColectivo("114", new Posicion(124.0006, 33.0));
+	  db.guardar(bondi114);
+	  
+	  ParadaDeColectivo bondi7 = new ParadaDeColectivo("7", new Posicion(200.0006, 100.0));
+	  db.guardar(bondi7);
+	  
+	  Assert.assertEquals(2, db.todosPOIs().size());
+	  Assert.assertEquals("7", db.todosPOIs().get(1).getNombre());
 	  }
 	 
 	  

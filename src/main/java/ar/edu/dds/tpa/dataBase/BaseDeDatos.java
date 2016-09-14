@@ -1,5 +1,7 @@
 package ar.edu.dds.tpa.dataBase;
 
+import java.util.List;
+
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
 
@@ -16,5 +18,9 @@ public class BaseDeDatos implements WithGlobalEntityManager {
 		return entityManager().find(PuntoDeInteres.class, id_pi);
 	}
 	
+	
+	public List<PuntoDeInteres> todosPOIs(){
+		return entityManager().createQuery("from PuntoDeInteres").getResultList();
+	}
 	
 }

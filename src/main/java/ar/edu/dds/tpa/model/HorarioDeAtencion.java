@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Transient;
 
 @Entity
 public class HorarioDeAtencion {
@@ -18,8 +19,10 @@ public class HorarioDeAtencion {
 	
 	  @Id
 	  @GeneratedValue
-	  private Long id;
+	  private Long id_horarioDeAtencion;
 
+	  
+	@Transient
 	private Map<DayOfWeek, List<RangoDeHorario>> horarioDeAtencion;
 
 	public HorarioDeAtencion() {

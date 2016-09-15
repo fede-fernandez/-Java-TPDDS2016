@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Transient;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
@@ -15,7 +16,8 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 @Entity 
 public class Banco extends PuntoDeInteresConServicios {
 	
-	@Transient 
+	
+	@ManyToOne
 	private HorarioDeAtencion horarioDeAtencionBancario;
 	
 	public Banco(String nombre, Posicion coordenadas) {

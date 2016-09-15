@@ -17,9 +17,9 @@
     	<class>ar.edu.dds.tpa.model.Banco</class>
 		<class>ar.edu.dds.tpa.model.CGP</class>
     	<class>ar.edu.dds.tpa.model.Rubro</class>
-<!--     	<class>ar.edu.dds.tpa.geolocalizacion.</class>
-    	<class>ar.edu.dds.tpa.geolocalizacion.</class>
-    	<class></class> -->
+     	<class>ar.edu.dds.tpa.geolocalizacion.Poligono</class>
+        <class>ar.edu.dds.tpa.model.HorarioDeAtencion</class>
+<!--     	<class></class>  -->
     	
     	
     	 

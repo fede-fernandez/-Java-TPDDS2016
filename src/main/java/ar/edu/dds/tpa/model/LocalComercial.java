@@ -18,7 +18,7 @@ public class LocalComercial extends PuntoDeInteres {
 	@ManyToOne
 	private Rubro rubro;
 	
-	@Transient 
+	@ManyToOne 
 	private HorarioDeAtencion horarioDeAtencion;
 
 	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro) {

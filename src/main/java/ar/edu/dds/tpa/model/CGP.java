@@ -5,7 +5,9 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 import ar.edu.dds.tpa.geolocalizacion.Poligono;
@@ -14,7 +16,7 @@ import ar.edu.dds.tpa.geolocalizacion.Poligono;
 @Entity
 public class CGP extends PuntoDeInteresConServicios {
 	
-	@Transient 
+	@OneToMany(cascade={CascadeType.PERSIST})
 	private List<Poligono> zonasDeCobertura;
 
 	public CGP(String nombre, Posicion coordenadas) {

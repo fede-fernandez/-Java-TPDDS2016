@@ -3,7 +3,21 @@ package ar.edu.dds.tpa.geolocalizacion;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Poligono {
+	
+	@Id
+	@GeneratedValue
+	private Long id_poligono;
+	
+	
+	@OneToMany(cascade={CascadeType.PERSIST})
 	private List<Posicion> superficie;
 	
 	public Poligono() {

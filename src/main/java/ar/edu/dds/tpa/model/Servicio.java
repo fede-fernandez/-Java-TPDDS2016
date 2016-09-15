@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
@@ -24,7 +25,7 @@ public class Servicio {
 	  
 	private String nombre;
 	
-	@Transient 
+	@ManyToOne 
 	private HorarioDeAtencion horarioDeAtencion;
 	
 	public Servicio() {

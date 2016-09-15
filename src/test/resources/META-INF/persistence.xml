@@ -21,6 +21,7 @@
         <class>ar.edu.dds.tpa.model.HorarioDeAtencion</class>
         <class>ar.edu.dds.tpa.model.Usuario</class>
         <class>ar.edu.dds.tpa.model.Busqueda</class>
+        <class>ar.edu.dds.tpa.model.RangoDeHorario</class>
 <!--     	<class></class>  -->
     	
     	

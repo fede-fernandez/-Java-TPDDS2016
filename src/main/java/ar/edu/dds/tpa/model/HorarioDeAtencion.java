@@ -8,23 +8,34 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.MapKeyColumn;
 import javax.persistence.Transient;
+
 
 @Entity
 public class HorarioDeAtencion {
 	
 	
-	  @Id
-	  @GeneratedValue
-	  private Long id_horarioDeAtencion;
+	@Id
+	@GeneratedValue
+	private Long id_horarioDeAtencion;
 
-	  
-	@Transient
+//	@ElementCollection
+//	@MapKeyColumn (name="rangoDeHorario")
+//	@JoinTable(name="Agenda", joinColumns=@JoinColumn(name="id_rangoDeHorario"))
+//	@Column(name="rangoDeHorario")
+	@Transient 
 	private Map<DayOfWeek, List<RangoDeHorario>> horarioDeAtencion;
 
+	
 	public HorarioDeAtencion() {
 		horarioDeAtencion = new HashMap<DayOfWeek, List<RangoDeHorario>>();
 	}

@@ -19,6 +19,8 @@
     	<class>ar.edu.dds.tpa.model.Rubro</class>
      	<class>ar.edu.dds.tpa.geolocalizacion.Poligono</class>
         <class>ar.edu.dds.tpa.model.HorarioDeAtencion</class>
+        <class>ar.edu.dds.tpa.model.Usuario</class>
+        <class>ar.edu.dds.tpa.model.Busqueda</class>
 <!--     	<class></class>  -->
     	
     	

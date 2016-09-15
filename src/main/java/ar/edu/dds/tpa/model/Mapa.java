@@ -13,6 +13,10 @@ public class Mapa {
 	public void agregarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres) {
 		puntosDeInteres.add(unPuntoDeInteres);
 	}
+	
+	public void agregarListaPuntoDeInteres(List<PuntoDeInteres> listaPuntoDeInteres) {
+		puntosDeInteres = listaPuntoDeInteres;
+	}
 
 	public void sacarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres) {
 		puntosDeInteres.remove(unPuntoDeInteres);

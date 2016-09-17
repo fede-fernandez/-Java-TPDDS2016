@@ -16,7 +16,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.MapKey;
 import javax.persistence.MapKeyColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
 
 
@@ -28,11 +31,12 @@ public class HorarioDeAtencion {
 	@GeneratedValue
 	private Long id_horarioDeAtencion;
 
-//	@ElementCollection
-//	@MapKeyColumn (name="rangoDeHorario")
-//	@JoinTable(name="Agenda", joinColumns=@JoinColumn(name="id_rangoDeHorario"))
-//	@Column(name="rangoDeHorario")
-	@Transient 
+	@ElementCollection
+	@JoinTable(name="Agenda", joinColumns=@JoinColumn(name="id_rangoDeHorario"))
+	@MapKeyColumn (name="dia")
+	@Column(name="Gestor_intervalo")
+
+	@OneToMany(targetEntity = RangoDeHorario.class)
 	private Map<DayOfWeek, List<RangoDeHorario>> horarioDeAtencion;
 
 	

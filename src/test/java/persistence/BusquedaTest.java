@@ -50,12 +50,12 @@ public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalE
 			db = new BaseDeDatos();
 			
 			db.guardar(unBanco);
-			db.guardar(unCGP);
-			db.guardar(kioscoDeDario);
-			db.guardar(libreriaEscolar);
-			db.guardar(paradaDel114EnRivadaviaYNazca);
-			db.guardar(paradaDel114EnPasajeMozart);
-			db.guardar(paradaDel114EnPrimeraJunta);
+//			db.guardar(unCGP);
+//			db.guardar(kioscoDeDario);
+//			db.guardar(libreriaEscolar);
+//			db.guardar(paradaDel114EnRivadaviaYNazca);
+//			db.guardar(paradaDel114EnPasajeMozart);
+//			db.guardar(paradaDel114EnPrimeraJunta);
 			
 			listaPOIs = db.todosPOIs();
 			

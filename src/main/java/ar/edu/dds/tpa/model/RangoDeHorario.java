@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.uqbarproject.jpa.java8.extras.convert.LocalDateTimeConverter;
+
 import javafx.util.converter.LocalTimeStringConverter;
 
 
@@ -23,6 +25,7 @@ public class RangoDeHorario {
 	
 
 	private LocalTime horarioInicio;
+
 
 	private LocalTime horarioFin;
 	

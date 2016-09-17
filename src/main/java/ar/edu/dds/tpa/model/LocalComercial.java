@@ -7,6 +7,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
@@ -15,10 +17,10 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 @Entity 
 public class LocalComercial extends PuntoDeInteres {
 	
-	@ManyToOne
+	@OneToOne
 	private Rubro rubro;
 	
-	@ManyToOne 
+	@OneToOne
 	private HorarioDeAtencion horarioDeAtencion;
 
 	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro) {

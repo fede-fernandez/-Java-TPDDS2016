@@ -1,7 +1,11 @@
 package persistence;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
+import java.time.DayOfWeek;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -19,6 +23,7 @@ import ar.edu.dds.tpa.model.Banco;
 import ar.edu.dds.tpa.model.CGP;
 import ar.edu.dds.tpa.model.LocalComercial;
 import ar.edu.dds.tpa.model.ParadaDeColectivo;
+import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.Rubro;
 
 

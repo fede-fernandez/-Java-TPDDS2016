@@ -4,8 +4,9 @@ import java.util.List;
 
 import org.uqbarproject.jpa.java8.extras.WithGlobalEntityManager;
 
-
+import ar.edu.dds.tpa.model.LocalComercial;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
+import ar.edu.dds.tpa.model.PuntoDeInteresConServicios;
 
 
 public class BaseDeDatos implements WithGlobalEntityManager {
@@ -20,7 +21,13 @@ public class BaseDeDatos implements WithGlobalEntityManager {
 	
 	
 	public List<PuntoDeInteres> todosPOIs(){
-		return entityManager().createQuery("from PuntoDeInteres").getResultList();
+		return (List<PuntoDeInteres>) entityManager().createQuery("from PuntoDeInteres").getResultList();
 	}
+	
+	public PuntoDeInteresConServicios obtenerPuntoDeInteresConServicios(Long id_pi){
+		return entityManager().find(PuntoDeInteresConServicios.class, id_pi);
+	}
+	
+	
 	
 }

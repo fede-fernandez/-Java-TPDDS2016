@@ -25,7 +25,7 @@ public class BusquedaTest extends AbstractPersistenceTest implements WithGlobalE
 		private ParadaDeColectivo paradaDel114EnPasajeMozart;
 		private ParadaDeColectivo paradaDel114EnPrimeraJunta;
 		private Mapa mapa;
-		private List<PuntoDeInteres> listaPOIs;
+		private List<LocalComercial> listaPOIs;
 		private Buscador buscador;
 		
 		private BaseDeDatos db;

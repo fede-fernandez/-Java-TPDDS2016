@@ -20,8 +20,9 @@ public class BaseDeDatos implements WithGlobalEntityManager {
 	}
 	
 	
-	public List<PuntoDeInteres> todosPOIs(){
-		return (List<PuntoDeInteres>) entityManager().createQuery("from PuntoDeInteres").getResultList();
+	public List<LocalComercial> todosPOIs(){
+		return (List<LocalComercial>) entityManager().createQuery("from PuntoDeInteres"
+				).getResultList();
 	}
 	
 	public PuntoDeInteresConServicios obtenerPuntoDeInteresConServicios(Long id_pi){

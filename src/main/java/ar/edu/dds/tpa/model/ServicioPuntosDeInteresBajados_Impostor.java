@@ -19,8 +19,8 @@ public class ServicioPuntosDeInteresBajados_Impostor extends ServicioPuntosDeInt
 	}
 	
 	@Override
-	public List<BajaPuntoDeInteres> obtenerPuntosABajar() {
+	public List<BajaPuntoDeInteres> obtenerPuntosADarDeBaja() {
 		fueLlamado = true;
-		return super.obtenerPuntosABajar();
+		return super.obtenerPuntosADarDeBaja();
 	}
 }

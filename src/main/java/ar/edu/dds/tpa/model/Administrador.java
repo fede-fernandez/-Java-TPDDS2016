@@ -1,6 +1,9 @@
 package ar.edu.dds.tpa.model;
 
-public class Administrador {
+import javax.persistence.Entity;
+
+@Entity
+public class Administrador extends Usuario {
 	private String mail;
 	
 	public Administrador(String mail) {
@@ -12,14 +15,14 @@ public class Administrador {
 	}
 	
 	public void agregarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, Mapa enUnMapa) {
-		enUnMapa.agregarPuntoDeInteres(unPuntoDeInteres);
+		enUnMapa.agregar(unPuntoDeInteres);
 	}
 	
 	public void sacarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, Mapa enUnMapa) {
-		enUnMapa.sacarPuntoDeInteres(unPuntoDeInteres);
+		enUnMapa.sacar(unPuntoDeInteres);
 	}
 	
 	public void modificarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado, Mapa enUnMapa) {
-		enUnMapa.modificarPuntoDeInteres(unPuntoDeInteres, puntoDeInteresModificado);
+		enUnMapa.modificar(unPuntoDeInteres, puntoDeInteresModificado);
 	}	
 }

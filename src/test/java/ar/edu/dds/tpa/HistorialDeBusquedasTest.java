@@ -18,8 +18,7 @@ import ar.edu.dds.tpa.model.Usuario;
 
 public class HistorialDeBusquedasTest {
 	
-	
-	private HistorialDeBusqueda historial;
+	private HistorialDeBusqueda historialDeBusqueda;
 	
 	private LocalDate cuatroDeFebreroDe2016;
 	private LocalDate diezDeEneroDe2016;
@@ -34,7 +33,7 @@ public class HistorialDeBusquedasTest {
 	
 	
 	@Before
-	public void inicializar(){
+	public void inicializar() {
 		
 		cuatroDeFebreroDe2016 = LocalDate.of(2016, Month.FEBRUARY, 4);
 		diezDeEneroDe2016 = LocalDate.of(2016, Month.JANUARY, 10);
@@ -47,27 +46,27 @@ public class HistorialDeBusquedasTest {
 		busquedaLibreria = new Busqueda(usuario,"Libreria", 20, cuatroDeFebreroDe2016, 5.0);
 		busquedaParadaDos = new Busqueda(usuario,"Parada 2", 30, diezDeEneroDe2016, 5.0);
 		
-		historial = new HistorialDeBusqueda();
+		historialDeBusqueda = new HistorialDeBusqueda();
 		
-		historial.agregarBusqueda(busquedaParadaCinco);
-		historial.agregarBusqueda(busquedaLibreria);
-		historial.agregarBusqueda(busquedaParadaDos);		
+		historialDeBusqueda.agregar(busquedaParadaCinco);
+		historialDeBusqueda.agregar(busquedaLibreria);
+		historialDeBusqueda.agregar(busquedaParadaDos);		
 		
 	}
 
 	@Test
 	public void filtradoDeFechasDeBusquedasDistintas() {
-		Assert.assertTrue(historial.fechasDeBusquedas().containsAll(fechasDeBusqueda));
+		Assert.assertTrue(historialDeBusqueda.fechasDeBusquedas().containsAll(fechasDeBusqueda));
 	}
 	
 	@Test
 	public void resultadosTotalesSonSesenta(){
-		Assert.assertEquals(60, historial.cantidadDeResultadosTotales());
+		Assert.assertEquals(60, historialDeBusqueda.cantidadDeResultadosTotales());
 	}
 	
 	@Test
 	public void enCuatroDeFebreroSeRealizaronDosBusquedas(){
-		Assert.assertEquals(2, historial.cantidadDeBusquedasEnUnaFecha(cuatroDeFebreroDe2016));
+		Assert.assertEquals(2, historialDeBusqueda.cantidadDeBusquedasEnUnaFecha(cuatroDeFebreroDe2016));
 	}
 
 }

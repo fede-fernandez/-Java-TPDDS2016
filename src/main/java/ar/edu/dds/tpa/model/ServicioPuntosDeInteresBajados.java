@@ -10,7 +10,7 @@ public class ServicioPuntosDeInteresBajados {
 	
 	protected String puntosDeInteresJSON;
 
-	public List<BajaPuntoDeInteres> obtenerPuntosABajar() {
+	public List<BajaPuntoDeInteres> obtenerPuntosADarDeBaja() {
 		Gson gson = new Gson();
 		return gson.fromJson(puntosDeInteresJSON, new TypeToken<List<BajaPuntoDeInteres>>(){}.getType());		
 	}

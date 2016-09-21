@@ -1,4 +1,4 @@
-package persistencia;
+package ar.edu.dds.tpa.persistencia;
 
 import java.util.List;
 
@@ -22,6 +22,7 @@ public class Persistidor {
 		iniciarTransaccion();
 		sesion.save(unObjeto);
 		commitear();
+		cerrarSesion();
 	}
 
 	public void eliminar(Object unObjeto) {
@@ -29,21 +30,33 @@ public class Persistidor {
 		iniciarTransaccion();
 		sesion.remove(unObjeto);
 		commitear();
+		cerrarSesion();
 	}
 
 	public <T> T buscarPorID(Class<T> clase, int id) {
 		abrirSesion();
 		iniciarTransaccion();
-		return sesion.find(clase, id);
+		T objetoEncontrado = sesion.find(clase, id);
+		cerrarSesion();
+		return objetoEncontrado;
 	}
 
-	public List<?> traerTodos(Class<?> clase) {
-		return sesion.createQuery("from " + clase.getName()).getResultList();
+	public <T> List<T> traerTodos(Class<T> clase) {
+		abrirSesion();
+		iniciarTransaccion();
+		@SuppressWarnings("unchecked")
+		List<T> objetosEncontrados = sesion.createQuery("from " + clase.getName()).getResultList();
+		cerrarSesion();
+		return objetosEncontrados;
 	}
 
 	public Session abrirSesion() {
 		sesion = sessionFactory.openSession();
 		return sesion;
+	}
+	
+	public void cerrarSesion() {
+		sessionFactory.close();
 	}
 
 	public void iniciarTransaccion() {

@@ -2,15 +2,30 @@ package ar.edu.dds.tpa.model;
 
 import java.time.LocalDate;
 
-public class Busqueda {
-	private Usuario usuario;
-	private String textoBuscado;
-	private int cantidadDeResultados;
-	private LocalDate fechaDeBusqueda;
-	private double tiempoDeRespuesta;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
-	public Busqueda(Usuario usuario, String textoBuscado, int cantidadDeResultados, LocalDate fechaDeBusqueda,
-			double tiempoDeRespuesta) {
+@Entity
+public class Busqueda {
+	@Id
+	@GeneratedValue
+	private Integer id;
+	
+	@OneToOne
+	private Usuario usuario;
+	
+	private String textoBuscado;
+	
+	private Integer cantidadDeResultados;
+	
+	private LocalDate fechaDeBusqueda;
+	
+	private Double tiempoDeRespuesta;
+
+	public Busqueda(Usuario usuario, String textoBuscado, Integer cantidadDeResultados, LocalDate fechaDeBusqueda,
+			Double tiempoDeRespuesta) {
 		this.usuario = usuario;
 		this.textoBuscado = textoBuscado;
 		this.cantidadDeResultados = cantidadDeResultados;
@@ -26,7 +41,7 @@ public class Busqueda {
 		return textoBuscado;
 	}
 
-	public int getCantidadDeResultados() {
+	public Integer getCantidadDeResultados() {
 		return cantidadDeResultados;
 	}
 
@@ -34,7 +49,7 @@ public class Busqueda {
 		return fechaDeBusqueda;
 	}
 
-	public double getTiempoDeRespuesta() {
+	public Double getTiempoDeRespuesta() {
 		return tiempoDeRespuesta;
 	}
 }

@@ -47,7 +47,7 @@
 			<version>${jersey.version}</version>
 		</dependency>
 		<!-- #################### JERSEY #################### -->
-		
+
 		<!-- #################### HIBERNATE #################### -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -55,7 +55,7 @@
 			<version>${hibernate.version}</version>
 		</dependency>
 		<!-- #################### HIBERNATE #################### -->
-		
+
 		<!-- #################### DRIVER SQL #################### -->
 		<dependency>
 			<groupId>com.h2database</groupId>
@@ -99,8 +99,12 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
-
 		</plugins>
+		<resources>
+			<resource>
+				<directory>resources</directory>
+			</resource>
+		</resources>
 		<finalName>${project.artifactId}</finalName>
 	</build>
 </project>

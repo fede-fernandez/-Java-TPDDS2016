@@ -14,7 +14,7 @@ import ar.edu.dds.tpa.model.Usuario;
 
 public class GeneracionDeReportesTest {
 
-	private HistorialDeBusqueda historial;
+	private HistorialDeBusqueda historialDeBusqueda;
 	
 	private LocalDate cuatroDeFebreroDe2016;
 	private LocalDate diezDeEneroDe2016;
@@ -37,16 +37,16 @@ public class GeneracionDeReportesTest {
 		busquedaLibreria = new Busqueda(usuario,"Libreria", 20, cuatroDeFebreroDe2016, 5.0);
 		busquedaParadaDos = new Busqueda(usuario,"Parada 2", 30, diezDeEneroDe2016, 5.0);
 		
-		historial = new HistorialDeBusqueda();
+		historialDeBusqueda = new HistorialDeBusqueda();
 		
-		historial.agregarBusqueda(busquedaParadaCinco);
-		historial.agregarBusqueda(busquedaLibreria);
-		historial.agregarBusqueda(busquedaParadaDos);		
+		historialDeBusqueda.agregar(busquedaParadaCinco);
+		historialDeBusqueda.agregar(busquedaLibreria);
+		historialDeBusqueda.agregar(busquedaParadaDos);		
 		
 	}
 	
 	@Test
 	public void reporteQueTotalizaLasBusquedasPorFecha() {
-		assertEquals(2, historial.cantidadDeBusquedasEnUnaFecha(cuatroDeFebreroDe2016));			
+		assertEquals(2, historialDeBusqueda.cantidadDeBusquedasEnUnaFecha(cuatroDeFebreroDe2016));			
 	}
 }

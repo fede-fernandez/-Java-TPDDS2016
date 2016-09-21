@@ -33,7 +33,7 @@ public class Buscador {
 			usuario.notificarBusqueda(busquedaRealizada);			
 		}		
 		
-		historialDeBusqueda.agregarBusqueda(busquedaRealizada);
+		historialDeBusqueda.agregar(busquedaRealizada);
 	}
 
 	public List<PuntoDeInteres> buscar(String unaFrase, Usuario unUsuario) {

@@ -28,9 +28,9 @@ public class BusquedaDePOIsLocalesTest {
 		unCGP = new CGP("CGP Balvanera", null);
 		unCGP.agregarServicio(new Servicio("Rentas"));
 
-		kioscoDeDario = new LocalComercial("El matutino", null, new Rubro("Kiosco de diario", 0));
+		kioscoDeDario = new LocalComercial("El matutino", null, new Rubro("Kiosco de diario", 0.0));
 		
-		libreriaEscolar = new LocalComercial("El ateneo", null, new Rubro("Libreria Escolar", 0));
+		libreriaEscolar = new LocalComercial("El ateneo", null, new Rubro("Libreria Escolar", 0.0));
 		
 		paradaDel114EnRivadaviaYNazca = new ParadaDeColectivo("144 Rivadavia y Nazca", null);
 		paradaDel114EnPasajeMozart = new ParadaDeColectivo("144 Pasaje Mozart ", null);
@@ -38,13 +38,13 @@ public class BusquedaDePOIsLocalesTest {
 		
 		mapa = new Mapa();
 		
-		mapa.agregarPuntoDeInteres(paradaDel114EnRivadaviaYNazca);
-		mapa.agregarPuntoDeInteres(paradaDel114EnPasajeMozart);
-		mapa.agregarPuntoDeInteres(paradaDel114EnPrimeraJunta);
-		mapa.agregarPuntoDeInteres(kioscoDeDario);
-		mapa.agregarPuntoDeInteres(libreriaEscolar);
-		mapa.agregarPuntoDeInteres(unBanco);
-		mapa.agregarPuntoDeInteres(unCGP);
+		mapa.agregar(paradaDel114EnRivadaviaYNazca);
+		mapa.agregar(paradaDel114EnPasajeMozart);
+		mapa.agregar(paradaDel114EnPrimeraJunta);
+		mapa.agregar(kioscoDeDario);
+		mapa.agregar(libreriaEscolar);
+		mapa.agregar(unBanco);
+		mapa.agregar(unCGP);
 	
 		baseDeConocimientosDePuntosDeInteres = new ArrayList<>();
 		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnRivadaviaYNazca);

@@ -5,17 +5,24 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
+@Entity
 public class LocalComercial extends PuntoDeInteres {
+	@OneToOne
 	private Rubro rubro;
+	
+	@OneToOne
 	private HorarioDeAtencion horarioDeAtencion;
 
 	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro) {
 		super(nombre, coordenadas);
 		this.rubro = rubro;
 		horarioDeAtencion = new HorarioDeAtencion();
-		if(rubro != null) {
+		if (rubro != null) {
 			super.agregarPalabraClave(rubro.getNombre());
 		}
 	}
@@ -23,12 +30,13 @@ public class LocalComercial extends PuntoDeInteres {
 	public Rubro getRubro() {
 		return rubro;
 	}
-		
+
 	public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
 		horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);
 	}
-	
-	public void agregarHorarioDeAtencionComunEnVariosDias(List<DayOfWeek> dias, LocalTime horarioDesde, LocalTime horarioHasta) {
+
+	public void agregarHorarioDeAtencionComunEnVariosDias(List<DayOfWeek> dias, LocalTime horarioDesde,
+			LocalTime horarioHasta) {
 		horarioDeAtencion.agregarHorarioDeAtencion(dias, horarioDesde, horarioHasta);
 	}
 

@@ -19,7 +19,14 @@
 		<!-- CONFIGURACIONES -->
 		
 		<!-- AGREGAR MAPEO ACA -->
-
+		<mapping class="ar.edu.dds.tpa.model.PuntoDeInteres" />
+		<mapping class="ar.edu.dds.tpa.model.ParadaDeColectivo" />
+		<mapping class="ar.edu.dds.tpa.geolocalizacion.Posicion" />
+		<mapping class="ar.edu.dds.tpa.model.Usuario" />
+		<mapping class="ar.edu.dds.tpa.model.Busqueda" />
+		<mapping class="ar.edu.dds.tpa.model.HorarioDeAtencion" />
+		<mapping class="ar.edu.dds.tpa.model.IntervalosDeHorario"/>
+		<mapping class="ar.edu.dds.tpa.model.RangoDeHorario" />
 		<!-- AGREGAR MAPEO ACA -->
 		
 	</session-factory>

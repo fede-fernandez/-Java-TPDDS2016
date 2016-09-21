@@ -4,8 +4,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
+@Entity
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 	private List<Servicio> servicios;
 
@@ -18,7 +24,7 @@ public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 		servicios.add(unServicio);
 		super.agregarPalabraClave(unServicio.getNombre());
 	}
-	
+
 	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
 		return servicios.stream().anyMatch(servicio -> servicio.atiendeEn(unDiaYHorario));

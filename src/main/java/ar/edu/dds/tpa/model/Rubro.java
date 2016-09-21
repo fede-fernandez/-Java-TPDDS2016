@@ -1,10 +1,20 @@
 package ar.edu.dds.tpa.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+
+@Entity
 public class Rubro {
-	private double radioDeCercania;
+	@Id
+	@GeneratedValue
+	private Integer id;
+	
+	private Double radioDeCercania;
+	
 	private String nombre;
 
-	public Rubro(String nombre, double radioDeCercania) {
+	public Rubro(String nombre, Double radioDeCercania) {
 		this.nombre = nombre;
 		this.radioDeCercania = radioDeCercania;
 	}
@@ -13,7 +23,7 @@ public class Rubro {
 		return nombre;
 	}
 
-	public double getRadioDeCercania() {
+	public Double getRadioDeCercania() {
 		return radioDeCercania;
 	}
 }

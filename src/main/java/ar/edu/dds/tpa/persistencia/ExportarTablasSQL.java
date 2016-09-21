@@ -1,4 +1,4 @@
-package persistencia;
+package ar.edu.dds.tpa.persistencia;
 
 import java.util.EnumSet;
 

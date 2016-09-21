@@ -5,8 +5,11 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+
 import ar.edu.dds.tpa.geolocalizacion.Poligono;
 
+@Entity
 public class CGP extends PuntoDeInteresConServicios {
 	private List<Poligono> zonasDeCobertura;
 

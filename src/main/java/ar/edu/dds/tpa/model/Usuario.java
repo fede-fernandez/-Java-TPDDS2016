@@ -12,54 +12,55 @@ import ar.edu.dds.tpa.observer.BusquedaObserver;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipoDeUsuario")
 public class Usuario {
-    @Id
-    @GeneratedValue
-    private Integer id;
 
-    private String nombre;
+	@Id
+	@GeneratedValue
+	private Integer id;
 
-    @OneToOne
-    @JoinColumn(name = "coordenadas")
-    private Posicion coordenadas;
+	private String nombre;
 
-    @ManyToOne
-    private Comuna comuna;
+	@OneToOne
+	@JoinColumn(name = "coordenadas")
+	private Posicion coordenadas;
 
-    @Transient
-    private List<BusquedaObserver> observadoresDeBusqueda;
+	@ManyToOne
+	private Comuna comuna;
 
-    public Usuario() {
+	@Transient
+	private List<BusquedaObserver> observadoresDeBusqueda;
 
-    }
+	public Usuario() {
 
-    public Usuario(String nombre, Posicion coordenadas, Comuna comuna) {
-        this.nombre = nombre;
-        this.coordenadas = coordenadas;
-        this.comuna = comuna;
-        observadoresDeBusqueda = new ArrayList<BusquedaObserver>();
-    }
+	}
 
-    public String getNombre() {
-        return nombre;
-    }
+	public Usuario(String nombre, Posicion coordenadas, Comuna comuna) {
+		this.nombre = nombre;
+		this.coordenadas = coordenadas;
+		this.comuna = comuna;
+		observadoresDeBusqueda = new ArrayList<BusquedaObserver>();
+	}
 
-    public Posicion getCoordenadas() {
-        return coordenadas;
-    }
+	public String getNombre() {
+		return nombre;
+	}
 
-    public Comuna getComuna() {
-        return comuna;
-    }
+	public Posicion getCoordenadas() {
+		return coordenadas;
+	}
 
-    public void notificarBusqueda(Busqueda unaBusquedaRealizada) {
-        observadoresDeBusqueda.forEach(unObservador -> unObservador.informar(unaBusquedaRealizada));
-    }
+	public Comuna getComuna() {
+		return comuna;
+	}
 
-    public void agregarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
-        observadoresDeBusqueda.add(unObservadorDeBusqueda);
-    }
+	public void notificarBusqueda(Busqueda unaBusquedaRealizada) {
+		observadoresDeBusqueda.forEach(unObservador -> unObservador.informar(unaBusquedaRealizada));
+	}
 
-    public void quitarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
-        observadoresDeBusqueda.remove(unObservadorDeBusqueda);
-    }
+	public void agregarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
+		observadoresDeBusqueda.add(unObservadorDeBusqueda);
+	}
+
+	public void quitarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
+		observadoresDeBusqueda.remove(unObservadorDeBusqueda);
+	}
 }

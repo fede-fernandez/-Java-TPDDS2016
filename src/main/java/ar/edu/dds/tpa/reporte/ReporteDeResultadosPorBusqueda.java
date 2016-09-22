@@ -5,6 +5,7 @@ import java.util.HashMap;
 import ar.edu.dds.tpa.model.HistorialDeBusqueda;
 
 public class ReporteDeResultadosPorBusqueda implements Reporte {
+
 	private HashMap<String, Integer> reporte;
 
 	public ReporteDeResultadosPorBusqueda() {
@@ -12,7 +13,6 @@ public class ReporteDeResultadosPorBusqueda implements Reporte {
 	}
 
 	public HashMap<String, Integer> generarReporte(HistorialDeBusqueda historial) {
-
 		return reporte;
 	}
 }

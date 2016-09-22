@@ -15,24 +15,27 @@ import java.util.List;
 import ar.edu.dds.tpa.model.*;
 
 public class CalculoDeDisponibilidadTest {
-	List<DayOfWeek> deLunesAViernes;
-	ParadaDeColectivo colectivo114;
-	LocalComercial unLocalDeDiarios1;
-	CGP cgpDeFlores;
-	Servicio rentas;
-	Servicio multas;
-	Servicio depositos;
-	Banco bancoPatagonia;
+
+	private List<DayOfWeek> deLunesAViernes;
+	private ParadaDeColectivo colectivo114;
+	private LocalComercial unLocalDeDiarios1;
+	private CGP cgpDeFlores;
+	private Servicio rentas;
+	private Servicio multas;
+	private Servicio depositos;
+	private Banco bancoPatagonia;
 
 	@Before
 	public void inicializar() {
 		deLunesAViernes = new ArrayList<DayOfWeek>();
-		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));
+		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
+				DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));
 
 		colectivo114 = new ParadaDeColectivo("114", null);
 
 		unLocalDeDiarios1 = new LocalComercial("Diarin", null, null);
-		unLocalDeDiarios1.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(9, 30), LocalTime.of(18, 30));
+		unLocalDeDiarios1.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(9, 30),
+				LocalTime.of(18, 30));
 
 		rentas = new Servicio("Rentas");
 		rentas.agregarHorarioDeAtencion(DayOfWeek.TUESDAY, LocalTime.of(10, 30), LocalTime.of(16, 45));
@@ -43,11 +46,11 @@ public class CalculoDeDisponibilidadTest {
 		cgpDeFlores = new CGP("CGPFlores", null);
 		cgpDeFlores.agregarServicio(rentas);
 		cgpDeFlores.agregarServicio(multas);
-		
+
 		depositos = new Servicio("Depositos");
 		depositos.agregarHorarioDeAtencion(deLunesAViernes, LocalTime.of(8, 0), LocalTime.of(11, 30));
 		depositos.agregarHorarioDeAtencion(deLunesAViernes, LocalTime.of(14, 15), LocalTime.of(20, 15));
-		
+
 		bancoPatagonia = new Banco("Banco Patagonia", null);
 		bancoPatagonia.agregarServicio(depositos);
 	}

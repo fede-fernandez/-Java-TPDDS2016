@@ -10,6 +10,7 @@ import org.junit.Test;
 import ar.edu.dds.tpa.model.*;
 
 public class BusquedaDePOIsLocalesTest {
+
 	private Banco unBanco;
 	private CGP unCGP;
 	private LocalComercial kioscoDeDario;
@@ -20,24 +21,24 @@ public class BusquedaDePOIsLocalesTest {
 	private Mapa mapa;
 	private List<PuntoDeInteres> baseDeConocimientosDePuntosDeInteres;
 	private Buscador buscador;
-	
+
 	@Before
-	public void inicializar(){	
+	public void inicializar() {
 		unBanco = new Banco("Ciudad", null);
-		
+
 		unCGP = new CGP("CGP Balvanera", null);
 		unCGP.agregarServicio(new Servicio("Rentas"));
 
 		kioscoDeDario = new LocalComercial("El matutino", null, new Rubro("Kiosco de diario", 0.0));
-		
+
 		libreriaEscolar = new LocalComercial("El ateneo", null, new Rubro("Libreria Escolar", 0.0));
-		
+
 		paradaDel114EnRivadaviaYNazca = new ParadaDeColectivo("144 Rivadavia y Nazca", null);
 		paradaDel114EnPasajeMozart = new ParadaDeColectivo("144 Pasaje Mozart ", null);
 		paradaDel114EnPrimeraJunta = new ParadaDeColectivo("144 Primera Junta", null);
-		
+
 		mapa = new Mapa();
-		
+
 		mapa.agregar(paradaDel114EnRivadaviaYNazca);
 		mapa.agregar(paradaDel114EnPasajeMozart);
 		mapa.agregar(paradaDel114EnPrimeraJunta);
@@ -45,7 +46,7 @@ public class BusquedaDePOIsLocalesTest {
 		mapa.agregar(libreriaEscolar);
 		mapa.agregar(unBanco);
 		mapa.agregar(unCGP);
-	
+
 		baseDeConocimientosDePuntosDeInteres = new ArrayList<>();
 		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnRivadaviaYNazca);
 		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnPasajeMozart);
@@ -53,67 +54,67 @@ public class BusquedaDePOIsLocalesTest {
 		baseDeConocimientosDePuntosDeInteres.add(kioscoDeDario);
 		baseDeConocimientosDePuntosDeInteres.add(libreriaEscolar);
 		baseDeConocimientosDePuntosDeInteres.add(unCGP);
-		
+
 		buscador = new Buscador(mapa);
 	}
 
 	@Test
-	public void busquedaDeBancoCiudad(){
+	public void busquedaDeBancoCiudad() {
 		Assert.assertEquals(1, buscador.buscar("Ciudad", null).size());
 	}
-	
+
 	@Test
-	public void busquedaDeCGPBalvanera(){	
+	public void busquedaDeCGPBalvanera() {
 		Assert.assertEquals(1, buscador.buscar("Balvanera", null).size());
 	}
-	
+
 	@Test
-	public void busquedaDeColectivos101(){
+	public void busquedaDeColectivos101() {
 		Assert.assertEquals(0, buscador.buscar("101", null).size());
 	}
-	
+
 	@Test
-	public void busquedaDeColectivos114(){	
+	public void busquedaDeColectivos114() {
 		Assert.assertEquals(3, buscador.buscar("144", null).size());
 	}
-	
+
 	@Test
-	public void busquedaPorNombreKioscoDeDiarios(){	
+	public void busquedaPorNombreKioscoDeDiarios() {
 		Assert.assertEquals(1, buscador.buscar("matutino", null).size());
 	}
-	
+
 	@Test
-	public void busquedaPorRubroKioscoDeDiarios(){	
+	public void busquedaPorRubroKioscoDeDiarios() {
 		Assert.assertEquals(1, buscador.buscar("Kiosco De Diarios", null).size());
 	}
-	
+
 	@Test
-	public void busquedaPorNombreLibreriaEscolar(){
+	public void busquedaPorNombreLibreriaEscolar() {
 		Assert.assertEquals(1, buscador.buscar("ateneo", null).size());
 	}
-	
+
 	@Test
-	public void busquedaPorRubroLibreriaEscolar(){
+	public void busquedaPorRubroLibreriaEscolar() {
 		Assert.assertEquals(1, buscador.buscar("libreria escolar", null).size());
 	}
-	
+
 	@Test
-	public void busquedaPorServicioEnCGP(){
-		Assert.assertEquals(1, buscador.buscar("Rentas", null).size());	
+	public void busquedaPorServicioEnCGP() {
+		Assert.assertEquals(1, buscador.buscar("Rentas", null).size());
 	}
-	
+
 	@Test
-	public void busquedaPorServicioEnMayusculasEnCGP(){
-		Assert.assertEquals(1, buscador.buscar("RENTAS", null).size());	
+	public void busquedaPorServicioEnMayusculasEnCGP() {
+		Assert.assertEquals(1, buscador.buscar("RENTAS", null).size());
 	}
-	
+
 	@Test
-	public void busquedaPorNombreInexistente(){
-		Assert.assertEquals(0, buscador.buscar("nombre inexistente", null).size());	
+	public void busquedaPorNombreInexistente() {
+		Assert.assertEquals(0, buscador.buscar("nombre inexistente", null).size());
 	}
-	
+
 	@Test
-	public void busquedaPorPalabraFruta(){
-		Assert.assertEquals(0, buscador.buscar("fruta", null).size());	
+	public void busquedaPorPalabraFruta() {
+		Assert.assertEquals(0, buscador.buscar("fruta", null).size());
 	}
 }

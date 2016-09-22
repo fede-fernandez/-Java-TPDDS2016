@@ -4,16 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.ElementCollection;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.OneToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
@@ -27,7 +18,7 @@ public abstract class PuntoDeInteres {
 
 	private String nombre;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "coordenadas")
 	private Posicion coordenadas;
 
@@ -37,12 +28,20 @@ public abstract class PuntoDeInteres {
 
 	@Transient
 	private LocalDateTime fechaBaja;
+	
+	public PuntoDeInteres() {
+		
+	}
 
 	public PuntoDeInteres(String nombre, Posicion coordenadas) {
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
 		palabrasClave = new ArrayList<String>();
 		agregarPalabraClave(nombre);
+	}
+	
+	public Integer getId() {
+		return id;
 	}
 
 	public String getNombre() {

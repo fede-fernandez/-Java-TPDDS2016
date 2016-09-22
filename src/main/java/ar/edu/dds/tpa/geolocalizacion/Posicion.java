@@ -1,18 +1,20 @@
 package ar.edu.dds.tpa.geolocalizacion;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="Coordenadas")
 public class Posicion {
+	
 	@Id
 	@GeneratedValue
 	private Integer id;
 	private Double longitud;
 	private Double latitud;
+	
+	public Posicion() {
+		
+	}
 
 	public Posicion(Double longitud, Double latitud) {
 		this.longitud = longitud;

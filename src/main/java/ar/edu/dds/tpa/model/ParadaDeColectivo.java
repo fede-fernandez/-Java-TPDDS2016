@@ -2,12 +2,17 @@ package ar.edu.dds.tpa.model;
 
 import java.time.LocalDateTime;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 @Entity
 public class ParadaDeColectivo extends PuntoDeInteres {
+	
+	public ParadaDeColectivo() {
+		super();
+	}
+
 	public ParadaDeColectivo(String nombre, Posicion coordenadas) {
 		super(nombre, coordenadas);
 	}

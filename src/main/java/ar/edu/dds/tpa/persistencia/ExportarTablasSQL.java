@@ -12,39 +12,40 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 import org.hibernate.tool.schema.TargetType;
 
 public class ExportarTablasSQL {
-    private static ServiceRegistry serviceRegistry;
-    private static Metadata metadata;
-    private static SchemaExport schemaExport;
-    private static String rutaDeArchivoDeConfiguracionDeHibernate = "Hibernate.xml";
-    private static String rutaDelScript = "CrearTablas.sql";
+	
+	private static ServiceRegistry serviceRegistry;
+	private static Metadata metadata;
+	private static SchemaExport schemaExport;
+	private static String rutaDeArchivoDeConfiguracionDeHibernate = "Hibernate.xml";
+	private static String rutaDelScript = "CrearTablas.sql";
 
-    public static void main(String[] args) {
-        limpiarScriptSiExiste();
-        obtenerConfiguracionDeHibernate();
-        configurarScript();
-        exportarScript();
-    }
+	public static void main(String[] args) {
+		limpiarScriptSiExiste();
+		obtenerConfiguracionDeHibernate();
+		configurarScript();
+		exportarScript();
+	}
 
-    public static void limpiarScriptSiExiste() {
-        File script = new File(rutaDelScript);
-        script.delete();
-    }
+	public static void limpiarScriptSiExiste() {
+		File script = new File(rutaDelScript);
+		script.delete();
+	}
 
-    public static void obtenerConfiguracionDeHibernate() {
-        serviceRegistry = new StandardServiceRegistryBuilder()
-                .configure(rutaDeArchivoDeConfiguracionDeHibernate).build();
-        metadata = new MetadataSources(serviceRegistry).buildMetadata();
-    }
+	public static void obtenerConfiguracionDeHibernate() {
+		serviceRegistry = new StandardServiceRegistryBuilder().configure(rutaDeArchivoDeConfiguracionDeHibernate)
+				.build();
+		metadata = new MetadataSources(serviceRegistry).buildMetadata();
+	}
 
-    public static void configurarScript() {
-        schemaExport = new SchemaExport();
-        schemaExport.setOutputFile(rutaDelScript);
-        schemaExport.setDelimiter(";");
-        schemaExport.setFormat(true);
-    }
+	public static void configurarScript() {
+		schemaExport = new SchemaExport();
+		schemaExport.setOutputFile(rutaDelScript);
+		schemaExport.setDelimiter(";");
+		schemaExport.setFormat(true);
+	}
 
-    public static void exportarScript() {
-        schemaExport.create(EnumSet.of(TargetType.SCRIPT, TargetType.STDOUT), metadata);
-        ((StandardServiceRegistryImpl) serviceRegistry).destroy();
-    }
+	public static void exportarScript() {
+		schemaExport.create(EnumSet.of(TargetType.SCRIPT, TargetType.STDOUT), metadata);
+		((StandardServiceRegistryImpl) serviceRegistry).destroy();
+	}
 }

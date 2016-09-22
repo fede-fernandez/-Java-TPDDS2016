@@ -1,6 +1,5 @@
 package ar.edu.dds.tpa;
 
-
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.Arrays;
@@ -14,59 +13,55 @@ import ar.edu.dds.tpa.model.Busqueda;
 import ar.edu.dds.tpa.model.HistorialDeBusqueda;
 import ar.edu.dds.tpa.model.Usuario;
 
-
-
 public class HistorialDeBusquedasTest {
-	
+
 	private HistorialDeBusqueda historialDeBusqueda;
-	
+
 	private LocalDate cuatroDeFebreroDe2016;
 	private LocalDate diezDeEneroDe2016;
-	
+
 	private Busqueda busquedaParadaCinco;
 	private Busqueda busquedaLibreria;
 	private Busqueda busquedaParadaDos;
-	
+
 	private List<LocalDate> fechasDeBusqueda;
-	
+
 	private Usuario usuario;
-	
-	
+
 	@Before
 	public void inicializar() {
-		
+
 		cuatroDeFebreroDe2016 = LocalDate.of(2016, Month.FEBRUARY, 4);
 		diezDeEneroDe2016 = LocalDate.of(2016, Month.JANUARY, 10);
-		
+
 		fechasDeBusqueda = Arrays.asList(cuatroDeFebreroDe2016, diezDeEneroDe2016);
-		
+
 		usuario = new Usuario();
-		
-		busquedaParadaCinco = new Busqueda(usuario,"Parada 5", 10, cuatroDeFebreroDe2016, 5.0);
-		busquedaLibreria = new Busqueda(usuario,"Libreria", 20, cuatroDeFebreroDe2016, 5.0);
-		busquedaParadaDos = new Busqueda(usuario,"Parada 2", 30, diezDeEneroDe2016, 5.0);
-		
+
+		busquedaParadaCinco = new Busqueda(usuario, "Parada 5", 10, cuatroDeFebreroDe2016, 5.0);
+		busquedaLibreria = new Busqueda(usuario, "Libreria", 20, cuatroDeFebreroDe2016, 5.0);
+		busquedaParadaDos = new Busqueda(usuario, "Parada 2", 30, diezDeEneroDe2016, 5.0);
+
 		historialDeBusqueda = new HistorialDeBusqueda();
-		
+
 		historialDeBusqueda.agregar(busquedaParadaCinco);
 		historialDeBusqueda.agregar(busquedaLibreria);
-		historialDeBusqueda.agregar(busquedaParadaDos);		
-		
+		historialDeBusqueda.agregar(busquedaParadaDos);
+
 	}
 
 	@Test
 	public void filtradoDeFechasDeBusquedasDistintas() {
 		Assert.assertTrue(historialDeBusqueda.fechasDeBusquedas().containsAll(fechasDeBusqueda));
 	}
-	
+
 	@Test
-	public void resultadosTotalesSonSesenta(){
+	public void resultadosTotalesSonSesenta() {
 		Assert.assertEquals(60, historialDeBusqueda.cantidadDeResultadosTotales());
 	}
-	
+
 	@Test
-	public void enCuatroDeFebreroSeRealizaronDosBusquedas(){
+	public void enCuatroDeFebreroSeRealizaronDosBusquedas() {
 		Assert.assertEquals(2, historialDeBusqueda.cantidadDeBusquedasEnUnaFecha(cuatroDeFebreroDe2016));
 	}
-
 }

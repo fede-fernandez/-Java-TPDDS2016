@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import ar.edu.dds.tpa.persistencia.Persistible;
 
 public class HistorialDeBusqueda implements Persistible {
+
 	List<Busqueda> busquedasRealizadas;
 
 	public HistorialDeBusqueda() {
@@ -71,5 +72,4 @@ public class HistorialDeBusqueda implements Persistible {
 				.filter(unaBusqueda -> unaBusqueda.getUsuario().getNombre().equals(unNombreDeUsuario))
 				.mapToInt(unaBusquedaFiltrada -> unaBusquedaFiltrada.getCantidadDeResultados()).sum();
 	}
-
 }

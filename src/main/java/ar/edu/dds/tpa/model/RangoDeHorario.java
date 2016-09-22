@@ -2,12 +2,11 @@ package ar.edu.dds.tpa.model;
 
 import java.time.LocalTime;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class RangoDeHorario {
+
 	@Id
 	@GeneratedValue
 	private Integer id;
@@ -15,6 +14,10 @@ public class RangoDeHorario {
 	private LocalTime horarioInicio;
 
 	private LocalTime horarioFin;
+	
+	public RangoDeHorario() {
+		
+	}
 
 	public RangoDeHorario(LocalTime horarioInicio, LocalTime horarioFin) {
 		this.horarioInicio = horarioInicio;
@@ -31,6 +34,5 @@ public class RangoDeHorario {
 
 	public boolean estaDentroDelRangoDeHorario(LocalTime unHorario) {
 		return estaDespuesDelHorarioInicio(unHorario) && estaAntesDelHorarioFin(unHorario);
-
 	}
 }

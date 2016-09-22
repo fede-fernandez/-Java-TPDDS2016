@@ -7,11 +7,12 @@ import org.junit.Test;
 import ar.edu.dds.tpa.model.*;
 
 public class AdministradorABMDePOITest {
-	Administrador administrador;
-	Mapa mapa;
-	ParadaDeColectivo paradaDel7;
-	Banco bancoSantanderRio;
-	Buscador buscador;
+
+	private Administrador administrador;
+	private Mapa mapa;
+	private ParadaDeColectivo paradaDel7;
+	private Banco bancoSantanderRio;
+	private Buscador buscador;
 
 	@Before
 	public void inicializar() {
@@ -21,29 +22,29 @@ public class AdministradorABMDePOITest {
 		bancoSantanderRio = new Banco("Banco Santander Rio Sucursal Ramos Mejia", null);
 		buscador = new Buscador(mapa);
 	}
-	
+
 	@Test
 	public void altaDePuntoDeInteres() {
 		administrador.agregarPuntoDeInteres(bancoSantanderRio, mapa);
-		
+
 		Assert.assertTrue(buscador.buscar("santander", null).contains(bancoSantanderRio));
 	}
-	
+
 	@Test
 	public void bajaDePuntoDeInteres() {
 		administrador.agregarPuntoDeInteres(paradaDel7, mapa);
 		administrador.sacarPuntoDeInteres(paradaDel7, mapa);
-		
+
 		Assert.assertFalse(buscador.buscar("7", null).contains(paradaDel7));
 	}
-	
+
 	@Test
 	public void modificacionDePuntoDeInteres() {
 		administrador.agregarPuntoDeInteres(paradaDel7, mapa);
 		ParadaDeColectivo paradaDel7Modificada = new ParadaDeColectivo("terminal de bondi 7", null);
 		administrador.modificarPuntoDeInteres(paradaDel7, paradaDel7Modificada, mapa);
-		
-		Assert.assertTrue(buscador.buscar("bondi", null).contains(paradaDel7Modificada) &&
-				!buscador.buscar("colectivo", null).contains(paradaDel7));
+
+		Assert.assertTrue(buscador.buscar("bondi", null).contains(paradaDel7Modificada)
+				&& !buscador.buscar("colectivo", null).contains(paradaDel7));
 	}
 }

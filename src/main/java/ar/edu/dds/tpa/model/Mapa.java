@@ -6,6 +6,7 @@ import java.util.List;
 import ar.edu.dds.tpa.persistencia.Persistible;
 
 public class Mapa implements Persistible {
+
 	private List<PuntoDeInteres> puntosDeInteres;
 
 	public Mapa() {
@@ -28,16 +29,16 @@ public class Mapa implements Persistible {
 	public List<PuntoDeInteres> obtenerPuntosDeInteres() {
 		return puntosDeInteres;
 	}
-	
+
 	public void almacenar(PuntoDeInteres unPuntoDeInteres) {
 		agregar(unPuntoDeInteres);
 		persistidor.persistir(unPuntoDeInteres);
 	}
-	
+
 	public PuntoDeInteres traerPuntoDeInteresPor(int id) {
 		return persistidor.buscarPorID(PuntoDeInteres.class, id);
 	}
-	
+
 	public List<PuntoDeInteres> traerPuntosDeInteres() {
 		return persistidor.traerTodos(PuntoDeInteres.class);
 	}

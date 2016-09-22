@@ -4,12 +4,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Poligono {
+
 	private List<Posicion> superficie;
-	
+
 	public Poligono() {
 		this.superficie = new ArrayList<Posicion>();
 	}
-	
+
 	public Poligono(List<Posicion> superficie) {
 		this.superficie = superficie;
 	}

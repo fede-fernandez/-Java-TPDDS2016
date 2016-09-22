@@ -5,10 +5,11 @@ import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.procesos.Proceso;
 
 public class ReintentarEjecucion implements AccionEnCasoDeFalloDeProceso {
+
 	private Proceso proceso;
 	private int cantidadMaximaDeIntentos;
 	private int intentosRealizados;
-	boolean notificarPorMailSiFalla;
+	private boolean notificarPorMailSiFalla;
 	private Administrador administradorANotificar;
 	private EnviadorDeMail enviadorDeMail;
 
@@ -34,7 +35,7 @@ public class ReintentarEjecucion implements AccionEnCasoDeFalloDeProceso {
 			}
 		} else {
 			intentosRealizados = intentosRealizados + 1;
-			proceso.ejecutar();	
+			proceso.ejecutar();
 		}
 
 	}

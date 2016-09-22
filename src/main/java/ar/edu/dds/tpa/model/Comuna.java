@@ -4,13 +4,26 @@ import javax.persistence.*;
 
 @Entity
 public class Comuna {
-    @Id
-    private Integer numero;
 
-    private String nombre;
+	@Id
+	private Integer numero;
 
-    public Comuna(Integer numero, String nombre) {
-        this.numero = numero;
-        this.nombre = nombre;
-    }
+	private String nombre;
+
+	public Comuna() {
+
+	}
+
+	public Comuna(Integer numero, String nombre) {
+		this.numero = numero;
+		this.nombre = nombre;
+	}
+
+	public Integer getNumero() {
+		return numero;
+	}
+
+	public String getNombre() {
+		return nombre;
+	}
 }

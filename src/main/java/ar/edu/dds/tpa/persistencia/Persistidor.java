@@ -17,6 +17,10 @@ public class Persistidor {
 		sessionFactory = new Configuration().configure("Hibernate.xml").buildSessionFactory();
 	}
 
+	public Persistidor(String rutaDelArchivoDeConfiguracionDeHibernate) {
+		sessionFactory = new Configuration().configure(rutaDelArchivoDeConfiguracionDeHibernate).buildSessionFactory();
+	}
+
 	public void persistir(Object unObjeto) {
 		abrirSesion();
 		iniciarTransaccion();
@@ -54,9 +58,9 @@ public class Persistidor {
 		sesion = sessionFactory.openSession();
 		return sesion;
 	}
-	
+
 	public void cerrarSesion() {
-		sessionFactory.close();
+		sesion.close();
 	}
 
 	public void iniciarTransaccion() {

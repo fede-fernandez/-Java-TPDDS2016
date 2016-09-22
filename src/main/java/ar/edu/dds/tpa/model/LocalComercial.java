@@ -5,18 +5,22 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 @Entity
 public class LocalComercial extends PuntoDeInteres {
+
 	@OneToOne
 	private Rubro rubro;
-	
+
 	@OneToOne
 	private HorarioDeAtencion horarioDeAtencion;
+	
+	public LocalComercial() {
+		
+	}
 
 	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro) {
 		super(nombre, coordenadas);

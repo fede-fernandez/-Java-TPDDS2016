@@ -7,19 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MapKeyColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class HorarioDeAtencion {
+
 	@Id
 	@GeneratedValue
 	private Integer id;
-	
-	@OneToMany(mappedBy="horarioDeAtencion")
+
+	@OneToMany(mappedBy = "horarioDeAtencion")
 	@MapKeyColumn(name = "dia")
 	private Map<DayOfWeek, IntervalosDeHorario> horarioDeAtencion;
 

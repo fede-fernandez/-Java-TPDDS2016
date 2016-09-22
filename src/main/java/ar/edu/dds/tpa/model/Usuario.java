@@ -3,65 +3,63 @@ package ar.edu.dds.tpa.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.observer.BusquedaObserver;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipoDeUsuario")
 public class Usuario {
-	@Id
-	@GeneratedValue
-	private Integer id;
-	
-	private String nombre;
-	
-	@OneToOne
-	@JoinColumn(name="coordenadas")
-	private Posicion coordenadas;
-	
-	private Integer comuna;
+    @Id
+    @GeneratedValue
+    private Integer id;
 
-	@Transient
-	private List<BusquedaObserver> observadoresDeBusqueda;
+    private String nombre;
 
-	public Usuario() {
+    @OneToOne
+    @JoinColumn(name = "coordenadas")
+    private Posicion coordenadas;
 
-	}
+    @ManyToOne
+    private Comuna comuna;
 
-	public Usuario(String nombre, Posicion coordenadas, Integer comuna) {
-		this.nombre = nombre;
-		this.coordenadas = coordenadas;
-		this.comuna = comuna;
-		observadoresDeBusqueda = new ArrayList<BusquedaObserver>();
-	}
+    @Transient
+    private List<BusquedaObserver> observadoresDeBusqueda;
 
-	public String getNombre() {
-		return nombre;
-	}
+    public Usuario() {
 
-	public Posicion getCoordenadas() {
-		return coordenadas;
-	}
+    }
 
-	public Integer getComuna() {
-		return comuna;
-	}
+    public Usuario(String nombre, Posicion coordenadas, Comuna comuna) {
+        this.nombre = nombre;
+        this.coordenadas = coordenadas;
+        this.comuna = comuna;
+        observadoresDeBusqueda = new ArrayList<BusquedaObserver>();
+    }
 
-	public void notificarBusqueda(Busqueda unaBusquedaRealizada) {
-		observadoresDeBusqueda.forEach(unObservador -> unObservador.informar(unaBusquedaRealizada));
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public void agregarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
-		observadoresDeBusqueda.add(unObservadorDeBusqueda);
-	}
+    public Posicion getCoordenadas() {
+        return coordenadas;
+    }
 
-	public void quitarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
-		observadoresDeBusqueda.remove(unObservadorDeBusqueda);
-	}
+    public Comuna getComuna() {
+        return comuna;
+    }
+
+    public void notificarBusqueda(Busqueda unaBusquedaRealizada) {
+        observadoresDeBusqueda.forEach(unObservador -> unObservador.informar(unaBusquedaRealizada));
+    }
+
+    public void agregarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
+        observadoresDeBusqueda.add(unObservadorDeBusqueda);
+    }
+
+    public void quitarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
+        observadoresDeBusqueda.remove(unObservadorDeBusqueda);
+    }
 }

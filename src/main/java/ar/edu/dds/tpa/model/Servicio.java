@@ -5,36 +5,35 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Servicio {
-	@Id
-	@GeneratedValue
-	private Integer id;
-	private String nombre;
-	private HorarioDeAtencion horarioDeAtencion;
-	
-	public Servicio(String nombre) {
-		this.nombre = nombre;
-		horarioDeAtencion = new HorarioDeAtencion();
-	}
+    @Id
+    @GeneratedValue
+    private Integer id;
+    private String nombre;
+    @OneToOne
+    private HorarioDeAtencion horarioDeAtencion;
 
-	public String getNombre() {
-		return nombre;
-	}
+    public Servicio(String nombre) {
+        this.nombre = nombre;
+        horarioDeAtencion = new HorarioDeAtencion();
+    }
 
-	public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
-		horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);
-	}
-	
-	public void agregarHorarioDeAtencion(List<DayOfWeek> dias, LocalTime horarioDesde, LocalTime horarioHasta) {
-		horarioDeAtencion.agregarHorarioDeAtencion(dias, horarioDesde, horarioHasta);
-	}
+    public String getNombre() {
+        return nombre;
+    }
 
-	public boolean atiendeEn(LocalDateTime unDiaYHorario) {
-		return horarioDeAtencion.seAtiendeEn(unDiaYHorario);
-	}
+    public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
+        horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);
+    }
+
+    public void agregarHorarioDeAtencion(List<DayOfWeek> dias, LocalTime horarioDesde, LocalTime horarioHasta) {
+        horarioDeAtencion.agregarHorarioDeAtencion(dias, horarioDesde, horarioHasta);
+    }
+
+    public boolean atiendeEn(LocalDateTime unDiaYHorario) {
+        return horarioDeAtencion.seAtiendeEn(unDiaYHorario);
+    }
 }

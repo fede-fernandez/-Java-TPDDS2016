@@ -1,6 +1,5 @@
 package ar.edu.dds.tpa.model;
 
-import java.time.DayOfWeek;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,14 +12,11 @@ public class IntervalosDeHorario {
 	@GeneratedValue
 	private Integer id;
 
-	@Column(name = "dia")
-	private DayOfWeek dia;
-
 	@ManyToOne
 	private HorarioDeAtencion horarioDeAtencion;
 
-	@ManyToMany
-	@JoinTable(name = "rangoDeHorario")
+	@OneToMany
+	@JoinTable(name = "RangosDeHorarioEnUnDia")
 	private List<RangoDeHorario> rangosDeHorario;
 
 	public IntervalosDeHorario() {

@@ -3,8 +3,18 @@ package ar.edu.dds.tpa.geolocalizacion;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "Zona")
 public class Poligono {
 
+	@Id
+	@GeneratedValue
+	private Integer id;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "LimitesDeZona", joinColumns = @JoinColumn(name = "zona_id"), inverseJoinColumns = @JoinColumn(name = "coordenadas_id"))
 	private List<Posicion> superficie;
 
 	public Poligono() {

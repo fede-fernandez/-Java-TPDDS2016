@@ -12,10 +12,10 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 @Entity
 public class LocalComercial extends PuntoDeInteres {
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Rubro rubro;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private HorarioDeAtencion horarioDeAtencion;
 	
 	public LocalComercial() {

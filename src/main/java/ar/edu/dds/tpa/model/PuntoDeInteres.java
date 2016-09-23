@@ -22,15 +22,15 @@ public abstract class PuntoDeInteres {
 	@JoinColumn(name = "coordenadas")
 	private Posicion coordenadas;
 
-	@ElementCollection
+	@ElementCollection(fetch = FetchType.EAGER)
 	@JoinTable(name = "PalabrasClave")
 	private List<String> palabrasClave;
 
 	@Transient
 	private LocalDateTime fechaBaja;
-	
+
 	public PuntoDeInteres() {
-		
+
 	}
 
 	public PuntoDeInteres(String nombre, Posicion coordenadas) {
@@ -39,7 +39,7 @@ public abstract class PuntoDeInteres {
 		palabrasClave = new ArrayList<String>();
 		agregarPalabraClave(nombre);
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}

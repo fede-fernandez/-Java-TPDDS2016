@@ -9,8 +9,6 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.observer.BusquedaObserver;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "tipoDeUsuario")
 public class Usuario {
 
 	@Id
@@ -19,11 +17,11 @@ public class Usuario {
 
 	private String nombre;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "coordenadas")
 	private Posicion coordenadas;
 
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Comuna comuna;
 
 	@Transient
@@ -38,6 +36,10 @@ public class Usuario {
 		this.coordenadas = coordenadas;
 		this.comuna = comuna;
 		observadoresDeBusqueda = new ArrayList<BusquedaObserver>();
+	}
+	
+	public Integer getId() {
+		return id;
 	}
 
 	public String getNombre() {

@@ -3,17 +3,24 @@ package ar.edu.dds.tpa.model;
 import javax.persistence.*;
 
 @Entity
-@DiscriminatorValue(value = "Administrador")
-public class Administrador extends Usuario {
-	
+public class Administrador {
+
+	@Id
+	@GeneratedValue
+	private Integer id;
+
 	private String mail;
-	
+
 	public Administrador() {
-		
+
 	}
 
 	public Administrador(String mail) {
 		this.mail = mail;
+	}
+
+	public Integer getId() {
+		return id;
 	}
 
 	public String getMail() {

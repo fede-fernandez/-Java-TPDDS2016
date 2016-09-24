@@ -69,5 +69,12 @@ public class PersistenciaDePuntoDeInteresTest {
 		mapa.almacenar(localDeDiarios);
 		Assert.assertTrue(mapa.traerPuntoDeInteresPor(localDeDiarios.getId()).estaCercaDe(terminalFlores.getCoordenadas()));
 	}
-	
+
+	@Test
+	public void  persistenciaDeVariosPuntosDeInteresContieneUnaParadaDeColectivo() {
+		mapa.almacenar(paradaDel7);
+		mapa.almacenar(localDeDiarios);
+		Assert.assertTrue(mapa.traerPuntosDeInteres().stream().anyMatch(unPuntoDeInteres -> unPuntoDeInteres.contienePalabraClave("RETIRO")));
+		Assert.assertTrue(mapa.traerPuntosDeInteres().stream().anyMatch(unPuntoDeInteres -> unPuntoDeInteres.contienePalabraClave("DIARIN")));
+	}
 }

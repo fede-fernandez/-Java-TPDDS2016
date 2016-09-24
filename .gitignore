@@ -16,6 +16,7 @@ tmp/
 .idea/
 *.iws
 /out/
+*.iml
 
 # Java
 *.jar

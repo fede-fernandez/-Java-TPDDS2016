@@ -34,7 +34,7 @@
 		<mapping class="ar.edu.dds.tpa.model.Comuna" />
 		<mapping class="ar.edu.dds.tpa.model.Busqueda" />
 		<mapping class="ar.edu.dds.tpa.model.HorarioDeAtencion" />
-		<mapping class="ar.edu.dds.tpa.model.IntervalosDeHorario" />
+		<mapping class="ar.edu.dds.tpa.model.DiaYHorarioDeAtencion" />
 		<mapping class="ar.edu.dds.tpa.model.RangoDeHorario" />
 		<!-- AGREGAR MAPEO ACA -->
 

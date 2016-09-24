@@ -13,12 +13,14 @@ public class Servicio {
 	@Id
 	@GeneratedValue
 	private Integer id;
+
 	private String nombre;
-	@OneToOne
+
+	@OneToOne(cascade = CascadeType.ALL)
 	private HorarioDeAtencion horarioDeAtencion;
 
 	public Servicio() {
-
+		horarioDeAtencion = new HorarioDeAtencion();
 	}
 
 	public Servicio(String nombre) {

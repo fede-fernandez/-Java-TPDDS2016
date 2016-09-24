@@ -12,12 +12,12 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 
-	@OneToMany
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "ServicioDePuntoDeInteres", inverseJoinColumns = @JoinColumn(name = "servicio_id"))
 	private List<Servicio> servicios;
 	
 	public PuntoDeInteresConServicios() {
-		
+		servicios = new ArrayList<Servicio>();
 	}
 
 	public PuntoDeInteresConServicios(String nombre, Posicion coordenadas) {

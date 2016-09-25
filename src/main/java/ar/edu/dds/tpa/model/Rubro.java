@@ -8,7 +8,7 @@ import javax.persistence.Id;
 public class Rubro {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private Double radioDeCercania;

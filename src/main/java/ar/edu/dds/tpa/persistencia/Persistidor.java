@@ -39,7 +39,6 @@ public class Persistidor {
 
 	public <T> T buscarPorID(Class<T> clase, int id) {
 		abrirSesion();
-		iniciarTransaccion();
 		T objetoEncontrado = sesion.find(clase, id);
 		cerrarSesion();
 		return objetoEncontrado;
@@ -47,7 +46,6 @@ public class Persistidor {
 
 	public <T> List<T> traerTodos(Class<T> clase) {
 		abrirSesion();
-		iniciarTransaccion();
 		@SuppressWarnings("unchecked")
 		List<T> objetosEncontrados = sesion.createQuery("from " + clase.getName()).getResultList();
 		cerrarSesion();

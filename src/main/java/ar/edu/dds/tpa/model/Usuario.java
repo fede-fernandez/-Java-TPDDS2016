@@ -37,7 +37,7 @@ public class Usuario {
 		this.comuna = comuna;
 		observadoresDeBusqueda = new ArrayList<BusquedaObserver>();
 	}
-	
+
 	public Integer getId() {
 		return id;
 	}

@@ -12,7 +12,7 @@ import java.util.Set;
 public class HorarioDeAtencion {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

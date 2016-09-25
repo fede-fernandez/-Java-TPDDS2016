@@ -6,7 +6,7 @@ import javax.persistence.*;
 public class Administrador {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String mail;

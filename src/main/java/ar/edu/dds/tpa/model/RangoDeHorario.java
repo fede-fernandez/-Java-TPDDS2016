@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class RangoDeHorario {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private LocalTime horarioInicio;

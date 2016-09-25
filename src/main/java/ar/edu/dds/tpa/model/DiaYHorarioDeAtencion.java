@@ -11,7 +11,7 @@ import java.util.Set;
 public class DiaYHorarioDeAtencion {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private DayOfWeek dia;

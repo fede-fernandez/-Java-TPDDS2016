@@ -13,7 +13,7 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 public abstract class PuntoDeInteres {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String nombre;

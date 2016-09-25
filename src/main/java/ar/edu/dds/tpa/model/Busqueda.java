@@ -1,6 +1,10 @@
 package ar.edu.dds.tpa.model;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 
 import javax.persistence.*;
 
@@ -11,28 +15,34 @@ public class Busqueda {
 	@GeneratedValue
 	private Integer id;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	private Usuario usuario;
 
 	private String textoBuscado;
 
-	private Integer cantidadDeResultados;
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "PuntoDeInteresEncontrado")
+	private Set<PuntoDeInteres> puntosDeInteresEncontrados;
 
 	private LocalDate fechaDeBusqueda;
 
 	private Double tiempoDeRespuesta;
-	
+
 	public Busqueda() {
-		
+		puntosDeInteresEncontrados = new HashSet<PuntoDeInteres>();
 	}
 
-	public Busqueda(Usuario usuario, String textoBuscado, Integer cantidadDeResultados, LocalDate fechaDeBusqueda,
-			Double tiempoDeRespuesta) {
+	public Busqueda(Usuario usuario, String textoBuscado, List<PuntoDeInteres> puntosDeInteresEncontrados,
+			LocalDate fechaDeBusqueda, Double tiempoDeRespuesta) {
 		this.usuario = usuario;
 		this.textoBuscado = textoBuscado;
-		this.cantidadDeResultados = cantidadDeResultados;
+		this.puntosDeInteresEncontrados = new HashSet<PuntoDeInteres>(puntosDeInteresEncontrados);
 		this.fechaDeBusqueda = fechaDeBusqueda;
 		this.tiempoDeRespuesta = tiempoDeRespuesta;
+	}
+
+	public Integer getId() {
+		return id;
 	}
 
 	public Usuario getUsuario() {
@@ -43,8 +53,12 @@ public class Busqueda {
 		return textoBuscado;
 	}
 
-	public Integer getCantidadDeResultados() {
-		return cantidadDeResultados;
+	public Set<PuntoDeInteres> getPuntosDeInteresEncontrados() {
+		return puntosDeInteresEncontrados;
+	}
+
+	public int getCantidadDeResultados() {
+		return puntosDeInteresEncontrados.size();
 	}
 
 	public LocalDate getFechaDeBusqueda() {

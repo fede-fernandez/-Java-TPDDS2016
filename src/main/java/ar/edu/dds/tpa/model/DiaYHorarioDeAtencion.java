@@ -33,12 +33,13 @@ public class DiaYHorarioDeAtencion {
 		RangoDeHorario rangoDeHorario = new RangoDeHorario(horarioDesde, horarioHasta);
 		rangosDeHorario.add(rangoDeHorario);
 	}
+
 	public DayOfWeek getDia() {
 		return dia;
 	}
 
 	public boolean seAtiendeEn(LocalDateTime unDiaYHorario) {
-		return rangosDeHorario.stream().anyMatch(
-				rangoDeHorario -> rangoDeHorario.estaDentroDelRangoDeHorario(unDiaYHorario.toLocalTime()));
+		return rangosDeHorario.stream()
+				.anyMatch(rangoDeHorario -> rangoDeHorario.estaDentroDelRangoDeHorario(unDiaYHorario.toLocalTime()));
 	}
 }

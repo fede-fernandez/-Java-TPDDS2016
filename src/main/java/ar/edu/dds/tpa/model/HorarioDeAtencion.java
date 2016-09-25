@@ -24,10 +24,13 @@ public class HorarioDeAtencion {
 	}
 
 	public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
-		if(horariosDeAtencionPorDia.stream().anyMatch(unDiaYHorarioDeAtencion -> unDiaYHorarioDeAtencion.getDia().equals(unDia))) {
-			horariosDeAtencionPorDia.stream().filter(unDiaYHorarioDeAtencion -> unDiaYHorarioDeAtencion.getDia().equals(unDia)).forEach(unDiaYHorarioDeAtencion -> unDiaYHorarioDeAtencion.agregarHorario(horarioDesde, horarioHasta));
-		}
-		else {
+		if (horariosDeAtencionPorDia.stream()
+				.anyMatch(unDiaYHorarioDeAtencion -> unDiaYHorarioDeAtencion.getDia().equals(unDia))) {
+			horariosDeAtencionPorDia.stream()
+					.filter(unDiaYHorarioDeAtencion -> unDiaYHorarioDeAtencion.getDia().equals(unDia))
+					.forEach(unDiaYHorarioDeAtencion -> unDiaYHorarioDeAtencion.agregarHorario(horarioDesde,
+							horarioHasta));
+		} else {
 			horariosDeAtencionPorDia.add(new DiaYHorarioDeAtencion(unDia));
 			agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);
 		}
@@ -38,6 +41,8 @@ public class HorarioDeAtencion {
 	}
 
 	public boolean seAtiendeEn(LocalDateTime unDiaYHorario) {
-		return horariosDeAtencionPorDia.stream().filter(unDiaYHorarioDeAtencion -> unDiaYHorarioDeAtencion.getDia().equals(unDiaYHorario.getDayOfWeek())).anyMatch(unDiaYHorarioDeAtencion -> unDiaYHorarioDeAtencion.seAtiendeEn(unDiaYHorario));
+		return horariosDeAtencionPorDia.stream().filter(
+				unDiaYHorarioDeAtencion -> unDiaYHorarioDeAtencion.getDia().equals(unDiaYHorario.getDayOfWeek()))
+				.anyMatch(unDiaYHorarioDeAtencion -> unDiaYHorarioDeAtencion.seAtiendeEn(unDiaYHorario));
 	}
 }

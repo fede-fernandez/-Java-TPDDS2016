@@ -12,7 +12,7 @@ import ar.edu.dds.tpa.observer.BusquedaObserver;
 public class Usuario {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
 	private String nombre;

@@ -24,7 +24,7 @@ public class Persistidor {
 	public void persistir(Object unObjeto) {
 		abrirSesion();
 		iniciarTransaccion();
-		sesion.save(unObjeto);
+		sesion.saveOrUpdate(unObjeto);
 		commitear();
 		cerrarSesion();
 	}

@@ -1,8 +1,8 @@
 package ar.edu.dds.tpa.model;
 
+import java.util.HashSet;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -12,17 +12,17 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "ServicioDePuntoDeInteres", inverseJoinColumns = @JoinColumn(name = "servicio_id"))
-	private List<Servicio> servicios;
-	
+	private Set<Servicio> servicios;
+
 	public PuntoDeInteresConServicios() {
-		servicios = new ArrayList<Servicio>();
+		servicios = new HashSet<Servicio>();
 	}
 
 	public PuntoDeInteresConServicios(String nombre, Posicion coordenadas) {
 		super(nombre, coordenadas);
-		servicios = new ArrayList<Servicio>();
+		servicios = new HashSet<Servicio>();
 	}
 
 	public void agregarServicio(Servicio unServicio) {

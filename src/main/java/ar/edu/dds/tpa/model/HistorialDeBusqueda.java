@@ -5,15 +5,31 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class HistorialDeBusqueda {
+import ar.edu.dds.tpa.persistencia.Persistible;
+
+public class HistorialDeBusqueda implements Persistible {
+
 	List<Busqueda> busquedasRealizadas;
 
 	public HistorialDeBusqueda() {
 		busquedasRealizadas = new ArrayList<Busqueda>();
 	}
 
-	public void agregarBusqueda(Busqueda unaBusqueda) {
+	public void agregar(Busqueda unaBusqueda) {
 		busquedasRealizadas.add(unaBusqueda);
+	}
+
+	public void almacenar(Busqueda unaBusqueda) {
+		busquedasRealizadas.add(unaBusqueda);
+		persistidor.persistir(unaBusqueda);
+	}
+
+	public Busqueda traerBusquedaPor(int id) {
+		return persistidor.buscarPorID(Busqueda.class, id);
+	}
+
+	public List<Busqueda> traerBusquedas() {
+		return persistidor.traerTodos(Busqueda.class);
 	}
 
 	public List<LocalDate> fechasDeBusquedas() {
@@ -31,8 +47,8 @@ public class HistorialDeBusqueda {
 	}
 
 	public int cantidadDeBusquedasEnUnaFecha(LocalDate unaFecha) {
-		return (int)busquedasRealizadas.stream().filter(unaBusqueda -> unaBusqueda.getFechaDeBusqueda().equals(unaFecha))
-				.count();
+		return (int) busquedasRealizadas.stream()
+				.filter(unaBusqueda -> unaBusqueda.getFechaDeBusqueda().equals(unaFecha)).count();
 	}
 
 	public List<Integer> resultadosParcialesPorBusqueda(String textoBuscado) {
@@ -45,18 +61,15 @@ public class HistorialDeBusqueda {
 	public List<Busqueda> getBusquedasRealizadas() {
 		return busquedasRealizadas;
 	}
-	
-	public List<String> nombresDeUsuarios(){
+
+	public List<String> nombresDeUsuarios() {
 		return busquedasRealizadas.stream().map(unaBusqueda -> unaBusqueda.getUsuario().getNombre()).distinct()
-				.collect(Collectors.toList());		
+				.collect(Collectors.toList());
 	}
-	
-	public int cantidadDeResultadosTotalesDeUnUsuario(String unNombreDeUsuario){
+
+	public int cantidadDeResultadosTotalesDeUnUsuario(String unNombreDeUsuario) {
 		return busquedasRealizadas.stream()
 				.filter(unaBusqueda -> unaBusqueda.getUsuario().getNombre().equals(unNombreDeUsuario))
-				.mapToInt(unaBusquedaFiltrada -> unaBusquedaFiltrada.getCantidadDeResultados())
-				.sum();
+				.mapToInt(unaBusquedaFiltrada -> unaBusquedaFiltrada.getCantidadDeResultados()).sum();
 	}
-	
-	
 }

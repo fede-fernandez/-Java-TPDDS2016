@@ -9,16 +9,16 @@ public class ReporteDeCantidadDeResultadosTotalesPorUsuario implements Reporte {
 
 	private HashMap<String, Integer> reporte;
 
-	public ReporteDeCantidadDeResultadosTotalesPorUsuario(){
+	public ReporteDeCantidadDeResultadosTotalesPorUsuario() {
 		reporte = new HashMap<String, Integer>();
 	}
-	
+
 	public HashMap<String, Integer> generarReporte(HistorialDeBusqueda historial) {
 		List<String> nombresDeUsuarios = historial.nombresDeUsuarios();
-		
-		nombresDeUsuarios.forEach(unNombre -> reporte.put(unNombre, historial.cantidadDeResultadosTotalesDeUnUsuario(unNombre)));
-		
+
+		nombresDeUsuarios
+				.forEach(unNombre -> reporte.put(unNombre, historial.cantidadDeResultadosTotalesDeUnUsuario(unNombre)));
+
 		return reporte;
 	}
-
 }

@@ -12,6 +12,12 @@ tmp/
 .project
 .classpath
 
+# IntelliJ
+.idea/
+*.iws
+/out/
+*.iml
+
 # Java
 *.jar
 *.war

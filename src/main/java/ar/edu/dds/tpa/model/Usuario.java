@@ -1,42 +1,45 @@
 package ar.edu.dds.tpa.model;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.observer.BusquedaObserver;
 
 @Entity
 public class Usuario {
-	
+
 	@Id
-	@GeneratedValue
-	private Long id_usuario;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
 	private String nombre;
-	@OneToOne
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "coordenadas")
 	private Posicion coordenadas;
-	private int comuna;
-	
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Comuna comuna;
+
 	@Transient
 	private List<BusquedaObserver> observadoresDeBusqueda;
-	
-	public Usuario(){
-		
-	}	
-	
-	public Usuario(String nombre, Posicion coordenadas, int comuna) {
+
+	public Usuario() {
+
+	}
+
+	public Usuario(String nombre, Posicion coordenadas, Comuna comuna) {
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
-		this.comuna = comuna;		
+		this.comuna = comuna;
 		observadoresDeBusqueda = new ArrayList<BusquedaObserver>();
+	}
+
+	public Integer getId() {
+		return id;
 	}
 
 	public String getNombre() {
@@ -47,20 +50,19 @@ public class Usuario {
 		return coordenadas;
 	}
 
-	public int getComuna() {
+	public Comuna getComuna() {
 		return comuna;
-	}	
-	
-	public void notificarBusqueda(Busqueda unaBusquedaRealizada){
+	}
+
+	public void notificarBusqueda(Busqueda unaBusquedaRealizada) {
 		observadoresDeBusqueda.forEach(unObservador -> unObservador.informar(unaBusquedaRealizada));
 	}
-	
+
 	public void agregarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
 		observadoresDeBusqueda.add(unObservadorDeBusqueda);
 	}
-	
-	public void quitarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda){
+
+	public void quitarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
 		observadoresDeBusqueda.remove(unObservadorDeBusqueda);
 	}
-	
 }

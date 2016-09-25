@@ -5,19 +5,20 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import ar.edu.dds.tpa.geolocalizacion.Poligono;
 
-
 @Entity
 public class CGP extends PuntoDeInteresConServicios {
-	
-	@OneToMany(cascade={CascadeType.PERSIST})
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "ZonasDeCobertura", inverseJoinColumns = @JoinColumn(name = "zona_id"))
 	private List<Poligono> zonasDeCobertura;
+
+	public CGP() {
+		super();
+	}
 
 	public CGP(String nombre, Posicion coordenadas) {
 		super(nombre, coordenadas);
@@ -30,6 +31,7 @@ public class CGP extends PuntoDeInteresConServicios {
 
 	@Override
 	public boolean estaCercaDe(Posicion unaPosicion) {
-		return super.estaCercaDe(unaPosicion) || zonasDeCobertura.stream().anyMatch(unaZona -> unaZona.incluyeA(unaPosicion));
+		return super.estaCercaDe(unaPosicion)
+				|| zonasDeCobertura.stream().anyMatch(unaZona -> unaZona.incluyeA(unaPosicion));
 	}
 }

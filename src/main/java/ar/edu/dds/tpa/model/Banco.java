@@ -7,27 +7,29 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
-@Entity 
+@Entity
 public class Banco extends PuntoDeInteresConServicios {
-	
-	
-	@ManyToOne
+
+	@OneToOne(cascade = CascadeType.ALL)
 	private HorarioDeAtencion horarioDeAtencionBancario;
-	
+
+	public Banco() {
+		super();
+	}
+
 	public Banco(String nombre, Posicion coordenadas) {
 		super(nombre, coordenadas);
 		List<DayOfWeek> deLunesAViernes = new ArrayList<DayOfWeek>();
-		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY, DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));
+		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
+				DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));
 		horarioDeAtencionBancario = new HorarioDeAtencion();
-		horarioDeAtencionBancario.agregarHorarioDeAtencion(deLunesAViernes,  LocalTime.of(10, 0), LocalTime.of(15, 0));
+		horarioDeAtencionBancario.agregarHorarioDeAtencion(deLunesAViernes, LocalTime.of(10, 0), LocalTime.of(15, 0));
 	}
-	
+
 	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
 		return horarioDeAtencionBancario.seAtiendeEn(unDiaYHorario);

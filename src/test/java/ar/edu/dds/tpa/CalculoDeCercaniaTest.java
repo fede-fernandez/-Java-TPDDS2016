@@ -13,21 +13,21 @@ import ar.edu.dds.tpa.geolocalizacion.*;
 import ar.edu.dds.tpa.model.*;
 
 public class CalculoDeCercaniaTest {
-	Posicion posicionDeUsuario1;
-	Posicion posicionDeUsuario2;
-	Posicion posicionDeUsuario3;
-	Posicion posicionDeUsuario4;
-	ParadaDeColectivo bondi114;
-	LocalComercial unLocalDeDiarios1;
-	Banco bancoPatagonia;
-	CGP cgpDeFlores;
-	List<Posicion> puntos;
-	Poligono barrioDeFlores;
+	
+	private Posicion posicionDeUsuario1;
+	private Posicion posicionDeUsuario2;
+	private Posicion posicionDeUsuario3;
+	private Posicion posicionDeUsuario4;
+	private ParadaDeColectivo bondi114;
+	private LocalComercial unLocalDeDiarios1;
+	private Banco bancoPatagonia;
+	private CGP cgpDeFlores;
+	private List<Posicion> puntos;
+	private Poligono barrioDeFlores;
 
 	@Before
 	public void inicializar() {
 		bondi114 = new ParadaDeColectivo("114", new Posicion(200.0006, 100.0));
-
 
 		unLocalDeDiarios1 = new LocalComercial("Diarin", new Posicion(100.000002, 50.0),
 				new Rubro("Kiosco de diarios", 2.00));

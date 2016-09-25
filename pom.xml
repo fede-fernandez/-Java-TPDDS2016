@@ -17,6 +17,8 @@
 		<gson.version>2.6.2</gson.version>
 		<jersey.version>1.19.1</jersey.version>
 		<surefire.version>2.12.4</surefire.version>
+		<hibernate.version>5.2.2.Final</hibernate.version>
+		<h2database.version>1.4.192</h2database.version>
 	</properties>
 
 	<dependencies>
@@ -46,32 +48,21 @@
 		</dependency>
 		<!-- #################### JERSEY #################### -->
 
+		<!-- #################### HIBERNATE #################### -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.version}</version>
+		</dependency>
+		<!-- #################### HIBERNATE #################### -->
 
-
-    <!--############# JPA Persistence Dependencies #################### -->
-    <dependency>
-      <groupId>org.uqbar-project</groupId>
-	  <artifactId>jpa-java8-extras</artifactId>
-	  <version>1.0-alpha-1</version>
-	</dependency>
-
-	 <!--############# JPA Persistence Dependencies #################### -->
-    
-    <!--############# driver jdbc ######################################## -->
-    <dependency>
-		<groupId>mysql</groupId>
-		<artifactId>mysql-connector-java</artifactId>
-		<version>5.1.26</version>
-	</dependency>
-  <!--############# driver jdbc ######################################## -->
-
-    <!--############# driver hsqldb ######################################## -->
-     <dependency>
-      <groupId>org.hsqldb</groupId>
-      <artifactId>hsqldb</artifactId>
-      <version>2.2.8</version>
-    </dependency>
-      <!--############# driver hsqldb ######################################## -->
+		<!-- #################### DRIVER SQL #################### -->
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+			<version>${h2database.version}</version>
+		</dependency>
+		<!-- #################### DRIVER SQL #################### -->
 
 	</dependencies>
 
@@ -108,8 +99,12 @@
 					<target>${java.version}</target>
 				</configuration>
 			</plugin>
-
 		</plugins>
+		<resources>
+			<resource>
+				<directory>resources</directory>
+			</resource>
+		</resources>
 		<finalName>${project.artifactId}</finalName>
 	</build>
 </project>

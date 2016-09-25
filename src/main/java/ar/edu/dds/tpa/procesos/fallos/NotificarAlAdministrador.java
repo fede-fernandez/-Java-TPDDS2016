@@ -7,6 +7,7 @@ import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.procesos.Proceso;
 
 public class NotificarAlAdministrador implements AccionEnCasoDeFalloDeProceso {
+
 	private Proceso proceso;
 	private Administrador administradorANotificar;
 	private EnviadorDeMail enviadorDeMail;

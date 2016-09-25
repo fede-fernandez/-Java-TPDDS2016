@@ -1,37 +1,48 @@
 package ar.edu.dds.tpa.model;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
-import org.uqbarproject.jpa.java8.extras.convert.LocalDateConverter;
+import javax.persistence.*;
 
 @Entity
 public class Busqueda {
-	
-	@Id
-	@GeneratedValue
-	private Long id_busqueda;
-	
-	@OneToOne
-	private Usuario usuario;
-	private String textoBuscado;
-	private int cantidadDeResultados;
-	@Convert(converter=LocalDateConverter.class)
-	private LocalDate fechaDeBusqueda;
-	private double tiempoDeRespuesta;
 
-	public Busqueda(Usuario usuario, String textoBuscado, int cantidadDeResultados, LocalDate fechaDeBusqueda,
-			double tiempoDeRespuesta) {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private Usuario usuario;
+
+	private String textoBuscado;
+
+	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinTable(name = "PuntoDeInteresEncontrado")
+	private Set<PuntoDeInteres> puntosDeInteresEncontrados;
+
+	private LocalDate fechaDeBusqueda;
+
+	private Double tiempoDeRespuesta;
+
+	public Busqueda() {
+		puntosDeInteresEncontrados = new HashSet<PuntoDeInteres>();
+	}
+
+	public Busqueda(Usuario usuario, String textoBuscado, List<PuntoDeInteres> puntosDeInteresEncontrados,
+			LocalDate fechaDeBusqueda, Double tiempoDeRespuesta) {
 		this.usuario = usuario;
 		this.textoBuscado = textoBuscado;
-		this.cantidadDeResultados = cantidadDeResultados;
+		this.puntosDeInteresEncontrados = new HashSet<PuntoDeInteres>(puntosDeInteresEncontrados);
 		this.fechaDeBusqueda = fechaDeBusqueda;
 		this.tiempoDeRespuesta = tiempoDeRespuesta;
+	}
+
+	public Integer getId() {
+		return id;
 	}
 
 	public Usuario getUsuario() {
@@ -42,15 +53,19 @@ public class Busqueda {
 		return textoBuscado;
 	}
 
+	public Set<PuntoDeInteres> getPuntosDeInteresEncontrados() {
+		return puntosDeInteresEncontrados;
+	}
+
 	public int getCantidadDeResultados() {
-		return cantidadDeResultados;
+		return puntosDeInteresEncontrados.size();
 	}
 
 	public LocalDate getFechaDeBusqueda() {
 		return fechaDeBusqueda;
 	}
 
-	public double getTiempoDeRespuesta() {
+	public Double getTiempoDeRespuesta() {
 		return tiempoDeRespuesta;
 	}
 }

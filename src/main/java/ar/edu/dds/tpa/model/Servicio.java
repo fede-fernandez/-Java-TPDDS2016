@@ -5,39 +5,28 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
+import javax.persistence.*;
 
 @Entity
-@Table(name="Servicio")
 public class Servicio {
-	
+
 	@Id
 	@GeneratedValue
-	@Column(name="id_servicio")
-	private Long id;
-	  
+	private Integer id;
+
 	private String nombre;
-	
-	@ManyToOne 
+
+	@OneToOne(cascade = CascadeType.ALL)
 	private HorarioDeAtencion horarioDeAtencion;
-	
+
 	public Servicio() {
-		super();
+		horarioDeAtencion = new HorarioDeAtencion();
 	}
-	
+
 	public Servicio(String nombre) {
 		this.nombre = nombre;
 		horarioDeAtencion = new HorarioDeAtencion();
 	}
-
-
 
 	public String getNombre() {
 		return nombre;
@@ -46,7 +35,7 @@ public class Servicio {
 	public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
 		horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);
 	}
-	
+
 	public void agregarHorarioDeAtencion(List<DayOfWeek> dias, LocalTime horarioDesde, LocalTime horarioHasta) {
 		horarioDeAtencion.agregarHorarioDeAtencion(dias, horarioDesde, horarioHasta);
 	}

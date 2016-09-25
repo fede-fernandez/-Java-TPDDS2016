@@ -5,30 +5,31 @@ import java.time.LocalDateTime;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;;
 
 public class BajaPuntoDeInteres {
+
 	private String nombre;
 	private double x;
 	private double y;
 	private int dia;
 	private int mes;
 	private int anio;
-	
+
 	public String getNombre() {
 		return nombre;
 	}
-	
+
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
+
 	public void setX(double x) {
 		this.x = x;
 	}
-	
+
 	public void setY(double y) {
 		this.y = y;
 	}
-	
-	public Posicion getCoordenadas(){
+
+	public Posicion getCoordenadas() {
 		return new Posicion(x, y);
 	}
 
@@ -36,7 +37,7 @@ public class BajaPuntoDeInteres {
 		return LocalDateTime.of(anio, mes, dia, 0, 0, 0);
 	}
 
-	public BajaPuntoDeInteres(){
+	public BajaPuntoDeInteres() {
 	}
 
 	public int getMes() {
@@ -62,8 +63,9 @@ public class BajaPuntoDeInteres {
 	public void setAnio(int anio) {
 		this.anio = anio;
 	}
-	
-	public boolean equals(PuntoDeInteres poi){
-		return this.getCoordenadas().distanciaA(poi.getCoordenadas()) < 0.0000002 && this.getNombre().equalsIgnoreCase(poi.getNombre());
+
+	public boolean equals(PuntoDeInteres poi) {
+		return this.getCoordenadas().distanciaA(poi.getCoordenadas()) < 0.0000002
+				&& this.getNombre().equalsIgnoreCase(poi.getNombre());
 	}
 }

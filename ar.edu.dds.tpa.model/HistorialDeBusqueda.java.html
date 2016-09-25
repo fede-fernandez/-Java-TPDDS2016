@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>HistorialDeBusqueda.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpa</a> &gt; <a href="index.source.html" class="el_package">ar.edu.dds.tpa.model</a> &gt; <span class="el_source">HistorialDeBusqueda.java</span></div><h1>HistorialDeBusqueda.java</h1><pre class="source lang-java linenums">package ar.edu.dds.tpa.model;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import ar.edu.dds.tpa.persistencia.Persistible;
+
+public class HistorialDeBusqueda implements Persistible {
+
+	List&lt;Busqueda&gt; busquedasRealizadas;
+
+<span class="fc" id="L14">	public HistorialDeBusqueda() {</span>
+<span class="fc" id="L15">		busquedasRealizadas = new ArrayList&lt;Busqueda&gt;();</span>
+<span class="fc" id="L16">	}</span>
+
+	public void agregar(Busqueda unaBusqueda) {
+<span class="fc" id="L19">		busquedasRealizadas.add(unaBusqueda);</span>
+<span class="fc" id="L20">	}</span>
+
+	public void almacenar(Busqueda unaBusqueda) {
+<span class="fc" id="L23">		busquedasRealizadas.add(unaBusqueda);</span>
+<span class="fc" id="L24">		persistidor.persistir(unaBusqueda);</span>
+<span class="fc" id="L25">	}</span>
+
+	public Busqueda traerBusquedaPor(int id) {
+<span class="fc" id="L28">		return persistidor.buscarPorID(Busqueda.class, id);</span>
+	}
+
+	public List&lt;Busqueda&gt; traerBusquedas() {
+<span class="fc" id="L32">		return persistidor.traerTodos(Busqueda.class);</span>
+	}
+
+	public List&lt;LocalDate&gt; fechasDeBusquedas() {
+<span class="fc" id="L36">		return busquedasRealizadas.stream().map(unaBusqueda -&gt; unaBusqueda.getFechaDeBusqueda()).distinct()</span>
+<span class="fc" id="L37">				.collect(Collectors.toList());</span>
+	}
+
+	public List&lt;String&gt; textosBuscados() {
+<span class="nc" id="L41">		return busquedasRealizadas.stream().map(unaBusqueda -&gt; unaBusqueda.getTextoBuscado())</span>
+<span class="nc" id="L42">				.collect(Collectors.toList());</span>
+	}
+
+	public int cantidadDeResultadosTotales() {
+<span class="fc" id="L46">		return busquedasRealizadas.stream().mapToInt(unaBusqueda -&gt; unaBusqueda.getCantidadDeResultados()).sum();</span>
+	}
+
+	public int cantidadDeBusquedasEnUnaFecha(LocalDate unaFecha) {
+<span class="fc" id="L50">		return (int) busquedasRealizadas.stream()</span>
+<span class="fc" id="L51">				.filter(unaBusqueda -&gt; unaBusqueda.getFechaDeBusqueda().equals(unaFecha)).count();</span>
+	}
+
+	public List&lt;Integer&gt; resultadosParcialesPorBusqueda(String textoBuscado) {
+<span class="nc" id="L55">		return busquedasRealizadas.parallelStream()</span>
+<span class="nc" id="L56">				.filter(unaBusqueda -&gt; unaBusqueda.getTextoBuscado().equals(textoBuscado))</span>
+<span class="nc" id="L57">				.map(unaBusquedaFiltrada -&gt; (Integer) unaBusquedaFiltrada.getCantidadDeResultados())</span>
+<span class="nc" id="L58">				.collect(Collectors.toList());</span>
+	}
+
+	public List&lt;Busqueda&gt; getBusquedasRealizadas() {
+<span class="nc" id="L62">		return busquedasRealizadas;</span>
+	}
+
+	public List&lt;String&gt; nombresDeUsuarios() {
+<span class="nc" id="L66">		return busquedasRealizadas.stream().map(unaBusqueda -&gt; unaBusqueda.getUsuario().getNombre()).distinct()</span>
+<span class="nc" id="L67">				.collect(Collectors.toList());</span>
+	}
+
+	public int cantidadDeResultadosTotalesDeUnUsuario(String unNombreDeUsuario) {
+<span class="nc" id="L71">		return busquedasRealizadas.stream()</span>
+<span class="nc" id="L72">				.filter(unaBusqueda -&gt; unaBusqueda.getUsuario().getNombre().equals(unNombreDeUsuario))</span>
+<span class="nc" id="L73">				.mapToInt(unaBusquedaFiltrada -&gt; unaBusquedaFiltrada.getCantidadDeResultados()).sum();</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

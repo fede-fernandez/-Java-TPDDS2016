@@ -16,7 +16,7 @@ public class HorarioDeAtencion {
 	private Integer id;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = &quot;HorariosDeAtencionPorDia&quot;, inverseJoinColumns = @JoinColumn(name = &quot;DiaYHorarioDeAtencion_id&quot;))
+	@JoinColumn(name = &quot;DiaYHorarioDeAtencion_id&quot;)
 	private Set&lt;DiaYHorarioDeAtencion&gt; horariosDeAtencionPorDia;
 
 <span class="fc" id="L22">	public HorarioDeAtencion() {</span>

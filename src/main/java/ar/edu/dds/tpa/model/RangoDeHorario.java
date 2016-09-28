@@ -9,6 +9,7 @@ public class RangoDeHorario {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name="id_rangoDeHorario")
 	private Integer id;
 
 	private LocalTime horarioInicio;

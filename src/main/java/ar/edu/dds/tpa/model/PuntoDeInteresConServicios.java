@@ -13,7 +13,7 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "ServicioDePuntoDeInteres", inverseJoinColumns = @JoinColumn(name = "servicio_id"))
+	@JoinColumn(name = "servicio_id")
 	private Set<Servicio> servicios;
 
 	public PuntoDeInteresConServicios() {

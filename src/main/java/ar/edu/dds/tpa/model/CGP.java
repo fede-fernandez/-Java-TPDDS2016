@@ -13,7 +13,7 @@ import ar.edu.dds.tpa.geolocalizacion.Poligono;
 public class CGP extends PuntoDeInteresConServicios {
 
 	@OneToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "ZonasDeCobertura", inverseJoinColumns = @JoinColumn(name = "zona_id"))
+	@JoinColumn(name = "zona_id")
 	private List<Poligono> zonasDeCobertura;
 
 	public CGP() {

@@ -16,7 +16,7 @@ public class HorarioDeAtencion {
 	private Integer id;
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinColumn(name = "DiaYHorarioDeAtencion_id")
+	@JoinColumn(name = "puntoInteres_id")
 	private Set<DiaYHorarioDeAtencion> horariosDeAtencionPorDia;
 
 	public HorarioDeAtencion() {

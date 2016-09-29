@@ -88,10 +88,14 @@ public class PersistenciaDePuntosDeInteresTest {
 	public void persistenciaDeVariosPuntosDeInteresContieneLaParadaDeColectivoYElPuestoDeDiarios() {
 		mapa.almacenar(paradaDel7);
 		mapa.almacenar(localDeDiarios);
+		mapa.almacenar(bancoSantander);
+		
 		Assert.assertTrue(mapa.traerPuntosDeInteres().stream()
 				.anyMatch(unPuntoDeInteres -> unPuntoDeInteres.contienePalabraClave("RETIRO")));
 		Assert.assertTrue(mapa.traerPuntosDeInteres().stream()
 				.anyMatch(unPuntoDeInteres -> unPuntoDeInteres.contienePalabraClave("DIARIN")));
+		Assert.assertTrue(mapa.traerPuntosDeInteres().stream()
+				.anyMatch(unPuntoDeInteres -> unPuntoDeInteres.contienePalabraClave("Santander")));
 	}
 
 	@Test

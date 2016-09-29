@@ -63,6 +63,15 @@
 			<version>${h2database.version}</version>
 		</dependency>
 		<!-- #################### DRIVER SQL #################### -->
+		
+		<!--############# driver MYSQL ######################################## -->
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.26</version>
+		</dependency>
+		<!--############# driver MYSQL ######################################## -->		
 
 	</dependencies>
 

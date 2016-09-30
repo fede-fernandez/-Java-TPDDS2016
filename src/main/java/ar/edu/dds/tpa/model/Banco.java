@@ -15,6 +15,7 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 public class Banco extends PuntoDeInteresConServicios {
 
 	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "horarioDeAtencion_id")
 	private HorarioDeAtencion horarioDeAtencionBancario;
 
 	public Banco() {

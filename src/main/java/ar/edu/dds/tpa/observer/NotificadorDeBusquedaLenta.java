@@ -9,7 +9,6 @@ import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.model.Busqueda;
 
 @Entity
-//@DiscriminatorValue(value="NBL")
 public class NotificadorDeBusquedaLenta extends BusquedaObserver {
 	
 	private double tiempoMaximoDeDemoraEnSegundos;

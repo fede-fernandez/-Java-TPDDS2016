@@ -12,7 +12,8 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 @Entity
 public class LocalComercial extends PuntoDeInteres {
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "rubro_id")
 	private Rubro rubro;
 
 	@OneToOne(cascade = CascadeType.ALL)

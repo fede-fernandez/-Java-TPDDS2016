@@ -26,8 +26,6 @@ public class PersistenciaDeBusquedasTest {
 	private List<PuntoDeInteres> resultadosDeBusqueda2;
 	private List<PuntoDeInteres> resultadosDeBusqueda3;
 
-	private List<LocalDate> fechasDeBusqueda;
-
 	private Usuario usuario;
 
 	@Before

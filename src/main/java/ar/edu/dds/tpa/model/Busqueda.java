@@ -21,7 +21,7 @@ public class Busqueda {
 	private String textoBuscado;
 
 	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-	@JoinTable(name = "PuntoDeInteresEncontrado")
+	@JoinTable(name = "PuntoDeInteresEncontrado", inverseJoinColumns = @JoinColumn(name = "puntoDeInteres_id"))
 	private Set<PuntoDeInteres> puntosDeInteresEncontrados;
 
 	private LocalDate fechaDeBusqueda;

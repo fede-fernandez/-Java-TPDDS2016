@@ -9,14 +9,17 @@ import javax.persistence.InheritanceType;
 import ar.edu.dds.tpa.model.Busqueda;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-//@DiscriminatorColumn(name="tipoObserver",discriminatorType=DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.JOINED)
 public abstract class BusquedaObserver {
-	
+
 	@Id
 	@GeneratedValue
 	private Integer id;
-	
+
+	public BusquedaObserver() {
+
+	}
+
 	public abstract void informar(Busqueda unaBusqueda);
 
 	public Integer getId() {

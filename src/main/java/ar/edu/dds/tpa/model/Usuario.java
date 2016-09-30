@@ -24,8 +24,8 @@ public class Usuario {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Comuna comuna;
 
-	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
-	@JoinColumn(name="id_usuario")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@JoinColumn(name = "usuario_id")
 	private List<BusquedaObserver> observadoresDeBusqueda;
 
 	public Usuario() {
@@ -54,8 +54,8 @@ public class Usuario {
 	public Comuna getComuna() {
 		return comuna;
 	}
-	
-	public List<BusquedaObserver> getObservadoresDeBusqueda(){
+
+	public List<BusquedaObserver> getObservadoresDeBusqueda() {
 		return observadoresDeBusqueda;
 	}
 

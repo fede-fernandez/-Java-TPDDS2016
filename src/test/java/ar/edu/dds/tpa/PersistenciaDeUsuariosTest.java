@@ -18,27 +18,23 @@ public class PersistenciaDeUsuariosTest {
 
 	private GestorDeUsuarios gestorDeUsuarios;
 	private GestorDeAdministradores gestorDeAdministradores;
-	private Usuario usuarioDePrueba1;
-	private Comuna flores = new Comuna(7, "Flores");
-	private Comuna caballito = new Comuna(9, "Caballito");
-	private Usuario usuarioDePrueba2;
-	private Usuario usuarioDePrueba3;
-	private NotificadorDeBusquedaLenta notificadorDeBusquedaLenta;
-	private Administrador administrador;
+	private Comuna flores;
+	private Comuna caballito;
+	private Comuna villaLugano;
 
 	@Before
 	public void inicializar() {
 		gestorDeUsuarios = new GestorDeUsuarios();
 		gestorDeAdministradores = new GestorDeAdministradores();
-		usuarioDePrueba1 = new Usuario("Carlos", new Posicion(2.0, 2.0), flores);
-		usuarioDePrueba2 = new Usuario("Matias", new Posicion(5.0, 5.0), caballito);
-		usuarioDePrueba3 = new Usuario("Luis", new Posicion(7.0, 7.0), caballito);
-		administrador = new Administrador("admin@admin.com");
-		notificadorDeBusquedaLenta = new NotificadorDeBusquedaLenta(10.0, new EnviadorDeMail(new MailServiceImpostor()), administrador);
+		flores = new Comuna(7, "Flores");
+		caballito = new Comuna(9, "Caballito");
+		villaLugano = new Comuna(14, "Villa Lugano");
 	}
 
 	@Test
 	public void persistenciaDeNombreDeUsuario() {
+		Usuario usuarioDePrueba1 = new Usuario("Terminal Subte Linea E Virreyes", new Posicion(2.42300, 2.04212),
+				flores);
 		gestorDeUsuarios.registrar(usuarioDePrueba1);
 		Assert.assertEquals(usuarioDePrueba1.getNombre(),
 				gestorDeUsuarios.traerUsuarioPor(usuarioDePrueba1.getId()).getNombre());
@@ -46,26 +42,37 @@ public class PersistenciaDeUsuariosTest {
 
 	@Test
 	public void persistenciaDeComunaDeUsuario() {
-		gestorDeUsuarios.registrar(usuarioDePrueba1);
+		Usuario usuarioDePrueba2 = new Usuario("Terminal Eva Peron y Varela", new Posicion(1.9353, 9.3493), flores);
+		gestorDeUsuarios.registrar(usuarioDePrueba2);
 		Assert.assertEquals(flores.getNombre(),
-				gestorDeUsuarios.traerUsuarioPor(usuarioDePrueba1.getId()).getComuna().getNombre());
+				gestorDeUsuarios.traerUsuarioPor(usuarioDePrueba2.getId()).getComuna().getNombre());
 	}
 
 	@Test
 	public void persistenciaDeUsuarios() {
-		gestorDeUsuarios.registrar(usuarioDePrueba1);
-		gestorDeUsuarios.registrar(usuarioDePrueba2);
-		Assert.assertTrue(gestorDeUsuarios.traerUsuarios().stream()
-				.anyMatch(unUsuario -> unUsuario.getNombre().equals("Matias")));
-	}
-	
-	@Test
-	public void persistenciaDeUsuarioConNotificador(){
-		gestorDeAdministradores.registrar(administrador);		
-		usuarioDePrueba3.agregarObservadorDeBusqueda(notificadorDeBusquedaLenta);
+		Usuario usuarioDePrueba3 = new Usuario("Terminal Acoyte y Rivadavia", new Posicion(15.15, 9.3848), caballito);
+		Usuario usuarioDePrueba4 = new Usuario("Terminal Central Olivera", new Posicion(8.3, 8.7), villaLugano);
 		gestorDeUsuarios.registrar(usuarioDePrueba3);
-		
-		Usuario usuario = gestorDeUsuarios.traerUsuarioPor(usuarioDePrueba3.getId());
-		Assert.assertEquals(usuario.getObservadoresDeBusqueda().size(),usuarioDePrueba3.getObservadoresDeBusqueda().size());
+		gestorDeUsuarios.registrar(usuarioDePrueba4);
+		Assert.assertTrue(gestorDeUsuarios.traerUsuarios().stream()
+				.anyMatch(unUsuario -> unUsuario.getNombre().equals("Terminal Acoyte y Rivadavia")));
+	}
+
+	@Test
+	public void persistenciaDeUsuarioConNotificador() {
+		Administrador administrador = new Administrador("admin@admin.com");
+		NotificadorDeBusquedaLenta notificadorDeBusquedaLenta = new NotificadorDeBusquedaLenta(10.0,
+				new EnviadorDeMail(new MailServiceImpostor()), administrador);
+		gestorDeAdministradores.registrar(administrador);
+
+		Usuario usuarioDePrueba5 = new Usuario("Terminal Parque Rivadavia", new Posicion(40.458742, 19.23887),
+				caballito);
+
+		usuarioDePrueba5.agregarObservadorDeBusqueda(notificadorDeBusquedaLenta);
+		gestorDeUsuarios.registrar(usuarioDePrueba5);
+
+		Usuario usuario = gestorDeUsuarios.traerUsuarioPor(usuarioDePrueba5.getId());
+		Assert.assertEquals(usuario.getObservadoresDeBusqueda().size(),
+				usuarioDePrueba5.getObservadoresDeBusqueda().size());
 	}
 }

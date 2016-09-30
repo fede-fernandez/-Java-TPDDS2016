@@ -14,12 +14,13 @@ public abstract class PuntoDeInteres {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column (name = "puntoDeInteres_id")
 	private Integer id;
 
 	private String nombre;
 
 	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "coordenadas")
+	@JoinColumn(name = "coordenadas_id")
 	private Posicion coordenadas;
 
 	@ElementCollection(fetch = FetchType.EAGER)

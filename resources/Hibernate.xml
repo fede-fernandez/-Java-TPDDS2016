@@ -37,6 +37,8 @@
 		<mapping class="ar.edu.dds.tpa.model.HorarioDeAtencion" />
 		<mapping class="ar.edu.dds.tpa.model.DiaYHorarioDeAtencion" />
 		<mapping class="ar.edu.dds.tpa.model.RangoDeHorario" />
+		<mapping class="ar.edu.dds.tpa.observer.BusquedaObserver"/>
+		<mapping class="ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta"/>
 		<!-- AGREGAR MAPEO ACA -->
 
 	</session-factory>

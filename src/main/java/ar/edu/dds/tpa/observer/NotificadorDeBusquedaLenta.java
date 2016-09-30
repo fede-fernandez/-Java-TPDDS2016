@@ -1,13 +1,28 @@
 package ar.edu.dds.tpa.observer;
 
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Transient;
+
 import ar.edu.dds.tpa.adapter.EnviadorDeMail;
 import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.model.Busqueda;
 
-public class NotificadorDeBusquedaLenta implements BusquedaObserver {
+@Entity
+//@DiscriminatorValue(value="NBL")
+public class NotificadorDeBusquedaLenta extends BusquedaObserver {
+	
 	private double tiempoMaximoDeDemoraEnSegundos;
+	
+	@OneToOne
 	private Administrador administradorAContactar;
+	
+	@Transient
 	private EnviadorDeMail enviadorDeMail;
+	
+	public NotificadorDeBusquedaLenta(){
+		
+	}
 
 	public NotificadorDeBusquedaLenta(double tiempoMaximoDeDemora, EnviadorDeMail enviadorDeMail, Administrador administradorAContactar) {
 		this.tiempoMaximoDeDemoraEnSegundos = tiempoMaximoDeDemora;

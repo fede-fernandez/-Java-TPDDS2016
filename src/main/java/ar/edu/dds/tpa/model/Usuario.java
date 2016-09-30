@@ -24,7 +24,8 @@ public class Usuario {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Comuna comuna;
 
-	@Transient
+	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@JoinColumn(name="id_usuario")
 	private List<BusquedaObserver> observadoresDeBusqueda;
 
 	public Usuario() {
@@ -52,6 +53,10 @@ public class Usuario {
 
 	public Comuna getComuna() {
 		return comuna;
+	}
+	
+	public List<BusquedaObserver> getObservadoresDeBusqueda(){
+		return observadoresDeBusqueda;
 	}
 
 	public void notificarBusqueda(Busqueda unaBusquedaRealizada) {

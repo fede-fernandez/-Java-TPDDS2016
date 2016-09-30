@@ -13,7 +13,7 @@ public class Poligono {
 	@GeneratedValue
 	private Integer id;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = &quot;LimitesDeZona&quot;, joinColumns = @JoinColumn(name = &quot;zona_id&quot;), inverseJoinColumns = @JoinColumn(name = &quot;coordenadas_id&quot;))
 	private List&lt;Posicion&gt; superficie;
 
@@ -26,8 +26,8 @@ public class Poligono {
 <span class="fc" id="L26">	}</span>
 
 	public void agregarCoordenada(Posicion unaCoordenada) {
-<span class="nc" id="L29">		superficie.add(unaCoordenada);</span>
-<span class="nc" id="L30">	}</span>
+<span class="fc" id="L29">		superficie.add(unaCoordenada);</span>
+<span class="fc" id="L30">	}</span>
 
 	public boolean incluyeA(Posicion unaCoordenada) {
 <span class="fc" id="L33">		int j = this.superficie.size() - 1;</span>

@@ -2,8 +2,8 @@
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.*;
 
@@ -12,9 +12,9 @@ import ar.edu.dds.tpa.geolocalizacion.Poligono;
 @Entity
 public class CGP extends PuntoDeInteresConServicios {
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinColumn(name = &quot;cgp_id&quot;)
-	private List&lt;Poligono&gt; zonasDeCobertura;
+	private Set&lt;Poligono&gt; zonasDeCobertura;
 
 	public CGP() {
 <span class="fc" id="L20">		super();</span>
@@ -22,17 +22,21 @@ public class CGP extends PuntoDeInteresConServicios {
 
 	public CGP(String nombre, Posicion coordenadas) {
 <span class="fc" id="L24">		super(nombre, coordenadas);</span>
-<span class="fc" id="L25">		zonasDeCobertura = new ArrayList&lt;Poligono&gt;();</span>
+<span class="fc" id="L25">		zonasDeCobertura = new HashSet&lt;Poligono&gt;();</span>
 <span class="fc" id="L26">	}</span>
 
 	public void agregarZonaDeCobertura(Poligono unaZona) {
 <span class="fc" id="L29">		zonasDeCobertura.add(unaZona);</span>
 <span class="fc" id="L30">	}</span>
 
+	public Set&lt;Poligono&gt; getZonasDeCobertura() {
+<span class="nc" id="L33">		return zonasDeCobertura;</span>
+	}
+
 	@Override
 	public boolean estaCercaDe(Posicion unaPosicion) {
-<span class="pc bpc" id="L34" title="1 of 2 branches missed.">		return super.estaCercaDe(unaPosicion)</span>
-<span class="fc bfc" id="L35" title="All 2 branches covered.">				|| zonasDeCobertura.stream().anyMatch(unaZona -&gt; unaZona.incluyeA(unaPosicion));</span>
+<span class="pc bpc" id="L38" title="1 of 2 branches missed.">		return super.estaCercaDe(unaPosicion)</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">				|| zonasDeCobertura.stream().anyMatch(unaZona -&gt; unaZona.incluyeA(unaPosicion));</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

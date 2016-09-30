@@ -9,22 +9,25 @@ import javax.persistence.InheritanceType;
 import ar.edu.dds.tpa.model.Busqueda;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
-//@DiscriminatorColumn(name=&quot;tipoObserver&quot;,discriminatorType=DiscriminatorType.STRING)
-<span class="fc" id="L14">public abstract class BusquedaObserver {</span>
-	
+@Inheritance(strategy = InheritanceType.JOINED)
+public abstract class BusquedaObserver {
+
 	@Id
 	@GeneratedValue
 	private Integer id;
-	
+
+<span class="fc" id="L19">	public BusquedaObserver() {</span>
+
+<span class="fc" id="L21">	}</span>
+
 	public abstract void informar(Busqueda unaBusqueda);
 
 	public Integer getId() {
-<span class="nc" id="L23">		return id;</span>
+<span class="nc" id="L26">		return id;</span>
 	}
 
 	public void setId(Integer id) {
-<span class="nc" id="L27">		this.id = id;</span>
-<span class="nc" id="L28">	}</span>
+<span class="nc" id="L30">		this.id = id;</span>
+<span class="nc" id="L31">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

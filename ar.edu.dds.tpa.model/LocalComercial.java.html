@@ -12,46 +12,47 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 @Entity
 public class LocalComercial extends PuntoDeInteres {
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = &quot;rubro_id&quot;)
 	private Rubro rubro;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private HorarioDeAtencion horarioDeAtencion;
 	
-<span class="fc" id="L21">	public LocalComercial() {</span>
+<span class="fc" id="L22">	public LocalComercial() {</span>
 		
-<span class="fc" id="L23">	}</span>
+<span class="fc" id="L24">	}</span>
 
 	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro) {
-<span class="fc" id="L26">		super(nombre, coordenadas);</span>
-<span class="fc" id="L27">		this.rubro = rubro;</span>
-<span class="fc" id="L28">		horarioDeAtencion = new HorarioDeAtencion();</span>
-<span class="fc bfc" id="L29" title="All 2 branches covered.">		if (rubro != null) {</span>
-<span class="fc" id="L30">			super.agregarPalabraClave(rubro.getNombre());</span>
+<span class="fc" id="L27">		super(nombre, coordenadas);</span>
+<span class="fc" id="L28">		this.rubro = rubro;</span>
+<span class="fc" id="L29">		horarioDeAtencion = new HorarioDeAtencion();</span>
+<span class="fc bfc" id="L30" title="All 2 branches covered.">		if (rubro != null) {</span>
+<span class="fc" id="L31">			super.agregarPalabraClave(rubro.getNombre());</span>
 		}
-<span class="fc" id="L32">	}</span>
+<span class="fc" id="L33">	}</span>
 
 	public Rubro getRubro() {
-<span class="fc" id="L35">		return rubro;</span>
+<span class="fc" id="L36">		return rubro;</span>
 	}
 
 	public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {
-<span class="nc" id="L39">		horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);</span>
-<span class="nc" id="L40">	}</span>
+<span class="nc" id="L40">		horarioDeAtencion.agregarHorarioDeAtencion(unDia, horarioDesde, horarioHasta);</span>
+<span class="nc" id="L41">	}</span>
 
 	public void agregarHorarioDeAtencionComunEnVariosDias(List&lt;DayOfWeek&gt; dias, LocalTime horarioDesde,
 			LocalTime horarioHasta) {
-<span class="fc" id="L44">		horarioDeAtencion.agregarHorarioDeAtencion(dias, horarioDesde, horarioHasta);</span>
-<span class="fc" id="L45">	}</span>
+<span class="fc" id="L45">		horarioDeAtencion.agregarHorarioDeAtencion(dias, horarioDesde, horarioHasta);</span>
+<span class="fc" id="L46">	}</span>
 
 	@Override
 	public boolean estaCercaDe(Posicion unaPosicion) {
-<span class="pc bpc" id="L49" title="1 of 2 branches missed.">		return getCoordenadas().distanciaA(unaPosicion) &lt;= rubro.getRadioDeCercania() * 0.1;</span>
+<span class="pc bpc" id="L50" title="1 of 2 branches missed.">		return getCoordenadas().distanciaA(unaPosicion) &lt;= rubro.getRadioDeCercania() * 0.1;</span>
 	}
 
 	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
-<span class="fc" id="L54">		return horarioDeAtencion.seAtiendeEn(unDiaYHorario);</span>
+<span class="fc" id="L55">		return horarioDeAtencion.seAtiendeEn(unDiaYHorario);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

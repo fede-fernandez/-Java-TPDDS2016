@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.edu.dds.tpa.geolocalizacion.Poligono;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.*;
 
@@ -30,14 +31,17 @@ public class PersistenciaDePuntosDeInteresTest {
 
 	@Test
 	public void elUsuarioEstaCercaDeLaParadaDeColectivosPersistida() {
-		ParadaDeColectivo paradaDel114 = new ParadaDeColectivo("Linea 114 Estacion Escalada", new Posicion(5.000005, 7.000007));
+		ParadaDeColectivo paradaDel114 = new ParadaDeColectivo("Linea 114 Estacion Escalada",
+				new Posicion(5.000005, 7.000007));
 		mapa.almacenar(paradaDel114);
-		Assert.assertTrue(mapa.traerPuntoDeInteresPor(paradaDel114.getId()).estaCercaDe(terminalFlores.getCoordenadas()));
+		Assert.assertTrue(
+				mapa.traerPuntoDeInteresPor(paradaDel114.getId()).estaCercaDe(terminalFlores.getCoordenadas()));
 	}
 
 	@Test
 	public void laParadaDeColectivosPersistidaTienePalabraClave() {
-		ParadaDeColectivo paradaDel101 = new ParadaDeColectivo("Linea 101 Estacion Retiro", new Posicion(100.22113, 14.30985));
+		ParadaDeColectivo paradaDel101 = new ParadaDeColectivo("Linea 101 Estacion Retiro",
+				new Posicion(100.22113, 14.30985));
 		mapa.almacenar(paradaDel101);
 		Assert.assertTrue(mapa.traerPuntoDeInteresPor(paradaDel101.getId()).contienePalabraClave("RETIRO"));
 	}
@@ -45,7 +49,8 @@ public class PersistenciaDePuntosDeInteresTest {
 	@Test
 	public void persistenciaDeLocalComercial() {
 		Rubro libreria = new Rubro("Libreria", 22.3);
-		LocalComercial localLibreria = new LocalComercial("Lapiceras Magicas", new Posicion(33.21231, 15.49494), libreria);
+		LocalComercial localLibreria = new LocalComercial("Lapiceras Magicas", new Posicion(33.21231, 15.49494),
+				libreria);
 		mapa.almacenar(localLibreria);
 		Assert.assertEquals(localLibreria, mapa.traerPuntoDeInteresPor(localLibreria.getId()));
 	}
@@ -53,10 +58,12 @@ public class PersistenciaDePuntosDeInteresTest {
 	@Test
 	public void persistenciaDeLocalComercialTieneRubro() {
 		Rubro articulosDeLimpieza = new Rubro("Articulos de limpieza", 3.1);
-		LocalComercial localDeArticulosDeLimpieza = new LocalComercial("LimpiaMall", new Posicion(7.77867, 232.23321), articulosDeLimpieza);
+		LocalComercial localDeArticulosDeLimpieza = new LocalComercial("LimpiaMall", new Posicion(7.77867, 232.23321),
+				articulosDeLimpieza);
 		mapa.almacenar(localDeArticulosDeLimpieza);
 		Assert.assertEquals(articulosDeLimpieza.getNombre(),
-				((LocalComercial) mapa.traerPuntoDeInteresPor(localDeArticulosDeLimpieza.getId())).getRubro().getNombre());
+				((LocalComercial) mapa.traerPuntoDeInteresPor(localDeArticulosDeLimpieza.getId())).getRubro()
+						.getNombre());
 	}
 
 	@Test
@@ -70,28 +77,30 @@ public class PersistenciaDePuntosDeInteresTest {
 	@Test
 	public void elUsuarioEstaCercaDelLocalComercialPersistido() {
 		Rubro carpinteria = new Rubro("Carpinteria", 211.50);
-		LocalComercial carpinteriaPajaroLoco = new LocalComercial("El Pajaro Loco", new Posicion(5.000004, 7.000002), carpinteria);
+		LocalComercial carpinteriaPajaroLoco = new LocalComercial("El Pajaro Loco", new Posicion(5.000004, 7.000002),
+				carpinteria);
 		mapa.almacenar(carpinteriaPajaroLoco);
-		Assert.assertTrue(
-				mapa.traerPuntoDeInteresPor(carpinteriaPajaroLoco.getId()).estaCercaDe(terminalFlores.getCoordenadas()));
+		Assert.assertTrue(mapa.traerPuntoDeInteresPor(carpinteriaPajaroLoco.getId())
+				.estaCercaDe(terminalFlores.getCoordenadas()));
 	}
 
 	@Test
 	public void persistenciaDeVariosPuntosDeInteresContieneLaParadaDeColectivoYElPuestoDeDiarios() {
-		ParadaDeColectivo paradaDel46 = new ParadaDeColectivo("Linea 46 Estacion Mozart", new Posicion(53.97583, 12.21985));
-		
+		ParadaDeColectivo paradaDel46 = new ParadaDeColectivo("Linea 46 Estacion Mozart",
+				new Posicion(53.97583, 12.21985));
+
 		Rubro kioscoDeDiarios = new Rubro("Kiosco de Diarios", 10.5);
 		LocalComercial localDeDiarios = new LocalComercial("Diarin", new Posicion(734.1523, 751.2312), kioscoDeDiarios);
-		
+
 		Banco bancoPatagonia = new Banco("Banco Patagonia Sucursal Villa Fiorito", new Posicion(73.002005, 148.42205));
 		Servicio extracciones = new Servicio("extracciones");
 		extracciones.agregarHorarioDeAtencion(DayOfWeek.WEDNESDAY, LocalTime.of(9, 50), LocalTime.of(23, 45));
 		bancoPatagonia.agregarServicio(extracciones);
-		
+
 		mapa.almacenar(paradaDel46);
 		mapa.almacenar(localDeDiarios);
 		mapa.almacenar(bancoPatagonia);
-		
+
 		Assert.assertTrue(mapa.traerPuntosDeInteres().stream()
 				.anyMatch(unPuntoDeInteres -> unPuntoDeInteres.contienePalabraClave("MOZART")));
 		Assert.assertTrue(mapa.traerPuntosDeInteres().stream()
@@ -107,7 +116,7 @@ public class PersistenciaDePuntosDeInteresTest {
 		Assert.assertTrue(mapa.traerPuntoDeInteresPor(bancoCiudad.getId())
 				.estaDisponibleEn(LocalDateTime.of(2016, 4, 18, 12, 30, 30)));
 	}
-	
+
 	@Test
 	public void bancoPersistidoTieneServicio() {
 		Banco bancoSantander = new Banco("Banco Santander Rio Sucursal La Plata", new Posicion(1.12, 1.00295));
@@ -122,8 +131,8 @@ public class PersistenciaDePuntosDeInteresTest {
 	public void cgpPersistidoTieneServicioDeMultas() {
 		CGP cgpParqueChacabuco = new CGP("CGP Numero 14 Parque Chacabuco", new Posicion(912.152023, 62.0008));
 		Servicio renovacionDNI = new Servicio("Renovacion de DNI");
-		renovacionDNI.agregarHorarioDeAtencion(Arrays.asList(DayOfWeek.THURSDAY, DayOfWeek.FRIDAY),
-				LocalTime.of(9, 15), LocalTime.of(14, 45));
+		renovacionDNI.agregarHorarioDeAtencion(Arrays.asList(DayOfWeek.THURSDAY, DayOfWeek.FRIDAY), LocalTime.of(9, 15),
+				LocalTime.of(14, 45));
 		cgpParqueChacabuco.agregarServicio(renovacionDNI);
 		mapa.almacenar(cgpParqueChacabuco);
 		Assert.assertTrue(mapa.traerPuntoDeInteresPor(cgpParqueChacabuco.getId()).contienePalabraClave("renovacion"));
@@ -139,5 +148,21 @@ public class PersistenciaDePuntosDeInteresTest {
 		mapa.almacenar(cgpMataderos);
 		Assert.assertTrue(((PuntoDeInteresConServicios) mapa.traerPuntoDeInteresPor(cgpMataderos.getId()))
 				.estaDisponibleEn(LocalDateTime.of(2016, 9, 28, 12, 30, 30), "multas"));
+	}
+
+	@Test
+	public void calculoDeCercaniaConZonasDeCoberturaDeCGPPersistido() {
+		CGP cgpVillaDelParque = new CGP("CGP Numero 4 Villa del Parque", new Posicion(883.11245, 67.28328));
+
+		Poligono zonasDeCobertura = new Poligono();
+		zonasDeCobertura.agregarCoordenada(new Posicion(1.23456, 6.78901));
+		zonasDeCobertura.agregarCoordenada(new Posicion(9.876, 5.432109));
+		zonasDeCobertura.agregarCoordenada(new Posicion(20.1234, 40.414243));
+		cgpVillaDelParque.agregarZonaDeCobertura(zonasDeCobertura);
+
+		mapa.almacenar(cgpVillaDelParque);
+
+		Assert.assertTrue(
+				mapa.traerPuntoDeInteresPor(cgpVillaDelParque.getId()).estaCercaDe(terminalFlores.getCoordenadas()));
 	}
 }

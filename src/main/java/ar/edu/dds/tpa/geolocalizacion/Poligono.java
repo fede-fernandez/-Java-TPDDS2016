@@ -13,7 +13,7 @@ public class Poligono {
 	@GeneratedValue
 	private Integer id;
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@JoinTable(name = "LimitesDeZona", joinColumns = @JoinColumn(name = "zona_id"), inverseJoinColumns = @JoinColumn(name = "coordenadas_id"))
 	private List<Posicion> superficie;
 

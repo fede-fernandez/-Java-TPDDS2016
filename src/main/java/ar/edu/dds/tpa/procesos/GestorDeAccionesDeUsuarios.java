@@ -20,7 +20,7 @@ public class GestorDeAccionesDeUsuarios extends Proceso {
 	public void ejecutar() {
 		usuarios.stream().filter(unUsuario -> criterio.filtrarUsuarios(unUsuario))
 				.forEach(unUsuarioFiltrado -> accion.realizarAccion(unUsuarioFiltrado));
-		
+
 		this.finalizar(this.cantidadDeUsuariosAfectados());
 	}
 

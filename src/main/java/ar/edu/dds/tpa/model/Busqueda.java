@@ -15,7 +15,7 @@ public class Busqueda {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.ALL)
 	private Usuario usuario;
 
 	private String textoBuscado;

@@ -1,4 +1,4 @@
-package ar.edu.dds.tpa;
+package ar.edu.dds.tpa.persistencia;
 
 import org.junit.Assert;
 import org.junit.Before;

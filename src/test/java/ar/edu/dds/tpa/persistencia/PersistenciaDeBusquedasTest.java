@@ -2,6 +2,8 @@ package ar.edu.dds.tpa.persistencia;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.*;
+
+import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,17 +13,20 @@ import java.time.Month;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersistenciaDeBusquedasTest {
+public class PersistenciaDeBusquedasTest implements Persistible {
 
-	private HistorialDeBusqueda historialDeBusqueda;
 	private Comuna congreso;
 	private Comuna belgrano;
 
+	private static boolean seInstancio = false;
+
 	@Before
 	public void inicializar() {
-		historialDeBusqueda = new HistorialDeBusqueda();
-		congreso = new Comuna(32, "Congreso");
-		belgrano = new Comuna(2, "Belgrano");
+		if (!seInstancio) {
+			congreso = new Comuna(32, "Congreso");
+			belgrano = new Comuna(2, "Belgrano");
+			seInstancio = true;
+		}
 	}
 
 	@Test
@@ -40,9 +45,9 @@ public class PersistenciaDeBusquedasTest {
 		Busqueda busquedaDePrueba1 = new Busqueda(terminalCongreso, "Pizzeria", resultadosDeBusqueda1,
 				LocalDate.of(2016, Month.FEBRUARY, 4), 5.0);
 
-		historialDeBusqueda.almacenar(busquedaDePrueba1);
+		repositorio.persistir(busquedaDePrueba1);
 		Assert.assertEquals(resultadosDeBusqueda1.size(),
-				historialDeBusqueda.traerBusquedaPor(busquedaDePrueba1.getId()).getCantidadDeResultados());
+				repositorio.buscarPorID(Busqueda.class, busquedaDePrueba1.getId()).getCantidadDeResultados());
 	}
 
 	@Test
@@ -65,9 +70,9 @@ public class PersistenciaDeBusquedasTest {
 		Busqueda busquedaDePrueba2 = new Busqueda(terminalParqueCongreso, "141", resultadosDeBusqueda2,
 				LocalDate.of(2016, Month.AUGUST, 5), 3.5);
 
-		historialDeBusqueda.almacenar(busquedaDePrueba2);
+		repositorio.persistir(busquedaDePrueba2);
 		Assert.assertEquals(busquedaDePrueba2.getTextoBuscado(),
-				historialDeBusqueda.traerBusquedaPor(busquedaDePrueba2.getId()).getTextoBuscado());
+				repositorio.buscarPorID(Busqueda.class, busquedaDePrueba2.getId()).getTextoBuscado());
 	}
 
 	@Test
@@ -82,9 +87,9 @@ public class PersistenciaDeBusquedasTest {
 		Busqueda busquedaDePrueba3 = new Busqueda(terminalBelgrano, "Banco", resultadosDeBusqueda3,
 				LocalDate.of(2016, Month.SEPTEMBER, 30), 10.0);
 
-		historialDeBusqueda.almacenar(busquedaDePrueba3);
+		repositorio.persistir(busquedaDePrueba3);
 		Assert.assertEquals(busquedaDePrueba3.getFechaDeBusqueda(),
-				historialDeBusqueda.traerBusquedaPor(busquedaDePrueba3.getId()).getFechaDeBusqueda());
+				repositorio.buscarPorID(Busqueda.class, busquedaDePrueba3.getId()).getFechaDeBusqueda());
 	}
 
 	@Test
@@ -129,16 +134,21 @@ public class PersistenciaDeBusquedasTest {
 		Busqueda busquedaDePrueba6 = new Busqueda(terminalJuramento, "BANCO LIBERTAD", resultadosDeBusqueda4,
 				LocalDate.of(2015, Month.MAY, 2), 230.4);
 
-		historialDeBusqueda.almacenar(busquedaDePrueba4);
-		historialDeBusqueda.almacenar(busquedaDePrueba5);
-		historialDeBusqueda.almacenar(busquedaDePrueba6);
+		repositorio.persistir(busquedaDePrueba4);
+		repositorio.persistir(busquedaDePrueba5);
+		repositorio.persistir(busquedaDePrueba6);
 
 		int cantidadDeResultadosLocales = busquedaDePrueba4.getCantidadDeResultados()
 				+ busquedaDePrueba5.getCantidadDeResultados() + busquedaDePrueba6.getCantidadDeResultados();
 
-		int cantidadDeResultadosPersistidos = historialDeBusqueda.traerBusquedas().stream()
+		int cantidadDeResultadosPersistidos = repositorio.traerTodos(Busqueda.class).stream()
 				.mapToInt(unaBusqueda -> unaBusqueda.getCantidadDeResultados()).sum();
 
 		Assert.assertEquals(cantidadDeResultadosLocales, cantidadDeResultadosPersistidos);
+	}
+
+	@AfterClass
+	public static void guardarYCerrarSesion() {
+		repositorio.cerrarSesion();
 	}
 }

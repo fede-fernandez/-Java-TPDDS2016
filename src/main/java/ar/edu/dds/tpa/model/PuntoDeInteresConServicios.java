@@ -9,7 +9,7 @@ import javax.persistence.*;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

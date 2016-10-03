@@ -9,12 +9,12 @@ import javax.persistence.*;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TIPO_DE_POI")
 public abstract class PuntoDeInteres {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column (name = "puntoDeInteres_id")
 	private Integer id;
 
 	private String nombre;

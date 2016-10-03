@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ar.edu.dds.tpa.persistencia.Persistible;
-
-public class HistorialDeBusqueda implements Persistible {
+public class HistorialDeBusqueda {
 
 	List<Busqueda> busquedasRealizadas;
 
@@ -17,19 +15,6 @@ public class HistorialDeBusqueda implements Persistible {
 
 	public void agregar(Busqueda unaBusqueda) {
 		busquedasRealizadas.add(unaBusqueda);
-	}
-
-	public void almacenar(Busqueda unaBusqueda) {
-		busquedasRealizadas.add(unaBusqueda);
-		persistidor.persistir(unaBusqueda);
-	}
-
-	public Busqueda traerBusquedaPor(int id) {
-		return persistidor.buscarPorID(Busqueda.class, id);
-	}
-
-	public List<Busqueda> traerBusquedas() {
-		return persistidor.traerTodos(Busqueda.class);
 	}
 
 	public List<LocalDate> fechasDeBusquedas() {

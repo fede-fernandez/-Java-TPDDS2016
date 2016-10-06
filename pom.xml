@@ -19,6 +19,8 @@
 		<surefire.version>2.12.4</surefire.version>
 		<hibernate.version>5.2.2.Final</hibernate.version>
 		<h2database.version>1.4.192</h2database.version>
+		<morphia.version>1.2.1</morphia.version>
+		<jedis.version>2.9.0</jedis.version>
 	</properties>
 
 	<dependencies>
@@ -63,6 +65,22 @@
 			<version>${h2database.version}</version>
 		</dependency>
 		<!-- #################### DRIVER SQL #################### -->
+
+		<!-- #################### MONGODB MORPHIA #################### -->
+		<dependency>
+			<groupId>org.mongodb.morphia</groupId>
+			<artifactId>morphia</artifactId>
+			<version>${morphia.version}</version>
+		</dependency>
+		<!-- #################### MONGODB MORPHIA #################### -->
+
+		<!-- #################### REDIS #################### -->
+		<dependency>
+			<groupId>redis.clients</groupId>
+			<artifactId>jedis</artifactId>
+			<version>${jedis.version}</version>
+		</dependency>
+		<!-- #################### REDIS #################### -->
 
 	</dependencies>
 

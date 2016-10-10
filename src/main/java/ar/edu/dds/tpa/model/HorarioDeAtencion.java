@@ -15,7 +15,7 @@ public class HorarioDeAtencion {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "horarioDeAtencion_id")
 	private Set<DiaYHorarioDeAtencion> horariosDeAtencionPorDia;
 

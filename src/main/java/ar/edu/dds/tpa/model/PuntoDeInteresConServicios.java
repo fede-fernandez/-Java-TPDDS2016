@@ -12,7 +12,7 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = "puntoDeInteres_id")
 	private Set<Servicio> servicios;
 

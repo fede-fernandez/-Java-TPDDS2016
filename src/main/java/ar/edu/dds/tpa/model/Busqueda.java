@@ -20,7 +20,7 @@ public class Busqueda {
 
 	private String textoBuscado;
 
-	@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "PuntoDeInteresEncontrado", inverseJoinColumns = @JoinColumn(name = "puntoDeInteres_id"))
 	private Set<PuntoDeInteres> puntosDeInteresEncontrados;
 

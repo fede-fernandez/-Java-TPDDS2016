@@ -23,7 +23,7 @@ public abstract class PuntoDeInteres {
 	@JoinColumn(name = "coordenadas_id")
 	private Posicion coordenadas;
 
-	@ElementCollection(fetch = FetchType.EAGER)
+	@ElementCollection(fetch = FetchType.LAZY)
 	@JoinTable(name = "PalabrasClave")
 	private List<String> palabrasClave;
 

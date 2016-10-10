@@ -24,7 +24,7 @@ public class Usuario {
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Comuna comuna;
 
-	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinColumn(name = &quot;usuario_id&quot;)
 	private List&lt;BusquedaObserver&gt; observadoresDeBusqueda;
 

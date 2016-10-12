@@ -81,6 +81,15 @@
 			<version>${jedis.version}</version>
 		</dependency>
 		<!-- #################### REDIS #################### -->
+		
+		
+		<!-- #################### Neo4j #################### -->
+		<dependency>
+			<groupId>org.neo4j</groupId>
+			<artifactId>neo4j</artifactId>
+			<version>3.0</version>
+		</dependency>
+		<!-- #################### Neo4j #################### -->
 
 	</dependencies>
 

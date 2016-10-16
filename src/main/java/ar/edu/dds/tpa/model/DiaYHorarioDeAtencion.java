@@ -17,6 +17,7 @@ public class DiaYHorarioDeAtencion {
 	private DayOfWeek dia;
 
 	@ElementCollection
+	@CollectionTable(name="RangosDeHorariosPorDia")
 	private Set<RangoDeHorario> rangosDeHorario;
 
 	public DiaYHorarioDeAtencion() {

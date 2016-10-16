@@ -4,12 +4,8 @@ import java.time.LocalTime;
 
 import javax.persistence.*;
 
-@Entity
+@Embeddable
 public class RangoDeHorario {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 
 	private LocalTime horarioInicio;
 

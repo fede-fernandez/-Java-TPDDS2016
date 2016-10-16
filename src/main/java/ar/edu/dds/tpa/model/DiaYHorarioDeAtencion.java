@@ -16,8 +16,7 @@ public class DiaYHorarioDeAtencion {
 
 	private DayOfWeek dia;
 
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name = "diaYhorarioDeAtencion_id")
+	@ElementCollection
 	private Set<RangoDeHorario> rangosDeHorario;
 
 	public DiaYHorarioDeAtencion() {

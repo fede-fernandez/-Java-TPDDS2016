@@ -2,13 +2,9 @@ package ar.edu.dds.tpa.geolocalizacion;
 
 import javax.persistence.*;
 
-@Entity
+@Embeddable
 @Table(name = "Coordenadas")
 public class Posicion {
-
-	@Id
-	@GeneratedValue
-	private Integer id;
 
 	private Double longitud;
 

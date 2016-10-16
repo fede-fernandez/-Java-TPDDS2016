@@ -17,8 +17,7 @@ public class Usuario {
 
 	private String nombre;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "coordenadas")
+	@Embedded
 	private Posicion coordenadas;
 
 	@ManyToOne(cascade = CascadeType.ALL)

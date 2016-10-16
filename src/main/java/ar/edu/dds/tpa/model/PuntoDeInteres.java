@@ -19,8 +19,7 @@ public abstract class PuntoDeInteres {
 
 	private String nombre;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "coordenadas_id")
+	@Embedded
 	private Posicion coordenadas;
 
 	@ElementCollection

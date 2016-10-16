@@ -2,44 +2,40 @@
 
 import javax.persistence.*;
 
-@Entity
+@Embeddable
 @Table(name = &quot;Coordenadas&quot;)
 public class Posicion {
-
-	@Id
-	@GeneratedValue
-	private Integer id;
 
 	private Double longitud;
 
 	private Double latitud;
 
-<span class="fc" id="L17">	public Posicion() {</span>
+<span class="fc" id="L13">	public Posicion() {</span>
 
-<span class="fc" id="L19">	}</span>
+<span class="fc" id="L15">	}</span>
 
-<span class="fc" id="L21">	public Posicion(Double longitud, Double latitud) {</span>
-<span class="fc" id="L22">		this.longitud = longitud;</span>
-<span class="fc" id="L23">		this.latitud = latitud;</span>
-<span class="fc" id="L24">	}</span>
+<span class="fc" id="L17">	public Posicion(Double longitud, Double latitud) {</span>
+<span class="fc" id="L18">		this.longitud = longitud;</span>
+<span class="fc" id="L19">		this.latitud = latitud;</span>
+<span class="fc" id="L20">	}</span>
 
 	public double getLongitud() {
-<span class="fc" id="L27">		return longitud;</span>
+<span class="fc" id="L23">		return longitud;</span>
 	}
 
 	public double getLatitud() {
-<span class="fc" id="L31">		return latitud;</span>
+<span class="fc" id="L27">		return latitud;</span>
 	}
 
 	public double distanciaA(Posicion otroPunto) {
-<span class="fc" id="L35">		double radioDeLaTierra = 6371;</span>
-<span class="fc" id="L36">		double latitudDelta = Math.toRadians(otroPunto.getLatitud() - latitud);</span>
-<span class="fc" id="L37">		double longitudDelta = Math.toRadians(otroPunto.getLongitud() - longitud);</span>
-<span class="fc" id="L38">		double a = Math.sin(latitudDelta / 2) * Math.sin(latitudDelta / 2)</span>
-<span class="fc" id="L39">				+ Math.cos(Math.toRadians(latitud)) * Math.cos(Math.toRadians(otroPunto.getLatitud()))</span>
-<span class="fc" id="L40">						* Math.sin(longitudDelta / 2) * Math.sin(longitudDelta / 2);</span>
-<span class="fc" id="L41">		double distanciaAngular = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));</span>
-<span class="fc" id="L42">		return radioDeLaTierra * distanciaAngular;</span>
+<span class="fc" id="L31">		double radioDeLaTierra = 6371;</span>
+<span class="fc" id="L32">		double latitudDelta = Math.toRadians(otroPunto.getLatitud() - latitud);</span>
+<span class="fc" id="L33">		double longitudDelta = Math.toRadians(otroPunto.getLongitud() - longitud);</span>
+<span class="fc" id="L34">		double a = Math.sin(latitudDelta / 2) * Math.sin(latitudDelta / 2)</span>
+<span class="fc" id="L35">				+ Math.cos(Math.toRadians(latitud)) * Math.cos(Math.toRadians(otroPunto.getLatitud()))</span>
+<span class="fc" id="L36">						* Math.sin(longitudDelta / 2) * Math.sin(longitudDelta / 2);</span>
+<span class="fc" id="L37">		double distanciaAngular = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));</span>
+<span class="fc" id="L38">		return radioDeLaTierra * distanciaAngular;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

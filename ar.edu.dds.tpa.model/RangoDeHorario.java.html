@@ -4,36 +4,32 @@ import java.time.LocalTime;
 
 import javax.persistence.*;
 
-@Entity
+@Embeddable
 public class RangoDeHorario {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
 
 	private LocalTime horarioInicio;
 
 	private LocalTime horarioFin;
 	
-<span class="fc" id="L18">	public RangoDeHorario() {</span>
+<span class="fc" id="L14">	public RangoDeHorario() {</span>
 		
-<span class="fc" id="L20">	}</span>
+<span class="fc" id="L16">	}</span>
 
-<span class="fc" id="L22">	public RangoDeHorario(LocalTime horarioInicio, LocalTime horarioFin) {</span>
-<span class="fc" id="L23">		this.horarioInicio = horarioInicio;</span>
-<span class="fc" id="L24">		this.horarioFin = horarioFin;</span>
-<span class="fc" id="L25">	}</span>
+<span class="fc" id="L18">	public RangoDeHorario(LocalTime horarioInicio, LocalTime horarioFin) {</span>
+<span class="fc" id="L19">		this.horarioInicio = horarioInicio;</span>
+<span class="fc" id="L20">		this.horarioFin = horarioFin;</span>
+<span class="fc" id="L21">	}</span>
 
 	public boolean estaDespuesDelHorarioInicio(LocalTime unHorario) {
-<span class="fc" id="L28">		return unHorario.isAfter(this.horarioInicio);</span>
+<span class="fc" id="L24">		return unHorario.isAfter(this.horarioInicio);</span>
 	}
 
 	public boolean estaAntesDelHorarioFin(LocalTime unHorario) {
-<span class="fc" id="L32">		return unHorario.isBefore(this.horarioFin);</span>
+<span class="fc" id="L28">		return unHorario.isBefore(this.horarioFin);</span>
 	}
 
 	public boolean estaDentroDelRangoDeHorario(LocalTime unHorario) {
-<span class="pc bpc" id="L36" title="1 of 4 branches missed.">		return estaDespuesDelHorarioInicio(unHorario) &amp;&amp; estaAntesDelHorarioFin(unHorario);</span>
+<span class="pc bpc" id="L32" title="1 of 4 branches missed.">		return estaDespuesDelHorarioInicio(unHorario) &amp;&amp; estaAntesDelHorarioFin(unHorario);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -1,67 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>BancoServiceImpostor.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpa</a> &gt; <a href="index.source.html" class="el_package">ar.edu.dds.tpa.service</a> &gt; <span class="el_source">BancoServiceImpostor.java</span></div><h1>BancoServiceImpostor.java</h1><pre class="source lang-java linenums">package ar.edu.dds.tpa.service;
 
-<span class="fc" id="L3">public class BancoServiceImpostor implements BancoService {</span>
-<span class="fc" id="L4">	private boolean seLlamoAlBancoService = false;</span>
+import java.io.File;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+
+import org.apache.commons.io.FileUtils;
+
+public class BancoServiceImpostor extends BancoService {
+<span class="fc" id="L10">	private boolean seLlamoAlBancoService = false;</span>
+	private Integer vecesQueSeLlamoAlServicio;
+	File bancosJSONMock;
+
+	public BancoServiceImpostor(boolean soportaCache) {
+<span class="fc" id="L15">		super(soportaCache);</span>
+<span class="fc" id="L16">		vecesQueSeLlamoAlServicio = 0;</span>
+<span class="fc" id="L17">		bancosJSONMock = new File(&quot;resources/BancosMockServicio.json&quot;);</span>
+<span class="fc" id="L18">	}</span>
 
 	@Override
 	public String getSucursalesBancosByNombreBanco(String nombreBanco) {
-<span class="fc" id="L8">		seLlamoAlBancoService = true;</span>
-<span class="fc bfc" id="L9" title="All 2 branches covered.">		if(nombreBanco.contains(&quot;Banco&quot;)) {</span>
-<span class="fc" id="L10">			return String.join(&quot;\n&quot;, </span>
-				&quot;[&quot;, 
-				&quot;{ \&quot;banco\&quot;: \&quot;Banco de la Plaza\&quot;,&quot;,
-				&quot;\&quot;x\&quot;: -35.9338322,&quot;,
-				&quot;\&quot;y\&quot;: 72.348353,&quot;,
-				&quot;\&quot;sucursal\&quot;: \&quot;Avellaneda\&quot;,&quot;,
-				&quot;\&quot;gerente\&quot;: \&quot;Javier Loeschbor\&quot;,&quot;,
-				&quot;\&quot;servicios\&quot;: [ \&quot;cobro cheques\&quot;, \&quot;depósitos\&quot;, \&quot;extracciones\&quot;, \&quot;transferencias\&quot;, \&quot;créditos\&quot;, \&quot;\&quot;, \&quot;\&quot;, \&quot;\&quot; ]&quot;,
-				&quot;},&quot;,
-				&quot;{ \&quot;banco\&quot;: \&quot;Banco de la Plaza\&quot;,&quot;,
-				&quot;\&quot;x\&quot;: -35.9345681,&quot;,
-				&quot;\&quot;y\&quot;: 72.344546,&quot;,
-				&quot;\&quot;sucursal\&quot;: \&quot;Caballito\&quot;,&quot;,
-				&quot;\&quot;gerente\&quot;: \&quot;Fabián Fantaguzzi\&quot;,&quot;,
-				&quot;\&quot;servicios\&quot;: [ \&quot;depósitos\&quot;, \&quot;extracciones\&quot;, \&quot;transferencias\&quot;, \&quot;seguros\&quot;, \&quot;\&quot;, \&quot;\&quot;, \&quot;\&quot;, \&quot;\&quot; ]&quot;,
-				&quot;}&quot;,
-				&quot;]&quot;);
-		}
-		else {
-<span class="fc" id="L29">			return &quot;[]&quot;;</span>
+<span class="fc" id="L22">		seLlamoAlBancoService = true;</span>
+<span class="fc" id="L23">		vecesQueSeLlamoAlServicio++;</span>
+<span class="fc bfc" id="L24" title="All 2 branches covered.">		if (nombreBanco.contains(&quot;Banco&quot;)) {</span>
+			try {
+<span class="fc" id="L26">				return FileUtils.readFileToString(bancosJSONMock, StandardCharsets.UTF_8);</span>
+<span class="nc" id="L27">			} catch (IOException e) {</span>
+<span class="nc" id="L28">				return &quot;[]&quot;;</span>
+			}
+		} else {
+<span class="fc" id="L31">			return &quot;[]&quot;;</span>
 		}
 	}
-	
+
 	@Override
 	public String getSucursalesBancosByServicio(String nombreServicio) {
-<span class="fc" id="L35">		seLlamoAlBancoService = true;</span>
-<span class="fc bfc" id="L36" title="All 2 branches covered.">		if(nombreServicio.contains(&quot;cobro&quot;)) {</span>
-<span class="fc" id="L37">			return String.join(&quot;\n&quot;, </span>
-				&quot;[&quot;, 
-				&quot;{ \&quot;banco\&quot;: \&quot;Banco de la Plaza\&quot;,&quot;,
-				&quot;\&quot;x\&quot;: -35.9338322,&quot;,
-				&quot;\&quot;y\&quot;: 72.348353,&quot;,
-				&quot;\&quot;sucursal\&quot;: \&quot;Avellaneda\&quot;,&quot;,
-				&quot;\&quot;gerente\&quot;: \&quot;Javier Loeschbor\&quot;,&quot;,
-				&quot;\&quot;servicios\&quot;: [ \&quot;cobro cheques\&quot;, \&quot;depósitos\&quot;, \&quot;extracciones\&quot;, \&quot;transferencias\&quot;, \&quot;créditos\&quot;, \&quot;\&quot;, \&quot;\&quot;, \&quot;\&quot; ]&quot;,
-				&quot;}]&quot;);
-		}
-<span class="fc bfc" id="L47" title="All 2 branches covered.">		else if(nombreServicio.contains(&quot;seguros&quot;)) {</span>
-<span class="fc" id="L48">			return String.join(&quot;\n&quot;, </span>
-					&quot;[&quot;, 
-					&quot;{ \&quot;banco\&quot;: \&quot;Banco de la Plaza\&quot;,&quot;,
-					&quot;\&quot;x\&quot;: -35.9345681,&quot;,
-					&quot;\&quot;y\&quot;: 72.344546,&quot;,
-					&quot;\&quot;sucursal\&quot;: \&quot;Caballito\&quot;,&quot;,
-					&quot;\&quot;gerente\&quot;: \&quot;Fabián Fantaguzzi\&quot;,&quot;,
-					&quot;\&quot;servicios\&quot;: [ \&quot;depósitos\&quot;, \&quot;extracciones\&quot;, \&quot;transferencias\&quot;, \&quot;seguros\&quot;, \&quot;\&quot;, \&quot;\&quot;, \&quot;\&quot;, \&quot;\&quot; ]&quot;,
-					&quot;}]&quot;);
-		}
-		else {
-<span class="fc" id="L59">			return &quot;[]&quot;;</span>
+<span class="fc" id="L37">		seLlamoAlBancoService = true;</span>
+<span class="fc" id="L38">		vecesQueSeLlamoAlServicio++;</span>
+<span class="fc bfc" id="L39" title="All 4 branches covered.">		if (nombreServicio.contains(&quot;cobro&quot;) || nombreServicio.contains(&quot;seguro&quot;)) {</span>
+			try {
+<span class="fc" id="L41">				return FileUtils.readFileToString(bancosJSONMock, StandardCharsets.UTF_8);</span>
+<span class="nc" id="L42">			} catch (IOException e) {</span>
+<span class="nc" id="L43">				return &quot;[]&quot;;</span>
+			}
+		} else {
+<span class="fc" id="L46">			return &quot;[]&quot;;</span>
 		}
 	}
-	
+
+	@Override
+	public String getSucursalesBancos() {
+<span class="nc" id="L52">		vecesQueSeLlamoAlServicio++;</span>
+		try {
+<span class="nc" id="L54">			return FileUtils.readFileToString(bancosJSONMock, StandardCharsets.UTF_8);</span>
+<span class="nc" id="L55">		} catch (IOException e) {</span>
+<span class="nc" id="L56">			return &quot;[]&quot;;</span>
+		}
+	}
+
 	public boolean seLlamoAlBancoService() {
-<span class="fc" id="L64">		return seLlamoAlBancoService;</span>
+<span class="fc" id="L61">		return seLlamoAlBancoService;</span>
+	}
+
+	public Integer getVecesQueSeLlamoAlServicio() {
+<span class="nc" id="L65">		return vecesQueSeLlamoAlServicio;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

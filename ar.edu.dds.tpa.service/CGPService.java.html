@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>CGPService.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpa</a> &gt; <a href="index.source.html" class="el_package">ar.edu.dds.tpa.service</a> &gt; <span class="el_source">CGPService.java</span></div><h1>CGPService.java</h1><pre class="source lang-java linenums">package ar.edu.dds.tpa.service;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import ar.edu.dds.tpa.adapter.CGPServiceConverter;
+import ar.edu.dds.tpa.adapter.model.CentroDTO;
+import ar.edu.dds.tpa.model.PuntoDeInteres;
+
+public abstract class CGPService extends BuscadorExterno {
+
+	public CGPService(boolean soportaCache) {
+<span class="fc" id="L14">		super(soportaCache);</span>
+<span class="fc" id="L15">	}</span>
+
+	@Override
+	public List&lt;PuntoDeInteres&gt; buscarPor(List&lt;String&gt; palabrasDeBusqueda) {
+<span class="fc" id="L19">		List&lt;PuntoDeInteres&gt; puntosDeInteresEncontrados = new ArrayList&lt;PuntoDeInteres&gt;();</span>
+
+<span class="fc" id="L21">		palabrasDeBusqueda.forEach(unaPalabraDeBusqueda -&gt; puntosDeInteresEncontrados</span>
+<span class="fc" id="L22">				.addAll(CGPServiceConverter.obtenerCGPsDeListaCentrosDTO(getCGPsByCalleOBarrio(unaPalabraDeBusqueda))));</span>
+
+<span class="fc" id="L24">		return puntosDeInteresEncontrados.stream().distinct().collect(Collectors.toList());</span>
+	}
+
+	public abstract List&lt;CentroDTO&gt; getCGPsByCalleOBarrio(String calleOBarrio);
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

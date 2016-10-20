@@ -25,11 +25,14 @@ tpa,ar.edu.dds.tpa.model,PuntoDeInteres,13,104,5,9,2,24,6,16,2,13
 tpa,ar.edu.dds.tpa.reporte,ReporteDeCantidadDeBusquedasPorFecha,31,0,0,0,7,0,3,0,3,0
 tpa,ar.edu.dds.tpa.reporte,ReporteDeResultadosPorBusqueda,11,0,0,0,4,0,2,0,2,0
 tpa,ar.edu.dds.tpa.reporte,ReporteDeCantidadDeResultadosTotalesPorUsuario,30,0,0,0,7,0,3,0,3,0
-tpa,ar.edu.dds.tpa.service,BancoServiceImpostor,0,174,0,6,0,13,0,7,0,4
-tpa,ar.edu.dds.tpa.service,ServicioExternoWeb,15,0,0,0,5,0,3,0,3,0
+tpa,ar.edu.dds.tpa.service,BancoServiceImpostor,32,82,0,6,9,16,2,7,2,4
+tpa,ar.edu.dds.tpa.service,CGPService,0,28,0,0,0,6,0,3,0,3
+tpa,ar.edu.dds.tpa.service,ServicioExternoWeb,12,0,0,0,4,0,2,0,2,0
 tpa,ar.edu.dds.tpa.service,BajaDePuntoDeInteresServiceReal,17,0,0,0,4,0,2,0,2,0
-tpa,ar.edu.dds.tpa.service,CGPServiceImpostor,0,61,0,2,0,12,0,4,0,3
+tpa,ar.edu.dds.tpa.service,CGPServiceImpostor,0,62,0,2,0,13,0,4,0,3
 tpa,ar.edu.dds.tpa.service,MailServiceImpostor,0,13,0,0,0,5,0,3,0,3
+tpa,ar.edu.dds.tpa.service,BuscadorExterno,15,9,0,0,5,4,3,2,3,2
+tpa,ar.edu.dds.tpa.service,BancoService,39,50,2,2,9,11,5,5,3,5
 tpa,ar.edu.dds.tpa.geolocalizacion,Posicion,0,83,0,0,0,16,0,5,0,5
 tpa,ar.edu.dds.tpa.geolocalizacion,Poligono,0,123,2,16,0,23,2,11,0,4
 tpa,ar.edu.dds.tpa.persistencia,ExportarTablasSQL,63,0,0,0,23,0,7,0,7,0
@@ -46,13 +49,13 @@ tpa,ar.edu.dds.tpa.adapter.model,CentroDTO,12,32,0,0,4,11,4,3,4,3
 tpa,ar.edu.dds.tpa.adapter.model,RangoServicioDTO,0,33,0,0,0,12,0,6,0,6
 tpa,ar.edu.dds.tpa.adapter.model,BancoDelServicio,6,15,0,0,2,5,2,5,2,5
 tpa,ar.edu.dds.tpa.adapter.model,ServicioDTO,0,15,0,0,0,6,0,3,0,3
+tpa,ar.edu.dds.tpa.adapter,BancoServiceConverter.new TypeToken() {...},0,3,0,0,0,1,0,1,0,1
+tpa,ar.edu.dds.tpa.adapter,BancoServiceConverter,3,70,0,2,1,13,1,5,1,4
+tpa,ar.edu.dds.tpa.adapter,EnviadorDeMail,0,13,0,0,0,5,0,2,0,2
+tpa,ar.edu.dds.tpa.adapter,CGPServiceConverter,3,83,0,0,1,19,1,7,1,7
 tpa,ar.edu.dds.tpa.criterio,FiltradoPorComuna,1,14,1,1,0,4,1,2,0,2
 tpa,ar.edu.dds.tpa.criterio,FiltradoSelectivo,21,0,2,0,4,0,4,0,3,0
 tpa,ar.edu.dds.tpa.criterio,SinFiltrado,5,0,0,0,2,0,2,0,2,0
-tpa,ar.edu.dds.tpa.adapter,BuscadorDeBancos,0,120,0,2,0,22,0,9,0,8
-tpa,ar.edu.dds.tpa.adapter,BuscadorDeCGPs,0,121,0,0,0,26,0,10,0,10
-tpa,ar.edu.dds.tpa.adapter,BuscadorDeBancos.new TypeToken() {...},0,6,0,0,0,1,0,1,0,1
-tpa,ar.edu.dds.tpa.adapter,EnviadorDeMail,0,13,0,0,0,5,0,2,0,2
 tpa,ar.edu.dds.tpa.accion,ActivadorDeNotificadorDeBusquedaLenta,11,0,0,0,5,0,2,0,2,0
 tpa,ar.edu.dds.tpa.accion,DesactivadorDeNotificadorDeBusquedaLenta,0,11,0,0,0,5,0,2,0,2
 tpa,ar.edu.dds.tpa.observer,NotificadorDeBusquedaLenta,0,50,0,2,0,13,0,4,0,3

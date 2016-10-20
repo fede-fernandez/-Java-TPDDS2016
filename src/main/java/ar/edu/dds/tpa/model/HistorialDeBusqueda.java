@@ -5,12 +5,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
+
+@Entity
 public class HistorialDeBusqueda {
 
+	@Id
+	private ObjectId id;
+	
 	List<Busqueda> busquedasRealizadas;
 
 	public HistorialDeBusqueda() {
 		busquedasRealizadas = new ArrayList<Busqueda>();
+	}
+	
+	public HistorialDeBusqueda(List<Busqueda> busquedasRealizadas){
+		this.busquedasRealizadas = busquedasRealizadas;
 	}
 
 	public void agregar(Busqueda unaBusqueda) {
@@ -56,5 +68,17 @@ public class HistorialDeBusqueda {
 		return busquedasRealizadas.stream()
 				.filter(unaBusqueda -> unaBusqueda.getUsuario().getNombre().equals(unNombreDeUsuario))
 				.mapToInt(unaBusquedaFiltrada -> unaBusquedaFiltrada.getCantidadDeResultados()).sum();
+	}
+
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
+	}
+
+	public void setBusquedasRealizadas(List<Busqueda> busquedasRealizadas) {
+		this.busquedasRealizadas = busquedasRealizadas;
 	}
 }

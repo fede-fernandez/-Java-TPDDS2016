@@ -5,23 +5,21 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.bson.types.ObjectId;
+import org.mongodb.morphia.annotations.Entity;
+import org.mongodb.morphia.annotations.Id;
 
-import javax.persistence.*;
 
 @Entity
 public class Busqueda {
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private ObjectId id;
 
-	@ManyToOne(cascade = CascadeType.ALL)
 	private Usuario usuario;
 
 	private String textoBuscado;
 
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "PuntoDeInteresEncontrado", inverseJoinColumns = @JoinColumn(name = "puntoDeInteres_id"))
 	private Set<PuntoDeInteres> puntosDeInteresEncontrados;
 
 	private LocalDate fechaDeBusqueda;
@@ -41,9 +39,6 @@ public class Busqueda {
 		this.tiempoDeRespuesta = tiempoDeRespuesta;
 	}
 
-	public Integer getId() {
-		return id;
-	}
 
 	public Usuario getUsuario() {
 		return usuario;
@@ -67,5 +62,13 @@ public class Busqueda {
 
 	public Double getTiempoDeRespuesta() {
 		return tiempoDeRespuesta;
+	}
+
+	public ObjectId getId() {
+		return id;
+	}
+
+	public void setId(ObjectId id) {
+		this.id = id;
 	}
 }

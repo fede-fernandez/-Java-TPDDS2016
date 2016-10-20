@@ -5,30 +5,29 @@ import java.util.List;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.persistencia.RepositorioCache;
 
-public abstract class BuscadorExterno {
-	public boolean soportaCache;
+<span class="fc" id="L8">public abstract class BuscadorExterno {</span>
+<span class="fc" id="L9">	public boolean soportaCache = false;</span>
 	public RepositorioCache repositorioCache;
 	
 	public abstract List&lt;PuntoDeInteres&gt; buscarPor(List&lt;String&gt; palabrasDeBusqueda);
 	
-<span class="fc" id="L14">	public BuscadorExterno(boolean soportaCache) {</span>
-<span class="fc" id="L15">		this.soportaCache = soportaCache;</span>
-<span class="fc" id="L16">	}</span>
-	
-	public boolean soportaCache() {
-<span class="fc" id="L19">		return soportaCache;</span>
+	@SuppressWarnings(&quot;unchecked&quot;)
+	public &lt;T&gt; T conSoporteCache(RepositorioCache repositorioCache) {
+<span class="fc" id="L16">		soportaCache = true;</span>
+<span class="fc" id="L17">		this.repositorioCache = repositorioCache;</span>
+<span class="fc" id="L18">		return (T) this;</span>
 	}
 	
-	public void setRepositorioCache(RepositorioCache repositorioCache) {
-<span class="nc" id="L23">		this.repositorioCache = repositorioCache;</span>
-<span class="nc" id="L24">	}</span>
+	public boolean soportaCache() {
+<span class="fc" id="L22">		return soportaCache;</span>
+	}
 	
 	public void establecerCacheDe(String unServicio, String datosAGuardar) {
-<span class="nc" id="L27">		repositorioCache.insertar(unServicio, datosAGuardar);</span>
-<span class="nc" id="L28">	}</span>
+<span class="fc" id="L26">		repositorioCache.insertar(unServicio, datosAGuardar);</span>
+<span class="fc" id="L27">	}</span>
 	
 	public String consultarCacheDe(String unServicio) {
-<span class="nc" id="L31">		return repositorioCache.consultarValorPor(unServicio);</span>
+<span class="fc" id="L30">		return repositorioCache.consultarValorPor(unServicio);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

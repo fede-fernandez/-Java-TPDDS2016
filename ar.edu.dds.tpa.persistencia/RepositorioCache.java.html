@@ -7,9 +7,9 @@ public class RepositorioCache {
 	private static Jedis conexionRedis;
 	private Propiedades propiedadesDeRedis;
 
-<span class="nc" id="L10">	public RepositorioCache() {</span>
-<span class="nc" id="L11">		propiedadesDeRedis = new Propiedades(&quot;resources/Redis.properties&quot;);</span>
-<span class="nc" id="L12">	}</span>
+<span class="fc" id="L10">	public RepositorioCache() {</span>
+<span class="fc" id="L11">		propiedadesDeRedis = new Propiedades(&quot;resources/Redis.properties&quot;);</span>
+<span class="fc" id="L12">	}</span>
 
 	public Jedis obtenerSesion() {
 <span class="nc bnc" id="L15" title="All 2 branches missed.">		if (conexionRedis == null) {</span>

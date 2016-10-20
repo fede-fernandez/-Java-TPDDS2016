@@ -8,61 +8,60 @@ import org.apache.commons.io.FileUtils;
 
 public class BancoServiceImpostor extends BancoService {
 <span class="fc" id="L10">	private boolean seLlamoAlBancoService = false;</span>
-	private Integer vecesQueSeLlamoAlServicio;
+	private int vecesQueSeLlamoAlServicio;
 	File bancosJSONMock;
 
-	public BancoServiceImpostor(boolean soportaCache) {
-<span class="fc" id="L15">		super(soportaCache);</span>
-<span class="fc" id="L16">		vecesQueSeLlamoAlServicio = 0;</span>
-<span class="fc" id="L17">		bancosJSONMock = new File(&quot;resources/BancosMockServicio.json&quot;);</span>
-<span class="fc" id="L18">	}</span>
+<span class="fc" id="L14">	public BancoServiceImpostor() {</span>
+<span class="fc" id="L15">		vecesQueSeLlamoAlServicio = 0;</span>
+<span class="fc" id="L16">		bancosJSONMock = new File(&quot;resources/BancosMockServicio.json&quot;);</span>
+<span class="fc" id="L17">	}</span>
 
 	@Override
 	public String getSucursalesBancosByNombreBanco(String nombreBanco) {
-<span class="fc" id="L22">		seLlamoAlBancoService = true;</span>
-<span class="fc" id="L23">		vecesQueSeLlamoAlServicio++;</span>
-<span class="fc bfc" id="L24" title="All 2 branches covered.">		if (nombreBanco.contains(&quot;Banco&quot;)) {</span>
+<span class="fc" id="L21">		seLlamoAlBancoService = true;</span>
+<span class="fc" id="L22">		vecesQueSeLlamoAlServicio++;</span>
+<span class="fc bfc" id="L23" title="All 2 branches covered.">		if (nombreBanco.contains(&quot;Banco&quot;)) {</span>
 			try {
-<span class="fc" id="L26">				return FileUtils.readFileToString(bancosJSONMock, StandardCharsets.UTF_8);</span>
-<span class="nc" id="L27">			} catch (IOException e) {</span>
-<span class="nc" id="L28">				return &quot;[]&quot;;</span>
+<span class="fc" id="L25">				return FileUtils.readFileToString(bancosJSONMock, StandardCharsets.UTF_8);</span>
+<span class="nc" id="L26">			} catch (IOException e) {</span>
+<span class="nc" id="L27">				return &quot;[]&quot;;</span>
 			}
 		} else {
-<span class="fc" id="L31">			return &quot;[]&quot;;</span>
+<span class="fc" id="L30">			return &quot;[]&quot;;</span>
 		}
 	}
 
 	@Override
 	public String getSucursalesBancosByServicio(String nombreServicio) {
-<span class="fc" id="L37">		seLlamoAlBancoService = true;</span>
-<span class="fc" id="L38">		vecesQueSeLlamoAlServicio++;</span>
-<span class="fc bfc" id="L39" title="All 4 branches covered.">		if (nombreServicio.contains(&quot;cobro&quot;) || nombreServicio.contains(&quot;seguro&quot;)) {</span>
+<span class="fc" id="L36">		seLlamoAlBancoService = true;</span>
+<span class="fc" id="L37">		vecesQueSeLlamoAlServicio++;</span>
+<span class="fc bfc" id="L38" title="All 4 branches covered.">		if (nombreServicio.contains(&quot;cobro&quot;) || nombreServicio.contains(&quot;seguro&quot;)) {</span>
 			try {
-<span class="fc" id="L41">				return FileUtils.readFileToString(bancosJSONMock, StandardCharsets.UTF_8);</span>
-<span class="nc" id="L42">			} catch (IOException e) {</span>
-<span class="nc" id="L43">				return &quot;[]&quot;;</span>
+<span class="fc" id="L40">				return FileUtils.readFileToString(bancosJSONMock, StandardCharsets.UTF_8);</span>
+<span class="nc" id="L41">			} catch (IOException e) {</span>
+<span class="nc" id="L42">				return &quot;[]&quot;;</span>
 			}
 		} else {
-<span class="fc" id="L46">			return &quot;[]&quot;;</span>
+<span class="fc" id="L45">			return &quot;[]&quot;;</span>
 		}
 	}
 
 	@Override
 	public String getSucursalesBancos() {
-<span class="nc" id="L52">		vecesQueSeLlamoAlServicio++;</span>
+<span class="fc" id="L51">		vecesQueSeLlamoAlServicio++;</span>
 		try {
-<span class="nc" id="L54">			return FileUtils.readFileToString(bancosJSONMock, StandardCharsets.UTF_8);</span>
-<span class="nc" id="L55">		} catch (IOException e) {</span>
-<span class="nc" id="L56">			return &quot;[]&quot;;</span>
+<span class="fc" id="L53">			return FileUtils.readFileToString(bancosJSONMock, StandardCharsets.UTF_8);</span>
+<span class="nc" id="L54">		} catch (IOException e) {</span>
+<span class="nc" id="L55">			return &quot;[]&quot;;</span>
 		}
 	}
 
 	public boolean seLlamoAlBancoService() {
-<span class="fc" id="L61">		return seLlamoAlBancoService;</span>
+<span class="fc" id="L60">		return seLlamoAlBancoService;</span>
 	}
 
-	public Integer getVecesQueSeLlamoAlServicio() {
-<span class="nc" id="L65">		return vecesQueSeLlamoAlServicio;</span>
+	public int getVecesQueSeLlamoAlServicio() {
+<span class="fc" id="L64">		return vecesQueSeLlamoAlServicio;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

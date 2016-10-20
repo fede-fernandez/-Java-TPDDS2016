@@ -8,20 +8,16 @@ import ar.edu.dds.tpa.adapter.CGPServiceConverter;
 import ar.edu.dds.tpa.adapter.model.CentroDTO;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 
-public abstract class CGPService extends BuscadorExterno {
-
-	public CGPService(boolean soportaCache) {
-<span class="fc" id="L14">		super(soportaCache);</span>
-<span class="fc" id="L15">	}</span>
+<span class="fc" id="L11">public abstract class CGPService extends BuscadorExterno {</span>
 
 	@Override
 	public List&lt;PuntoDeInteres&gt; buscarPor(List&lt;String&gt; palabrasDeBusqueda) {
-<span class="fc" id="L19">		List&lt;PuntoDeInteres&gt; puntosDeInteresEncontrados = new ArrayList&lt;PuntoDeInteres&gt;();</span>
+<span class="fc" id="L15">		List&lt;PuntoDeInteres&gt; puntosDeInteresEncontrados = new ArrayList&lt;PuntoDeInteres&gt;();</span>
 
-<span class="fc" id="L21">		palabrasDeBusqueda.forEach(unaPalabraDeBusqueda -&gt; puntosDeInteresEncontrados</span>
-<span class="fc" id="L22">				.addAll(CGPServiceConverter.obtenerCGPsDeListaCentrosDTO(getCGPsByCalleOBarrio(unaPalabraDeBusqueda))));</span>
+<span class="fc" id="L17">		palabrasDeBusqueda.forEach(unaPalabraDeBusqueda -&gt; puntosDeInteresEncontrados</span>
+<span class="fc" id="L18">				.addAll(CGPServiceConverter.obtenerCGPsDeListaCentrosDTO(getCGPsByCalleOBarrio(unaPalabraDeBusqueda))));</span>
 
-<span class="fc" id="L24">		return puntosDeInteresEncontrados.stream().distinct().collect(Collectors.toList());</span>
+<span class="fc" id="L20">		return puntosDeInteresEncontrados.stream().distinct().collect(Collectors.toList());</span>
 	}
 
 	public abstract List&lt;CentroDTO&gt; getCGPsByCalleOBarrio(String calleOBarrio);

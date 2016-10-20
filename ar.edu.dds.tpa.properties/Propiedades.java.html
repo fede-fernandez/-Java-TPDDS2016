@@ -8,14 +8,14 @@ public class Propiedades {
 
 	private Properties propiedades;
 
-<span class="nc" id="L11">	public Propiedades(String rutaDelArchivoProperties) {</span>
-<span class="nc" id="L12">		propiedades = new Properties();</span>
+<span class="fc" id="L11">	public Propiedades(String rutaDelArchivoProperties) {</span>
+<span class="fc" id="L12">		propiedades = new Properties();</span>
 		try {
-<span class="nc" id="L14">			propiedades.load(new FileInputStream(rutaDelArchivoProperties));</span>
+<span class="fc" id="L14">			propiedades.load(new FileInputStream(rutaDelArchivoProperties));</span>
 <span class="nc" id="L15">		} catch (IOException excepcion) {</span>
 <span class="nc" id="L16">			throw new RuntimeException(excepcion);</span>
-<span class="nc" id="L17">		}</span>
-<span class="nc" id="L18">	}</span>
+<span class="fc" id="L17">		}</span>
+<span class="fc" id="L18">	}</span>
 
 	public String obtenerValorDe(String unaPropiedad) {
 <span class="nc" id="L21">		return propiedades.getProperty(unaPropiedad);</span>

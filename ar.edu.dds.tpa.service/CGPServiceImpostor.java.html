@@ -7,29 +7,25 @@ import ar.edu.dds.tpa.adapter.model.CentroDTO;
 import ar.edu.dds.tpa.adapter.model.RangoServicioDTO;
 import ar.edu.dds.tpa.adapter.model.ServicioDTO;
 
-public class CGPServiceImpostor extends CGPService {
+<span class="fc" id="L10">public class CGPServiceImpostor extends CGPService {</span>
 <span class="fc" id="L11">	private boolean seLlamoAlCGPService = false;</span>
 	
-	public CGPServiceImpostor(boolean soportaCache) {
-<span class="fc" id="L14">		super(soportaCache);</span>
-<span class="fc" id="L15">	}</span>
-
 	@Override
 	public List&lt;CentroDTO&gt; getCGPsByCalleOBarrio(String calleOBarrio) {
-<span class="fc" id="L19">		seLlamoAlCGPService = true;</span>
-<span class="fc" id="L20">		List&lt;CentroDTO&gt; cgpsEncontrados = new ArrayList&lt;CentroDTO&gt;();</span>
-<span class="fc bfc" id="L21" title="All 2 branches covered.">		if(calleOBarrio.contains(&quot;Flores&quot;)) {</span>
-<span class="fc" id="L22">			List&lt;ServicioDTO&gt; serviciosDTO = new ArrayList&lt;ServicioDTO&gt;();</span>
-<span class="fc" id="L23">			List&lt;RangoServicioDTO&gt; rangoServicioDTO = new ArrayList&lt;RangoServicioDTO&gt;();</span>
-<span class="fc" id="L24">			rangoServicioDTO.add(new RangoServicioDTO(1, 12, 20, 18, 15));</span>
-<span class="fc" id="L25">			serviciosDTO.add(new ServicioDTO(&quot;rentas&quot;, rangoServicioDTO));</span>
-<span class="fc" id="L26">			cgpsEncontrados.add(new CentroDTO(7, &quot;Flores, Parque Chacabuco&quot;, &quot;Juan Arriaga&quot;, &quot;Av. Rivadavia 7202&quot;, &quot;4637-2355&quot;, serviciosDTO));</span>
+<span class="fc" id="L15">		seLlamoAlCGPService = true;</span>
+<span class="fc" id="L16">		List&lt;CentroDTO&gt; cgpsEncontrados = new ArrayList&lt;CentroDTO&gt;();</span>
+<span class="fc bfc" id="L17" title="All 2 branches covered.">		if(calleOBarrio.contains(&quot;Flores&quot;)) {</span>
+<span class="fc" id="L18">			List&lt;ServicioDTO&gt; serviciosDTO = new ArrayList&lt;ServicioDTO&gt;();</span>
+<span class="fc" id="L19">			List&lt;RangoServicioDTO&gt; rangoServicioDTO = new ArrayList&lt;RangoServicioDTO&gt;();</span>
+<span class="fc" id="L20">			rangoServicioDTO.add(new RangoServicioDTO(1, 12, 20, 18, 15));</span>
+<span class="fc" id="L21">			serviciosDTO.add(new ServicioDTO(&quot;rentas&quot;, rangoServicioDTO));</span>
+<span class="fc" id="L22">			cgpsEncontrados.add(new CentroDTO(7, &quot;Flores, Parque Chacabuco&quot;, &quot;Juan Arriaga&quot;, &quot;Av. Rivadavia 7202&quot;, &quot;4637-2355&quot;, serviciosDTO));</span>
 		}
-<span class="fc" id="L28">		return cgpsEncontrados;</span>
+<span class="fc" id="L24">		return cgpsEncontrados;</span>
 	}
 	
 	public boolean seLlamoAlCGPService() {
-<span class="fc" id="L32">		return seLlamoAlCGPService;</span>
+<span class="fc" id="L28">		return seLlamoAlCGPService;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

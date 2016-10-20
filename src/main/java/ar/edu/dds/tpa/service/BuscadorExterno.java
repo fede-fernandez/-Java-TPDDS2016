@@ -6,21 +6,20 @@ import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.persistencia.RepositorioCache;
 
 public abstract class BuscadorExterno {
-	public boolean soportaCache;
+	public boolean soportaCache = false;
 	public RepositorioCache repositorioCache;
 	
 	public abstract List<PuntoDeInteres> buscarPor(List<String> palabrasDeBusqueda);
 	
-	public BuscadorExterno(boolean soportaCache) {
-		this.soportaCache = soportaCache;
+	@SuppressWarnings("unchecked")
+	public <T> T conSoporteCache(RepositorioCache repositorioCache) {
+		soportaCache = true;
+		this.repositorioCache = repositorioCache;
+		return (T) this;
 	}
 	
 	public boolean soportaCache() {
 		return soportaCache;
-	}
-	
-	public void setRepositorioCache(RepositorioCache repositorioCache) {
-		this.repositorioCache = repositorioCache;
 	}
 	
 	public void establecerCacheDe(String unServicio, String datosAGuardar) {

@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import ar.edu.dds.tpa.adapter.BancoServiceConverter;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
+import ar.edu.dds.tpa.persistencia.RepositorioCache;
 
 public abstract class BancoService extends BuscadorExterno {
 	public abstract String getSucursalesBancosByNombreBanco(String nombreBanco);
@@ -14,11 +15,11 @@ public abstract class BancoService extends BuscadorExterno {
 
 	public abstract String getSucursalesBancos();
 
-	public BancoService(boolean soportaCache) {
-		super(soportaCache);
-		if (soportaCache) {
-			establecerCacheDe("BancoService", getSucursalesBancos());
-		}
+	@Override
+	public <T> T conSoporteCache(RepositorioCache repositorioCache) {
+		T instancia = super.conSoporteCache(repositorioCache);
+		establecerCacheDe("BancoService", getSucursalesBancos());
+		return instancia;
 	}
 
 	@Override

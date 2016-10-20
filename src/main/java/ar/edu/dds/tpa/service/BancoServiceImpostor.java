@@ -8,11 +8,10 @@ import org.apache.commons.io.FileUtils;
 
 public class BancoServiceImpostor extends BancoService {
 	private boolean seLlamoAlBancoService = false;
-	private Integer vecesQueSeLlamoAlServicio;
+	private int vecesQueSeLlamoAlServicio;
 	File bancosJSONMock;
 
-	public BancoServiceImpostor(boolean soportaCache) {
-		super(soportaCache);
+	public BancoServiceImpostor() {
 		vecesQueSeLlamoAlServicio = 0;
 		bancosJSONMock = new File("resources/BancosMockServicio.json");
 	}
@@ -61,7 +60,7 @@ public class BancoServiceImpostor extends BancoService {
 		return seLlamoAlBancoService;
 	}
 
-	public Integer getVecesQueSeLlamoAlServicio() {
+	public int getVecesQueSeLlamoAlServicio() {
 		return vecesQueSeLlamoAlServicio;
 	}
 }

@@ -10,10 +10,6 @@ import ar.edu.dds.tpa.model.PuntoDeInteres;
 
 public abstract class CGPService extends BuscadorExterno {
 
-	public CGPService(boolean soportaCache) {
-		super(soportaCache);
-	}
-
 	@Override
 	public List<PuntoDeInteres> buscarPor(List<String> palabrasDeBusqueda) {
 		List<PuntoDeInteres> puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>();

@@ -22,9 +22,9 @@ public class BusquedaDePOIsConServiciosExternosTest {
 
 	@Before
 	public void inicializar() {
-		bancoServiceImpostor = new BancoServiceImpostor(false);
+		bancoServiceImpostor = new BancoServiceImpostor();
 
-		cgpServiceImpostor = new CGPServiceImpostor(false);
+		cgpServiceImpostor = new CGPServiceImpostor();
 
 		mapa = new Mapa();
 

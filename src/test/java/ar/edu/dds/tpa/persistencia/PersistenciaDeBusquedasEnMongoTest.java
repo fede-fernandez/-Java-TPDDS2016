@@ -65,6 +65,8 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		
 		Assert.assertEquals(historial.cantidadDeBusquedasEnUnaFecha(LocalDate.now()), historialTest.cantidadDeBusquedasEnUnaFecha(LocalDate.now()));
 		
+		datastore.delete(busqueda1);
+		
 	}
 	
 	

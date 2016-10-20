@@ -13,7 +13,8 @@ import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.service.BancoServiceImpostor;
 
 public class PersistenciaDeServiciosEnRedisTest {
-	private BancoServiceImpostor bancoServiceMock;
+	private BancoServiceImpostor bancoServiceConCacheMock;
+	private BancoServiceImpostor bancoServiceSinCacheMock;
 	private Buscador buscador;
 	private Fedis cache;
 	private List<PuntoDeInteres> resultadosDeLaBusqueda;
@@ -21,9 +22,11 @@ public class PersistenciaDeServiciosEnRedisTest {
 	@Before
 	public void inicializar() {
 		cache = new Fedis();
-		bancoServiceMock = new BancoServiceImpostor().conSoporteCache(cache);
+		bancoServiceConCacheMock = new BancoServiceImpostor().conSoporteCache(cache);
+		bancoServiceSinCacheMock = new BancoServiceImpostor();
 		buscador = new Buscador(new Mapa());
-		buscador.agregarBuscadorExterno(bancoServiceMock);
+		buscador.agregarBuscadorExterno(bancoServiceConCacheMock);
+		buscador.agregarBuscadorExterno(bancoServiceSinCacheMock);
 		resultadosDeLaBusqueda = new ArrayList<PuntoDeInteres>();
 	}
 
@@ -33,7 +36,8 @@ public class PersistenciaDeServiciosEnRedisTest {
 		buscador.buscar("Banco", null);
 		buscador.buscar("Banco", null);
 		buscador.buscar("Banco", null);
-		Assert.assertEquals(1, bancoServiceMock.getVecesQueSeLlamoAlServicio());
+		Assert.assertEquals(1, bancoServiceConCacheMock.getVecesQueSeLlamoAlServicio());
+		Assert.assertNotEquals(1, bancoServiceSinCacheMock.getVecesQueSeLlamoAlServicio());
 	}
 
 	@Test

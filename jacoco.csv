@@ -6,7 +6,7 @@ tpa,ar.edu.dds.tpa.model,ServicioPuntosDeInteresBajados.new TypeToken() {...},0,
 tpa,ar.edu.dds.tpa.model,Mapa,4,53,0,0,2,14,1,7,1,7
 tpa,ar.edu.dds.tpa.model,PuntoDeInteresConServicios,0,58,0,0,0,12,0,8,0,8
 tpa,ar.edu.dds.tpa.model,LocalComercial,8,52,1,3,2,13,2,7,1,6
-tpa,ar.edu.dds.tpa.model,Busqueda,10,45,0,0,4,15,3,7,3,7
+tpa,ar.edu.dds.tpa.model,Busqueda,7,48,0,0,3,16,2,8,2,8
 tpa,ar.edu.dds.tpa.model,ServicioPuntosDeInteresBajados_Impostor,3,21,0,0,1,7,1,4,1,4
 tpa,ar.edu.dds.tpa.model,Buscador,6,140,0,6,2,31,2,13,2,10
 tpa,ar.edu.dds.tpa.model,HorarioDeAtencion,0,89,0,2,0,16,0,11,0,10

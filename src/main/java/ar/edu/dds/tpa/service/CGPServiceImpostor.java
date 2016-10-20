@@ -7,9 +7,13 @@ import ar.edu.dds.tpa.adapter.model.CentroDTO;
 import ar.edu.dds.tpa.adapter.model.RangoServicioDTO;
 import ar.edu.dds.tpa.adapter.model.ServicioDTO;
 
-public class CGPServiceImpostor implements CGPService {
+public class CGPServiceImpostor extends CGPService {
 	private boolean seLlamoAlCGPService = false;
 	
+	public CGPServiceImpostor(boolean soportaCache) {
+		super(soportaCache);
+	}
+
 	@Override
 	public List<CentroDTO> getCGPsByCalleOBarrio(String calleOBarrio) {
 		seLlamoAlCGPService = true;

@@ -8,7 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import ar.edu.dds.tpa.adapter.BuscadorExterno;
+import ar.edu.dds.tpa.service.BuscadorExterno;
 
 public class Buscador {
 
@@ -70,7 +70,7 @@ public class Buscador {
 		List<PuntoDeInteres> puntosDeInteresEncontradosExternamente = new ArrayList<PuntoDeInteres>();
 
 		buscadoresExternos.stream().forEach(unBuscador -> puntosDeInteresEncontradosExternamente
-				.addAll(unBuscador.buscarPuntosDeInteresDelServicio(palabrasDeBusqueda)));
+				.addAll(unBuscador.buscarPor(palabrasDeBusqueda)));
 
 		return puntosDeInteresEncontradosExternamente;
 	}

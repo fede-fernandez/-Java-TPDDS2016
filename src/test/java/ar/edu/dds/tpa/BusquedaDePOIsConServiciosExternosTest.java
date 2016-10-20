@@ -7,8 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.dds.tpa.adapter.BuscadorDeBancos;
-import ar.edu.dds.tpa.adapter.BuscadorDeCGPs;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
@@ -16,8 +14,6 @@ import ar.edu.dds.tpa.service.BancoServiceImpostor;
 import ar.edu.dds.tpa.service.CGPServiceImpostor;
 
 public class BusquedaDePOIsConServiciosExternosTest {
-	private BuscadorDeBancos buscadorDeBancos;
-	private BuscadorDeCGPs buscadorDeCGPs;
 	private BancoServiceImpostor bancoServiceImpostor;
 	private CGPServiceImpostor cgpServiceImpostor;
 	private Buscador buscador;
@@ -26,17 +22,15 @@ public class BusquedaDePOIsConServiciosExternosTest {
 
 	@Before
 	public void inicializar() {
-		bancoServiceImpostor = new BancoServiceImpostor();
-		buscadorDeBancos = new BuscadorDeBancos(bancoServiceImpostor);
+		bancoServiceImpostor = new BancoServiceImpostor(false);
 
-		cgpServiceImpostor = new CGPServiceImpostor();
-		buscadorDeCGPs = new BuscadorDeCGPs(cgpServiceImpostor);
+		cgpServiceImpostor = new CGPServiceImpostor(false);
 
 		mapa = new Mapa();
 
 		buscador = new Buscador(mapa);
-		buscador.agregarBuscadorExterno(buscadorDeBancos);
-		buscador.agregarBuscadorExterno(buscadorDeCGPs);
+		buscador.agregarBuscadorExterno(bancoServiceImpostor);
+		buscador.agregarBuscadorExterno(cgpServiceImpostor);
 
 		resultadosDeLaBusqueda = new ArrayList<PuntoDeInteres>();
 	}

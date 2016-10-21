@@ -36,131 +36,142 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	
 	private LocalDate cuatroDeFebreroDe2016;
 	private LocalDate diezDeEneroDe2016;
+	private LocalDate cincoDeSeptiembreDe2014;
 
 	private Busqueda busqueda2;
 	private Busqueda busqueda3;
 	private Busqueda busqueda4;
+	private Busqueda busqueda5;
 
 	private LocalComercial localComercial;
 	private ParadaDeColectivo paradaDeColectivo;
 	private Banco banco;
-	private List<PuntoDeInteres> pisEncontrados1;
-	private List<PuntoDeInteres> pisEncontrados2;
-	private List<PuntoDeInteres> pisEncontrados3;
+	private List<PuntoDeInteres> poisEncontrados1;
+	private List<PuntoDeInteres> poisEncontrados2;
+	private List<PuntoDeInteres> poisEncontrados3;
+	private List<PuntoDeInteres> poisEncontrados4;
 
 	private List<LocalDate> fechasDeBusqueda;
+	
+	private RepositorioDeBusquedas repositorio;
 
 	
 	@Before
 	public void inicializar(){
 		morphiaDatastore = MorphiaDatastoreTest.obtenerInstancia();
 		db = morphiaDatastore.getDatastore();
+		repositorio = new RepositorioDeBusquedas(db);
 		
 		comuna12 = new Comuna(1, "Comuna");
 		puntoDeInteres = new ParadaDeColectivo("Linea 180",new Posicion(10.0,10.0));
 		jorge86 = new Usuario("Terminal", new Posicion(5.0, 5.0), comuna12);
 		busqueda1 = new Busqueda(jorge86, "180", Arrays.asList(puntoDeInteres), LocalDate.now(), 5.0);
-		historial = new HistorialDeBusqueda();
-		historial.agregar(busqueda1);
-		
 		
 		cuatroDeFebreroDe2016 = LocalDate.of(2016, Month.FEBRUARY, 4);
 		diezDeEneroDe2016 = LocalDate.of(2016, Month.JANUARY, 10);
+		cincoDeSeptiembreDe2014 = LocalDate.of(2014, Month.SEPTEMBER, 5);
+		
 		
 		fechasDeBusqueda = Arrays.asList(cuatroDeFebreroDe2016, diezDeEneroDe2016);
 
 		localComercial = new LocalComercial();
 		paradaDeColectivo = new ParadaDeColectivo();
 		banco = new Banco();
-		pisEncontrados1 = new ArrayList<PuntoDeInteres>();
-		pisEncontrados2 = new ArrayList<PuntoDeInteres>();
-		pisEncontrados3 = new ArrayList<PuntoDeInteres>();
-		pisEncontrados1.add(banco);
-		pisEncontrados1.add(paradaDeColectivo);
-		pisEncontrados2.add(localComercial);
-		pisEncontrados2.add(banco);
-		pisEncontrados3.add(paradaDeColectivo);
-		pisEncontrados3.add(banco);
-		pisEncontrados3.add(localComercial);
+		poisEncontrados1 = new ArrayList<PuntoDeInteres>();
+		poisEncontrados2 = new ArrayList<PuntoDeInteres>();
+		poisEncontrados3 = new ArrayList<PuntoDeInteres>();
+		poisEncontrados1.add(banco);
+		poisEncontrados1.add(paradaDeColectivo);
+		poisEncontrados2.add(localComercial);
+		poisEncontrados2.add(banco);
+		poisEncontrados3.add(paradaDeColectivo);
+		poisEncontrados3.add(banco);
+		poisEncontrados3.add(localComercial);
+		poisEncontrados4 = Arrays.asList(banco,paradaDeColectivo);
 
-		busqueda2 = new Busqueda(jorge86, "Florida", pisEncontrados1, cuatroDeFebreroDe2016, 5.0);
-		busqueda3 = new Busqueda(jorge86, "Ahorro", pisEncontrados2, cuatroDeFebreroDe2016, 5.0);
-		busqueda4 = new Busqueda(jorge86, "Subte", pisEncontrados3, diezDeEneroDe2016, 5.0);
+		busqueda2 = new Busqueda(jorge86, "Florida", poisEncontrados1, cuatroDeFebreroDe2016, 5.0);
+		busqueda3 = new Busqueda(jorge86, "Ahorro", poisEncontrados2, cuatroDeFebreroDe2016, 5.0);
+		busqueda4 = new Busqueda(jorge86, "Subte", poisEncontrados3, diezDeEneroDe2016, 5.0);
+		busqueda5 = new Busqueda(jorge86, "Florida",poisEncontrados4,cincoDeSeptiembreDe2014,10.0);
 	
 		
-	}
-	
-	
-	@Test
-	public void persistenciaPOIsEncontrados3() {
-		db.save(busqueda4);
-		Busqueda busquedaTest = db.find(Busqueda.class).asList().get(0);
-
-		Assert.assertEquals(busqueda4.getPuntosDeInteresEncontrados().size(), busquedaTest.getPuntosDeInteresEncontrados().size());
-		
-		db.delete(busqueda4);
-	}
-	
-	
-	@Test
-	public void testBasico(){
-		
-		db.save(busqueda1);
-		
-		Busqueda busquedaTest = db.find(Busqueda.class).asList().get(0);
-		
-		Assert.assertEquals(busqueda1.getTextoBuscado(), busquedaTest.getTextoBuscado());
-		Assert.assertEquals(busqueda1.getCantidadDeResultados(), busquedaTest.getCantidadDeResultados());
-		Assert.assertEquals(busqueda1.getFechaDeBusqueda(), busquedaTest.getFechaDeBusqueda());
-		Assert.assertEquals(busqueda1.getUsuario().getNombre(), busquedaTest.getUsuario().getNombre());
-				
-		db.delete(busqueda1);
 	}
 	
 	@Test
-	public void testHistorial(){
-		db.save(busqueda1);
-		List<Busqueda> busquedasPersistidas = db.find(Busqueda.class).asList();
-		HistorialDeBusqueda historialTest = new HistorialDeBusqueda(busquedasPersistidas);
+	public void buscarPOIsEntreDosFechas(){
 		
-		Assert.assertEquals(historial.cantidadDeBusquedasEnUnaFecha(LocalDate.now()),
-				historialTest.cantidadDeBusquedasEnUnaFecha(LocalDate.now()));
-		db.delete(busqueda1);
+		repositorio.guardar(busqueda2);
+		repositorio.guardar(busqueda3);
+		repositorio.guardar(busqueda4);
 		
+		HistorialDeBusqueda historial = repositorio.encontrarLasBusquedasEntreDosFechas(diezDeEneroDe2016, cuatroDeFebreroDe2016);
+		
+		Assert.assertEquals(3, historial.cantidadDeBusquedasRealizadas());
+		
+		repositorio.eliminarBusqueda(busqueda2);
+		repositorio.eliminarBusqueda(busqueda3);
+		repositorio.eliminarBusqueda(busqueda4);
 	}
-	
 	
 	@Test
-	public void filtradoDeFechasDeBusquedasDistintas() {
-
-		db.save(busqueda2);
-		db.save(busqueda3);
-		db.save(busqueda4);
+	public void buscarPOIsPorTextoBuscado(){
+		repositorio.guardar(busqueda1);
+		repositorio.guardar(busqueda2);
+		repositorio.guardar(busqueda3);
+		repositorio.guardar(busqueda4);
+		repositorio.guardar(busqueda5);
 		
-		List<Busqueda> busquedasPersistidas = db.find(Busqueda.class).asList();
-		HistorialDeBusqueda historialTest = new HistorialDeBusqueda(busquedasPersistidas);
-		Assert.assertTrue(historialTest.fechasDeBusquedas().containsAll(fechasDeBusqueda));
+		HistorialDeBusqueda historial = repositorio.encontrarTodasLasBusquedasPorTextoBuscado("Florida");
 		
-		db.delete(busqueda2);
-		db.delete(busqueda3);
-		db.delete(busqueda4);
+		Assert.assertEquals(2, historial.cantidadDeBusquedasRealizadas());
+		
+		repositorio.eliminarBusqueda(busqueda1);
+		repositorio.eliminarBusqueda(busqueda2);
+		repositorio.eliminarBusqueda(busqueda3);
+		repositorio.eliminarBusqueda(busqueda4);
+		repositorio.eliminarBusqueda(busqueda5);
 	}
 	
+	@Test
+	public void traerTodasLasBusquedas() {
+		repositorio.guardar(busqueda4);
+		HistorialDeBusqueda historial = repositorio.traerTodasLasBusquedas();
+		
+		Assert.assertEquals(historial.cantidadDeBusquedasRealizadas(), 1);		
+		
+		repositorio.eliminarBusqueda(busqueda4);	
+	}
+	
+	@Test
+	public void buscarPOIsPorTextoYEntreDosFechasSimultaneamente(){
+		repositorio.guardar(busqueda1);
+		repositorio.guardar(busqueda2);
+		repositorio.guardar(busqueda3);
+		repositorio.guardar(busqueda4);
+		repositorio.guardar(busqueda5);
+		
+		HistorialDeBusqueda historial = repositorio.encontrarLasBusquedasEntreDosFechasYPorTextoBuscado("Florida", diezDeEneroDe2016, cuatroDeFebreroDe2016);
+		
+		Assert.assertEquals(1, historial.cantidadDeBusquedasRealizadas());
+		
+		repositorio.eliminarBusqueda(busqueda1);
+		repositorio.eliminarBusqueda(busqueda2);
+		repositorio.eliminarBusqueda(busqueda3);
+		repositorio.eliminarBusqueda(busqueda4);
+		repositorio.eliminarBusqueda(busqueda5);
+	}
 	
 	@Test
 	public void enCuatroDeFebreroSeRealizaronDosBusquedas() {
+		repositorio.guardar(busqueda2);
+		repositorio.guardar(busqueda3);
+	
+		HistorialDeBusqueda historial = repositorio.encontrarLasBusquedasQueSeRealizaronEnUnaFecha(cuatroDeFebreroDe2016);
 		
-		db.save(busqueda2);
-		db.save(busqueda3);
+		Assert.assertEquals(2, historial.cantidadDeBusquedasEnUnaFecha(cuatroDeFebreroDe2016));
 		
-		List<Busqueda> busquedasPersistidas = db.find(Busqueda.class).asList();
-		HistorialDeBusqueda historialTest = new HistorialDeBusqueda(busquedasPersistidas);
-		Assert.assertEquals(2, historialTest.cantidadDeBusquedasEnUnaFecha(cuatroDeFebreroDe2016));
+		repositorio.eliminarBusqueda(busqueda2);
+		repositorio.eliminarBusqueda(busqueda3);
 		
-		db.delete(busqueda2);
-		db.delete(busqueda3);
 	}
-	
-	
-
 }

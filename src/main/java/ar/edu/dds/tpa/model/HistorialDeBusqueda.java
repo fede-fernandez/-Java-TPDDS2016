@@ -69,6 +69,10 @@ public class HistorialDeBusqueda {
 				.filter(unaBusqueda -> unaBusqueda.getUsuario().getNombre().equals(unNombreDeUsuario))
 				.mapToInt(unaBusquedaFiltrada -> unaBusquedaFiltrada.getCantidadDeResultados()).sum();
 	}
+	
+	public int cantidadDeBusquedasRealizadas(){
+		return busquedasRealizadas.size();
+	}
 
 	public ObjectId getId() {
 		return id;

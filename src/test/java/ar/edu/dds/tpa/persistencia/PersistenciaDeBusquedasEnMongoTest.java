@@ -1,6 +1,7 @@
 package ar.edu.dds.tpa.persistencia;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.Month;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -166,5 +167,77 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		repositorio.eliminarBusqueda(busqueda2);
 		repositorio.eliminarBusqueda(busqueda3);
 		
+	}
+	
+	@Test
+	public void buscarPorUnaFechaEnLaQueNoHuboBusquedas(){
+		repositorio.guardar(busqueda1);
+		repositorio.guardar(busqueda2);
+		repositorio.guardar(busqueda3);
+		repositorio.guardar(busqueda4);
+		
+		HistorialDeBusqueda historial = repositorio.encontrarLasBusquedasQueSeRealizaronEnUnaFecha(LocalDate.of(2000, 1, 1));
+		
+		Assert.assertEquals(0, historial.cantidadDeResultadosTotales());
+		
+		repositorio.eliminarBusqueda(busqueda1);
+		repositorio.eliminarBusqueda(busqueda2);
+		repositorio.eliminarBusqueda(busqueda3);
+		repositorio.eliminarBusqueda(busqueda4);
+		
+	}
+	
+	@Test
+	public void buscarPorTextoPorElQueNoSeBusco(){
+		repositorio.guardar(busqueda1);
+		repositorio.guardar(busqueda2);
+		repositorio.guardar(busqueda3);
+		repositorio.guardar(busqueda4);
+		
+		HistorialDeBusqueda historial = repositorio.encontrarTodasLasBusquedasPorTextoBuscado("textoNuncaBuscado");
+		
+		Assert.assertEquals(0, historial.cantidadDeResultadosTotales());
+		
+		repositorio.eliminarBusqueda(busqueda1);
+		repositorio.eliminarBusqueda(busqueda2);
+		repositorio.eliminarBusqueda(busqueda3);
+		repositorio.eliminarBusqueda(busqueda4);
+	}
+	
+	@Test
+	public void buscarEnUnaFechaQueSeBuscoConTextoIncorrecto(){
+		
+		repositorio.guardar(busqueda1);
+		repositorio.guardar(busqueda2);
+		repositorio.guardar(busqueda3);
+		repositorio.guardar(busqueda4);
+		
+		HistorialDeBusqueda historial = repositorio.encontrarLasBusquedasEntreDosFechasYPorTextoBuscado("textoNuncaBuscado", diezDeEneroDe2016, cuatroDeFebreroDe2016);
+		
+		Assert.assertEquals(0, historial.cantidadDeResultadosTotales());
+		
+		repositorio.eliminarBusqueda(busqueda1);
+		repositorio.eliminarBusqueda(busqueda2);
+		repositorio.eliminarBusqueda(busqueda3);
+		repositorio.eliminarBusqueda(busqueda4);
+	}
+	
+	@Test
+	public void buscarPorTextoEnUnRangoDeFechasEnElQueNoSeBuscoConEseTexto(){
+		repositorio.guardar(busqueda1);
+		repositorio.guardar(busqueda2);
+		repositorio.guardar(busqueda3);
+		repositorio.guardar(busqueda4);
+		repositorio.guardar(busqueda5);
+		
+		HistorialDeBusqueda historial = repositorio.encontrarLasBusquedasEntreDosFechasYPorTextoBuscado("Florida", LocalDate.of(2000, 1, 1), LocalDate.of(2000, 2, 1));
+		
+		Assert.assertEquals(0, historial.cantidadDeBusquedasRealizadas());
+		
+		repositorio.eliminarBusqueda(busqueda1);
+		repositorio.eliminarBusqueda(busqueda2);
+		repositorio.eliminarBusqueda(busqueda3);
+		repositorio.eliminarBusqueda(busqueda4);
+		repositorio.eliminarBusqueda(busqueda5);
 	}
 }

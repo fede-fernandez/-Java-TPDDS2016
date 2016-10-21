@@ -7,7 +7,7 @@ import com.sun.jersey.api.client.WebResource;
 	@Override
 	public String obtenerPuntosDeInteresADarDeBaja() {
 <span class="nc" id="L9">		Client cliente = Client.create();</span>
-<span class="nc" id="L10">		WebResource recursoWeb = cliente.resource(propiedades().obtenerValorDe(&quot;URLServicioDeBajaDePOIs&quot;));</span>
+<span class="nc" id="L10">		WebResource recursoWeb = cliente.resource(getPropiedades().obtenerValorDe(&quot;URLServicioDeBajaDePOIs&quot;));</span>
 <span class="nc" id="L11">		return recursoWeb.get(String.class);</span>
 	}
 }

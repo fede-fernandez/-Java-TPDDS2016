@@ -8,7 +8,7 @@ import ar.edu.dds.tpa.adapter.CGPServiceConverter;
 import ar.edu.dds.tpa.adapter.model.CentroDTO;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 
-<span class="fc" id="L11">public abstract class CGPService extends BuscadorExterno {</span>
+<span class="fc" id="L11">public abstract class CGPService extends ServicioExternoWeb implements BuscadorExterno {</span>
 
 	@Override
 	public List&lt;PuntoDeInteres&gt; buscarPor(List&lt;String&gt; palabrasDeBusqueda) {

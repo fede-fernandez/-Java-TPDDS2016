@@ -31,9 +31,7 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	private Usuario jorge86;
 	private Comuna comuna12;
 	private PuntoDeInteres puntoDeInteres;
-	private HistorialDeBusqueda historial;
-	
-	
+		
 	private LocalDate cuatroDeFebreroDe2016;
 	private LocalDate diezDeEneroDe2016;
 	private LocalDate cincoDeSeptiembreDe2014;
@@ -51,8 +49,6 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	private List<PuntoDeInteres> poisEncontrados3;
 	private List<PuntoDeInteres> poisEncontrados4;
 
-	private List<LocalDate> fechasDeBusqueda;
-	
 	private RepositorioDeBusquedas repositorio;
 
 	
@@ -71,9 +67,6 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		diezDeEneroDe2016 = LocalDate.of(2016, Month.JANUARY, 10);
 		cincoDeSeptiembreDe2014 = LocalDate.of(2014, Month.SEPTEMBER, 5);
 		
-		
-		fechasDeBusqueda = Arrays.asList(cuatroDeFebreroDe2016, diezDeEneroDe2016);
-
 		localComercial = new LocalComercial();
 		paradaDeColectivo = new ParadaDeColectivo();
 		banco = new Banco();

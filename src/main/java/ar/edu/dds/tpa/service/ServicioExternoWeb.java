@@ -23,6 +23,10 @@ public abstract class ServicioExternoWeb {
 		this.repositorioCache = repositorioCache;
 		return (T) this;
 	}
+	
+	public void desactivarCache() {
+		soportaCache = false;
+	}
 
 	public boolean soportaCache() {
 		return soportaCache;

@@ -91,4 +91,13 @@ public class PersistenciaDeServiciosEnRedisTest {
 		
 		Assert.assertEquals(1, bancoServiceConCacheMock.getVecesQueSeLlamoAlServicio());
 	}
+	
+	@Test
+	public void seDesactivaLaCacheYSeConsultaAlServicioVariasVeces() {
+		bancoServiceConCacheMock.desactivarCache();
+		buscador.buscar("Banco", null);
+		buscador.buscar("Provincia", null);
+		
+		Assert.assertEquals(5, bancoServiceConCacheMock.getVecesQueSeLlamoAlServicio());
+	}
 }

@@ -27,7 +27,7 @@ tpa,ar.edu.dds.tpa.reporte,ReporteDeResultadosPorBusqueda,11,0,0,0,4,0,2,0,2,0
 tpa,ar.edu.dds.tpa.reporte,ReporteDeCantidadDeResultadosTotalesPorUsuario,30,0,0,0,7,0,3,0,3,0
 tpa,ar.edu.dds.tpa.service,BancoServiceImpostor,9,76,0,6,6,19,0,9,0,6
 tpa,ar.edu.dds.tpa.service,CGPService,0,27,0,0,0,5,0,3,0,3
-tpa,ar.edu.dds.tpa.service,ServicioExternoWeb,3,34,0,0,1,11,1,5,1,5
+tpa,ar.edu.dds.tpa.service,ServicioExternoWeb,3,38,0,0,1,13,1,6,1,6
 tpa,ar.edu.dds.tpa.service,BajaDePuntoDeInteresServiceReal,17,0,0,0,4,0,2,0,2,0
 tpa,ar.edu.dds.tpa.service,CGPServiceImpostor,0,61,0,2,0,12,0,4,0,3
 tpa,ar.edu.dds.tpa.service,MailServiceImpostor,0,13,0,0,0,5,0,3,0,3

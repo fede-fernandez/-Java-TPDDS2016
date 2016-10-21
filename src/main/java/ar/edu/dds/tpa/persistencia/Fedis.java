@@ -3,7 +3,7 @@ package ar.edu.dds.tpa.persistencia;
 import java.util.HashMap;
 import java.util.Map;
 
-public class Fedis extends RepositorioCache {
+public class Fedis implements RepositorioCache {
 	private Map<String, String> datos;
 
 	public Fedis() {

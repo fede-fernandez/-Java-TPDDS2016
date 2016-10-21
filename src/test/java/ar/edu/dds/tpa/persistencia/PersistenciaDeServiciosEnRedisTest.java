@@ -39,6 +39,15 @@ public class PersistenciaDeServiciosEnRedisTest {
 		Assert.assertEquals(1, bancoServiceConCacheMock.getVecesQueSeLlamoAlServicio());
 		Assert.assertNotEquals(1, bancoServiceSinCacheMock.getVecesQueSeLlamoAlServicio());
 	}
+	
+	@Test
+	public void seLlamoOchoVecesAlServicioExternoPorqueSeBuscoPorNombreYServicio() {
+		buscador.buscar("Banco", null);
+		buscador.buscar("Banco", null);
+		buscador.buscar("Banco", null);
+		buscador.buscar("Banco", null);
+		Assert.assertEquals(8, bancoServiceSinCacheMock.getVecesQueSeLlamoAlServicio());
+	}
 
 	@Test
 	public void seObtuvoUnBancoDelServicioExternoPorCache() {
@@ -69,5 +78,17 @@ public class PersistenciaDeServiciosEnRedisTest {
 		resultadosDeLaBusqueda.addAll(buscador.buscar("banco", null));
 		
 		Assert.assertEquals(10, resultadosDeLaBusqueda.size());
+	}
+	
+	@Test
+	public void seBuscanVariasCosasYSeConsultaALaCache() {
+		buscador.buscar("Banco", null);
+		buscador.buscar("Provincia", null);
+		buscador.buscar("SEGUROS", null);
+		buscador.buscar("cheques", null);
+		buscador.buscar("Banco Ciudad", null);
+		buscador.buscar("santander", null);
+		
+		Assert.assertEquals(1, bancoServiceConCacheMock.getVecesQueSeLlamoAlServicio());
 	}
 }

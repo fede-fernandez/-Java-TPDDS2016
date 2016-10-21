@@ -7,7 +7,7 @@ public class BajaDePuntoDeInteresServiceReal extends ServicioExternoWeb implemen
 	@Override
 	public String obtenerPuntosDeInteresADarDeBaja() {
 		Client cliente = Client.create();
-		WebResource recursoWeb = cliente.resource(propiedades().obtenerValorDe("URLServicioDeBajaDePOIs"));
+		WebResource recursoWeb = cliente.resource(getPropiedades().obtenerValorDe("URLServicioDeBajaDePOIs"));
 		return recursoWeb.get(String.class);
 	}
 }

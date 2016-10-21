@@ -9,7 +9,7 @@ import org.apache.commons.io.FileUtils;
 public class BancoServiceImpostor extends BancoService {
 	private boolean seLlamoAlBancoService = false;
 	private int vecesQueSeLlamoAlServicio;
-	File bancosJSONMock;
+	private File bancosJSONMock;
 
 	public BancoServiceImpostor() {
 		vecesQueSeLlamoAlServicio = 0;

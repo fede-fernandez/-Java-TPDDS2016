@@ -6,7 +6,7 @@ tpa,ar.edu.dds.tpa.model,ServicioPuntosDeInteresBajados.new TypeToken() {...},0,
 tpa,ar.edu.dds.tpa.model,Mapa,4,53,0,0,2,14,1,7,1,7
 tpa,ar.edu.dds.tpa.model,PuntoDeInteresConServicios,0,58,0,0,0,12,0,8,0,8
 tpa,ar.edu.dds.tpa.model,LocalComercial,8,52,1,3,2,13,2,7,1,6
-tpa,ar.edu.dds.tpa.model,Busqueda,7,48,0,0,3,16,2,8,2,8
+tpa,ar.edu.dds.tpa.model,Busqueda,13,42,0,0,5,14,4,6,4,6
 tpa,ar.edu.dds.tpa.model,ServicioPuntosDeInteresBajados_Impostor,3,21,0,0,1,7,1,4,1,4
 tpa,ar.edu.dds.tpa.model,Buscador,6,140,0,6,2,31,2,13,2,10
 tpa,ar.edu.dds.tpa.model,HorarioDeAtencion,0,89,0,2,0,16,0,11,0,10
@@ -20,7 +20,7 @@ tpa,ar.edu.dds.tpa.model,ServicioPuntosDeInteresBajados,0,18,0,0,0,4,0,2,0,2
 tpa,ar.edu.dds.tpa.model,Banco,0,58,0,0,0,9,0,3,0,3
 tpa,ar.edu.dds.tpa.model,Comuna,3,15,0,0,1,7,1,3,1,3
 tpa,ar.edu.dds.tpa.model,DiaYHorarioDeAtencion,0,46,0,0,0,13,0,6,0,6
-tpa,ar.edu.dds.tpa.model,HistorialDeBusqueda,80,57,0,0,17,13,14,9,14,9
+tpa,ar.edu.dds.tpa.model,HistorialDeBusqueda,80,61,0,0,17,14,14,10,14,10
 tpa,ar.edu.dds.tpa.model,PuntoDeInteres,13,104,5,9,2,24,6,16,2,13
 tpa,ar.edu.dds.tpa.reporte,ReporteDeCantidadDeBusquedasPorFecha,31,0,0,0,7,0,3,0,3,0
 tpa,ar.edu.dds.tpa.reporte,ReporteDeResultadosPorBusqueda,11,0,0,0,4,0,2,0,2,0
@@ -39,7 +39,7 @@ tpa,ar.edu.dds.tpa.persistencia,Fedis,0,21,0,0,0,6,0,3,0,3
 tpa,ar.edu.dds.tpa.persistencia,ExportarTablasSQL,63,0,0,0,23,0,7,0,7,0
 tpa,ar.edu.dds.tpa.persistencia,Repositorio,14,48,0,4,5,13,2,8,2,6
 tpa,ar.edu.dds.tpa.persistencia,MorphiaDatastore,61,0,2,0,11,0,4,0,3,0
-tpa,ar.edu.dds.tpa.persistencia,RepositorioDeBusquedas,12,0,0,0,5,0,2,0,2,0
+tpa,ar.edu.dds.tpa.persistencia,RepositorioDeBusquedas,0,108,0,0,0,24,0,8,0,8
 tpa,ar.edu.dds.tpa.persistencia,Persistible,0,5,0,0,0,1,0,1,0,1
 tpa,ar.edu.dds.tpa.persistencia,RepositorioCache,27,9,2,0,8,3,5,1,4,1
 tpa,ar.edu.dds.tpa.procesos.fallos,NoHacerNada,4,0,0,0,2,0,2,0,2,0

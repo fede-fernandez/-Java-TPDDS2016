@@ -69,17 +69,21 @@ public class HistorialDeBusqueda {
 <span class="nc" id="L69">				.filter(unaBusqueda -&gt; unaBusqueda.getUsuario().getNombre().equals(unNombreDeUsuario))</span>
 <span class="nc" id="L70">				.mapToInt(unaBusquedaFiltrada -&gt; unaBusquedaFiltrada.getCantidadDeResultados()).sum();</span>
 	}
+	
+	public int cantidadDeBusquedasRealizadas(){
+<span class="fc" id="L74">		return busquedasRealizadas.size();</span>
+	}
 
 	public ObjectId getId() {
-<span class="nc" id="L74">		return id;</span>
+<span class="nc" id="L78">		return id;</span>
 	}
 
 	public void setId(ObjectId id) {
-<span class="nc" id="L78">		this.id = id;</span>
-<span class="nc" id="L79">	}</span>
+<span class="nc" id="L82">		this.id = id;</span>
+<span class="nc" id="L83">	}</span>
 
 	public void setBusquedasRealizadas(List&lt;Busqueda&gt; busquedasRealizadas) {
-<span class="nc" id="L82">		this.busquedasRealizadas = busquedasRealizadas;</span>
-<span class="nc" id="L83">	}</span>
+<span class="nc" id="L86">		this.busquedasRealizadas = busquedasRealizadas;</span>
+<span class="nc" id="L87">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

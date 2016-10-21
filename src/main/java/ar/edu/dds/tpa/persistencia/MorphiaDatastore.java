@@ -23,7 +23,7 @@ public class MorphiaDatastore {
 		propiedades = new Propiedades("resources/mongo.properties");
 		morphia = new Morphia();
 		morphia.map(Busqueda.class,HistorialDeBusqueda.class);
-		mongoClient = new MongoClient(new MongoClientURI(System.getProperty("MONGO_URI", "mongodb://localhost:27017")));
+		mongoClient = new MongoClient(new MongoClientURI(propiedades.obtenerValorDe("URI")));
 		datastore = morphia.createDatastore(mongoClient, propiedades.obtenerValorDe("nombreDeBD"));
 	}
 	
@@ -37,5 +37,4 @@ public class MorphiaDatastore {
 	public Datastore getDatastore(){
 		return datastore;
 	}
-
 }

@@ -23,7 +23,7 @@ public class MorphiaDatastore {
 <span class="nc" id="L23">		propiedades = new Propiedades(&quot;resources/mongo.properties&quot;);</span>
 <span class="nc" id="L24">		morphia = new Morphia();</span>
 <span class="nc" id="L25">		morphia.map(Busqueda.class,HistorialDeBusqueda.class);</span>
-<span class="nc" id="L26">		mongoClient = new MongoClient(new MongoClientURI(System.getProperty(&quot;MONGO_URI&quot;, &quot;mongodb://localhost:27017&quot;)));</span>
+<span class="nc" id="L26">		mongoClient = new MongoClient(new MongoClientURI(propiedades.obtenerValorDe(&quot;URI&quot;)));</span>
 <span class="nc" id="L27">		datastore = morphia.createDatastore(mongoClient, propiedades.obtenerValorDe(&quot;nombreDeBD&quot;));</span>
 <span class="nc" id="L28">	}</span>
 	
@@ -37,6 +37,5 @@ public class MorphiaDatastore {
 	public Datastore getDatastore(){
 <span class="nc" id="L38">		return datastore;</span>
 	}
-
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -4,29 +4,32 @@ import ar.edu.dds.tpa.properties.Propiedades;
 import redis.clients.jedis.Jedis;
 
 public class Redis implements RepositorioCache {
-	private static Jedis conexionRedis;
+	
+	private static Redis instancia;
+	private Jedis conexionRedis;
 	private Propiedades propiedadesDeRedis;
-
-	public Redis() {
+	
+	private Redis() {
 		propiedadesDeRedis = new Propiedades("resources/Redis.properties");
+		conexionRedis = new Jedis(propiedadesDeRedis.obtenerValorDe("URLBaseDeDatosRedis"));
 	}
-
-	public Jedis obtenerSesion() {
-		if (conexionRedis == null) {
-			conexionRedis = new Jedis(propiedadesDeRedis.obtenerValorDe("URLBaseDeDatosRedis"));
+	
+	public static Redis obtenerConexion() {
+		if(instancia == null) {
+			instancia = new Redis();
 		}
-		return conexionRedis;
+		return instancia;
 	}
-
-	public void cerrarSesion() {
+	
+	public void cerrarConexion() {
 		conexionRedis.close();
 	}
 
 	public String consultarValorPor(String unaClave) {
-		return obtenerSesion().get(unaClave);
+		return conexionRedis.get(unaClave);
 	}
 
 	public void insertar(String unaClave, String unValor) {
-		obtenerSesion().set(unaClave, unValor);
+		conexionRedis.set(unaClave, unValor);
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import ar.edu.dds.tpa.model.Buscador;
@@ -12,7 +13,7 @@ import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.service.BancoServiceImpostor;
 
-public class PersistenciaDeServiciosEnRedisTest {
+public class PersistenciaDeServiciosEnRedisRealTest {
 	private BancoServiceImpostor bancoServiceConCacheMock;
 	private BancoServiceImpostor bancoServiceSinCacheMock;
 	private Buscador buscador;
@@ -20,7 +21,7 @@ public class PersistenciaDeServiciosEnRedisTest {
 
 	@Before
 	public void inicializar() {
-		bancoServiceConCacheMock = new BancoServiceImpostor().conSoporteCache(Fedis.obtenerConexion());
+		bancoServiceConCacheMock = new BancoServiceImpostor().conSoporteCache(Redis.obtenerConexion());
 		bancoServiceSinCacheMock = new BancoServiceImpostor();
 		buscador = new Buscador(new Mapa());
 		buscador.agregarBuscadorExterno(bancoServiceConCacheMock);
@@ -28,6 +29,7 @@ public class PersistenciaDeServiciosEnRedisTest {
 		resultadosDeLaBusqueda = new ArrayList<PuntoDeInteres>();
 	}
 
+	@Ignore
 	@Test
 	public void seLlamoUnaSolaVezAlServicioExternoYDespuesSeUsoLaCache() {
 		buscador.buscar("Banco", null);
@@ -38,6 +40,7 @@ public class PersistenciaDeServiciosEnRedisTest {
 		Assert.assertNotEquals(1, bancoServiceSinCacheMock.getVecesQueSeLlamoAlServicio());
 	}
 
+	@Ignore
 	@Test
 	public void seLlamoOchoVecesAlServicioExternoPorqueSeBuscoPorNombreYServicio() {
 		buscador.buscar("Banco", null);
@@ -47,6 +50,7 @@ public class PersistenciaDeServiciosEnRedisTest {
 		Assert.assertEquals(8, bancoServiceSinCacheMock.getVecesQueSeLlamoAlServicio());
 	}
 
+	@Ignore
 	@Test
 	public void seObtuvoUnBancoDelServicioExternoPorCache() {
 		resultadosDeLaBusqueda.addAll(buscador.buscar("Banco de la Plaza", null));
@@ -55,6 +59,7 @@ public class PersistenciaDeServiciosEnRedisTest {
 				.anyMatch(unResultado -> unResultado.getNombre().equals("Banco de la Plaza")));
 	}
 
+	@Ignore
 	@Test
 	public void seObtuvoElBancoDeSucursalAvellanedaDelServicioExternoDeBancosPorCache() {
 		resultadosDeLaBusqueda.addAll(buscador.buscar("cobro", null));
@@ -63,6 +68,7 @@ public class PersistenciaDeServiciosEnRedisTest {
 				.anyMatch(unResultado -> unResultado.getCoordenadas().getLongitud() == -35.9338322));
 	}
 
+	@Ignore
 	@Test
 	public void seObtuvoElBancoDeSucursalCaballitoDelServicioExternoDeBancosPorCache() {
 		resultadosDeLaBusqueda.addAll(buscador.buscar("seguros", null));
@@ -71,6 +77,7 @@ public class PersistenciaDeServiciosEnRedisTest {
 				.anyMatch(unResultado -> unResultado.getCoordenadas().getLongitud() == -35.9345681));
 	}
 
+	@Ignore
 	@Test
 	public void seObtuvieronTodosLosBancosDelServicioEnCache() {
 		resultadosDeLaBusqueda.addAll(buscador.buscar("banco", null));
@@ -78,6 +85,7 @@ public class PersistenciaDeServiciosEnRedisTest {
 		Assert.assertEquals(10, resultadosDeLaBusqueda.size());
 	}
 
+	@Ignore
 	@Test
 	public void seBuscanVariasCosasYSeConsultaALaCache() {
 		buscador.buscar("Banco", null);
@@ -90,6 +98,7 @@ public class PersistenciaDeServiciosEnRedisTest {
 		Assert.assertEquals(1, bancoServiceConCacheMock.getVecesQueSeLlamoAlServicio());
 	}
 
+	@Ignore
 	@Test
 	public void seDesactivaLaCacheYSeConsultaAlServicioVariasVeces() {
 		bancoServiceConCacheMock.desactivarCache();

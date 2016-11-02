@@ -45,6 +45,8 @@ tpa,ar.edu.dds.tpa.procesos.fallos,NoHacerNada,4,0,0,0,2,0,2,0,2,0
 tpa,ar.edu.dds.tpa.procesos.fallos,ReintentarEjecucion,0,60,0,6,0,18,0,7,0,4
 tpa,ar.edu.dds.tpa.procesos.fallos,NotificarAlAdministrador,0,34,0,0,0,8,0,2,0,2
 tpa,ar.edu.dds.tpa.morphia.converter,LocalDateConverter,20,36,4,4,4,11,4,3,0,3
+tpa,ar.edu.dds.tpa.spark.utils,DarkMagic,20,0,0,0,5,0,2,0,2,0
+tpa,ar.edu.dds.tpa.spark.utils,HandlebarsTemplateEngineBuilder,46,0,0,0,13,0,6,0,6,0
 tpa,ar.edu.dds.tpa.adapter.model,CentroDTO,12,32,0,0,4,11,4,3,4,3
 tpa,ar.edu.dds.tpa.adapter.model,RangoServicioDTO,0,33,0,0,0,12,0,6,0,6
 tpa,ar.edu.dds.tpa.adapter.model,BancoDelServicio,6,15,0,0,2,5,2,5,2,5
@@ -56,6 +58,8 @@ tpa,ar.edu.dds.tpa.adapter,CGPServiceConverter,3,83,0,0,1,19,1,7,1,7
 tpa,ar.edu.dds.tpa.criterio,FiltradoPorComuna,1,14,1,1,0,4,1,2,0,2
 tpa,ar.edu.dds.tpa.criterio,FiltradoSelectivo,21,0,2,0,4,0,4,0,3,0
 tpa,ar.edu.dds.tpa.criterio,SinFiltrado,5,0,0,0,2,0,2,0,2,0
+tpa,ar.edu.dds.tpa.server,Router,16,0,0,0,7,0,3,0,3,0
+tpa,ar.edu.dds.tpa.server,Server,8,0,0,0,5,0,2,0,2,0
 tpa,ar.edu.dds.tpa.accion,ActivadorDeNotificadorDeBusquedaLenta,11,0,0,0,5,0,2,0,2,0
 tpa,ar.edu.dds.tpa.accion,DesactivadorDeNotificadorDeBusquedaLenta,0,11,0,0,0,5,0,2,0,2
 tpa,ar.edu.dds.tpa.observer,NotificadorDeBusquedaLenta,0,50,0,2,0,13,0,4,0,3

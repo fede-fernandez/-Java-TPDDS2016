@@ -14,25 +14,33 @@ import spark.Response;
 
 <span class="nc" id="L15">public class POIsController implements Persistible {</span>
 	
+	public ModelAndView mostrarTerminal(Request req, Response res){
+<span class="nc" id="L18">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L19">		String usuario = req.params(&quot;usuario&quot;);</span>
+		
+<span class="nc" id="L21">		model.put(&quot;usuario&quot;, usuario);</span>
+<span class="nc" id="L22">		return new ModelAndView(model, &quot;pois/buscarPOIs.hbs&quot;);</span>
+	}
 	
 	public ModelAndView listar(Request req, Response res){
-<span class="nc" id="L19">		Map&lt;String, List&lt;PuntoDeInteres&gt;&gt; model = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L20">		String textoLibre = req.queryParams(&quot;textoLibre&quot;);</span>
+<span class="nc" id="L26">		Map&lt;String, List&lt;PuntoDeInteres&gt;&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L27">		String textoLibre = req.queryParams(&quot;textoLibre&quot;);</span>
 		
-<span class="nc" id="L22">		List&lt;PuntoDeInteres&gt; pois =(List&lt;PuntoDeInteres&gt;) repositorio.buscarTextoLibre(textoLibre, null);	</span>
-<span class="nc" id="L23">		model.put(&quot;pois&quot;, pois);</span>
+<span class="nc" id="L29">		List&lt;PuntoDeInteres&gt; pois =(List&lt;PuntoDeInteres&gt;) repositorio.buscarTextoLibre(textoLibre, null);</span>
 		
-<span class="nc" id="L25">		return new ModelAndView(model, &quot;pois/mostrarResultadosPOIs.hbs&quot;);</span>
+<span class="nc" id="L31">		model.put(&quot;pois&quot;, pois);</span>
+		
+<span class="nc" id="L33">		return new ModelAndView(model, &quot;pois/mostrarResultadosPOIs.hbs&quot;);</span>
 	}
 	
 	
 	public ModelAndView mostrar(Request req, Response res){
-<span class="nc" id="L30">		Map&lt;String, PuntoDeInteres&gt; model = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L31">		String id = req.params(&quot;id&quot;);</span>
+<span class="nc" id="L38">		Map&lt;String, PuntoDeInteres&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L39">		String id = req.params(&quot;id&quot;);</span>
 		
-<span class="nc" id="L33">		PuntoDeInteres pois = repositorio.buscarPorID(PuntoDeInteres.class,Integer.parseInt(id));</span>
-<span class="nc" id="L34">		model.put(&quot;pois&quot;, pois);</span>
-<span class="nc" id="L35">		return new ModelAndView(model, &quot;pois/mostrarPOIs.hbs&quot;);</span>
+<span class="nc" id="L41">		PuntoDeInteres pois = repositorio.buscarPorID(PuntoDeInteres.class,Integer.parseInt(id));</span>
+<span class="nc" id="L42">		model.put(&quot;pois&quot;, pois);</span>
+<span class="nc" id="L43">		return new ModelAndView(model, &quot;pois/mostrarPOIs.hbs&quot;);</span>
 	}
 
 }

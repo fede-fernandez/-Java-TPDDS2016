@@ -19,9 +19,9 @@ public class Router {
 		
 		POIsController poisController = new POIsController();
 		
-		Spark.get("/hello", (req, res) -> "Hello World");
 		Spark.get("/poisEncontrados", poisController::listar, engine);
-		Spark.get("/:id", poisController::mostrar, engine);
+		Spark.get("/pois/:id", poisController::mostrar, engine);
+		Spark.get("/terminal/:usuario", poisController::mostrarTerminal, engine);
 
 	}
 

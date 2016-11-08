@@ -51,10 +51,15 @@ public abstract class PuntoDeInteres {
 	public Posicion getCoordenadas() {
 		return coordenadas;
 	}
+	
+	public String getUrl() {
+		return "pois/" + getId();
+	}
 
 	public List<String> getPalabrasClave() {
 		return palabrasClave;
 	}
+	
 
 	public void agregarPalabraClave(String unaPalabraClave) {
 		palabrasClave.add(unaPalabraClave.toLowerCase());

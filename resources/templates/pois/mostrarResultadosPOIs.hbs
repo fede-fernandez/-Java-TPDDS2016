@@ -1,0 +1,21 @@
+<html>
+<h1>POIs encontrados</h1>
+
+<table class="table table-stripped">
+    <tr>
+        <th>Nombre</th>
+        <th>Longitud</th>
+        <th>Latitud</th>        
+        <th></th>
+    </tr>
+    
+    {{#each pois}}
+        <tr>
+            <td>{{nombre}}</td>   
+            <td>{{coordenadas.longitud}}</td>
+            <td>{{coordenadas.latitud}}</td>        
+            <td><a href="{{id}}">Ver</a><td>
+        </tr>
+    {{/each}}
+</table>
+</html>

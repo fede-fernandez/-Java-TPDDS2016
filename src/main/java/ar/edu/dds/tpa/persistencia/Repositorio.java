@@ -6,6 +6,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import ar.edu.dds.tpa.model.Buscador;
+import ar.edu.dds.tpa.model.Mapa;
+import ar.edu.dds.tpa.model.PuntoDeInteres;
+import ar.edu.dds.tpa.model.Usuario;
+
 public class Repositorio {
 
 	private static SessionFactory sessionFactory;
@@ -47,4 +52,15 @@ public class Repositorio {
 		List<T> objetosEncontrados = obtenerSesion().createQuery("from " + clase.getName()).getResultList();
 		return objetosEncontrados;
 	}
+	
+	
+	public List<PuntoDeInteres> buscarTextoLibre(String texto,Usuario unUsuario) {
+		Mapa unMapa = new Mapa();
+		unMapa.agregarListaPuntoDeInteres((List<PuntoDeInteres>) this.traerTodos(PuntoDeInteres.class));
+		Buscador buscador = new Buscador(unMapa);
+		List<PuntoDeInteres> pois = buscador.buscar(texto, unUsuario);
+		return pois;
+	}
+	
+	
 }

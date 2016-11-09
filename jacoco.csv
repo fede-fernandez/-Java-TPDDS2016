@@ -44,7 +44,7 @@ tpa,ar.edu.dds.tpa.persistencia,Persistible,0,5,0,0,0,1,0,1,0,1
 tpa,ar.edu.dds.tpa.procesos.fallos,NoHacerNada,4,0,0,0,2,0,2,0,2,0
 tpa,ar.edu.dds.tpa.procesos.fallos,ReintentarEjecucion,0,60,0,6,0,18,0,7,0,4
 tpa,ar.edu.dds.tpa.procesos.fallos,NotificarAlAdministrador,0,34,0,0,0,8,0,2,0,2
-tpa,ar.edu.dds.tpa.controllers,POIsController,72,0,0,0,15,0,4,0,4,0
+tpa,ar.edu.dds.tpa.controllers,POIsController,76,0,0,0,16,0,4,0,4,0
 tpa,ar.edu.dds.tpa.morphia.converter,LocalDateConverter,20,36,4,4,4,11,4,3,0,3
 tpa,ar.edu.dds.tpa.spark.utils,DarkMagic,20,0,0,0,5,0,2,0,2,0
 tpa,ar.edu.dds.tpa.spark.utils,HandlebarsTemplateEngineBuilder,46,0,0,0,13,0,6,0,6,0

@@ -25,6 +25,7 @@ public class POIsController implements Persistible {
 	public ModelAndView listar(Request req, Response res){
 		Map<String, List<PuntoDeInteres>> model = new HashMap<>();
 		String textoLibre = req.queryParams("textoLibre");
+		String usuario = req.queryParams("usuario");
 		
 		List<PuntoDeInteres> pois =(List<PuntoDeInteres>) repositorio.buscarTextoLibre(textoLibre, null);
 		

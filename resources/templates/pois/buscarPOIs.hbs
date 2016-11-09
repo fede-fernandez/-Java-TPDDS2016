@@ -1,6 +1,10 @@
 <html>   
-   <h1>Usuario: {{usuario}}</h1>
-    <form action="/poisEncontrados" method="GET">        
+   <h1>Buscar Puntos De Interes</h1>
+    <form action="/poisEncontrados" method="GET">    
+		<div class="form-group">
+		    <label>Usuario:</label>
+			<input type="text" value="{{usuario}}" readonly="readonly" name="usuario">
+		</div>    
         <div class="form-group">
             <label for="texto libre">texto libre</label>
             <input type="text" placeholder="texto libre" name="textoLibre">

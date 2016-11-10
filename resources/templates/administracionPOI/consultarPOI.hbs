@@ -1,0 +1,34 @@
+<html>
+    <head>
+        <title>Administracion de Puntos de Interes</title>
+    </head>
+    <body>
+    	<form>
+    		<div class='form-group'>
+    			<label>Ingrese texto de busqueda:</label>
+    			<input type='text' value='{{textoBuscado}}' name='textoBuscado'/>
+    			<a href='altaPOI'>Alta de Puntos de Interes</a>
+    		</div>
+    		<div class='form-group'>
+    			<table>
+    				<tr>
+    					<th>#</th>
+    					<th>Nombre</th>
+    					<th>Coordenadas</th>    						
+    				</tr>
+    				{{#poi}}
+    					<tr>
+    						<td>{{@index}}</td>
+    						<td>{{nombre}}</td>
+    						<td>{{coordenadas}}</td>    						
+    					</tr>
+    				{{else}}
+    				<tr>
+    					<td><em>No se han encontrado resultados.</em></td>
+    				</tr>
+    				{{/poi}}
+    			</table>
+    		</div>
+    	</form>
+    </body>
+</html>

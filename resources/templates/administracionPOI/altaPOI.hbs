@@ -1,0 +1,35 @@
+<html>
+    <head>
+        <title>Alta de Puntos de Interes</title>
+        <script src='setearCoordenadaAltaPOI.js'></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5cZQudoyNqxV-MXAd8fg4pQSS0ph4czs&callback=initMap" async defer></script>
+    </head>
+    <body>
+    	<form method='POST'>
+    		<div class='form-group'>
+    			<label>Nombre:</label>
+    			<input type='text' value='{{nombre}}' name='nombre'/>
+    			<label>Tipo de punto de interés</label>
+    			<select>
+    				<option id="0">Parada de colectivo</option>
+    				<option id="1">Local comercial</option>
+    				<option id="2">Banco</option>
+    				<option id="3">CGP</option>
+    			</select>
+    			<div>
+    				<div>
+    					<label>Coordenadas:</label>
+    					<input type='text' readonly name='latitud' id='latitud'/>
+    					<input type='text' readonly name='longitud' id='longitud'/>
+    				</div>
+	    			<div id="map" style='width: 50%; height: 50%;'></div>
+	    		</div>
+	    		<label></label>
+	    		
+	    		
+	    		<input type='submit' value='Enviar'/>
+	    		<a href='consultarPOI'>Cancelar</a>
+	    	</div>
+    	</form>
+    </body>
+</html>

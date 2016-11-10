@@ -41,6 +41,7 @@ tpa,ar.edu.dds.tpa.persistencia,Repositorio,35,48,0,4,10,13,3,8,3,6
 tpa,ar.edu.dds.tpa.persistencia,MorphiaDatastore,62,0,2,0,11,0,4,0,3,0
 tpa,ar.edu.dds.tpa.persistencia,RepositorioDeBusquedas,0,108,0,0,0,24,0,8,0,8
 tpa,ar.edu.dds.tpa.persistencia,Persistible,0,5,0,0,0,1,0,1,0,1
+tpa,ar.edu.dds.tpa.server.controllers,AdministracionDePOIController,86,0,4,0,17,0,7,0,5,0
 tpa,ar.edu.dds.tpa.procesos.fallos,NoHacerNada,4,0,0,0,2,0,2,0,2,0
 tpa,ar.edu.dds.tpa.procesos.fallos,ReintentarEjecucion,0,60,0,6,0,18,0,7,0,4
 tpa,ar.edu.dds.tpa.procesos.fallos,NotificarAlAdministrador,0,34,0,0,0,8,0,2,0,2
@@ -59,7 +60,7 @@ tpa,ar.edu.dds.tpa.adapter,CGPServiceConverter,3,83,0,0,1,19,1,7,1,7
 tpa,ar.edu.dds.tpa.criterio,FiltradoPorComuna,1,14,1,1,0,4,1,2,0,2
 tpa,ar.edu.dds.tpa.criterio,FiltradoSelectivo,21,0,2,0,4,0,4,0,3,0
 tpa,ar.edu.dds.tpa.criterio,SinFiltrado,5,0,0,0,2,0,2,0,2,0
-tpa,ar.edu.dds.tpa.server,Router,39,0,0,0,10,0,2,0,2,0
+tpa,ar.edu.dds.tpa.server,Router,79,0,0,0,14,0,2,0,2,0
 tpa,ar.edu.dds.tpa.server,CargarPOIs,74,0,0,0,13,0,2,0,2,0
 tpa,ar.edu.dds.tpa.server,Server,12,0,0,0,6,0,2,0,2,0
 tpa,ar.edu.dds.tpa.accion,ActivadorDeNotificadorDeBusquedaLenta,11,0,0,0,5,0,2,0,2,0

@@ -23,21 +23,21 @@ public class Buscador {
 		historialDeBusqueda = new HistorialDeBusqueda();
 	}
 
-	public void registrarBusqueda(Usuario usuario, String textoBuscado, List<PuntoDeInteres> puntosDeInteresEncontrados,
+	public void registrarBusqueda(Terminal terminal, String textoBuscado, List<PuntoDeInteres> puntosDeInteresEncontrados,
 			LocalDateTime tiempoDeInicio, LocalDateTime tiempoDeFin) {
 
 		double duracionDeBusqueda = ChronoUnit.SECONDS.between(tiempoDeInicio, tiempoDeFin);
-		Busqueda busquedaRealizada = new Busqueda(usuario, textoBuscado, puntosDeInteresEncontrados, LocalDate.now(),
+		Busqueda busquedaRealizada = new Busqueda(terminal, textoBuscado, puntosDeInteresEncontrados, LocalDate.now(),
 				duracionDeBusqueda);
 
-		if (usuario != null) {
-			usuario.notificarBusqueda(busquedaRealizada);
+		if (terminal != null) {
+			terminal.notificarBusqueda(busquedaRealizada);
 		}
 
 		historialDeBusqueda.agregar(busquedaRealizada);
 	}
 
-	public List<PuntoDeInteres> buscar(String unaFrase, Usuario unUsuario) {
+	public List<PuntoDeInteres> buscar(String unaFrase, Terminal unaTerminal) {
 
 		LocalDateTime comienzoDeBusqueda = LocalDateTime.now();
 		List<PuntoDeInteres> puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>();
@@ -45,7 +45,7 @@ public class Buscador {
 		puntosDeInteresEncontrados.addAll(buscarLocalmente(obtenerPalabrasDeUnaFrase(unaFrase)));
 		puntosDeInteresEncontrados.addAll(buscarExternamente(obtenerPalabrasDeUnaFrase(unaFrase)));
 
-		registrarBusqueda(unUsuario, unaFrase, puntosDeInteresEncontrados, comienzoDeBusqueda, LocalDateTime.now());
+		registrarBusqueda(unaTerminal, unaFrase, puntosDeInteresEncontrados, comienzoDeBusqueda, LocalDateTime.now());
 
 		return puntosDeInteresEncontrados;
 	}

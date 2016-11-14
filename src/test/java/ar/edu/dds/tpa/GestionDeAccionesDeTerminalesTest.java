@@ -15,20 +15,20 @@ import ar.edu.dds.tpa.adapter.EnviadorDeMail;
 import ar.edu.dds.tpa.criterio.FiltradoPorComuna;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta;
-import ar.edu.dds.tpa.procesos.GestorDeAccionesDeUsuarios;
+import ar.edu.dds.tpa.procesos.GestorDeAccionesDeTerminales;
 import ar.edu.dds.tpa.service.MailServiceImpostor;
 
-public class GestionDeAccionesDeUsuariosTest {
+public class GestionDeAccionesDeTerminalesTest {
 
-	private GestorDeAccionesDeUsuarios proceso3;
+	private GestorDeAccionesDeTerminales proceso3;
 	private FiltradoPorComuna filtroPorComuna;
 	private DesactivadorDeNotificadorDeBusquedaLenta desactivarNotificadorDeBusqueda;
 	private NotificadorDeBusquedaLenta notificadorDeBusquedaLenta;
 	private EnviadorDeMail enviadorDeMail;
 	private MailServiceImpostor mailServiceImpostor;
 	private Administrador administrador;
-	private Usuario usuarioPepe;
-	private List<Usuario> usuarios;
+	private Terminal terminal;
+	private List<Terminal> terminales;
 	private Mapa mapa;
 	private Buscador buscador;
 	private Comuna comunaDeFlores;
@@ -42,19 +42,19 @@ public class GestionDeAccionesDeUsuariosTest {
 		desactivarNotificadorDeBusqueda = new DesactivadorDeNotificadorDeBusquedaLenta(notificadorDeBusquedaLenta);
 		comunaDeFlores = new Comuna(7, "Flores");
 		filtroPorComuna = new FiltradoPorComuna(comunaDeFlores);
-		usuarioPepe = new Usuario("Pepe", new Posicion(5.0, 10.0), comunaDeFlores);
-		usuarios = new ArrayList<Usuario>();
-		usuarios.add(usuarioPepe);
+		terminal = new Terminal("Terminal Flores", new Posicion(5.0, 10.0), comunaDeFlores);
+		terminales = new ArrayList<Terminal>();
+		terminales.add(terminal);
 		mapa = new Mapa();
 		buscador = new Buscador(mapa);
 
-		proceso3 = new GestorDeAccionesDeUsuarios(usuarios, filtroPorComuna, desactivarNotificadorDeBusqueda);
+		proceso3 = new GestorDeAccionesDeTerminales(terminales, filtroPorComuna, desactivarNotificadorDeBusqueda);
 	}
 
 	@Test
 	public void seEjecutaElProcesoYNoSeEnviaMailAlAdministrador() {
 		proceso3.ejecutar();
-		buscador.registrarBusqueda(usuarioPepe, null, new ArrayList<PuntoDeInteres>(), LocalDateTime.now(),
+		buscador.registrarBusqueda(terminal, null, new ArrayList<PuntoDeInteres>(), LocalDateTime.now(),
 				LocalDateTime.now().plus(Duration.ofHours(5)));
 		Assert.assertFalse(mailServiceImpostor.seLlamoAlServicioDeEnvioDeMail());
 	}

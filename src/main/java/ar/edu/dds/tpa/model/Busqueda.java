@@ -16,7 +16,7 @@ public class Busqueda {
 	@Id
 	private ObjectId id;
 
-	private Usuario usuario;
+	private Terminal terminal;
 
 	private String textoBuscado;
 
@@ -30,9 +30,9 @@ public class Busqueda {
 		puntosDeInteresEncontrados = new HashSet<PuntoDeInteres>();
 	}
 
-	public Busqueda(Usuario usuario, String textoBuscado, List<PuntoDeInteres> puntosDeInteresEncontrados,
+	public Busqueda(Terminal terminal, String textoBuscado, List<PuntoDeInteres> puntosDeInteresEncontrados,
 			LocalDate fechaDeBusqueda, Double tiempoDeRespuesta) {
-		this.usuario = usuario;
+		this.terminal = terminal;
 		this.textoBuscado = textoBuscado;
 		this.puntosDeInteresEncontrados = new HashSet<PuntoDeInteres>(puntosDeInteresEncontrados);
 		this.fechaDeBusqueda = fechaDeBusqueda;
@@ -40,8 +40,8 @@ public class Busqueda {
 	}
 
 
-	public Usuario getUsuario() {
-		return usuario;
+	public Terminal getTerminal() {
+		return terminal;
 	}
 
 	public String getTextoBuscado() {

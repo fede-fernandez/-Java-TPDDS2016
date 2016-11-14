@@ -14,14 +14,14 @@ import java.util.Arrays;
 
 public class PersistenciaDePuntosDeInteresTest implements Persistible {
 
-	private static Usuario terminalFlores;
+	private static Terminal terminalFlores;
 
 	private static boolean seInstancio = false;
 
 	@Before
 	public void inicializar() {
 		if (!seInstancio) {
-			terminalFlores = new Usuario("Terminal de Flores", new Posicion(5.000003, 7.000005), null);
+			terminalFlores = new Terminal("Terminal de Flores", new Posicion(5.000003, 7.000005), null);
 			seInstancio = true;
 		}
 	}

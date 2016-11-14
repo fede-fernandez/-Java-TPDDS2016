@@ -1,6 +1,6 @@
 package ar.edu.dds.tpa.accion;
 
-import ar.edu.dds.tpa.model.Usuario;
+import ar.edu.dds.tpa.model.Terminal;
 import ar.edu.dds.tpa.observer.BusquedaObserver;
 
 public class ActivadorDeNotificadorDeBusquedaLenta implements AccionDeUsuario {
@@ -11,8 +11,8 @@ public class ActivadorDeNotificadorDeBusquedaLenta implements AccionDeUsuario {
 		this.observadorDeBusqueda = observadorDeBusqueda;
 	}
 
-	public void realizarAccion(Usuario unUsuario) {
-		unUsuario.agregarObservadorDeBusqueda(observadorDeBusqueda);
+	public void realizarAccion(Terminal unaTerminal) {
+		unaTerminal.agregarObservadorDeBusqueda(observadorDeBusqueda);
 	}
 
 }

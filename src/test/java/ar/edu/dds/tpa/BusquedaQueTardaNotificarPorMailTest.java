@@ -22,7 +22,7 @@ public class BusquedaQueTardaNotificarPorMailTest {
 	private NotificadorDeBusquedaLenta notificadorDeBusquedaLenta;
 	private EnviadorDeMail enviadorDeMail;
 	private MailServiceImpostor envioDeMailServiceImpostor;
-	private Usuario usuario;
+	private Terminal terminal;
 
 	@Before
 	public void inicializar() {
@@ -32,20 +32,20 @@ public class BusquedaQueTardaNotificarPorMailTest {
 		enviadorDeMail = new EnviadorDeMail(envioDeMailServiceImpostor);
 		notificadorDeBusquedaLenta = new NotificadorDeBusquedaLenta(60, enviadorDeMail, administrador);
 		buscador = new Buscador(mapa);
-		usuario = new Usuario("Pepe", new Posicion(5.0, 6.0), null);
-		usuario.agregarObservadorDeBusqueda(notificadorDeBusquedaLenta);
+		terminal = new Terminal("Terminal", new Posicion(5.0, 6.0), null);
+		terminal.agregarObservadorDeBusqueda(notificadorDeBusquedaLenta);
 	}
 
 	@Test
 	public void seNotificaAlAdministradorUnaBusquedaLenta() {
-		buscador.registrarBusqueda(usuario, null, new ArrayList<PuntoDeInteres>(), LocalDateTime.now(),
+		buscador.registrarBusqueda(terminal, null, new ArrayList<PuntoDeInteres>(), LocalDateTime.now(),
 				LocalDateTime.now().plus(Duration.ofHours(1)));
 		Assert.assertTrue(envioDeMailServiceImpostor.seLlamoAlServicioDeEnvioDeMail());
 	}
 
 	@Test
 	public void noSeNotificaAlAdministradorUnaBusquedaRapida() {
-		buscador.registrarBusqueda(usuario, null, new ArrayList<PuntoDeInteres>(), LocalDateTime.now(), LocalDateTime.now());
+		buscador.registrarBusqueda(terminal, null, new ArrayList<PuntoDeInteres>(), LocalDateTime.now(), LocalDateTime.now());
 		Assert.assertFalse(envioDeMailServiceImpostor.seLlamoAlServicioDeEnvioDeMail());
 	}
 }

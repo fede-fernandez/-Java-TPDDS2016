@@ -2,7 +2,7 @@ package ar.edu.dds.tpa.criterio;
 
 import java.util.List;
 
-import ar.edu.dds.tpa.model.Usuario;
+import ar.edu.dds.tpa.model.Terminal;
 
 public class FiltradoSelectivo implements Criterio {
 
@@ -12,7 +12,7 @@ public class FiltradoSelectivo implements Criterio {
 		this.nombresDeUsuariosAFiltrar = nombresDeUsuariosAFiltrar;
 	}
 
-	public boolean filtrarUsuarios(Usuario usuario) {
-		return nombresDeUsuariosAFiltrar.stream().anyMatch(unNombre -> unNombre == usuario.getNombre());
+	public boolean filtrarTerminales(Terminal terminal) {
+		return nombresDeUsuariosAFiltrar.stream().anyMatch(unNombre -> unNombre == terminal.getNombre());
 	}
 }

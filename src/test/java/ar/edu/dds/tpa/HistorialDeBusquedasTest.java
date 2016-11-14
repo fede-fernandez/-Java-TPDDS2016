@@ -31,7 +31,7 @@ public class HistorialDeBusquedasTest {
 
 	private List<LocalDate> fechasDeBusqueda;
 
-	private Usuario usuario;
+	private Terminal terminal;
 
 	@Before
 	public void inicializar() {
@@ -41,7 +41,7 @@ public class HistorialDeBusquedasTest {
 
 		fechasDeBusqueda = Arrays.asList(cuatroDeFebreroDe2016, diezDeEneroDe2016);
 
-		usuario = new Usuario();
+		terminal = new Terminal();
 
 		localComercial = new LocalComercial();
 		paradaDeColectivo = new ParadaDeColectivo();
@@ -57,9 +57,9 @@ public class HistorialDeBusquedasTest {
 		resultadosDeBusqueda3.add(banco);
 		resultadosDeBusqueda3.add(localComercial);
 
-		busquedaParadaCinco = new Busqueda(usuario, "Florida", resultadosDeBusqueda1, cuatroDeFebreroDe2016, 5.0);
-		busquedaLibreria = new Busqueda(usuario, "Ahorro", resultadosDeBusqueda2, cuatroDeFebreroDe2016, 5.0);
-		busquedaParadaDos = new Busqueda(usuario, "Subte", resultadosDeBusqueda3, diezDeEneroDe2016, 5.0);
+		busquedaParadaCinco = new Busqueda(terminal, "Florida", resultadosDeBusqueda1, cuatroDeFebreroDe2016, 5.0);
+		busquedaLibreria = new Busqueda(terminal, "Ahorro", resultadosDeBusqueda2, cuatroDeFebreroDe2016, 5.0);
+		busquedaParadaDos = new Busqueda(terminal, "Subte", resultadosDeBusqueda3, diezDeEneroDe2016, 5.0);
 
 		historialDeBusqueda = new HistorialDeBusqueda();
 

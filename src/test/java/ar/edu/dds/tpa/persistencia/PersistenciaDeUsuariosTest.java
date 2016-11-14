@@ -9,7 +9,7 @@ import ar.edu.dds.tpa.adapter.EnviadorDeMail;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.model.Comuna;
-import ar.edu.dds.tpa.model.Usuario;
+import ar.edu.dds.tpa.model.Terminal;
 import ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta;
 import ar.edu.dds.tpa.service.MailServiceImpostor;
 
@@ -33,28 +33,28 @@ public class PersistenciaDeUsuariosTest implements Persistible {
 
 	@Test
 	public void persistenciaDeNombreDeUsuario() {
-		Usuario usuarioDePrueba1 = new Usuario("Terminal Subte Linea E Virreyes", new Posicion(2.42300, 2.04212),
+		Terminal terminalDePrueba1 = new Terminal("Terminal Subte Linea E Virreyes", new Posicion(2.42300, 2.04212),
 				flores);
-		repositorio.persistir(usuarioDePrueba1);
-		Assert.assertEquals(usuarioDePrueba1.getNombre(),
-				repositorio.buscarPorID(Usuario.class, usuarioDePrueba1.getId()).getNombre());
+		repositorio.persistir(terminalDePrueba1);
+		Assert.assertEquals(terminalDePrueba1.getNombre(),
+				repositorio.buscarPorID(Terminal.class, terminalDePrueba1.getId()).getNombre());
 	}
 
 	@Test
 	public void persistenciaDeComunaDeUsuario() {
-		Usuario usuarioDePrueba2 = new Usuario("Terminal Eva Peron y Varela", new Posicion(1.9353, 9.3493), flores);
-		repositorio.persistir(usuarioDePrueba2);
+		Terminal terminalDePrueba2 = new Terminal("Terminal Eva Peron y Varela", new Posicion(1.9353, 9.3493), flores);
+		repositorio.persistir(terminalDePrueba2);
 		Assert.assertEquals(flores.getNombre(),
-				repositorio.buscarPorID(Usuario.class, usuarioDePrueba2.getId()).getComuna().getNombre());
+				repositorio.buscarPorID(Terminal.class, terminalDePrueba2.getId()).getComuna().getNombre());
 	}
 
 	@Test
 	public void persistenciaDeUsuarios() {
-		Usuario usuarioDePrueba3 = new Usuario("Terminal Acoyte y Rivadavia", new Posicion(15.15, 9.3848), caballito);
-		Usuario usuarioDePrueba4 = new Usuario("Terminal Central Olivera", new Posicion(8.3, 8.7), villaLugano);
-		repositorio.persistir(usuarioDePrueba3);
-		repositorio.persistir(usuarioDePrueba4);
-		Assert.assertTrue(repositorio.traerTodos(Usuario.class).stream()
+		Terminal terminalDePrueba3 = new Terminal("Terminal Acoyte y Rivadavia", new Posicion(15.15, 9.3848), caballito);
+		Terminal terminalDePrueba4 = new Terminal("Terminal Central Olivera", new Posicion(8.3, 8.7), villaLugano);
+		repositorio.persistir(terminalDePrueba3);
+		repositorio.persistir(terminalDePrueba4);
+		Assert.assertTrue(repositorio.traerTodos(Terminal.class).stream()
 				.anyMatch(unUsuario -> unUsuario.getNombre().equals("Terminal Acoyte y Rivadavia")));
 	}
 
@@ -65,15 +65,15 @@ public class PersistenciaDeUsuariosTest implements Persistible {
 				new EnviadorDeMail(new MailServiceImpostor()), administrador);
 		repositorio.persistir(administrador);
 
-		Usuario usuarioDePrueba5 = new Usuario("Terminal Parque Rivadavia", new Posicion(40.458742, 19.23887),
+		Terminal terminalDePrueba5 = new Terminal("Terminal Parque Rivadavia", new Posicion(40.458742, 19.23887),
 				caballito);
 
-		usuarioDePrueba5.agregarObservadorDeBusqueda(notificadorDeBusquedaLenta);
-		repositorio.persistir(usuarioDePrueba5);
+		terminalDePrueba5.agregarObservadorDeBusqueda(notificadorDeBusquedaLenta);
+		repositorio.persistir(terminalDePrueba5);
 
-		Usuario usuario = repositorio.buscarPorID(Usuario.class, usuarioDePrueba5.getId());
-		Assert.assertEquals(usuario.getObservadoresDeBusqueda().size(),
-				usuarioDePrueba5.getObservadoresDeBusqueda().size());
+		Terminal terminalEncontrada= repositorio.buscarPorID(Terminal.class, terminalDePrueba5.getId());
+		Assert.assertEquals(terminalEncontrada.getObservadoresDeBusqueda().size(),
+				terminalDePrueba5.getObservadoresDeBusqueda().size());
 	}
 
 	@AfterClass

@@ -20,7 +20,7 @@ import ar.edu.dds.tpa.model.HistorialDeBusqueda;
 import ar.edu.dds.tpa.model.LocalComercial;
 import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
-import ar.edu.dds.tpa.model.Usuario;
+import ar.edu.dds.tpa.model.Terminal;
 
 public class PersistenciaDeBusquedasEnMongoTest {
 	
@@ -28,7 +28,7 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	private Datastore db;
 	
 	private Busqueda busqueda1;
-	private Usuario jorge86;
+	private Terminal terminalChacabuco;
 	private Comuna comuna12;
 	private PuntoDeInteres puntoDeInteres;
 		
@@ -60,8 +60,8 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		
 		comuna12 = new Comuna(1, "Comuna");
 		puntoDeInteres = new ParadaDeColectivo("Linea 180",new Posicion(10.0,10.0));
-		jorge86 = new Usuario("Terminal", new Posicion(5.0, 5.0), comuna12);
-		busqueda1 = new Busqueda(jorge86, "180", Arrays.asList(puntoDeInteres), LocalDate.now(), 5.0);
+		terminalChacabuco = new Terminal("Terminal Chacabuco", new Posicion(5.0, 5.0), comuna12);
+		busqueda1 = new Busqueda(terminalChacabuco, "180", Arrays.asList(puntoDeInteres), LocalDate.now(), 5.0);
 		
 		cuatroDeFebreroDe2016 = LocalDate.of(2016, Month.FEBRUARY, 4);
 		diezDeEneroDe2016 = LocalDate.of(2016, Month.JANUARY, 10);
@@ -82,10 +82,10 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		poisEncontrados3.add(localComercial);
 		poisEncontrados4 = Arrays.asList(banco,paradaDeColectivo);
 
-		busqueda2 = new Busqueda(jorge86, "Florida", poisEncontrados1, cuatroDeFebreroDe2016, 5.0);
-		busqueda3 = new Busqueda(jorge86, "Ahorro", poisEncontrados2, cuatroDeFebreroDe2016, 5.0);
-		busqueda4 = new Busqueda(jorge86, "Subte", poisEncontrados3, diezDeEneroDe2016, 5.0);
-		busqueda5 = new Busqueda(jorge86, "Florida",poisEncontrados4,cincoDeSeptiembreDe2014,10.0);
+		busqueda2 = new Busqueda(terminalChacabuco, "Florida", poisEncontrados1, cuatroDeFebreroDe2016, 5.0);
+		busqueda3 = new Busqueda(terminalChacabuco, "Ahorro", poisEncontrados2, cuatroDeFebreroDe2016, 5.0);
+		busqueda4 = new Busqueda(terminalChacabuco, "Subte", poisEncontrados3, diezDeEneroDe2016, 5.0);
+		busqueda5 = new Busqueda(terminalChacabuco, "Florida",poisEncontrados4,cincoDeSeptiembreDe2014,10.0);
 	
 		
 	}

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Terminal.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpa</a> &gt; <a href="index.source.html" class="el_package">ar.edu.dds.tpa.model</a> &gt; <span class="el_source">Terminal.java</span></div><h1>Terminal.java</h1><pre class="source lang-java linenums">package ar.edu.dds.tpa.model;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.*;
+
+import ar.edu.dds.tpa.geolocalizacion.Posicion;
+import ar.edu.dds.tpa.observer.BusquedaObserver;
+
+@Entity
+public class Terminal {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
+
+	private String nombre;
+
+	@Embedded
+	private Posicion coordenadas;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Comuna comuna;
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name = &quot;terminal_id&quot;)
+	private List&lt;BusquedaObserver&gt; observadoresDeBusqueda;
+
+<span class="fc" id="L30">	public Terminal() {</span>
+
+<span class="fc" id="L32">	}</span>
+
+<span class="fc" id="L34">	public Terminal(String nombre, Posicion coordenadas, Comuna comuna) {</span>
+<span class="fc" id="L35">		this.nombre = nombre;</span>
+<span class="fc" id="L36">		this.coordenadas = coordenadas;</span>
+<span class="fc" id="L37">		this.comuna = comuna;</span>
+<span class="fc" id="L38">		observadoresDeBusqueda = new ArrayList&lt;BusquedaObserver&gt;();</span>
+<span class="fc" id="L39">	}</span>
+
+	public Integer getId() {
+<span class="fc" id="L42">		return id;</span>
+	}
+
+	public String getNombre() {
+<span class="fc" id="L46">		return nombre;</span>
+	}
+
+	public Posicion getCoordenadas() {
+<span class="fc" id="L50">		return coordenadas;</span>
+	}
+
+	public Comuna getComuna() {
+<span class="fc" id="L54">		return comuna;</span>
+	}
+
+	public List&lt;BusquedaObserver&gt; getObservadoresDeBusqueda() {
+<span class="fc" id="L58">		return observadoresDeBusqueda;</span>
+	}
+
+	public void notificarBusqueda(Busqueda unaBusquedaRealizada) {
+<span class="fc" id="L62">		observadoresDeBusqueda.forEach(unObservador -&gt; unObservador.informar(unaBusquedaRealizada));</span>
+<span class="fc" id="L63">	}</span>
+
+	public void agregarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
+<span class="fc" id="L66">		observadoresDeBusqueda.add(unObservadorDeBusqueda);</span>
+<span class="fc" id="L67">	}</span>
+
+	public void quitarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
+<span class="fc" id="L70">		observadoresDeBusqueda.remove(unObservadorDeBusqueda);</span>
+<span class="fc" id="L71">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

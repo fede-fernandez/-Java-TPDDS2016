@@ -9,7 +9,7 @@ import org.hibernate.cfg.Configuration;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
-import ar.edu.dds.tpa.model.Usuario;
+import ar.edu.dds.tpa.model.Terminal;
 
 public class Repositorio {
 
@@ -54,11 +54,11 @@ public class Repositorio {
 	}
 	
 	
-	public List&lt;PuntoDeInteres&gt; buscarTextoLibre(String texto,Usuario unUsuario) {
+	public List&lt;PuntoDeInteres&gt; buscarTextoLibre(String texto, Terminal unaTerminal) {
 <span class="nc" id="L58">		Mapa unMapa = new Mapa();</span>
 <span class="nc" id="L59">		unMapa.agregarListaPuntoDeInteres((List&lt;PuntoDeInteres&gt;) this.traerTodos(PuntoDeInteres.class));</span>
 <span class="nc" id="L60">		Buscador buscador = new Buscador(unMapa);</span>
-<span class="nc" id="L61">		List&lt;PuntoDeInteres&gt; pois = buscador.buscar(texto, unUsuario);</span>
+<span class="nc" id="L61">		List&lt;PuntoDeInteres&gt; pois = buscador.buscar(texto, unaTerminal);</span>
 <span class="nc" id="L62">		return pois;</span>
 	}
 	

@@ -2,7 +2,7 @@
 
 import java.util.List;
 
-import ar.edu.dds.tpa.model.Usuario;
+import ar.edu.dds.tpa.model.Terminal;
 
 public class FiltradoSelectivo implements Criterio {
 
@@ -12,8 +12,8 @@ public class FiltradoSelectivo implements Criterio {
 <span class="nc" id="L12">		this.nombresDeUsuariosAFiltrar = nombresDeUsuariosAFiltrar;</span>
 <span class="nc" id="L13">	}</span>
 
-	public boolean filtrarUsuarios(Usuario usuario) {
-<span class="nc bnc" id="L16" title="All 2 branches missed.">		return nombresDeUsuariosAFiltrar.stream().anyMatch(unNombre -&gt; unNombre == usuario.getNombre());</span>
+	public boolean filtrarTerminales(Terminal terminal) {
+<span class="nc bnc" id="L16" title="All 2 branches missed.">		return nombresDeUsuariosAFiltrar.stream().anyMatch(unNombre -&gt; unNombre == terminal.getNombre());</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

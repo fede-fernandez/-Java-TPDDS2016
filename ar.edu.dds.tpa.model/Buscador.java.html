@@ -23,21 +23,21 @@ public class Buscador {
 <span class="fc" id="L23">		historialDeBusqueda = new HistorialDeBusqueda();</span>
 <span class="fc" id="L24">	}</span>
 
-	public void registrarBusqueda(Usuario usuario, String textoBuscado, List&lt;PuntoDeInteres&gt; puntosDeInteresEncontrados,
+	public void registrarBusqueda(Terminal terminal, String textoBuscado, List&lt;PuntoDeInteres&gt; puntosDeInteresEncontrados,
 			LocalDateTime tiempoDeInicio, LocalDateTime tiempoDeFin) {
 
 <span class="fc" id="L29">		double duracionDeBusqueda = ChronoUnit.SECONDS.between(tiempoDeInicio, tiempoDeFin);</span>
-<span class="fc" id="L30">		Busqueda busquedaRealizada = new Busqueda(usuario, textoBuscado, puntosDeInteresEncontrados, LocalDate.now(),</span>
+<span class="fc" id="L30">		Busqueda busquedaRealizada = new Busqueda(terminal, textoBuscado, puntosDeInteresEncontrados, LocalDate.now(),</span>
 <span class="fc" id="L31">				duracionDeBusqueda);</span>
 
-<span class="fc bfc" id="L33" title="All 2 branches covered.">		if (usuario != null) {</span>
-<span class="fc" id="L34">			usuario.notificarBusqueda(busquedaRealizada);</span>
+<span class="fc bfc" id="L33" title="All 2 branches covered.">		if (terminal != null) {</span>
+<span class="fc" id="L34">			terminal.notificarBusqueda(busquedaRealizada);</span>
 		}
 
 <span class="fc" id="L37">		historialDeBusqueda.agregar(busquedaRealizada);</span>
 <span class="fc" id="L38">	}</span>
 
-	public List&lt;PuntoDeInteres&gt; buscar(String unaFrase, Usuario unUsuario) {
+	public List&lt;PuntoDeInteres&gt; buscar(String unaFrase, Terminal unaTerminal) {
 
 <span class="fc" id="L42">		LocalDateTime comienzoDeBusqueda = LocalDateTime.now();</span>
 <span class="fc" id="L43">		List&lt;PuntoDeInteres&gt; puntosDeInteresEncontrados = new ArrayList&lt;PuntoDeInteres&gt;();</span>
@@ -45,7 +45,7 @@ public class Buscador {
 <span class="fc" id="L45">		puntosDeInteresEncontrados.addAll(buscarLocalmente(obtenerPalabrasDeUnaFrase(unaFrase)));</span>
 <span class="fc" id="L46">		puntosDeInteresEncontrados.addAll(buscarExternamente(obtenerPalabrasDeUnaFrase(unaFrase)));</span>
 
-<span class="fc" id="L48">		registrarBusqueda(unUsuario, unaFrase, puntosDeInteresEncontrados, comienzoDeBusqueda, LocalDateTime.now());</span>
+<span class="fc" id="L48">		registrarBusqueda(unaTerminal, unaFrase, puntosDeInteresEncontrados, comienzoDeBusqueda, LocalDateTime.now());</span>
 
 <span class="fc" id="L50">		return puntosDeInteresEncontrados;</span>
 	}

@@ -16,7 +16,7 @@ public class Busqueda {
 	@Id
 	private ObjectId id;
 
-	private Usuario usuario;
+	private Terminal terminal;
 
 	private String textoBuscado;
 
@@ -30,9 +30,9 @@ public class Busqueda {
 <span class="fc" id="L30">		puntosDeInteresEncontrados = new HashSet&lt;PuntoDeInteres&gt;();</span>
 <span class="fc" id="L31">	}</span>
 
-	public Busqueda(Usuario usuario, String textoBuscado, List&lt;PuntoDeInteres&gt; puntosDeInteresEncontrados,
+	public Busqueda(Terminal terminal, String textoBuscado, List&lt;PuntoDeInteres&gt; puntosDeInteresEncontrados,
 <span class="fc" id="L34">			LocalDate fechaDeBusqueda, Double tiempoDeRespuesta) {</span>
-<span class="fc" id="L35">		this.usuario = usuario;</span>
+<span class="fc" id="L35">		this.terminal = terminal;</span>
 <span class="fc" id="L36">		this.textoBuscado = textoBuscado;</span>
 <span class="fc" id="L37">		this.puntosDeInteresEncontrados = new HashSet&lt;PuntoDeInteres&gt;(puntosDeInteresEncontrados);</span>
 <span class="fc" id="L38">		this.fechaDeBusqueda = fechaDeBusqueda;</span>
@@ -40,8 +40,8 @@ public class Busqueda {
 <span class="fc" id="L40">	}</span>
 
 
-	public Usuario getUsuario() {
-<span class="nc" id="L44">		return usuario;</span>
+	public Terminal getTerminal() {
+<span class="nc" id="L44">		return terminal;</span>
 	}
 
 	public String getTextoBuscado() {

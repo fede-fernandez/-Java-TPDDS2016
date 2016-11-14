@@ -60,13 +60,13 @@ public class HistorialDeBusqueda {
 	}
 
 	public List&lt;String&gt; nombresDeUsuarios() {
-<span class="nc" id="L63">		return busquedasRealizadas.stream().map(unaBusqueda -&gt; unaBusqueda.getUsuario().getNombre()).distinct()</span>
+<span class="nc" id="L63">		return busquedasRealizadas.stream().map(unaBusqueda -&gt; unaBusqueda.getTerminal().getNombre()).distinct()</span>
 <span class="nc" id="L64">				.collect(Collectors.toList());</span>
 	}
 
 	public int cantidadDeResultadosTotalesDeUnUsuario(String unNombreDeUsuario) {
 <span class="nc" id="L68">		return busquedasRealizadas.stream()</span>
-<span class="nc" id="L69">				.filter(unaBusqueda -&gt; unaBusqueda.getUsuario().getNombre().equals(unNombreDeUsuario))</span>
+<span class="nc" id="L69">				.filter(unaBusqueda -&gt; unaBusqueda.getTerminal().getNombre().equals(unNombreDeUsuario))</span>
 <span class="nc" id="L70">				.mapToInt(unaBusquedaFiltrada -&gt; unaBusquedaFiltrada.getCantidadDeResultados()).sum();</span>
 	}
 	

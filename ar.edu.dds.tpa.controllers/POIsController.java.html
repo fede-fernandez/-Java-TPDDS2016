@@ -3,45 +3,46 @@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import ar.edu.dds.tpa.model.Buscador;
-import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
+import ar.edu.dds.tpa.model.Terminal;
 import ar.edu.dds.tpa.persistencia.Persistible;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-<span class="nc" id="L15">public class POIsController implements Persistible {</span>
+<span class="nc" id="L13">public class POIsController implements Persistible {</span>
 	
 	public ModelAndView mostrarTerminal(Request req, Response res){
-<span class="nc" id="L18">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L19">		String usuario = req.params(&quot;usuario&quot;);</span>
+<span class="nc" id="L16">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L17">		String usuario = req.params(&quot;usuario&quot;);</span>
 		
-<span class="nc" id="L21">		model.put(&quot;usuario&quot;, usuario);</span>
-<span class="nc" id="L22">		return new ModelAndView(model, &quot;pois/buscarPOIs.hbs&quot;);</span>
+<span class="nc" id="L19">		model.put(&quot;usuario&quot;, usuario);</span>
+<span class="nc" id="L20">		return new ModelAndView(model, &quot;pois/buscarPOIs.hbs&quot;);</span>
 	}
 	
 	public ModelAndView listar(Request req, Response res){
-<span class="nc" id="L26">		Map&lt;String, List&lt;PuntoDeInteres&gt;&gt; model = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L27">		String textoLibre = req.queryParams(&quot;textoLibre&quot;);</span>
-<span class="nc" id="L28">		String usuario = req.queryParams(&quot;usuario&quot;);</span>
+<span class="nc" id="L24">		Map&lt;String, List&lt;PuntoDeInteres&gt;&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L25">		String textoLibre = req.queryParams(&quot;textoLibre&quot;);</span>
+<span class="nc" id="L26">		String nombre = req.queryParams(&quot;nombre&quot;);</span>
+<span class="nc" id="L27">		String comuna = req.queryParams(&quot;comuna&quot;);</span>
 		
-<span class="nc" id="L30">		List&lt;PuntoDeInteres&gt; pois =(List&lt;PuntoDeInteres&gt;) repositorio.buscarTextoLibre(textoLibre, null);</span>
+<span class="nc" id="L29">		Terminal terminal = repositorio.buscarTerminal(nombre, comuna);</span>
 		
-<span class="nc" id="L32">		model.put(&quot;pois&quot;, pois);</span>
+<span class="nc" id="L31">		List&lt;PuntoDeInteres&gt; pois =(List&lt;PuntoDeInteres&gt;) repositorio.buscarTextoLibre(textoLibre, terminal);</span>
 		
-<span class="nc" id="L34">		return new ModelAndView(model, &quot;pois/mostrarResultadosPOIs.hbs&quot;);</span>
+<span class="nc" id="L33">		model.put(&quot;pois&quot;, pois);</span>
+		
+<span class="nc" id="L35">		return new ModelAndView(model, &quot;pois/mostrarResultadosPOIs.hbs&quot;);</span>
 	}
 	
 	
 	public ModelAndView mostrar(Request req, Response res){
-<span class="nc" id="L39">		Map&lt;String, PuntoDeInteres&gt; model = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L40">		String id = req.params(&quot;id&quot;);</span>
+<span class="nc" id="L40">		Map&lt;String, PuntoDeInteres&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L41">		String id = req.params(&quot;id&quot;);</span>
 		
-<span class="nc" id="L42">		PuntoDeInteres pois = repositorio.buscarPorID(PuntoDeInteres.class,Integer.parseInt(id));</span>
-<span class="nc" id="L43">		model.put(&quot;pois&quot;, pois);</span>
-<span class="nc" id="L44">		return new ModelAndView(model, &quot;pois/mostrarPOIs.hbs&quot;);</span>
+<span class="nc" id="L43">		PuntoDeInteres pois = repositorio.buscarPorID(PuntoDeInteres.class,Integer.parseInt(id));</span>
+<span class="nc" id="L44">		model.put(&quot;pois&quot;, pois);</span>
+<span class="nc" id="L45">		return new ModelAndView(model, &quot;pois/mostrarPOIs.hbs&quot;);</span>
 	}
 
 }

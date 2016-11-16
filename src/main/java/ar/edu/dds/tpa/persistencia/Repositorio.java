@@ -1,6 +1,7 @@
 package ar.edu.dds.tpa.persistencia;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -60,6 +61,14 @@ public class Repositorio {
 		Buscador buscador = new Buscador(unMapa);
 		List<PuntoDeInteres> pois = buscador.buscar(texto, unaTerminal);
 		return pois;
+	}
+
+	
+	public Terminal buscarTerminal(String nombre,String comuna){
+		List<Terminal> terminales = this.traerTodos(Terminal.class);
+		return  terminales.stream()
+			    .filter(unaTerminal -> unaTerminal.getNombre().equals(nombre)&& unaTerminal.getComuna().getNombre().equals(comuna))
+				.collect(Collectors.toList()).get(0);
 	}
 	
 	

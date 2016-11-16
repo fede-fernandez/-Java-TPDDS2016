@@ -3,10 +3,8 @@ package ar.edu.dds.tpa.controllers;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import ar.edu.dds.tpa.model.Buscador;
-import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
+import ar.edu.dds.tpa.model.Terminal;
 import ar.edu.dds.tpa.persistencia.Persistible;
 import spark.ModelAndView;
 import spark.Request;
@@ -25,9 +23,12 @@ public class POIsController implements Persistible {
 	public ModelAndView listar(Request req, Response res){
 		Map<String, List<PuntoDeInteres>> model = new HashMap<>();
 		String textoLibre = req.queryParams("textoLibre");
-		String usuario = req.queryParams("usuario");
+		String nombre = req.queryParams("nombre");
+		String comuna = req.queryParams("comuna");
 		
-		List<PuntoDeInteres> pois =(List<PuntoDeInteres>) repositorio.buscarTextoLibre(textoLibre, null);
+		Terminal terminal = repositorio.buscarTerminal(nombre, comuna);
+		
+		List<PuntoDeInteres> pois =(List<PuntoDeInteres>) repositorio.buscarTextoLibre(textoLibre, terminal);
 		
 		model.put("pois", pois);
 		

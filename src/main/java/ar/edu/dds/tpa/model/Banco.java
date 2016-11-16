@@ -18,6 +18,14 @@ public class Banco extends PuntoDeInteresConServicios {
 	@JoinColumn(name = "horarioDeAtencion_id")
 	private HorarioDeAtencion horarioDeAtencionBancario;
 
+	public HorarioDeAtencion getHorarioDeAtencionBancario() {
+		return horarioDeAtencionBancario;
+	}
+
+	public void setHorarioDeAtencionBancario(HorarioDeAtencion horarioDeAtencionBancario) {
+		this.horarioDeAtencionBancario = horarioDeAtencionBancario;
+	}
+
 	public Banco() {
 		super();
 	}

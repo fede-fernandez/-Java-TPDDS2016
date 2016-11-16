@@ -31,4 +31,13 @@ public class RangoDeHorario {
 	public boolean estaDentroDelRangoDeHorario(LocalTime unHorario) {
 		return estaDespuesDelHorarioInicio(unHorario) && estaAntesDelHorarioFin(unHorario);
 	}
+	
+	public LocalTime getHorarioInicio() {
+		return horarioInicio;
+	}
+
+	public LocalTime getHorarioFin() {
+		return horarioFin;
+	}
+
 }

@@ -37,6 +37,11 @@ public class DiaYHorarioDeAtencion {
 	public DayOfWeek getDia() {
 		return dia;
 	}
+	
+	
+	public Set<RangoDeHorario> getRangosDeHorario() {
+		return rangosDeHorario;
+	}
 
 	public boolean seAtiendeEn(LocalDateTime unDiaYHorario) {
 		return rangosDeHorario.stream()

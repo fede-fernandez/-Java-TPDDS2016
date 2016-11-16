@@ -6,13 +6,13 @@
     <p><strong>Longitud:</strong> {{coordenadas.longitud}}</p>
     <p><strong>Latitud:</strong> {{coordenadas.latitud}}</p>
     <p><strong>palabra Clave:</strong> {{palabrasClave}}</p>
-    <p><strong>horarioDeAtencion:</strong></p>   
-    {{#each horarioDeAtencionBancario.horariosDeAtencionPorDia}}
+      
+    {{#each horarioDeAtencion.horariosDeAtencionPorDia}}
+    <p><strong>horarioDeAtencion:</strong></p> 
         <tr>
             <td>{{dia}}</td>
         </tr>
     {{/each}}
-    <p><strong>palabra Clave:</strong> {{palabrasClave}}</p>
     
 {{/with}}
 

@@ -23,6 +23,10 @@ public class LocalComercial extends PuntoDeInteres {
 		
 	}
 
+	public HorarioDeAtencion getHorarioDeAtencion() {
+		return horarioDeAtencion;
+	}
+
 	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro) {
 		super(nombre, coordenadas);
 		this.rubro = rubro;

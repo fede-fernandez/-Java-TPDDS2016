@@ -16,14 +16,10 @@ public class Banco extends PuntoDeInteresConServicios {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "horarioDeAtencion_id")
-	private HorarioDeAtencion horarioDeAtencionBancario;
+	private HorarioDeAtencion horarioDeAtencion;
 
-	public HorarioDeAtencion getHorarioDeAtencionBancario() {
-		return horarioDeAtencionBancario;
-	}
-
-	public void setHorarioDeAtencionBancario(HorarioDeAtencion horarioDeAtencionBancario) {
-		this.horarioDeAtencionBancario = horarioDeAtencionBancario;
+	public HorarioDeAtencion getHorarioDeAtencion() {
+		return horarioDeAtencion;
 	}
 
 	public Banco() {
@@ -35,12 +31,12 @@ public class Banco extends PuntoDeInteresConServicios {
 		List<DayOfWeek> deLunesAViernes = new ArrayList<DayOfWeek>();
 		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
 				DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));
-		horarioDeAtencionBancario = new HorarioDeAtencion();
-		horarioDeAtencionBancario.agregarHorarioDeAtencion(deLunesAViernes, LocalTime.of(10, 0), LocalTime.of(15, 0));
+		horarioDeAtencion = new HorarioDeAtencion();
+		horarioDeAtencion.agregarHorarioDeAtencion(deLunesAViernes, LocalTime.of(10, 0), LocalTime.of(15, 0));
 	}
 
 	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
-		return horarioDeAtencionBancario.seAtiendeEn(unDiaYHorario);
+		return horarioDeAtencion.seAtiendeEn(unDiaYHorario);
 	}
 }

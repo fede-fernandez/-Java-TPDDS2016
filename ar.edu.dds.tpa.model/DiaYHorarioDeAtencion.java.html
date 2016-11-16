@@ -37,10 +37,15 @@ public class DiaYHorarioDeAtencion {
 	public DayOfWeek getDia() {
 <span class="fc" id="L38">		return dia;</span>
 	}
+	
+	
+	public Set&lt;RangoDeHorario&gt; getRangosDeHorario() {
+<span class="nc" id="L43">		return rangosDeHorario;</span>
+	}
 
 	public boolean seAtiendeEn(LocalDateTime unDiaYHorario) {
-<span class="fc" id="L42">		return rangosDeHorario.stream()</span>
-<span class="fc" id="L43">				.anyMatch(rangoDeHorario -&gt; rangoDeHorario.estaDentroDelRangoDeHorario(unDiaYHorario.toLocalTime()));</span>
+<span class="fc" id="L47">		return rangosDeHorario.stream()</span>
+<span class="fc" id="L48">				.anyMatch(rangoDeHorario -&gt; rangoDeHorario.estaDentroDelRangoDeHorario(unDiaYHorario.toLocalTime()));</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

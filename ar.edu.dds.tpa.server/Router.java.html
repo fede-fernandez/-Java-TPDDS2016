@@ -4,32 +4,31 @@
 import ar.edu.dds.tpa.controllers.POIsController;
 import ar.edu.dds.tpa.server.controllers.AdministracionDePOIController;
 import ar.edu.dds.tpa.spark.utils.HandlebarsTemplateEngineBuilder;
-import spark.Request;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 
 
-<span class="nc" id="L12">public class Router {</span>
+<span class="nc" id="L11">public class Router {</span>
 
 	public static void configure() {
 		HandlebarsTemplateEngine engine = HandlebarsTemplateEngineBuilder
-<span class="nc" id="L16">				.create()</span>
-<span class="nc" id="L17">				.withDefaultHelpers()</span>
-<span class="nc" id="L18">				.build();</span>
+<span class="nc" id="L15">				.create()</span>
+<span class="nc" id="L16">				.withDefaultHelpers()</span>
+<span class="nc" id="L17">				.build();</span>
 
-<span class="nc" id="L20">		Spark.staticFiles.location(&quot;/public&quot;);</span>
+<span class="nc" id="L19">		Spark.staticFiles.location(&quot;/public&quot;);</span>
 		
-<span class="nc" id="L22">		POIsController poisController = new POIsController();</span>
+<span class="nc" id="L21">		POIsController poisController = new POIsController();</span>
 		
-<span class="nc" id="L24">		Spark.get(&quot;/poisEncontrados&quot;, poisController::listar, engine);</span>
-<span class="nc" id="L25">		Spark.get(&quot;/pois/:id&quot;, poisController::mostrar, engine);</span>
-<span class="nc" id="L26">		Spark.get(&quot;/terminal/:usuario&quot;, poisController::mostrarTerminal, engine);</span>
-<span class="nc" id="L27">		Spark.get(&quot;/consultarPOI&quot;, new AdministracionDePOIController()::buscar, engine);</span>
-<span class="nc" id="L28">		Spark.get(&quot;/consultarPOI/:textoBuscado&quot;, new AdministracionDePOIController()::buscar, engine);</span>
-<span class="nc" id="L29">		Spark.get(&quot;/altaPOI&quot;, new AdministracionDePOIController()::formularioAlta, engine);</span>
-<span class="nc" id="L30">		Spark.post(&quot;/altaPOI&quot;, new AdministracionDePOIController()::alta, engine);</span>
+<span class="nc" id="L23">		Spark.get(&quot;/poisEncontrados&quot;, poisController::listar, engine);</span>
+<span class="nc" id="L24">		Spark.get(&quot;/pois/:id&quot;, poisController::mostrar, engine);</span>
+<span class="nc" id="L25">		Spark.get(&quot;/terminal/:usuario&quot;, poisController::mostrarTerminal, engine);</span>
+<span class="nc" id="L26">		Spark.get(&quot;/consultarPOI&quot;, new AdministracionDePOIController()::buscar, engine);</span>
+<span class="nc" id="L27">		Spark.get(&quot;/consultarPOI/:textoBuscado&quot;, new AdministracionDePOIController()::buscar, engine);</span>
+<span class="nc" id="L28">		Spark.get(&quot;/altaPOI&quot;, new AdministracionDePOIController()::formularioAlta, engine);</span>
+<span class="nc" id="L29">		Spark.post(&quot;/altaPOI&quot;, new AdministracionDePOIController()::alta, engine);</span>
 
-<span class="nc" id="L32">	}</span>
+<span class="nc" id="L31">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

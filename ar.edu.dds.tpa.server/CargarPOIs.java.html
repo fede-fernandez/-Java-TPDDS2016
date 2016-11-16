@@ -2,6 +2,9 @@
 
 import java.time.DayOfWeek;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.Banco;
@@ -11,25 +14,33 @@ import ar.edu.dds.tpa.model.Rubro;
 import ar.edu.dds.tpa.model.Servicio;
 import ar.edu.dds.tpa.persistencia.Persistible;
 
-<span class="nc" id="L14">public class CargarPOIs implements Persistible {</span>
+<span class="nc" id="L17">public class CargarPOIs implements Persistible {</span>
 	
 	public void init(){
 		
-<span class="nc" id="L18">		ParadaDeColectivo paradaDel46 = new ParadaDeColectivo(&quot;Linea 46 Estacion Mozart&quot;,</span>
-<span class="nc" id="L19">				new Posicion(53.97583, 12.21985));</span>
+<span class="nc" id="L21">		List&lt;DayOfWeek&gt;deLunesAViernes = new ArrayList&lt;DayOfWeek&gt;();</span>
+<span class="nc" id="L22">		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,</span>
+				DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));
 
-<span class="nc" id="L21">		Rubro kioscoDeDiarios = new Rubro(&quot;Kiosco de Diarios&quot;, 10.5);</span>
-<span class="nc" id="L22">		LocalComercial localDeDiarios = new LocalComercial(&quot;Diarin&quot;, new Posicion(734.1523, 751.2312), kioscoDeDiarios);</span>
+		
+<span class="nc" id="L26">		ParadaDeColectivo paradaDel46 = new ParadaDeColectivo(&quot;Linea 46 Estacion Mozart&quot;,</span>
+<span class="nc" id="L27">				new Posicion(53.97583, 12.21985));</span>
 
-<span class="nc" id="L24">		Banco bancoPatagonia = new Banco(&quot;Banco Patagonia Sucursal Villa Fiorito&quot;, new Posicion(73.002005, 148.42205));</span>
-<span class="nc" id="L25">		Servicio extracciones = new Servicio(&quot;extracciones&quot;);</span>
-<span class="nc" id="L26">		extracciones.agregarHorarioDeAtencion(DayOfWeek.WEDNESDAY, LocalTime.of(9, 50), LocalTime.of(23, 45));</span>
-<span class="nc" id="L27">		bancoPatagonia.agregarServicio(extracciones);</span>
+<span class="nc" id="L29">		Rubro kioscoDeDiarios = new Rubro(&quot;Kiosco de Diarios&quot;, 10.5);</span>
+<span class="nc" id="L30">		LocalComercial localDeDiarios = new LocalComercial(&quot;Diarin&quot;, new Posicion(734.1523, 751.2312), kioscoDeDiarios);</span>
 
-<span class="nc" id="L29">		repositorio.persistir(paradaDel46);</span>
-<span class="nc" id="L30">		repositorio.persistir(localDeDiarios);</span>
-<span class="nc" id="L31">		repositorio.persistir(bancoPatagonia);</span>
-<span class="nc" id="L32">	}</span>
+<span class="nc" id="L32">		localDeDiarios.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(9, 30),</span>
+<span class="nc" id="L33">				LocalTime.of(18, 30));</span>
+		
+<span class="nc" id="L35">		Banco bancoPatagonia = new Banco(&quot;Banco Patagonia Sucursal Villa Fiorito&quot;, new Posicion(73.002005, 148.42205));</span>
+<span class="nc" id="L36">		Servicio extracciones = new Servicio(&quot;extracciones&quot;);</span>
+<span class="nc" id="L37">		extracciones.agregarHorarioDeAtencion(DayOfWeek.WEDNESDAY, LocalTime.of(9, 50), LocalTime.of(23, 45));</span>
+<span class="nc" id="L38">		bancoPatagonia.agregarServicio(extracciones);</span>
+
+<span class="nc" id="L40">		repositorio.persistir(paradaDel46);</span>
+<span class="nc" id="L41">		repositorio.persistir(localDeDiarios);</span>
+<span class="nc" id="L42">		repositorio.persistir(bancoPatagonia);</span>
+<span class="nc" id="L43">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

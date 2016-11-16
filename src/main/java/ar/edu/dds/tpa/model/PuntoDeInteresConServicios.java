@@ -16,6 +16,10 @@ public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 	@JoinColumn(name = "puntoDeInteres_id")
 	private Set<Servicio> servicios;
 
+	public Set<Servicio> getServicios() {
+		return servicios;
+	}
+
 	public PuntoDeInteresConServicios() {
 		servicios = new HashSet<Servicio>();
 	}

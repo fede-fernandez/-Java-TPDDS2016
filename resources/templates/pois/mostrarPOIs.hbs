@@ -7,11 +7,33 @@
     <p><strong>Latitud:</strong> {{coordenadas.latitud}}</p>
     <p><strong>palabra Clave:</strong> {{palabrasClave}}</p>
       
+    {{#each horarioDeAtencion}}
+    <p><strong>Dia y Horario de Atencion:</strong></p>
     {{#each horarioDeAtencion.horariosDeAtencionPorDia}}
-    <p><strong>horarioDeAtencion:</strong></p> 
-        <tr>
-            <td>{{dia}}</td>
-        </tr>
+        {{dia}},
+        {{#each rangosDeHorario}}
+        <strong>horarioInicio:</strong>
+        {{horarioInicio}}
+        <strong>horarioFin:</strong>
+        {{horarioFin}}
+        {{/each}}
+        <p></p>
+    {{/each}}
+    {{/each}}
+    
+    {{#each servicios}}
+    <h2> Servicio: {{nombre}} </h2>
+    {{#each horarioDeAtencion.horariosDeAtencionPorDia}}
+        <strong>dia:</strong>
+        {{dia}},
+        {{#each rangosDeHorario}}
+        <strong>horarioInicio:</strong>
+        {{horarioInicio}}
+        <strong>horarioFin:</strong>
+        {{horarioFin}}
+        {{/each}}
+        <p></p>
+    {{/each}}
     {{/each}}
     
 {{/with}}

@@ -4,7 +4,6 @@ package ar.edu.dds.tpa.server;
 import ar.edu.dds.tpa.controllers.POIsController;
 import ar.edu.dds.tpa.server.controllers.AdministracionDePOIController;
 import ar.edu.dds.tpa.spark.utils.HandlebarsTemplateEngineBuilder;
-import spark.Request;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
 

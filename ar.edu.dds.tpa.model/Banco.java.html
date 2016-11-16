@@ -16,32 +16,28 @@ public class Banco extends PuntoDeInteresConServicios {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = &quot;horarioDeAtencion_id&quot;)
-	private HorarioDeAtencion horarioDeAtencionBancario;
+	private HorarioDeAtencion horarioDeAtencion;
 
-	public HorarioDeAtencion getHorarioDeAtencionBancario() {
-<span class="nc" id="L22">		return horarioDeAtencionBancario;</span>
+	public HorarioDeAtencion getHorarioDeAtencion() {
+<span class="nc" id="L22">		return horarioDeAtencion;</span>
 	}
 
-	public void setHorarioDeAtencionBancario(HorarioDeAtencion horarioDeAtencionBancario) {
-<span class="nc" id="L26">		this.horarioDeAtencionBancario = horarioDeAtencionBancario;</span>
-<span class="nc" id="L27">	}</span>
-
 	public Banco() {
-<span class="fc" id="L30">		super();</span>
-<span class="fc" id="L31">	}</span>
+<span class="fc" id="L26">		super();</span>
+<span class="fc" id="L27">	}</span>
 
 	public Banco(String nombre, Posicion coordenadas) {
-<span class="fc" id="L34">		super(nombre, coordenadas);</span>
-<span class="fc" id="L35">		List&lt;DayOfWeek&gt; deLunesAViernes = new ArrayList&lt;DayOfWeek&gt;();</span>
-<span class="fc" id="L36">		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,</span>
+<span class="fc" id="L30">		super(nombre, coordenadas);</span>
+<span class="fc" id="L31">		List&lt;DayOfWeek&gt; deLunesAViernes = new ArrayList&lt;DayOfWeek&gt;();</span>
+<span class="fc" id="L32">		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,</span>
 				DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));
-<span class="fc" id="L38">		horarioDeAtencionBancario = new HorarioDeAtencion();</span>
-<span class="fc" id="L39">		horarioDeAtencionBancario.agregarHorarioDeAtencion(deLunesAViernes, LocalTime.of(10, 0), LocalTime.of(15, 0));</span>
-<span class="fc" id="L40">	}</span>
+<span class="fc" id="L34">		horarioDeAtencion = new HorarioDeAtencion();</span>
+<span class="fc" id="L35">		horarioDeAtencion.agregarHorarioDeAtencion(deLunesAViernes, LocalTime.of(10, 0), LocalTime.of(15, 0));</span>
+<span class="fc" id="L36">	}</span>
 
 	@Override
 	public boolean estaDisponibleEn(LocalDateTime unDiaYHorario) {
-<span class="fc" id="L44">		return horarioDeAtencionBancario.seAtiendeEn(unDiaYHorario);</span>
+<span class="fc" id="L40">		return horarioDeAtencion.seAtiendeEn(unDiaYHorario);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

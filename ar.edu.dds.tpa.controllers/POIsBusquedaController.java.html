@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>POIsController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpa</a> &gt; <a href="index.source.html" class="el_package">ar.edu.dds.tpa.controllers</a> &gt; <span class="el_source">POIsController.java</span></div><h1>POIsController.java</h1><pre class="source lang-java linenums">package ar.edu.dds.tpa.controllers;
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>POIsBusquedaController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpa</a> &gt; <a href="index.source.html" class="el_package">ar.edu.dds.tpa.controllers</a> &gt; <span class="el_source">POIsBusquedaController.java</span></div><h1>POIsBusquedaController.java</h1><pre class="source lang-java linenums">package ar.edu.dds.tpa.controllers;
 
 import java.util.HashMap;
 import java.util.List;
@@ -10,17 +10,17 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-<span class="nc" id="L13">public class POIsController implements Persistible {</span>
+<span class="nc" id="L13">public class POIsBusquedaController implements Persistible {</span>
 	
 	public ModelAndView mostrarTerminal(Request req, Response res){
 <span class="nc" id="L16">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
 <span class="nc" id="L17">		String usuario = req.params(&quot;usuario&quot;);</span>
 		
 <span class="nc" id="L19">		model.put(&quot;usuario&quot;, usuario);</span>
-<span class="nc" id="L20">		return new ModelAndView(model, &quot;pois/buscarPOIs.hbs&quot;);</span>
+<span class="nc" id="L20">		return new ModelAndView(model, &quot;busquedaVisualizacionPOIs/buscarPOIs.hbs&quot;);</span>
 	}
 	
-	public ModelAndView listar(Request req, Response res){
+	public ModelAndView listarPOIS(Request req, Response res){
 <span class="nc" id="L24">		Map&lt;String, List&lt;PuntoDeInteres&gt;&gt; model = new HashMap&lt;&gt;();</span>
 <span class="nc" id="L25">		String textoLibre = req.queryParams(&quot;textoLibre&quot;);</span>
 <span class="nc" id="L26">		String nombre = req.queryParams(&quot;nombre&quot;);</span>
@@ -32,17 +32,17 @@ import spark.Response;
 		
 <span class="nc" id="L33">		model.put(&quot;pois&quot;, pois);</span>
 		
-<span class="nc" id="L35">		return new ModelAndView(model, &quot;pois/mostrarResultadosPOIs.hbs&quot;);</span>
+<span class="nc" id="L35">		return new ModelAndView(model, &quot;busquedaVisualizacionPOIs/mostrarResultadosPOIs.hbs&quot;);</span>
 	}
 	
 	
-	public ModelAndView mostrar(Request req, Response res){
+	public ModelAndView mostrarInformacionPOIs(Request req, Response res){
 <span class="nc" id="L40">		Map&lt;String, PuntoDeInteres&gt; model = new HashMap&lt;&gt;();</span>
 <span class="nc" id="L41">		String id = req.params(&quot;id&quot;);</span>
 		
 <span class="nc" id="L43">		PuntoDeInteres pois = repositorio.buscarPorID(PuntoDeInteres.class,Integer.parseInt(id));</span>
 <span class="nc" id="L44">		model.put(&quot;pois&quot;, pois);</span>
-<span class="nc" id="L45">		return new ModelAndView(model, &quot;pois/mostrarPOIs.hbs&quot;);</span>
+<span class="nc" id="L45">		return new ModelAndView(model, &quot;busquedaVisualizacionPOIs/mostrarPOIs.hbs&quot;);</span>
 	}
 
 }

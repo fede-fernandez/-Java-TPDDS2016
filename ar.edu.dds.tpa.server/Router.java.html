@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>Router.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpa</a> &gt; <a href="index.source.html" class="el_package">ar.edu.dds.tpa.server</a> &gt; <span class="el_source">Router.java</span></div><h1>Router.java</h1><pre class="source lang-java linenums">package ar.edu.dds.tpa.server;
 
 
-import ar.edu.dds.tpa.controllers.POIsController;
+import ar.edu.dds.tpa.controllers.POIsBusquedaController;
 import ar.edu.dds.tpa.server.controllers.AdministracionDePOIController;
 import ar.edu.dds.tpa.spark.utils.HandlebarsTemplateEngineBuilder;
 import spark.Spark;
@@ -18,11 +18,11 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 
 <span class="nc" id="L19">		Spark.staticFiles.location(&quot;/public&quot;);</span>
 		
-<span class="nc" id="L21">		POIsController poisController = new POIsController();</span>
+<span class="nc" id="L21">		POIsBusquedaController poisController = new POIsBusquedaController();</span>
 		
-<span class="nc" id="L23">		Spark.get(&quot;/poisEncontrados&quot;, poisController::listar, engine);</span>
-<span class="nc" id="L24">		Spark.get(&quot;/pois/:id&quot;, poisController::mostrar, engine);</span>
-<span class="nc" id="L25">		Spark.get(&quot;/terminal/:usuario&quot;, poisController::mostrarTerminal, engine);</span>
+<span class="nc" id="L23">		Spark.get(&quot;/poisEncontrados&quot;, poisController::listarPOIS, engine);</span>
+<span class="nc" id="L24">		Spark.get(&quot;/pois/:id&quot;, poisController::mostrarInformacionPOIs, engine);</span>
+<span class="nc" id="L25">		Spark.get(&quot;/terminal&quot;, poisController::mostrarTerminal, engine);</span>
 <span class="nc" id="L26">		Spark.get(&quot;/consultarPOI&quot;, new AdministracionDePOIController()::buscar, engine);</span>
 <span class="nc" id="L27">		Spark.get(&quot;/consultarPOI/:textoBuscado&quot;, new AdministracionDePOIController()::buscar, engine);</span>
 <span class="nc" id="L28">		Spark.get(&quot;/altaPOI&quot;, new AdministracionDePOIController()::formularioAlta, engine);</span>

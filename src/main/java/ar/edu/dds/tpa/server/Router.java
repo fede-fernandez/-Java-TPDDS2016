@@ -1,7 +1,7 @@
 package ar.edu.dds.tpa.server;
 
 
-import ar.edu.dds.tpa.controllers.POIsBusquedaController;
+import ar.edu.dds.tpa.controller.*;
 import ar.edu.dds.tpa.server.controllers.AdministracionDePOIController;
 import ar.edu.dds.tpa.spark.utils.HandlebarsTemplateEngineBuilder;
 import spark.Spark;
@@ -27,7 +27,9 @@ public class Router {
 		Spark.get("/consultarPOI/:textoBuscado", new AdministracionDePOIController()::buscar, engine);
 		Spark.get("/altaPOI", new AdministracionDePOIController()::formularioAlta, engine);
 		Spark.post("/altaPOI", new AdministracionDePOIController()::alta, engine);
-
+		
+		Spark.get("/gestionDeTerminales", new TerminalController()::mostrarTerminales, engine);
+		
 	}
 
 }

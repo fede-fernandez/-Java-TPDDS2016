@@ -1,4 +1,4 @@
-package ar.edu.dds.tpa.controllers;
+package ar.edu.dds.tpa.controller;
 
 import java.util.HashMap;
 import java.util.List;

@@ -10,17 +10,17 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class POIsController implements Persistible {
+public class POIsBusquedaController implements Persistible {
 	
 	public ModelAndView mostrarTerminal(Request req, Response res){
 		Map<String, Object> model = new HashMap<>();
 		String usuario = req.params("usuario");
 		
 		model.put("usuario", usuario);
-		return new ModelAndView(model, "pois/buscarPOIs.hbs");
+		return new ModelAndView(model, "busquedaVisualizacionPOIs/buscarPOIs.hbs");
 	}
 	
-	public ModelAndView listar(Request req, Response res){
+	public ModelAndView listarPOIS(Request req, Response res){
 		Map<String, List<PuntoDeInteres>> model = new HashMap<>();
 		String textoLibre = req.queryParams("textoLibre");
 		String nombre = req.queryParams("nombre");
@@ -32,17 +32,17 @@ public class POIsController implements Persistible {
 		
 		model.put("pois", pois);
 		
-		return new ModelAndView(model, "pois/mostrarResultadosPOIs.hbs");
+		return new ModelAndView(model, "busquedaVisualizacionPOIs/mostrarResultadosPOIs.hbs");
 	}
 	
 	
-	public ModelAndView mostrar(Request req, Response res){
+	public ModelAndView mostrarInformacionPOIs(Request req, Response res){
 		Map<String, PuntoDeInteres> model = new HashMap<>();
 		String id = req.params("id");
 		
 		PuntoDeInteres pois = repositorio.buscarPorID(PuntoDeInteres.class,Integer.parseInt(id));
 		model.put("pois", pois);
-		return new ModelAndView(model, "pois/mostrarPOIs.hbs");
+		return new ModelAndView(model, "busquedaVisualizacionPOIs/mostrarPOIs.hbs");
 	}
 
 }

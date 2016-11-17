@@ -8,49 +8,50 @@ import java.util.Map;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.Busqueda;
-import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.Usuario;
+import ar.edu.dds.tpa.persistencia.Mapa;
+import ar.edu.dds.tpa.persistencia.Persistible;
 import ar.edu.dds.tpa.persistencia.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
-<span class="nc" id="L21">public class AdministracionDePOIController implements Route {</span>
+<span class="nc" id="L22">public class AdministracionDePOIController implements Route, Persistible {</span>
 
 	@Override
 	public Object handle(Request arg0, Response arg1) throws Exception {
 		// TODO Auto-generated method stub
-<span class="nc" id="L26">		return null;</span>
+<span class="nc" id="L27">		return null;</span>
 	}
 	
 	public ModelAndView buscar(Request request, Response response){
-<span class="nc" id="L30">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L31">		String textoBuscado = request.queryMap(&quot;textoBuscado&quot;).value();</span>
-<span class="nc bnc" id="L32" title="All 4 branches missed.">		if (textoBuscado == null || textoBuscado.isEmpty()){</span>
-<span class="nc" id="L33">			return new ModelAndView(null, &quot;administracionPOI/consultarPOI.hbs&quot;);</span>
+<span class="nc" id="L31">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L32">		String textoBuscado = request.queryMap(&quot;textoBuscado&quot;).value();</span>
+<span class="nc bnc" id="L33" title="All 4 branches missed.">		if (textoBuscado == null || textoBuscado.isEmpty()){</span>
+<span class="nc" id="L34">			return new ModelAndView(null, &quot;administracionPOI/consultarPOI.hbs&quot;);</span>
 		}
-<span class="nc" id="L35">		model.put(&quot;textoBuscado&quot;, textoBuscado);</span>
+<span class="nc" id="L36">		model.put(&quot;textoBuscado&quot;, textoBuscado);</span>
 		//model.put(&quot;poi&quot;, new Buscador(new Mapa()).buscar(textoBuscado, new Usuario()));
-<span class="nc" id="L37">		return new ModelAndView(model, &quot;administracionPOI/consultarPOI.hbs&quot;);</span>
+<span class="nc" id="L38">		return new ModelAndView(model, &quot;administracionPOI/consultarPOI.hbs&quot;);</span>
 	}
 
 	public ModelAndView formularioAlta(Request request, Response response){
-<span class="nc" id="L41">		return new ModelAndView(null, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
+<span class="nc" id="L42">		return new ModelAndView(null, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
 	}
 	
 	public ModelAndView alta(Request request, Response response){
-<span class="nc" id="L45">		Map&lt;String, Object&gt; model  = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L46">		String nombre = request.queryMap(&quot;nombre&quot;).value();</span>
-<span class="nc" id="L47">		Double longitud = Double.valueOf(request.queryMap(&quot;longitud&quot;).value());</span>
-<span class="nc" id="L48">		Double latitud = Double.valueOf(request.queryMap(&quot;latitud&quot;).value());</span>
-<span class="nc" id="L49">		Posicion coordenadas = new Posicion(longitud, latitud);</span>
+<span class="nc" id="L46">		Map&lt;String, Object&gt; model  = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L47">		String nombre = request.queryMap(&quot;nombre&quot;).value();</span>
+<span class="nc" id="L48">		Double longitud = Double.valueOf(request.queryMap(&quot;longitud&quot;).value());</span>
+<span class="nc" id="L49">		Double latitud = Double.valueOf(request.queryMap(&quot;latitud&quot;).value());</span>
+<span class="nc" id="L50">		Posicion coordenadas = new Posicion(longitud, latitud);</span>
 		//TODO: Por ahora solo crea paradas de colectivo
-<span class="nc" id="L51">		PuntoDeInteres poi = new ParadaDeColectivo(nombre, coordenadas);</span>
-<span class="nc" id="L52">		new Repositorio().persistir(poi);</span>
-<span class="nc" id="L53">		return new ModelAndView(null, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
+<span class="nc" id="L52">		PuntoDeInteres poi = new ParadaDeColectivo(nombre, coordenadas);</span>
+<span class="nc" id="L53">		repositorio.persistir(poi);</span>
+<span class="nc" id="L54">		return new ModelAndView(null, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

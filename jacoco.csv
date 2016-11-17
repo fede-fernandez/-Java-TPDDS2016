@@ -3,7 +3,6 @@ tpa,ar.edu.dds.tpa.manejoDeArchivos,Archivo,0,81,1,11,0,18,1,10,0,5
 tpa,ar.edu.dds.tpa.model,BajaPuntoDeInteres,33,45,0,4,15,7,9,7,9,5
 tpa,ar.edu.dds.tpa.model,ParadaDeColectivo,0,21,0,2,0,6,0,5,0,4
 tpa,ar.edu.dds.tpa.model,ServicioPuntosDeInteresBajados.new TypeToken() {...},0,6,0,0,0,1,0,1,0,1
-tpa,ar.edu.dds.tpa.model,Mapa,4,53,0,0,2,14,1,7,1,7
 tpa,ar.edu.dds.tpa.model,PuntoDeInteresConServicios,3,58,0,0,1,12,1,8,1,8
 tpa,ar.edu.dds.tpa.model,LocalComercial,11,52,1,3,3,13,3,7,2,6
 tpa,ar.edu.dds.tpa.model,Busqueda,13,42,0,0,5,14,4,6,4,6
@@ -37,12 +36,14 @@ tpa,ar.edu.dds.tpa.geolocalizacion,Posicion,0,83,0,0,0,16,0,5,0,5
 tpa,ar.edu.dds.tpa.geolocalizacion,Poligono,0,123,2,16,0,23,2,11,0,4
 tpa,ar.edu.dds.tpa.persistencia,Fedis,0,29,0,2,0,9,0,5,0,4
 tpa,ar.edu.dds.tpa.persistencia,Redis,42,0,2,0,12,0,6,0,5,0
+tpa,ar.edu.dds.tpa.persistencia,MapaEnMemoria,6,53,0,0,2,14,1,7,1,7
 tpa,ar.edu.dds.tpa.persistencia,ExportarTablasSQL,63,0,0,0,23,0,7,0,7,0
-tpa,ar.edu.dds.tpa.persistencia,Repositorio,67,48,4,4,14,13,7,8,5,6
+tpa,ar.edu.dds.tpa.persistencia,Repositorio,57,56,5,5,10,16,7,9,4,7
 tpa,ar.edu.dds.tpa.persistencia,MorphiaDatastore,62,0,2,0,11,0,4,0,3,0
 tpa,ar.edu.dds.tpa.persistencia,RepositorioDeBusquedas,0,108,0,0,0,24,0,8,0,8
-tpa,ar.edu.dds.tpa.persistencia,Persistible,0,5,0,0,0,1,0,1,0,1
-tpa,ar.edu.dds.tpa.server.controllers,AdministracionDePOIController,86,0,4,0,17,0,7,0,5,0
+tpa,ar.edu.dds.tpa.persistencia,MapaEnBaseDeDatos,16,11,0,0,6,4,4,3,4,3
+tpa,ar.edu.dds.tpa.persistencia,Persistible,0,3,0,0,0,1,0,1,0,1
+tpa,ar.edu.dds.tpa.server.controllers,AdministracionDePOIController,84,0,4,0,17,0,7,0,5,0
 tpa,ar.edu.dds.tpa.procesos.fallos,NoHacerNada,4,0,0,0,2,0,2,0,2,0
 tpa,ar.edu.dds.tpa.procesos.fallos,ReintentarEjecucion,0,60,0,6,0,18,0,7,0,4
 tpa,ar.edu.dds.tpa.procesos.fallos,NotificarAlAdministrador,0,34,0,0,0,8,0,2,0,2

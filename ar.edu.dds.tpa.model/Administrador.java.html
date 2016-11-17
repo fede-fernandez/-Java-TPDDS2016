@@ -2,6 +2,8 @@
 
 import javax.persistence.*;
 
+import ar.edu.dds.tpa.persistencia.Mapa;
+
 @Entity
 public class Administrador {
 
@@ -11,33 +13,33 @@ public class Administrador {
 
 	private String mail;
 
-<span class="fc" id="L14">	public Administrador() {</span>
+<span class="fc" id="L16">	public Administrador() {</span>
 
-<span class="fc" id="L16">	}</span>
+<span class="fc" id="L18">	}</span>
 
-<span class="fc" id="L18">	public Administrador(String mail) {</span>
-<span class="fc" id="L19">		this.mail = mail;</span>
-<span class="fc" id="L20">	}</span>
+<span class="fc" id="L20">	public Administrador(String mail) {</span>
+<span class="fc" id="L21">		this.mail = mail;</span>
+<span class="fc" id="L22">	}</span>
 
 	public Integer getId() {
-<span class="nc" id="L23">		return id;</span>
+<span class="nc" id="L25">		return id;</span>
 	}
 
 	public String getMail() {
-<span class="fc" id="L27">		return mail;</span>
+<span class="fc" id="L29">		return mail;</span>
 	}
 
 	public void agregarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, Mapa enUnMapa) {
-<span class="fc" id="L31">		enUnMapa.agregar(unPuntoDeInteres);</span>
-<span class="fc" id="L32">	}</span>
+<span class="fc" id="L33">		enUnMapa.agregar(unPuntoDeInteres);</span>
+<span class="fc" id="L34">	}</span>
 
 	public void sacarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, Mapa enUnMapa) {
-<span class="fc" id="L35">		enUnMapa.sacar(unPuntoDeInteres);</span>
-<span class="fc" id="L36">	}</span>
+<span class="fc" id="L37">		enUnMapa.sacar(unPuntoDeInteres);</span>
+<span class="fc" id="L38">	}</span>
 
 	public void modificarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado,
 			Mapa enUnMapa) {
-<span class="fc" id="L40">		enUnMapa.modificar(unPuntoDeInteres, puntoDeInteresModificado);</span>
-<span class="fc" id="L41">	}</span>
+<span class="fc" id="L42">		enUnMapa.modificar(unPuntoDeInteres, puntoDeInteresModificado);</span>
+<span class="fc" id="L43">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

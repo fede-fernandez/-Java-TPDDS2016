@@ -11,11 +11,11 @@ import ar.edu.dds.tpa.model.Banco;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.CGP;
 import ar.edu.dds.tpa.model.LocalComercial;
-import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.Rubro;
 import ar.edu.dds.tpa.model.Servicio;
+import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
 import ar.edu.dds.tpa.procesos.ActualizarPOIs;
 
 public class ActualizarPOIsTest {
@@ -27,7 +27,7 @@ public class ActualizarPOIsTest {
 	private ParadaDeColectivo paradaDel114EnRivadaviaYNazca;
 	private ParadaDeColectivo paradaDel114EnPasajeMozart;
 	private ParadaDeColectivo paradaDel114EnPrimeraJunta;
-	private Mapa mapa;
+	private MapaEnMemoria mapa;
 	private List<PuntoDeInteres> baseDeConocimientosDePuntosDeInteres;
 	private Buscador buscador;
 
@@ -50,7 +50,7 @@ public class ActualizarPOIsTest {
 		paradaDel114EnPasajeMozart = new ParadaDeColectivo("144 Pasaje Mozart ", null);
 		paradaDel114EnPrimeraJunta = new ParadaDeColectivo("144 Primera Junta", null);
 
-		mapa = new Mapa();
+		mapa = new MapaEnMemoria();
 
 		mapa.agregar(paradaDel114EnRivadaviaYNazca);
 		mapa.agregar(paradaDel114EnPasajeMozart);

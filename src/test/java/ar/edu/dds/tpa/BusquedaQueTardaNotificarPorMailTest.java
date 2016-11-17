@@ -12,12 +12,13 @@ import org.junit.Test;
 import ar.edu.dds.tpa.adapter.EnviadorDeMail;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta;
+import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
 import ar.edu.dds.tpa.service.MailServiceImpostor;
 
 public class BusquedaQueTardaNotificarPorMailTest {
 
 	private Administrador administrador;
-	private Mapa mapa;
+	private MapaEnMemoria mapa;
 	private Buscador buscador;
 	private NotificadorDeBusquedaLenta notificadorDeBusquedaLenta;
 	private EnviadorDeMail enviadorDeMail;
@@ -26,7 +27,7 @@ public class BusquedaQueTardaNotificarPorMailTest {
 
 	@Before
 	public void inicializar() {
-		mapa = new Mapa();
+		mapa = new MapaEnMemoria();
 		administrador = new Administrador("elAdminDelSistema@puntosdeinteres.com");
 		envioDeMailServiceImpostor = new MailServiceImpostor();
 		enviadorDeMail = new EnviadorDeMail(envioDeMailServiceImpostor);
@@ -45,7 +46,8 @@ public class BusquedaQueTardaNotificarPorMailTest {
 
 	@Test
 	public void noSeNotificaAlAdministradorUnaBusquedaRapida() {
-		buscador.registrarBusqueda(terminal, null, new ArrayList<PuntoDeInteres>(), LocalDateTime.now(), LocalDateTime.now());
+		buscador.registrarBusqueda(terminal, null, new ArrayList<PuntoDeInteres>(), LocalDateTime.now(),
+				LocalDateTime.now());
 		Assert.assertFalse(envioDeMailServiceImpostor.seLlamoAlServicioDeEnvioDeMail());
 	}
 }

@@ -8,17 +8,18 @@ import java.util.Map;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.Busqueda;
-import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.Usuario;
+import ar.edu.dds.tpa.persistencia.Mapa;
+import ar.edu.dds.tpa.persistencia.Persistible;
 import ar.edu.dds.tpa.persistencia.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
-public class AdministracionDePOIController implements Route {
+public class AdministracionDePOIController implements Route, Persistible {
 
 	@Override
 	public Object handle(Request arg0, Response arg1) throws Exception {
@@ -49,7 +50,7 @@ public class AdministracionDePOIController implements Route {
 		Posicion coordenadas = new Posicion(longitud, latitud);
 		//TODO: Por ahora solo crea paradas de colectivo
 		PuntoDeInteres poi = new ParadaDeColectivo(nombre, coordenadas);
-		new Repositorio().persistir(poi);
+		repositorio.persistir(poi);
 		return new ModelAndView(null, "administracionPOI/altaPOI.hbs");
 	}
 }

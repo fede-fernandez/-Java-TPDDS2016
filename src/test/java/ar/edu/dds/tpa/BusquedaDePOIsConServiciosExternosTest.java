@@ -8,8 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.dds.tpa.model.Buscador;
-import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
+import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
 import ar.edu.dds.tpa.service.BancoServiceImpostor;
 import ar.edu.dds.tpa.service.CGPServiceImpostor;
 
@@ -17,7 +17,7 @@ public class BusquedaDePOIsConServiciosExternosTest {
 	private BancoServiceImpostor bancoServiceImpostor;
 	private CGPServiceImpostor cgpServiceImpostor;
 	private Buscador buscador;
-	private Mapa mapa;
+	private MapaEnMemoria mapa;
 	private List<PuntoDeInteres> resultadosDeLaBusqueda;
 
 	@Before
@@ -26,7 +26,7 @@ public class BusquedaDePOIsConServiciosExternosTest {
 
 		cgpServiceImpostor = new CGPServiceImpostor();
 
-		mapa = new Mapa();
+		mapa = new MapaEnMemoria();
 
 		buscador = new Buscador(mapa);
 		buscador.agregarBuscadorExterno(bancoServiceImpostor);

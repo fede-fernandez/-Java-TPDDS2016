@@ -1,33 +1,40 @@
-package ar.edu.dds.tpa.model;
+package ar.edu.dds.tpa.persistencia;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mapa {
+import ar.edu.dds.tpa.model.BajaPuntoDeInteres;
+import ar.edu.dds.tpa.model.PuntoDeInteres;
 
+public class MapaEnMemoria implements Mapa {
 	private List<PuntoDeInteres> puntosDeInteres;
 
-	public Mapa() {
+	public MapaEnMemoria() {
 		puntosDeInteres = new ArrayList<PuntoDeInteres>();
 	}
 
+	@Override
 	public void agregar(PuntoDeInteres unPuntoDeInteres) {
 		puntosDeInteres.add(unPuntoDeInteres);
 	}
-	
-	public void agregarListaPuntoDeInteres(List<PuntoDeInteres> listaPuntoDeInteres) {
-		puntosDeInteres = listaPuntoDeInteres;
+
+	@Override
+	public void agregar(List<PuntoDeInteres> variosPuntosDeInteres) {
+		puntosDeInteres.addAll(variosPuntosDeInteres);
 	}
 
+	@Override
 	public void sacar(PuntoDeInteres unPuntoDeInteres) {
 		puntosDeInteres.remove(unPuntoDeInteres);
 	}
 
+	@Override
 	public void modificar(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado) {
 		puntosDeInteres.remove(unPuntoDeInteres);
 		puntosDeInteres.add(puntoDeInteresModificado);
 	}
 
+	@Override
 	public List<PuntoDeInteres> obtenerPuntosDeInteres() {
 		return puntosDeInteres;
 	}

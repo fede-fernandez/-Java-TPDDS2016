@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import ar.edu.dds.tpa.persistencia.Mapa;
 import ar.edu.dds.tpa.service.BuscadorExterno;
 
 public class Buscador {

@@ -5,11 +5,12 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.dds.tpa.model.*;
+import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
 
 public class AdministradorABMDePOITest {
 
 	private Administrador administrador;
-	private Mapa mapa;
+	private MapaEnMemoria mapa;
 	private ParadaDeColectivo paradaDel7;
 	private Banco bancoSantanderRio;
 	private Buscador buscador;
@@ -17,7 +18,7 @@ public class AdministradorABMDePOITest {
 	@Before
 	public void inicializar() {
 		administrador = new Administrador(null);
-		mapa = new Mapa();
+		mapa = new MapaEnMemoria();
 		paradaDel7 = new ParadaDeColectivo("parada del colectivo linea 7", null);
 		bancoSantanderRio = new Banco("Banco Santander Rio Sucursal Ramos Mejia", null);
 		buscador = new Buscador(mapa);

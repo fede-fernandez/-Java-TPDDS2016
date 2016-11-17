@@ -2,6 +2,8 @@ package ar.edu.dds.tpa.model;
 
 import javax.persistence.*;
 
+import ar.edu.dds.tpa.persistencia.Mapa;
+
 @Entity
 public class Administrador {
 

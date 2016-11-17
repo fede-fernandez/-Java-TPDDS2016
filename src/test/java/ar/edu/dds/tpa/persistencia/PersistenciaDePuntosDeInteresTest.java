@@ -173,6 +173,16 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 				.estaCercaDe(terminalFlores.getCoordenadas()));
 	}
 
+	@Test
+	public void persistenciaMedianteMapa() {
+		MapaEnBaseDeDatos mapaEnBaseDeDatos = new MapaEnBaseDeDatos();
+		ParadaDeColectivo paradaDel141 = new ParadaDeColectivo("Linea 141 Plaza Italia",
+				new Posicion(150.3123, -150.43838));
+		mapaEnBaseDeDatos.agregar(paradaDel141);
+		Assert.assertTrue(mapaEnBaseDeDatos.obtenerPuntosDeInteres().stream()
+				.anyMatch(unPuntoDeInteres -> unPuntoDeInteres.contienePalabraClave("plaza italia")));
+	}
+
 	@AfterClass
 	public static void guardarYCerrarSesion() {
 		repositorio.cerrarSesion();

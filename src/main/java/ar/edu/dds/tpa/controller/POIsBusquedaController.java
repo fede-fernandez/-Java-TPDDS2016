@@ -22,17 +22,13 @@ import spark.Response;
 
 public class POIsBusquedaController implements Persistible {
 	
-	private HistorialDeBusqueda historialBusqueda;
-	
-	private Mapa mapa;
-	
 	private Buscador buscador;
 	
 	public POIsBusquedaController() {
 		MorphiaDatastoreTest morphiaDatastore = MorphiaDatastoreTest.obtenerInstancia();
 		Datastore dbMongo = morphiaDatastore.getDatastore();
-		this.historialBusqueda = new HistorialDeBusquedaEnMongo(dbMongo);
-		this.mapa = new MapaEnBaseDeDatos();
+		HistorialDeBusqueda historialBusqueda = new HistorialDeBusquedaEnMongo(dbMongo);
+		Mapa mapa = new MapaEnBaseDeDatos();
 		this.buscador = new Buscador(mapa, historialBusqueda);
 	}
 	

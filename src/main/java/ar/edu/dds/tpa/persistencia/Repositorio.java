@@ -6,9 +6,11 @@ import java.util.stream.Collectors;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.mongodb.morphia.Datastore;
 
+import ar.edu.dds.tpa.datastoreTest.MorphiaDatastoreTest;
 import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
-import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
+import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMongo;
 import ar.edu.dds.tpa.model.*;
 
 public class Repositorio {
@@ -58,9 +60,10 @@ public class Repositorio {
 	}
 
 	public List<PuntoDeInteres> buscarTextoLibre(String texto, Terminal unaTerminal) {
+		MorphiaDatastoreTest morphiaDatastore = MorphiaDatastoreTest.obtenerInstancia();
+		Datastore db = morphiaDatastore.getDatastore();
+		HistorialDeBusqueda unHistorial = new HistorialDeBusquedaEnMongo(db);
 		Mapa unMapa = new MapaEnMemoria();
-		HistorialDeBusqueda unHistorial = new HistorialDeBusquedaEnMemoria();
-		//TODO esto es para que no rompa, no tiene sentido instanciar un buscador cada vez que se haga una busqueda
 		unMapa.agregar((List<PuntoDeInteres>) this.traerTodos(PuntoDeInteres.class));
 		Buscador buscador = new Buscador(unMapa, unHistorial);
 		List<PuntoDeInteres> pois = buscador.buscar(texto, unaTerminal);

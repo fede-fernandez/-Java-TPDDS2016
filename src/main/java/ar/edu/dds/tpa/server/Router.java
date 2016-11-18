@@ -23,6 +23,7 @@ public class Router {
 		Spark.get("/poisEncontrados", poisController::listarPOIS, engine);
 		Spark.get("/pois/:id", poisController::mostrarInformacionPOIs, engine);
 		Spark.get("/terminal", poisController::mostrarTerminal, engine);
+		
 		Spark.get("/consultarPOI", new AdministracionDePOIController()::buscar, engine);
 		Spark.get("/consultarPOI/:textoBuscado", new AdministracionDePOIController()::buscar, engine);
 		Spark.get("/altaPOI", new AdministracionDePOIController()::formularioAlta, engine);

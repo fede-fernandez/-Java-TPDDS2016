@@ -7,7 +7,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
 import ar.edu.dds.tpa.model.Busqueda;
-import ar.edu.dds.tpa.model.HistorialDeBusqueda;
+import ar.edu.dds.tpa.morphia.converter.LocalDateConverter;
 import ar.edu.dds.tpa.properties.Propiedades;
 
 public class MorphiaDatastore {
@@ -17,25 +17,27 @@ public class MorphiaDatastore {
 	private Propiedades propiedades;
 	private static MorphiaDatastore morphiaDatastore;
 	private MongoClient mongoClient;
-	
-	
-<span class="nc" id="L22">	private MorphiaDatastore(){</span>
-<span class="nc" id="L23">		propiedades = new Propiedades(&quot;resources/mongo.properties&quot;);</span>
-<span class="nc" id="L24">		morphia = new Morphia();</span>
-<span class="nc" id="L25">		morphia.map(Busqueda.class,HistorialDeBusqueda.class);</span>
-<span class="nc" id="L26">		mongoClient = new MongoClient(new MongoClientURI(propiedades.obtenerValorDe(&quot;URI&quot;)));</span>
-<span class="nc" id="L27">		datastore = morphia.createDatastore(mongoClient, propiedades.obtenerValorDe(&quot;nombreDeBD&quot;));</span>
-<span class="nc" id="L28">	}</span>
+		
+<span class="nc" id="L21">	private MorphiaDatastore(){</span>
+<span class="nc" id="L22">		propiedades = new Propiedades(&quot;resources/mongo.properties&quot;);</span>
+<span class="nc" id="L23">		morphia = new Morphia();</span>
+		
+<span class="nc" id="L25">		morphia.getMapper().getConverters().addConverter(LocalDateConverter.class);</span>
+<span class="nc" id="L26">		morphia.getMapper().addMappedClass(Busqueda.class);</span>
+			
+<span class="nc" id="L28">		mongoClient = new MongoClient(new MongoClientURI(propiedades.obtenerValorDe(&quot;URI&quot;)));</span>
+<span class="nc" id="L29">		datastore = morphia.createDatastore(mongoClient, propiedades.obtenerValorDe(&quot;nombreDeBD&quot;));</span>
+<span class="nc" id="L30">	}</span>
 	
 	public static MorphiaDatastore obtenerInstancia(){
-<span class="nc bnc" id="L31" title="All 2 branches missed.">		if (morphiaDatastore == null) {</span>
-<span class="nc" id="L32">			morphiaDatastore = new MorphiaDatastore();</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">		if (morphiaDatastore == null) {</span>
+<span class="nc" id="L34">			morphiaDatastore = new MorphiaDatastore();</span>
 		}
-<span class="nc" id="L34">		return morphiaDatastore;</span>
+<span class="nc" id="L36">		return morphiaDatastore;</span>
 	}
 	
 	public Datastore getDatastore(){
-<span class="nc" id="L38">		return datastore;</span>
+<span class="nc" id="L40">		return datastore;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

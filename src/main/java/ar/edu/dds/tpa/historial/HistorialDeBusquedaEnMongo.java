@@ -16,6 +16,7 @@ public class HistorialDeBusquedaEnMongo implements HistorialDeBusqueda{
 	}
 
 	public void registrarBusqueda(Busqueda busqueda){
+		datastore.save(busqueda.getPuntosDeInteresEncontrados());
 		datastore.save(busqueda);
 	}
 	

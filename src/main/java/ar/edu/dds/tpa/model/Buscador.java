@@ -29,7 +29,7 @@ public class Buscador {
 			LocalDateTime tiempoDeInicio, LocalDateTime tiempoDeFin) {
 
 		double duracionDeBusqueda = ChronoUnit.SECONDS.between(tiempoDeInicio, tiempoDeFin);
-		Busqueda busquedaRealizada = new Busqueda(terminal, textoBuscado, puntosDeInteresEncontrados, LocalDate.now(),
+		Busqueda busquedaRealizada = new Busqueda(terminal, textoBuscado, new PuntosDeInteresEncontrados(puntosDeInteresEncontrados), LocalDate.now(),
 				duracionDeBusqueda);
 
 		if (terminal != null) {

@@ -58,9 +58,9 @@ public class HistorialDeBusquedasTest {
 		resultadosDeBusqueda3.add(banco);
 		resultadosDeBusqueda3.add(localComercial);
 
-		busquedaParadaCinco = new Busqueda(terminal, "Florida", resultadosDeBusqueda1, cuatroDeFebreroDe2016, 5.0);
-		busquedaLibreria = new Busqueda(terminal, "Ahorro", resultadosDeBusqueda2, cuatroDeFebreroDe2016, 5.0);
-		busquedaParadaDos = new Busqueda(terminal, "Subte", resultadosDeBusqueda3, diezDeEneroDe2016, 5.0);
+		busquedaParadaCinco = new Busqueda(terminal, "Florida",new PuntosDeInteresEncontrados(resultadosDeBusqueda1) , cuatroDeFebreroDe2016, 5.0);
+		busquedaLibreria = new Busqueda(terminal, "Ahorro",new PuntosDeInteresEncontrados(resultadosDeBusqueda2) , cuatroDeFebreroDe2016, 5.0);
+		busquedaParadaDos = new Busqueda(terminal, "Subte",new PuntosDeInteresEncontrados(resultadosDeBusqueda3) , diezDeEneroDe2016, 5.0);
 
 		historialDeBusqueda = new HistorialDeBusquedaEnMemoria();
 

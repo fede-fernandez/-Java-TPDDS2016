@@ -1,12 +1,11 @@
 package ar.edu.dds.tpa.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
 import org.mongodb.morphia.annotations.Id;
+import org.mongodb.morphia.annotations.Reference;
 
 
 @Entity
@@ -18,22 +17,22 @@ public class Busqueda {
 	private Terminal terminal;
 
 	private String textoBuscado;
-	
-	private List<PuntoDeInteres> puntosDeInteresEncontrados;
+	@Reference(lazy=true,idOnly=true)
+	private PuntosDeInteresEncontrados puntosDeInteresEncontrados;
 
 	private LocalDate fechaDeBusqueda;
 
 	private Double tiempoDeRespuesta;
 
 	public Busqueda() {
-		puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>();
+
 	}
 
-	public Busqueda(Terminal terminal, String textoBuscado, List<PuntoDeInteres> puntosDeInteresEncontrados,
+	public Busqueda(Terminal terminal, String textoBuscado, PuntosDeInteresEncontrados poisEncontrados,
 			LocalDate fechaDeBusqueda, Double tiempoDeRespuesta) {
 		this.terminal = terminal;
 		this.textoBuscado = textoBuscado;
-		this.puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>(puntosDeInteresEncontrados);
+		this.puntosDeInteresEncontrados = poisEncontrados;
 		this.fechaDeBusqueda = fechaDeBusqueda;
 		this.tiempoDeRespuesta = tiempoDeRespuesta;
 	}
@@ -45,14 +44,6 @@ public class Busqueda {
 
 	public String getTextoBuscado() {
 		return textoBuscado;
-	}
-
-	public List<PuntoDeInteres> getPuntosDeInteresEncontrados() {
-		return puntosDeInteresEncontrados;
-	}
-
-	public int getCantidadDeResultados() {
-		return puntosDeInteresEncontrados.size();
 	}
 
 	public LocalDate getFechaDeBusqueda() {
@@ -69,5 +60,13 @@ public class Busqueda {
 
 	public void setId(ObjectId id) {
 		this.id = id;
+	}
+
+	public PuntosDeInteresEncontrados getPuntosDeInteresEncontrados() {
+		return puntosDeInteresEncontrados;
+	}
+
+	public void setPuntosDeInteresEncontrados(PuntosDeInteresEncontrados puntosDeInteresEncontrados) {
+		this.puntosDeInteresEncontrados = puntosDeInteresEncontrados;
 	}
 }

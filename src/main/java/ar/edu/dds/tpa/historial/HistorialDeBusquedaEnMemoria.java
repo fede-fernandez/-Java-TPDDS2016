@@ -32,7 +32,7 @@ public class HistorialDeBusquedaEnMemoria implements HistorialDeBusqueda{
 	}
 
 	public int cantidadDeResultadosTotales() {
-		return busquedasRealizadas.stream().mapToInt(unaBusqueda -> unaBusqueda.getCantidadDeResultados()).sum();
+		return busquedasRealizadas.stream().mapToInt(unaBusqueda -> unaBusqueda.getPuntosDeInteresEncontrados().getCantidadDeResultados()).sum();
 	}
 
 	public int cantidadDeBusquedasEnUnaFecha(LocalDate unaFecha) {
@@ -43,21 +43,21 @@ public class HistorialDeBusquedaEnMemoria implements HistorialDeBusqueda{
 	public List<Integer> resultadosParcialesPorBusqueda(String textoBuscado) {
 		return busquedasRealizadas.parallelStream()
 				.filter(unaBusqueda -> unaBusqueda.getTextoBuscado().equals(textoBuscado))
-				.map(unaBusquedaFiltrada -> (Integer) unaBusquedaFiltrada.getCantidadDeResultados())
+				.map(unaBusquedaFiltrada -> (Integer) unaBusquedaFiltrada.getPuntosDeInteresEncontrados().getCantidadDeResultados())
 				.collect(Collectors.toList());
 	}
 
 
-	/*public List<String> nombresDeUsuarios() {
-		return busquedasRealizadas.stream().map(unaBusqueda -> unaBusqueda.getUsuario().getNombre()).distinct()
+	public List<String> nombresDeUsuarios() {
+		return busquedasRealizadas.stream().map(unaBusqueda -> unaBusqueda.getTerminal().getNombre()).distinct()
 				.collect(Collectors.toList());
 	}
 
 	public int cantidadDeResultadosTotalesDeUnUsuario(String unNombreDeUsuario) {
 		return busquedasRealizadas.stream()
-				.filter(unaBusqueda -> unaBusqueda.getUsuario().getNombre().equals(unNombreDeUsuario))
-				.mapToInt(unaBusquedaFiltrada -> unaBusquedaFiltrada.getCantidadDeResultados()).sum();
-	}*/
+				.filter(unaBusqueda -> unaBusqueda.getTerminal().getNombre().equals(unNombreDeUsuario))
+				.mapToInt(unaBusquedaFiltrada -> unaBusquedaFiltrada.getPuntosDeInteresEncontrados().getCantidadDeResultados()).sum();
+	}
 	
 
 	public void registrarBusqueda(Busqueda unaBusqueda) {

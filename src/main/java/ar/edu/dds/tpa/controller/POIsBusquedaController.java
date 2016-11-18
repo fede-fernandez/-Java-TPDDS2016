@@ -3,6 +3,12 @@ package ar.edu.dds.tpa.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import org.mongodb.morphia.Datastore;
+
+import ar.edu.dds.tpa.datastoreTest.MorphiaDatastoreTest;
+import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
+import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMongo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.Terminal;
 import ar.edu.dds.tpa.persistencia.Persistible;
@@ -14,9 +20,7 @@ public class POIsBusquedaController implements Persistible {
 	
 	public ModelAndView mostrarTerminal(Request req, Response res){
 		Map<String, Object> model = new HashMap<>();
-		String usuario = req.params("usuario");
-		
-		model.put("usuario", usuario);
+
 		return new ModelAndView(model, "busquedaVisualizacionPOIs/buscarPOIs.hbs");
 	}
 	
@@ -25,12 +29,23 @@ public class POIsBusquedaController implements Persistible {
 		String textoLibre = req.queryParams("textoLibre");
 		String nombre = req.queryParams("nombre");
 		String comuna = req.queryParams("comuna");
+		Terminal terminal;
 		
-		Terminal terminal = repositorio.buscarTerminal(nombre, comuna);
-		
+		try {
+			terminal = repositorio.buscarTerminal(nombre, comuna);
+		} catch (Exception e) {
+			return new ModelAndView(null, "busquedaVisualizacionPOIs/errorTerminal.hbs");
+		}
+
 		List<PuntoDeInteres> pois =(List<PuntoDeInteres>) repositorio.buscarTextoLibre(textoLibre, terminal);
 		
 		model.put("pois", pois);
+		
+		MorphiaDatastoreTest morphiaDatastore = MorphiaDatastoreTest.obtenerInstancia();
+		Datastore db = morphiaDatastore.getDatastore();
+		HistorialDeBusqueda unHistorial = new HistorialDeBusquedaEnMongo(db);
+		
+		System. out. println(unHistorial.traerTodasLasBusquedas());
 		
 		return new ModelAndView(model, "busquedaVisualizacionPOIs/mostrarResultadosPOIs.hbs");
 	}

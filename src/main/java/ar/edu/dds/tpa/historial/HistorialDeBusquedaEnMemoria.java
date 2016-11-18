@@ -108,6 +108,18 @@ public class HistorialDeBusquedaEnMemoria implements HistorialDeBusqueda{
 				.collect(Collectors.toList());
 	}
 	
+	public List<Busqueda> encontrarLasBusquedasDeUnaTerminal(String nombreDeTerminal){
+		return busquedasRealizadas.stream()
+				.filter(unaBusqueda -> unaBusqueda.getTerminal().getNombre().equals(nombreDeTerminal))
+				.collect(Collectors.toList());
+	}
+	
+	public List<Busqueda> encontrarLasBusquedasPorCantidadDeResultados(int cantidadDeResultados){
+		return busquedasRealizadas.stream()
+				.filter(unaBusqueda -> unaBusqueda.getPuntosDeInteresEncontrados().getCantidadDeResultados() == cantidadDeResultados)
+				.collect(Collectors.toList());
+	}
+	
 	private boolean estaEnUnRangoDeFechas(LocalDate fecha, LocalDate fechaDeInicio, LocalDate fechaDeFin){
 		return !fecha.isBefore(fechaDeInicio) && !fecha.isAfter(fechaDeFin);
 	}

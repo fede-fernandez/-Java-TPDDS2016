@@ -57,6 +57,20 @@ public class HistorialDeBusquedaEnMongo implements HistorialDeBusqueda{
 		return resultado;
 	}
 	
+	public List<Busqueda> encontrarLasBusquedasDeUnaTerminal(String nombreDeTerminal){
+		List<Busqueda> resultado = datastore.createQuery(Busqueda.class)
+				.field("terminal.nombre").equal(nombreDeTerminal).asList();
+		
+		return resultado;
+	}
+	
+	public List<Busqueda> encontrarLasBusquedasPorCantidadDeResultados(int cantidadDeResultados){
+		List<Busqueda> resultado = datastore.createQuery(Busqueda.class)
+				.field("puntosDeInteresEncontrados.puntosDeInteresEncontrados").sizeEq(cantidadDeResultados).asList();
+		
+		return resultado; 
+	}
+	
 	public void eliminarBusqueda(Busqueda unaBusqueda){
 		datastore.delete(unaBusqueda);
 	}

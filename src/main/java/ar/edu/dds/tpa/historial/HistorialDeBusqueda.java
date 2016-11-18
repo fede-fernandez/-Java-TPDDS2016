@@ -21,5 +21,9 @@ public interface HistorialDeBusqueda {
 	List<Busqueda> encontrarLasBusquedasQueSeRealizaronEnUnaFecha(LocalDate unaFecha);
 
 	void eliminarBusqueda(Busqueda unaBusqueda);
+	
+	public List<Busqueda> encontrarLasBusquedasDeUnaTerminal(String nombreDeTerminal);
+	
+	public List<Busqueda> encontrarLasBusquedasPorCantidadDeResultados(int cantidadDeResultados);
 
 }

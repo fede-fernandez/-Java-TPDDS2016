@@ -241,4 +241,14 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		repositorio.eliminarBusqueda(busqueda4);
 		repositorio.eliminarBusqueda(busqueda5);
 	}
+	
+	@Test
+	public void encontrarLasBusquedasDeUnaTerminal(){
+		repositorio.registrarBusqueda(busqueda1);
+		
+		List<Busqueda> historial= repositorio.encontrarLasBusquedasDeUnaTerminal("Terminal Chacabuco");
+		
+		Assert.assertEquals(1, historial.size());
+	}
+		
 }

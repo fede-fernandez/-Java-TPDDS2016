@@ -20,6 +20,7 @@ public class MorphiaDatastoreTest {
 	private MorphiaDatastoreTest(){
 		morphia = new Morphia();
 		fongo = new Fongo("ServerTest");
+		
 		mapper = new Mapper();
 		mapper.addMappedClass(Busqueda.class);
 		mapper.getConverters().addConverter(LocalDateConverter.class);

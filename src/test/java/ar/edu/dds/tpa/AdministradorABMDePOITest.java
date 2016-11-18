@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.*;
 import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
 
@@ -21,7 +22,7 @@ public class AdministradorABMDePOITest {
 		mapa = new MapaEnMemoria();
 		paradaDel7 = new ParadaDeColectivo("parada del colectivo linea 7", null);
 		bancoSantanderRio = new Banco("Banco Santander Rio Sucursal Ramos Mejia", null);
-		buscador = new Buscador(mapa);
+		buscador = new Buscador(mapa, new HistorialDeBusquedaEnMemoria());
 	}
 
 	@Test

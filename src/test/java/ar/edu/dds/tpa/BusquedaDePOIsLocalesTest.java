@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.*;
 import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
 
@@ -56,7 +57,7 @@ public class BusquedaDePOIsLocalesTest {
 		baseDeConocimientosDePuntosDeInteres.add(libreriaEscolar);
 		baseDeConocimientosDePuntosDeInteres.add(unCGP);
 
-		buscador = new Buscador(mapa);
+		buscador = new Buscador(mapa, new HistorialDeBusquedaEnMemoria());
 	}
 
 	@Test

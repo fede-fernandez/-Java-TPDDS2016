@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
 import ar.edu.dds.tpa.persistencia.Mapa;
 import ar.edu.dds.tpa.service.BuscadorExterno;
 
@@ -18,10 +19,10 @@ public class Buscador {
 
 	private HistorialDeBusqueda historialDeBusqueda;
 
-	public Buscador(Mapa unMapa) {
+	public Buscador(Mapa unMapa, HistorialDeBusqueda unHistorial) {
 		mapaLocal = unMapa;
 		buscadoresExternos = new ArrayList<BuscadorExterno>();
-		historialDeBusqueda = new HistorialDeBusqueda();
+		historialDeBusqueda = unHistorial;
 	}
 
 	public void registrarBusqueda(Terminal terminal, String textoBuscado, List<PuntoDeInteres> puntosDeInteresEncontrados,
@@ -35,7 +36,7 @@ public class Buscador {
 			terminal.notificarBusqueda(busquedaRealizada);
 		}
 
-		historialDeBusqueda.agregar(busquedaRealizada);
+		historialDeBusqueda.registrarBusqueda(busquedaRealizada);
 	}
 
 	public List<PuntoDeInteres> buscar(String unaFrase, Terminal unaTerminal) {

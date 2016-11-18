@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
@@ -28,7 +29,7 @@ public class BusquedaDePOIsConServiciosExternosTest {
 
 		mapa = new MapaEnMemoria();
 
-		buscador = new Buscador(mapa);
+		buscador = new Buscador(mapa, new HistorialDeBusquedaEnMemoria());
 		buscador.agregarBuscadorExterno(bancoServiceImpostor);
 		buscador.agregarBuscadorExterno(cgpServiceImpostor);
 

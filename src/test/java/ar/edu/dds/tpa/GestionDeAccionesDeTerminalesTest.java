@@ -14,6 +14,7 @@ import ar.edu.dds.tpa.accion.DesactivadorDeNotificadorDeBusquedaLenta;
 import ar.edu.dds.tpa.adapter.EnviadorDeMail;
 import ar.edu.dds.tpa.criterio.FiltradoPorComuna;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
+import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta;
 import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
 import ar.edu.dds.tpa.procesos.GestorDeAccionesDeTerminales;
@@ -47,7 +48,7 @@ public class GestionDeAccionesDeTerminalesTest {
 		terminales = new ArrayList<Terminal>();
 		terminales.add(terminal);
 		mapa = new MapaEnMemoria();
-		buscador = new Buscador(mapa);
+		buscador = new Buscador(mapa, new HistorialDeBusquedaEnMemoria());
 
 		proceso3 = new GestorDeAccionesDeTerminales(terminales, filtroPorComuna, desactivarNotificadorDeBusqueda);
 	}

@@ -8,6 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
+import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.*;
 import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
 import ar.edu.dds.tpa.procesos.DarDeBajaPuntosDeInteres;
@@ -71,7 +72,7 @@ public class DarDeBajaPuntosDeInteresTest {
 
 		bajaPuntosDeInteres.setServicioBajas(servicioBajas);
 
-		buscador = new Buscador(mapa);
+		buscador = new Buscador(mapa, new HistorialDeBusquedaEnMemoria());
 
 	}
 

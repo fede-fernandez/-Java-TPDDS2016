@@ -7,6 +7,8 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
+import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.*;
 
 public class Repositorio {
@@ -57,8 +59,10 @@ public class Repositorio {
 
 	public List<PuntoDeInteres> buscarTextoLibre(String texto, Terminal unaTerminal) {
 		Mapa unMapa = new MapaEnMemoria();
+		HistorialDeBusqueda unHistorial = new HistorialDeBusquedaEnMemoria();
+		//TODO esto es para que no rompa, no tiene sentido instanciar un buscador cada vez que se haga una busqueda
 		unMapa.agregar((List<PuntoDeInteres>) this.traerTodos(PuntoDeInteres.class));
-		Buscador buscador = new Buscador(unMapa);
+		Buscador buscador = new Buscador(unMapa, unHistorial);
 		List<PuntoDeInteres> pois = buscador.buscar(texto, unaTerminal);
 		return pois;
 	}

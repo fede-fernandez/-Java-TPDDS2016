@@ -7,7 +7,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 
 import ar.edu.dds.tpa.model.Busqueda;
-import ar.edu.dds.tpa.model.HistorialDeBusqueda;
 import ar.edu.dds.tpa.properties.Propiedades;
 
 public class MorphiaDatastore {
@@ -22,7 +21,7 @@ public class MorphiaDatastore {
 	private MorphiaDatastore(){
 		propiedades = new Propiedades("resources/mongo.properties");
 		morphia = new Morphia();
-		morphia.map(Busqueda.class,HistorialDeBusqueda.class);
+		morphia.map(Busqueda.class);
 		mongoClient = new MongoClient(new MongoClientURI(propiedades.obtenerValorDe("URI")));
 		datastore = morphia.createDatastore(mongoClient, propiedades.obtenerValorDe("nombreDeBD"));
 	}

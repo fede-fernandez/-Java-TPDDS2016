@@ -3,7 +3,7 @@ package ar.edu.dds.tpa.reporte;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.edu.dds.tpa.model.HistorialDeBusqueda;
+import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
 
 public class Reporte {
 	

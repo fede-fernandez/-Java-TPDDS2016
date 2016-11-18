@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.Banco;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.CGP;
@@ -72,7 +73,7 @@ public class ActualizarPOIsTest {
 		unBanco.agregarPalabraClave("pesos");
 		unBanco.agregarPalabraClave("dolares");
 
-		buscador = new Buscador(mapa);
+		buscador = new Buscador(mapa, new HistorialDeBusquedaEnMemoria());
 
 		puntosDeInteresEncontrados = new ArrayList<>();
 

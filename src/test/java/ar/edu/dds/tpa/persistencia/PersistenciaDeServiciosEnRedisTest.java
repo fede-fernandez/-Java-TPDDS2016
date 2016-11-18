@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.service.BancoServiceImpostor;
@@ -21,7 +22,7 @@ public class PersistenciaDeServiciosEnRedisTest {
 	public void inicializar() {
 		bancoServiceConCacheMock = new BancoServiceImpostor().conSoporteCache(Fedis.obtenerConexion());
 		bancoServiceSinCacheMock = new BancoServiceImpostor();
-		buscador = new Buscador(new MapaEnMemoria());
+		buscador = new Buscador(new MapaEnMemoria(), new HistorialDeBusquedaEnMemoria());
 		buscador.agregarBuscadorExterno(bancoServiceConCacheMock);
 		buscador.agregarBuscadorExterno(bancoServiceSinCacheMock);
 		resultadosDeLaBusqueda = new ArrayList<PuntoDeInteres>();

@@ -59,20 +59,4 @@ public class Repositorio {
 		return objetosEncontrados;
 	}
 
-	public List<PuntoDeInteres> buscarTextoLibre(String texto, Terminal unaTerminal) {
-		MorphiaDatastoreTest morphiaDatastore = MorphiaDatastoreTest.obtenerInstancia();
-		Datastore db = morphiaDatastore.getDatastore();
-		HistorialDeBusqueda unHistorial = new HistorialDeBusquedaEnMongo(db);
-		Mapa unMapa = new MapaEnMemoria();
-		unMapa.agregar((List<PuntoDeInteres>) this.traerTodos(PuntoDeInteres.class));
-		Buscador buscador = new Buscador(unMapa, unHistorial);
-		List<PuntoDeInteres> pois = buscador.buscar(texto, unaTerminal);
-		return pois;
-	}
-
-	public Terminal buscarTerminal(String nombre, String comuna) {
-		List<Terminal> terminales = this.traerTodos(Terminal.class);
-		return terminales.stream().filter(unaTerminal -> unaTerminal.getNombre().equals(nombre)
-				&& unaTerminal.getComuna().getNombre().equals(comuna)).collect(Collectors.toList()).get(0);
-	}
 }

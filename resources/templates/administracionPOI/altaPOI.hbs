@@ -10,17 +10,17 @@
     			<label>Nombre:</label>
     			<input type='text' value='{{nombre}}' name='nombre'/>
     			<label>Tipo de punto de interés</label>
-    			<select>
-    				<option id="0">Parada de colectivo</option>
-    				<option id="1">Local comercial</option>
-    				<option id="2">Banco</option>
-    				<option id="3">CGP</option>
+    			<select name="tipoPOIs">
+    				<option value="0">Parada de colectivo</option>
+    				<option value="1">Local comercial</option>
+    				<option value="2">Banco</option>
+    				<option value="3">CGP</option>
     			</select>
     			<div>
     				<div>
     					<label>Coordenadas:</label>
-    					<input type='text' readonly name='latitud' id='latitud'/>
-    					<input type='text' readonly name='longitud' id='longitud'/>
+    					<input type='text'  name='latitud' id='latitud'/>
+    					<input type='text'  name='longitud' id='longitud'/>
     				</div>
 	    			<div id="map" style='width: 50%; height: 50%;'></div>
 	    		</div>

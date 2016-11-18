@@ -6,8 +6,11 @@ import java.util.List;
 import java.util.Map;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
+import ar.edu.dds.tpa.model.Banco;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.Busqueda;
+import ar.edu.dds.tpa.model.CGP;
+import ar.edu.dds.tpa.model.LocalComercial;
 import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.Usuario;
@@ -48,8 +51,23 @@ public class AdministracionDePOIController implements Route, Persistible {
 		Double longitud = Double.valueOf(request.queryMap("longitud").value());
 		Double latitud = Double.valueOf(request.queryMap("latitud").value());
 		Posicion coordenadas = new Posicion(longitud, latitud);
-		//TODO: Por ahora solo crea paradas de colectivo
-		PuntoDeInteres poi = new ParadaDeColectivo(nombre, coordenadas);
+		String id = request.queryMap("tipoPOIs").value();
+		PuntoDeInteres poi=null;
+		System. out. println(id);
+		switch (id) {
+
+	    case "0":
+	    	poi = new ParadaDeColectivo(nombre, coordenadas);	break;
+		case "1":
+			poi = new LocalComercial(nombre, coordenadas,null);	break;
+		case "2":
+			poi = new Banco(nombre, coordenadas);   break;
+		case "3":
+			poi = new CGP(nombre, coordenadas);	break;
+
+		}
+
+		
 		repositorio.persistir(poi);
 		return new ModelAndView(null, "administracionPOI/altaPOI.hbs");
 	}

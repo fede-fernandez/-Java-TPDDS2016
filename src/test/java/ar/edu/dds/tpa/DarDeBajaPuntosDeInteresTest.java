@@ -8,15 +8,8 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
-import ar.edu.dds.tpa.model.Banco;
-import ar.edu.dds.tpa.model.Buscador;
-import ar.edu.dds.tpa.model.CGP;
-import ar.edu.dds.tpa.model.LocalComercial;
-import ar.edu.dds.tpa.model.Mapa;
-import ar.edu.dds.tpa.model.ParadaDeColectivo;
-import ar.edu.dds.tpa.model.Rubro;
-import ar.edu.dds.tpa.model.Servicio;
-import ar.edu.dds.tpa.model.ServicioPuntosDeInteresBajados_Impostor;
+import ar.edu.dds.tpa.model.*;
+import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
 import ar.edu.dds.tpa.procesos.DarDeBajaPuntosDeInteres;
 
 public class DarDeBajaPuntosDeInteresTest {
@@ -33,7 +26,7 @@ public class DarDeBajaPuntosDeInteresTest {
 	private ParadaDeColectivo un144_2;
 	private ParadaDeColectivo un144_3;
 
-	private Mapa mapa;
+	private MapaEnMemoria mapa;
 
 	private Buscador buscador;
 
@@ -58,7 +51,7 @@ public class DarDeBajaPuntosDeInteresTest {
 		un144_2 = new ParadaDeColectivo("144", new Posicion(0.0, 0.0));
 		un144_3 = new ParadaDeColectivo("144", new Posicion(1.0, 1.0));
 
-		mapa = new Mapa();
+		mapa = new MapaEnMemoria();
 
 		mapa.agregar(un144_1);
 		mapa.agregar(un144_2);

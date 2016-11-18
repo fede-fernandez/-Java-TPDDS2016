@@ -1,5 +1,5 @@
 package ar.edu.dds.tpa.persistencia;
 
 public interface Persistible {
-	Repositorio repositorio = new Repositorio();
+	Repositorio repositorio = Repositorio.obtenerRepositorio();
 }

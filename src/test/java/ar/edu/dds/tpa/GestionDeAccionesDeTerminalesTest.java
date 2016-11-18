@@ -15,6 +15,7 @@ import ar.edu.dds.tpa.adapter.EnviadorDeMail;
 import ar.edu.dds.tpa.criterio.FiltradoPorComuna;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta;
+import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
 import ar.edu.dds.tpa.procesos.GestorDeAccionesDeTerminales;
 import ar.edu.dds.tpa.service.MailServiceImpostor;
 
@@ -29,7 +30,7 @@ public class GestionDeAccionesDeTerminalesTest {
 	private Administrador administrador;
 	private Terminal terminal;
 	private List<Terminal> terminales;
-	private Mapa mapa;
+	private MapaEnMemoria mapa;
 	private Buscador buscador;
 	private Comuna comunaDeFlores;
 
@@ -45,7 +46,7 @@ public class GestionDeAccionesDeTerminalesTest {
 		terminal = new Terminal("Terminal Flores", new Posicion(5.0, 10.0), comunaDeFlores);
 		terminales = new ArrayList<Terminal>();
 		terminales.add(terminal);
-		mapa = new Mapa();
+		mapa = new MapaEnMemoria();
 		buscador = new Buscador(mapa);
 
 		proceso3 = new GestorDeAccionesDeTerminales(terminales, filtroPorComuna, desactivarNotificadorDeBusqueda);

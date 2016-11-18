@@ -9,7 +9,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import ar.edu.dds.tpa.model.Buscador;
-import ar.edu.dds.tpa.model.Mapa;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.service.BancoServiceImpostor;
 
@@ -23,7 +22,7 @@ public class PersistenciaDeServiciosEnRedisRealTest {
 	public void inicializar() {
 		bancoServiceConCacheMock = new BancoServiceImpostor().conSoporteCache(Redis.obtenerConexion());
 		bancoServiceSinCacheMock = new BancoServiceImpostor();
-		buscador = new Buscador(new Mapa());
+		buscador = new Buscador(new MapaEnMemoria());
 		buscador.agregarBuscadorExterno(bancoServiceConCacheMock);
 		buscador.agregarBuscadorExterno(bancoServiceSinCacheMock);
 		resultadosDeLaBusqueda = new ArrayList<PuntoDeInteres>();

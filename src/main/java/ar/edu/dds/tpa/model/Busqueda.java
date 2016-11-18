@@ -1,9 +1,8 @@
 package ar.edu.dds.tpa.model;
 
 import java.time.LocalDate;
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import org.bson.types.ObjectId;
 import org.mongodb.morphia.annotations.Entity;
@@ -19,22 +18,22 @@ public class Busqueda {
 	private Terminal terminal;
 
 	private String textoBuscado;
-
-	private Set<PuntoDeInteres> puntosDeInteresEncontrados;
+	
+	private List<PuntoDeInteres> puntosDeInteresEncontrados;
 
 	private LocalDate fechaDeBusqueda;
 
 	private Double tiempoDeRespuesta;
 
 	public Busqueda() {
-		puntosDeInteresEncontrados = new HashSet<PuntoDeInteres>();
+		puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>();
 	}
 
 	public Busqueda(Terminal terminal, String textoBuscado, List<PuntoDeInteres> puntosDeInteresEncontrados,
 			LocalDate fechaDeBusqueda, Double tiempoDeRespuesta) {
 		this.terminal = terminal;
 		this.textoBuscado = textoBuscado;
-		this.puntosDeInteresEncontrados = new HashSet<PuntoDeInteres>(puntosDeInteresEncontrados);
+		this.puntosDeInteresEncontrados = new ArrayList<PuntoDeInteres>(puntosDeInteresEncontrados);
 		this.fechaDeBusqueda = fechaDeBusqueda;
 		this.tiempoDeRespuesta = tiempoDeRespuesta;
 	}
@@ -48,7 +47,7 @@ public class Busqueda {
 		return textoBuscado;
 	}
 
-	public Set<PuntoDeInteres> getPuntosDeInteresEncontrados() {
+	public List<PuntoDeInteres> getPuntosDeInteresEncontrados() {
 		return puntosDeInteresEncontrados;
 	}
 

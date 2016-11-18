@@ -13,10 +13,10 @@ import org.mongodb.morphia.Datastore;
 
 import ar.edu.dds.tpa.datastoreTest.MorphiaDatastoreTest;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
+import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMongo;
 import ar.edu.dds.tpa.model.Banco;
 import ar.edu.dds.tpa.model.Busqueda;
 import ar.edu.dds.tpa.model.Comuna;
-import ar.edu.dds.tpa.model.HistorialDeBusqueda;
 import ar.edu.dds.tpa.model.LocalComercial;
 import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
@@ -49,14 +49,14 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	private List<PuntoDeInteres> poisEncontrados3;
 	private List<PuntoDeInteres> poisEncontrados4;
 
-	private RepositorioDeBusquedas repositorio;
+	private HistorialDeBusquedaEnMongo repositorio;
 
 	
 	@Before
 	public void inicializar(){
 		morphiaDatastore = MorphiaDatastoreTest.obtenerInstancia();
 		db = morphiaDatastore.getDatastore();
-		repositorio = new RepositorioDeBusquedas(db);
+		repositorio = new HistorialDeBusquedaEnMongo(db);
 		
 		comuna12 = new Comuna(1, "Comuna");
 		puntoDeInteres = new ParadaDeColectivo("Linea 180",new Posicion(10.0,10.0));
@@ -93,13 +93,13 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	@Test
 	public void buscarPOIsEntreDosFechas(){
 		
-		repositorio.guardar(busqueda2);
-		repositorio.guardar(busqueda3);
-		repositorio.guardar(busqueda4);
+		repositorio.registrarBusqueda(busqueda2);
+		repositorio.registrarBusqueda(busqueda3);
+		repositorio.registrarBusqueda(busqueda4);
 		
-		HistorialDeBusqueda historial = repositorio.encontrarLasBusquedasEntreDosFechas(diezDeEneroDe2016, cuatroDeFebreroDe2016);
+		List<Busqueda> historial = repositorio.encontrarLasBusquedasEntreDosFechas(diezDeEneroDe2016, cuatroDeFebreroDe2016);
 		
-		Assert.assertEquals(3, historial.cantidadDeBusquedasRealizadas());
+		Assert.assertEquals(3, historial.size());
 		
 		repositorio.eliminarBusqueda(busqueda2);
 		repositorio.eliminarBusqueda(busqueda3);
@@ -108,15 +108,15 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	
 	@Test
 	public void buscarPOIsPorTextoBuscado(){
-		repositorio.guardar(busqueda1);
-		repositorio.guardar(busqueda2);
-		repositorio.guardar(busqueda3);
-		repositorio.guardar(busqueda4);
-		repositorio.guardar(busqueda5);
+		repositorio.registrarBusqueda(busqueda1);
+		repositorio.registrarBusqueda(busqueda2);
+		repositorio.registrarBusqueda(busqueda3);
+		repositorio.registrarBusqueda(busqueda4);
+		repositorio.registrarBusqueda(busqueda5);
 		
-		HistorialDeBusqueda historial = repositorio.encontrarTodasLasBusquedasPorTextoBuscado("Florida");
+		List<Busqueda> historial = repositorio.encontrarTodasLasBusquedasPorTextoBuscado("Florida");
 		
-		Assert.assertEquals(2, historial.cantidadDeBusquedasRealizadas());
+		Assert.assertEquals(2, historial.size());
 		
 		repositorio.eliminarBusqueda(busqueda1);
 		repositorio.eliminarBusqueda(busqueda2);
@@ -127,25 +127,25 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	
 	@Test
 	public void traerTodasLasBusquedas() {
-		repositorio.guardar(busqueda4);
-		HistorialDeBusqueda historial = repositorio.traerTodasLasBusquedas();
+		repositorio.registrarBusqueda(busqueda4);
+		List<Busqueda> historial = repositorio.traerTodasLasBusquedas();
 		
-		Assert.assertEquals(historial.cantidadDeBusquedasRealizadas(), 1);		
+		Assert.assertEquals(historial.size(), 1);		
 		
 		repositorio.eliminarBusqueda(busqueda4);	
 	}
 	
 	@Test
 	public void buscarPOIsPorTextoYEntreDosFechasSimultaneamente(){
-		repositorio.guardar(busqueda1);
-		repositorio.guardar(busqueda2);
-		repositorio.guardar(busqueda3);
-		repositorio.guardar(busqueda4);
-		repositorio.guardar(busqueda5);
+		repositorio.registrarBusqueda(busqueda1);
+		repositorio.registrarBusqueda(busqueda2);
+		repositorio.registrarBusqueda(busqueda3);
+		repositorio.registrarBusqueda(busqueda4);
+		repositorio.registrarBusqueda(busqueda5);
 		
-		HistorialDeBusqueda historial = repositorio.encontrarLasBusquedasEntreDosFechasYPorTextoBuscado("Florida", diezDeEneroDe2016, cuatroDeFebreroDe2016);
+		List<Busqueda> historial = repositorio.encontrarLasBusquedasEntreDosFechasYPorTextoBuscado("Florida", diezDeEneroDe2016, cuatroDeFebreroDe2016);
 		
-		Assert.assertEquals(1, historial.cantidadDeBusquedasRealizadas());
+		Assert.assertEquals(1, historial.size());
 		
 		repositorio.eliminarBusqueda(busqueda1);
 		repositorio.eliminarBusqueda(busqueda2);
@@ -156,12 +156,12 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	
 	@Test
 	public void enCuatroDeFebreroSeRealizaronDosBusquedas() {
-		repositorio.guardar(busqueda2);
-		repositorio.guardar(busqueda3);
+		repositorio.registrarBusqueda(busqueda2);
+		repositorio.registrarBusqueda(busqueda3);
 	
-		HistorialDeBusqueda historial = repositorio.encontrarLasBusquedasQueSeRealizaronEnUnaFecha(cuatroDeFebreroDe2016);
+		List<Busqueda> historial = repositorio.encontrarLasBusquedasQueSeRealizaronEnUnaFecha(cuatroDeFebreroDe2016);
 		
-		Assert.assertEquals(2, historial.cantidadDeBusquedasEnUnaFecha(cuatroDeFebreroDe2016));
+		Assert.assertEquals(2, historial.size());
 		
 		repositorio.eliminarBusqueda(busqueda2);
 		repositorio.eliminarBusqueda(busqueda3);
@@ -170,14 +170,14 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	
 	@Test
 	public void buscarPorUnaFechaEnLaQueNoHuboBusquedas(){
-		repositorio.guardar(busqueda1);
-		repositorio.guardar(busqueda2);
-		repositorio.guardar(busqueda3);
-		repositorio.guardar(busqueda4);
+		repositorio.registrarBusqueda(busqueda1);
+		repositorio.registrarBusqueda(busqueda2);
+		repositorio.registrarBusqueda(busqueda3);
+		repositorio.registrarBusqueda(busqueda4);
 		
-		HistorialDeBusqueda historial = repositorio.encontrarLasBusquedasQueSeRealizaronEnUnaFecha(LocalDate.of(2000, 1, 1));
+		List<Busqueda> historial = repositorio.encontrarLasBusquedasQueSeRealizaronEnUnaFecha(LocalDate.of(2000, 1, 1));
 		
-		Assert.assertEquals(0, historial.cantidadDeResultadosTotales());
+		Assert.assertEquals(0, historial.size());
 		
 		repositorio.eliminarBusqueda(busqueda1);
 		repositorio.eliminarBusqueda(busqueda2);
@@ -188,14 +188,14 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	
 	@Test
 	public void buscarPorTextoPorElQueNoSeBusco(){
-		repositorio.guardar(busqueda1);
-		repositorio.guardar(busqueda2);
-		repositorio.guardar(busqueda3);
-		repositorio.guardar(busqueda4);
+		repositorio.registrarBusqueda(busqueda1);
+		repositorio.registrarBusqueda(busqueda2);
+		repositorio.registrarBusqueda(busqueda3);
+		repositorio.registrarBusqueda(busqueda4);
 		
-		HistorialDeBusqueda historial = repositorio.encontrarTodasLasBusquedasPorTextoBuscado("textoNuncaBuscado");
+		List<Busqueda> historial = repositorio.encontrarTodasLasBusquedasPorTextoBuscado("textoNuncaBuscado");
 		
-		Assert.assertEquals(0, historial.cantidadDeResultadosTotales());
+		Assert.assertEquals(0, historial.size());
 		
 		repositorio.eliminarBusqueda(busqueda1);
 		repositorio.eliminarBusqueda(busqueda2);
@@ -206,14 +206,14 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	@Test
 	public void buscarEnUnaFechaQueSeBuscoConTextoIncorrecto(){
 		
-		repositorio.guardar(busqueda1);
-		repositorio.guardar(busqueda2);
-		repositorio.guardar(busqueda3);
-		repositorio.guardar(busqueda4);
+		repositorio.registrarBusqueda(busqueda1);
+		repositorio.registrarBusqueda(busqueda2);
+		repositorio.registrarBusqueda(busqueda3);
+		repositorio.registrarBusqueda(busqueda4);
 		
-		HistorialDeBusqueda historial = repositorio.encontrarLasBusquedasEntreDosFechasYPorTextoBuscado("textoNuncaBuscado", diezDeEneroDe2016, cuatroDeFebreroDe2016);
+		List<Busqueda> historial = repositorio.encontrarLasBusquedasEntreDosFechasYPorTextoBuscado("textoNuncaBuscado", diezDeEneroDe2016, cuatroDeFebreroDe2016);
 		
-		Assert.assertEquals(0, historial.cantidadDeResultadosTotales());
+		Assert.assertEquals(0, historial.size());
 		
 		repositorio.eliminarBusqueda(busqueda1);
 		repositorio.eliminarBusqueda(busqueda2);
@@ -223,15 +223,15 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	
 	@Test
 	public void buscarPorTextoEnUnRangoDeFechasEnElQueNoSeBuscoConEseTexto(){
-		repositorio.guardar(busqueda1);
-		repositorio.guardar(busqueda2);
-		repositorio.guardar(busqueda3);
-		repositorio.guardar(busqueda4);
-		repositorio.guardar(busqueda5);
+		repositorio.registrarBusqueda(busqueda1);
+		repositorio.registrarBusqueda(busqueda2);
+		repositorio.registrarBusqueda(busqueda3);
+		repositorio.registrarBusqueda(busqueda4);
+		repositorio.registrarBusqueda(busqueda5);
 		
-		HistorialDeBusqueda historial = repositorio.encontrarLasBusquedasEntreDosFechasYPorTextoBuscado("Florida", LocalDate.of(2000, 1, 1), LocalDate.of(2000, 2, 1));
+		List<Busqueda> historial = repositorio.encontrarLasBusquedasEntreDosFechasYPorTextoBuscado("Florida", LocalDate.of(2000, 1, 1), LocalDate.of(2000, 2, 1));
 		
-		Assert.assertEquals(0, historial.cantidadDeBusquedasRealizadas());
+		Assert.assertEquals(0, historial.size());
 		
 		repositorio.eliminarBusqueda(busqueda1);
 		repositorio.eliminarBusqueda(busqueda2);

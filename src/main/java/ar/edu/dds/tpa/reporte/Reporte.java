@@ -1,11 +1,17 @@
 package ar.edu.dds.tpa.reporte;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 import ar.edu.dds.tpa.model.HistorialDeBusqueda;
 
-public interface Reporte {
+public class Reporte {
 	
-	public HashMap<String, Integer> generarReporte(HistorialDeBusqueda historial);
+	public static List<ItemDeResultadosPorFecha> generarReporteDeResultadosPorFecha(HistorialDeBusqueda historialDeBusqueda){
+		List<ItemDeResultadosPorFecha> reporteDeResultadosPorFecha = new ArrayList<ItemDeResultadosPorFecha>();
+		
+		
+		return reporteDeResultadosPorFecha;
+	}
 
 }

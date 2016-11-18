@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import org.junit.Assert;
 
 public class HistorialDeBusquedasTest {
 
-	private HistorialDeBusqueda historialDeBusqueda;
+	private HistorialDeBusquedaEnMemoria historialDeBusqueda;
 
 	private LocalDate cuatroDeFebreroDe2016;
 	private LocalDate diezDeEneroDe2016;
@@ -61,11 +62,11 @@ public class HistorialDeBusquedasTest {
 		busquedaLibreria = new Busqueda(terminal, "Ahorro", resultadosDeBusqueda2, cuatroDeFebreroDe2016, 5.0);
 		busquedaParadaDos = new Busqueda(terminal, "Subte", resultadosDeBusqueda3, diezDeEneroDe2016, 5.0);
 
-		historialDeBusqueda = new HistorialDeBusqueda();
+		historialDeBusqueda = new HistorialDeBusquedaEnMemoria();
 
-		historialDeBusqueda.agregar(busquedaParadaCinco);
-		historialDeBusqueda.agregar(busquedaLibreria);
-		historialDeBusqueda.agregar(busquedaParadaDos);
+		historialDeBusqueda.registrarBusqueda(busquedaParadaCinco);
+		historialDeBusqueda.registrarBusqueda(busquedaLibreria);
+		historialDeBusqueda.registrarBusqueda(busquedaParadaDos);
 	}
 
 	@Test

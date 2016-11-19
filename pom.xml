@@ -99,7 +99,6 @@
 			<groupId>com.github.fakemongo</groupId>
 			<artifactId>fongo</artifactId>
 			<version>${fongo.version}</version>
-			<scope>test</scope>
 		</dependency>
 		<!-- #################### FONGO #################### -->
 

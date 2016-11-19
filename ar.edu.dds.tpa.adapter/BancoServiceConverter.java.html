@@ -29,7 +29,7 @@ import ar.edu.dds.tpa.model.Servicio;
 
 	public static Banco convertirBancoDelServicioABanco(BancoDelServicio bancoDelServicio) {
 <span class="fc" id="L31">		Banco banco = new Banco(bancoDelServicio.getBanco(),</span>
-<span class="fc" id="L32">				new Posicion(bancoDelServicio.getX(), bancoDelServicio.getY()));</span>
+<span class="fc" id="L32">				new Posicion(bancoDelServicio.getX(), bancoDelServicio.getY()),null);</span>
 <span class="fc" id="L33">		bancoDelServicio.getServicios().stream().forEach(unServicio -&gt; banco.agregarServicio(new Servicio(unServicio)));</span>
 <span class="fc" id="L34">		return banco;</span>
 	}

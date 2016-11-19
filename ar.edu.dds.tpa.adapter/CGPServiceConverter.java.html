@@ -20,7 +20,7 @@ import ar.edu.dds.tpa.model.Servicio;
 
 	public static CGP convertirCGPDelServicioACGP(CentroDTO cgpDelServicio) {
 <span class="fc" id="L22">		String nombreDelCGP = &quot;Centros de Gestion y Participacion CGP N° &quot; + cgpDelServicio.getComuna();</span>
-<span class="fc" id="L23">		CGP cgp = new CGP(nombreDelCGP, null);</span>
+<span class="fc" id="L23">		CGP cgp = new CGP(nombreDelCGP, null,null);</span>
 <span class="fc" id="L24">		cgpDelServicio.getServiciosDTO()</span>
 <span class="fc" id="L25">				.forEach(unServicioDTO -&gt; cgp.agregarServicio(convertirServicioDTOAServicio(unServicioDTO)));</span>
 <span class="fc" id="L26">		return cgp;</span>

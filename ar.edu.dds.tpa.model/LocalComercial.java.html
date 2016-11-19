@@ -27,8 +27,8 @@ public class LocalComercial extends PuntoDeInteres {
 <span class="nc" id="L27">		return horarioDeAtencion;</span>
 	}
 
-	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro) {
-<span class="fc" id="L31">		super(nombre, coordenadas);</span>
+	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro,String direccion) {
+<span class="fc" id="L31">		super(nombre, coordenadas,direccion);</span>
 <span class="fc" id="L32">		this.rubro = rubro;</span>
 <span class="fc" id="L33">		horarioDeAtencion = new HorarioDeAtencion();</span>
 <span class="fc bfc" id="L34" title="All 2 branches covered.">		if (rubro != null) {</span>

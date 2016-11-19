@@ -35,17 +35,17 @@ tpa,ar.edu.dds.tpa.service,MailServiceImpostor,0,13,0,0,0,5,0,3,0,3
 tpa,ar.edu.dds.tpa.service,BancoService,0,92,0,2,0,20,0,10,0,9
 tpa,ar.edu.dds.tpa.geolocalizacion,Posicion,0,83,0,0,0,16,0,5,0,5
 tpa,ar.edu.dds.tpa.geolocalizacion,Poligono,0,123,2,16,0,23,2,11,0,4
-tpa,ar.edu.dds.tpa.controller,POIsBusquedaController,85,0,0,0,18,0,4,0,4,0
+tpa,ar.edu.dds.tpa.controller,POIsBusquedaController,133,0,4,0,27,0,7,0,5,0
+tpa,ar.edu.dds.tpa.controller,AdministracionDePOIController,236,0,22,0,42,0,25,0,11,0
 tpa,ar.edu.dds.tpa.controller,TerminalController,9,0,0,0,2,0,2,0,2,0
 tpa,ar.edu.dds.tpa.persistencia,Fedis,0,29,0,2,0,9,0,5,0,4
 tpa,ar.edu.dds.tpa.persistencia,Redis,42,0,2,0,12,0,6,0,5,0
 tpa,ar.edu.dds.tpa.persistencia,MapaEnMemoria,6,53,0,0,2,14,1,7,1,7
 tpa,ar.edu.dds.tpa.persistencia,ExportarTablasSQL,63,0,0,0,23,0,7,0,7,0
-tpa,ar.edu.dds.tpa.persistencia,Repositorio,62,56,5,5,11,16,7,9,4,7
+tpa,ar.edu.dds.tpa.persistencia,Repositorio,4,56,1,5,2,16,2,9,1,7
 tpa,ar.edu.dds.tpa.persistencia,MorphiaDatastore,61,0,2,0,12,0,4,0,3,0
 tpa,ar.edu.dds.tpa.persistencia,MapaEnBaseDeDatos,16,11,0,0,6,4,4,3,4,3
 tpa,ar.edu.dds.tpa.persistencia,Persistible,0,3,0,0,0,1,0,1,0,1
-tpa,ar.edu.dds.tpa.server.controllers,AdministracionDePOIController,84,0,4,0,17,0,7,0,5,0
 tpa,ar.edu.dds.tpa.procesos.fallos,NoHacerNada,4,0,0,0,2,0,2,0,2,0
 tpa,ar.edu.dds.tpa.procesos.fallos,ReintentarEjecucion,0,60,0,6,0,18,0,7,0,4
 tpa,ar.edu.dds.tpa.procesos.fallos,NotificarAlAdministrador,0,34,0,0,0,8,0,2,0,2
@@ -65,8 +65,8 @@ tpa,ar.edu.dds.tpa.historial,HistorialDeBusquedaEnMongo,13,112,0,0,3,28,1,9,1,9
 tpa,ar.edu.dds.tpa.criterio,FiltradoPorComuna,1,14,1,1,0,4,1,2,0,2
 tpa,ar.edu.dds.tpa.criterio,FiltradoSelectivo,21,0,2,0,4,0,4,0,3,0
 tpa,ar.edu.dds.tpa.criterio,SinFiltrado,5,0,0,0,2,0,2,0,2,0
-tpa,ar.edu.dds.tpa.server,Router,89,0,0,0,15,0,2,0,2,0
-tpa,ar.edu.dds.tpa.server,CargarPOIs,136,0,0,0,20,0,2,0,2,0
+tpa,ar.edu.dds.tpa.server,Router,99,0,0,0,16,0,2,0,2,0
+tpa,ar.edu.dds.tpa.server,CargarPOIs,139,0,0,0,21,0,2,0,2,0
 tpa,ar.edu.dds.tpa.server,Server,12,0,0,0,6,0,2,0,2,0
 tpa,ar.edu.dds.tpa.accion,ActivadorDeNotificadorDeBusquedaLenta,11,0,0,0,5,0,2,0,2,0
 tpa,ar.edu.dds.tpa.accion,DesactivadorDeNotificadorDeBusquedaLenta,0,11,0,0,0,5,0,2,0,2
@@ -80,4 +80,5 @@ tpa,ar.edu.dds.tpa.procesos,ProcesoImpostor,0,13,0,0,0,5,0,3,0,3
 tpa,ar.edu.dds.tpa.procesos,PlanificadorDeProcesos,0,29,0,0,0,7,0,2,0,2
 tpa,ar.edu.dds.tpa.procesos,Proceso,0,28,0,0,0,11,0,6,0,6
 tpa,ar.edu.dds.tpa.procesos,DarDeBajaPuntosDeInteres,3,23,0,0,1,7,1,4,1,4
+tpa,ar.edu.dds.tpa.datastoreTest,MorphiaDatastoreTest,0,63,0,2,0,14,0,4,0,3
 tpa,ar.edu.dds.tpa.properties,Propiedades,11,16,0,0,3,5,1,1,1,1

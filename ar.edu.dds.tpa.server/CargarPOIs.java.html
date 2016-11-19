@@ -31,24 +31,25 @@ import ar.edu.dds.tpa.persistencia.Persistible;
 		
 <span class="nc" id="L32">		ParadaDeColectivo paradaDel46 = new ParadaDeColectivo(&quot;Linea 46 Estacion Mozart&quot;,</span>
 <span class="nc" id="L33">				new Posicion(53.97583, 12.21985));</span>
+<span class="nc" id="L34">		paradaDel46.agregarPalabraClave(&quot;colectivo&quot;);</span>
 
-<span class="nc" id="L35">		Rubro kioscoDeDiarios = new Rubro(&quot;Kiosco de Diarios&quot;, 10.5);</span>
-<span class="nc" id="L36">		LocalComercial localDeDiarios = new LocalComercial(&quot;Diarin&quot;, new Posicion(734.1523, 751.2312), kioscoDeDiarios);</span>
+<span class="nc" id="L36">		Rubro kioscoDeDiarios = new Rubro(&quot;Kiosco de Diarios&quot;, 10.5);</span>
+<span class="nc" id="L37">		LocalComercial localDeDiarios = new LocalComercial(&quot;Diarin&quot;, new Posicion(734.1523, 751.2312), kioscoDeDiarios);</span>
 
-<span class="nc" id="L38">		localDeDiarios.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(9, 30),</span>
-<span class="nc" id="L39">				LocalTime.of(18, 30));</span>
+<span class="nc" id="L39">		localDeDiarios.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(9, 30),</span>
+<span class="nc" id="L40">				LocalTime.of(18, 30));</span>
 		
-<span class="nc" id="L41">		Banco bancoPatagonia = new Banco(&quot;Banco Patagonia Sucursal Villa Fiorito&quot;, new Posicion(73.002005, 148.42205));</span>
-<span class="nc" id="L42">		Servicio extracciones = new Servicio(&quot;extracciones&quot;);</span>
-<span class="nc" id="L43">		extracciones.agregarHorarioDeAtencion(DayOfWeek.WEDNESDAY, LocalTime.of(9, 50), LocalTime.of(23, 45));</span>
-<span class="nc" id="L44">		bancoPatagonia.agregarServicio(extracciones);</span>
+<span class="nc" id="L42">		Banco bancoPatagonia = new Banco(&quot;Banco Patagonia Sucursal Villa Fiorito&quot;, new Posicion(73.002005, 148.42205));</span>
+<span class="nc" id="L43">		Servicio extracciones = new Servicio(&quot;extracciones&quot;);</span>
+<span class="nc" id="L44">		extracciones.agregarHorarioDeAtencion(DayOfWeek.WEDNESDAY, LocalTime.of(9, 50), LocalTime.of(23, 45));</span>
+<span class="nc" id="L45">		bancoPatagonia.agregarServicio(extracciones);</span>
 
-<span class="nc" id="L46">		repositorio.persistir(terminalChacabuco);</span>
+<span class="nc" id="L47">		repositorio.persistir(terminalChacabuco);</span>
 		
-<span class="nc" id="L48">		repositorio.persistir(paradaDel46);</span>
-<span class="nc" id="L49">		repositorio.persistir(localDeDiarios);</span>
-<span class="nc" id="L50">		repositorio.persistir(bancoPatagonia);</span>
-<span class="nc" id="L51">	}</span>
+<span class="nc" id="L49">		repositorio.persistir(paradaDel46);</span>
+<span class="nc" id="L50">		repositorio.persistir(localDeDiarios);</span>
+<span class="nc" id="L51">		repositorio.persistir(bancoPatagonia);</span>
+<span class="nc" id="L52">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

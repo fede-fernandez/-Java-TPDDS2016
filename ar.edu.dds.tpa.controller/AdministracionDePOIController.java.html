@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AdministracionDePOIController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpa</a> &gt; <a href="index.source.html" class="el_package">ar.edu.dds.tpa.controller</a> &gt; <span class="el_source">AdministracionDePOIController.java</span></div><h1>AdministracionDePOIController.java</h1><pre class="source lang-java linenums">package ar.edu.dds.tpa.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.common.collect.ImmutableMap;
+
+import ar.edu.dds.tpa.geolocalizacion.Posicion;
+import ar.edu.dds.tpa.model.Banco;
+import ar.edu.dds.tpa.model.CGP;
+import ar.edu.dds.tpa.model.LocalComercial;
+import ar.edu.dds.tpa.model.ParadaDeColectivo;
+import ar.edu.dds.tpa.model.PuntoDeInteres;
+import ar.edu.dds.tpa.persistencia.Mapa;
+import ar.edu.dds.tpa.persistencia.MapaEnBaseDeDatos;
+import ar.edu.dds.tpa.persistencia.Persistible;
+import spark.ModelAndView;
+import spark.Request;
+import spark.Response;
+import spark.Route;
+
+<span class="nc" id="L22">public class AdministracionDePOIController implements Route, Persistible {</span>
+	
+<span class="nc" id="L24">	private Map&lt;String, Class&gt; tiposPOI = ImmutableMap.of(&quot;Parada de colectivo&quot;, ParadaDeColectivo.class, </span>
+														  &quot;Local comercial&quot;, LocalComercial.class,
+														  &quot;Banco&quot;, Banco.class,
+														  &quot;CGP&quot;, CGP.class);
+	
+	@Override
+	public Object handle(Request arg0, Response arg1) throws Exception {
+		// TODO Auto-generated method stub
+<span class="nc" id="L32">		return null;</span>
+	}
+	
+	public ModelAndView buscar(Request request, Response response){
+<span class="nc" id="L36">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L37">		model.put(&quot;tipo&quot;, tiposPOI.keySet());</span>
+		
+<span class="nc" id="L39">		String textoBuscado = request.queryMap(&quot;textoBuscado&quot;).value();</span>
+		
+<span class="nc" id="L41">		model.put(&quot;textoBuscado&quot;, textoBuscado);</span>
+		
+<span class="nc" id="L43">		String tipoBuscado = request.queryMap(&quot;tipoPOI&quot;).value();</span>
+<span class="nc" id="L44">		model.put(&quot;tipoBuscado&quot;, tipoBuscado);</span>
+		//model.put(&quot;poi&quot;, new Buscador(new Mapa()).buscar(textoBuscado, new Usuario()));
+<span class="nc" id="L46">		model.put(&quot;poi&quot;, new MapaEnBaseDeDatos()</span>
+<span class="nc" id="L47">							.obtenerPuntosDeInteres()</span>
+<span class="nc" id="L48">							.stream()</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">							.filter(poi -&gt; poi.getClass() == tiposPOI.get(tipoBuscado))</span>
+<span class="nc" id="L50">							.filter(poi -&gt; poi.getNombre().contains(textoBuscado))</span>
+<span class="nc" id="L51">							.toArray());</span>
+	
+<span class="nc" id="L53">		return new ModelAndView(model, &quot;administracionPOI/consultarPOI.hbs&quot;);</span>
+	}
+
+	public ModelAndView formularioAlta(Request request, Response response){
+<span class="nc" id="L57">		return new ModelAndView(null, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
+	}
+	
+	public ModelAndView alta(Request request, Response response){
+<span class="nc" id="L61">		Map&lt;String, Object&gt; model  = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L62">		String nombre = request.queryMap(&quot;nombre&quot;).value();</span>
+<span class="nc" id="L63">		Double longitud = Double.valueOf(request.queryMap(&quot;longitud&quot;).value());</span>
+<span class="nc" id="L64">		Double latitud = Double.valueOf(request.queryMap(&quot;latitud&quot;).value());</span>
+<span class="nc" id="L65">		Posicion coordenadas = new Posicion(longitud, latitud);</span>
+<span class="nc" id="L66">		String id = request.queryMap(&quot;tipoPOIs&quot;).value();</span>
+<span class="nc" id="L67">		PuntoDeInteres poi=null;</span>
+<span class="nc bnc" id="L68" title="All 18 branches missed.">		switch (id) {</span>
+
+	    case &quot;0&quot;:
+<span class="nc" id="L71">	    	poi = new ParadaDeColectivo(nombre, coordenadas);	break;</span>
+		case &quot;1&quot;:
+<span class="nc" id="L73">			poi = new LocalComercial(nombre, coordenadas,null);	break;</span>
+		case &quot;2&quot;:
+<span class="nc" id="L75">			poi = new Banco(nombre, coordenadas);   break;</span>
+		case &quot;3&quot;:
+<span class="nc" id="L77">			poi = new CGP(nombre, coordenadas);	break;</span>
+
+		}
+
+		
+<span class="nc" id="L82">		repositorio.persistir(poi);</span>
+<span class="nc" id="L83">		return new ModelAndView(null, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
+	}
+	
+	public ModelAndView presentarEdicion(Request request, Response response){
+<span class="nc" id="L87">		return null;</span>
+	}
+	
+	public ModelAndView editar(Request request, Response response){
+<span class="nc" id="L91">		return null;</span>
+	}
+	
+	public ModelAndView eliminar(Request request, Response response){
+<span class="nc" id="L95">		Mapa mapa = new MapaEnBaseDeDatos();</span>
+<span class="nc" id="L96">		PuntoDeInteres p = mapa.obtenerPuntosDeInteres()</span>
+<span class="nc" id="L97">			.stream()</span>
+<span class="nc bnc" id="L98" title="All 2 branches missed.">			.filter(poi -&gt; poi.getId() == request.queryMap(&quot;id&quot;).integerValue())</span>
+<span class="nc" id="L99">			.findFirst()</span>
+<span class="nc" id="L100">			.get();</span>
+<span class="nc" id="L101">		mapa.sacar(p);</span>
+<span class="nc" id="L102">		response.redirect(&quot;/administracion/consulta&quot;);</span>
+<span class="nc" id="L103">		return null;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

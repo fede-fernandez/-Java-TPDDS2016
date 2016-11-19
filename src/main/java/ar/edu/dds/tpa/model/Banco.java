@@ -26,8 +26,8 @@ public class Banco extends PuntoDeInteresConServicios {
 		super();
 	}
 
-	public Banco(String nombre, Posicion coordenadas) {
-		super(nombre, coordenadas);
+	public Banco(String nombre, Posicion coordenadas,String direccion) {
+		super(nombre, coordenadas,direccion);
 		List<DayOfWeek> deLunesAViernes = new ArrayList<DayOfWeek>();
 		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
 				DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));

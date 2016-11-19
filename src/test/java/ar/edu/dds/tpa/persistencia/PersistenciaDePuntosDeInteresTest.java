@@ -28,7 +28,7 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 
 	@Test
 	public void persistenciaDeParadaDeColectivo() {
-		ParadaDeColectivo paradaDel7 = new ParadaDeColectivo("Linea 7 Estacion Once", new Posicion(3.332132, 11.49385));
+		ParadaDeColectivo paradaDel7 = new ParadaDeColectivo("Linea 7 Estacion Once", new Posicion(3.332132, 11.49385),null);
 		repositorio.persistir(paradaDel7);
 		Assert.assertEquals(paradaDel7, repositorio.buscarPorID(PuntoDeInteres.class, paradaDel7.getId()));
 	}
@@ -36,7 +36,7 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 	@Test
 	public void elUsuarioEstaCercaDeLaParadaDeColectivosPersistida() {
 		ParadaDeColectivo paradaDel114 = new ParadaDeColectivo("Linea 114 Estacion Escalada",
-				new Posicion(5.000005, 7.000007));
+				new Posicion(5.000005, 7.000007),null);
 		repositorio.persistir(paradaDel114);
 		Assert.assertTrue(repositorio.buscarPorID(PuntoDeInteres.class, paradaDel114.getId())
 				.estaCercaDe(terminalFlores.getCoordenadas()));
@@ -45,7 +45,7 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 	@Test
 	public void laParadaDeColectivosPersistidaTienePalabraClave() {
 		ParadaDeColectivo paradaDel101 = new ParadaDeColectivo("Linea 101 Estacion Retiro",
-				new Posicion(100.22113, 14.30985));
+				new Posicion(100.22113, 14.30985),null);
 		repositorio.persistir(paradaDel101);
 		Assert.assertTrue(
 				repositorio.buscarPorID(PuntoDeInteres.class, paradaDel101.getId()).contienePalabraClave("RETIRO"));
@@ -55,7 +55,7 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 	public void persistenciaDeLocalComercial() {
 		Rubro libreria = new Rubro("Libreria", 22.3);
 		LocalComercial localLibreria = new LocalComercial("Lapiceras Magicas", new Posicion(33.21231, 15.49494),
-				libreria);
+				libreria, null);
 		repositorio.persistir(localLibreria);
 		Assert.assertEquals(localLibreria, repositorio.buscarPorID(PuntoDeInteres.class, localLibreria.getId()));
 	}
@@ -64,7 +64,7 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 	public void persistenciaDeLocalComercialTieneRubro() {
 		Rubro articulosDeLimpieza = new Rubro("Articulos de limpieza", 3.1);
 		LocalComercial localDeArticulosDeLimpieza = new LocalComercial("LimpiaMall", new Posicion(7.77867, 232.23321),
-				articulosDeLimpieza);
+				articulosDeLimpieza, null);
 		repositorio.persistir(localDeArticulosDeLimpieza);
 		Assert.assertEquals(articulosDeLimpieza.getNombre(), repositorio
 				.buscarPorID(LocalComercial.class, localDeArticulosDeLimpieza.getId()).getRubro().getNombre());
@@ -73,7 +73,7 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 	@Test
 	public void elLocalComercialPersistidoContieneSuRubroComoPalabraClave() {
 		Rubro almacen = new Rubro("Almacen", 1.6);
-		LocalComercial almacenDonNato = new LocalComercial("Don Nato", new Posicion(372.87462, 9.65653), almacen);
+		LocalComercial almacenDonNato = new LocalComercial("Don Nato", new Posicion(372.87462, 9.65653), almacen, null);
 		repositorio.persistir(almacenDonNato);
 		Assert.assertTrue(
 				repositorio.buscarPorID(PuntoDeInteres.class, almacenDonNato.getId()).contienePalabraClave("almacen"));
@@ -83,7 +83,7 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 	public void elUsuarioEstaCercaDelLocalComercialPersistido() {
 		Rubro carpinteria = new Rubro("Carpinteria", 211.50);
 		LocalComercial carpinteriaPajaroLoco = new LocalComercial("El Pajaro Loco", new Posicion(5.000004, 7.000002),
-				carpinteria);
+				carpinteria, null);
 		repositorio.persistir(carpinteriaPajaroLoco);
 		Assert.assertTrue(repositorio.buscarPorID(PuntoDeInteres.class, carpinteriaPajaroLoco.getId())
 				.estaCercaDe(terminalFlores.getCoordenadas()));
@@ -92,12 +92,12 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 	@Test
 	public void persistenciaDeVariosPuntosDeInteresContieneLaParadaDeColectivoYElPuestoDeDiarios() {
 		ParadaDeColectivo paradaDel46 = new ParadaDeColectivo("Linea 46 Estacion Mozart",
-				new Posicion(53.97583, 12.21985));
+				new Posicion(53.97583, 12.21985), null);
 
 		Rubro kioscoDeDiarios = new Rubro("Kiosco de Diarios", 10.5);
-		LocalComercial localDeDiarios = new LocalComercial("Diarin", new Posicion(734.1523, 751.2312), kioscoDeDiarios);
+		LocalComercial localDeDiarios = new LocalComercial("Diarin", new Posicion(734.1523, 751.2312), kioscoDeDiarios, null);
 
-		Banco bancoPatagonia = new Banco("Banco Patagonia Sucursal Villa Fiorito", new Posicion(73.002005, 148.42205));
+		Banco bancoPatagonia = new Banco("Banco Patagonia Sucursal Villa Fiorito", new Posicion(73.002005, 148.42205), null);
 		Servicio extracciones = new Servicio("extracciones");
 		extracciones.agregarHorarioDeAtencion(DayOfWeek.WEDNESDAY, LocalTime.of(9, 50), LocalTime.of(23, 45));
 		bancoPatagonia.agregarServicio(extracciones);
@@ -116,7 +116,7 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 
 	@Test
 	public void bancoPersistidoAtiendeEnHorarioBancario() {
-		Banco bancoCiudad = new Banco("Banco Ciudad Sucursal Hospital Piñero", new Posicion(43.13620625, 78.5719215));
+		Banco bancoCiudad = new Banco("Banco Ciudad Sucursal Hospital Piñero", new Posicion(43.13620625, 78.5719215), null);
 		repositorio.persistir(bancoCiudad);
 		Assert.assertTrue(repositorio.buscarPorID(PuntoDeInteres.class, bancoCiudad.getId())
 				.estaDisponibleEn(LocalDateTime.of(2016, 4, 18, 12, 30, 30)));
@@ -124,7 +124,7 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 
 	@Test
 	public void bancoPersistidoTieneServicio() {
-		Banco bancoSantander = new Banco("Banco Santander Rio Sucursal La Plata", new Posicion(1.12, 1.00295));
+		Banco bancoSantander = new Banco("Banco Santander Rio Sucursal La Plata", new Posicion(1.12, 1.00295), null);
 		Servicio depositos = new Servicio("depositos");
 		depositos.agregarHorarioDeAtencion(DayOfWeek.MONDAY, LocalTime.of(19, 20), LocalTime.of(22, 30));
 		bancoSantander.agregarServicio(depositos);
@@ -135,7 +135,7 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 
 	@Test
 	public void cgpPersistidoTieneServicioDeMultas() {
-		CGP cgpParqueChacabuco = new CGP("CGP Numero 14 Parque Chacabuco", new Posicion(912.152023, 62.0008));
+		CGP cgpParqueChacabuco = new CGP("CGP Numero 14 Parque Chacabuco", new Posicion(912.152023, 62.0008), null);
 		Servicio renovacionDNI = new Servicio("Renovacion de DNI");
 		renovacionDNI.agregarHorarioDeAtencion(Arrays.asList(DayOfWeek.THURSDAY, DayOfWeek.FRIDAY), LocalTime.of(9, 15),
 				LocalTime.of(14, 45));
@@ -147,7 +147,7 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 
 	@Test
 	public void cgpPersistidoAtiendeEnHorarioDelServicioMultas() {
-		CGP cgpMataderos = new CGP("CGP Numero 2 Mataderos", new Posicion(60.33214, 67.3434));
+		CGP cgpMataderos = new CGP("CGP Numero 2 Mataderos", new Posicion(60.33214, 67.3434), null);
 		Servicio multas = new Servicio("multas");
 		multas.agregarHorarioDeAtencion(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.THURSDAY, DayOfWeek.WEDNESDAY),
 				LocalTime.of(8, 0), LocalTime.of(16, 30));
@@ -159,7 +159,7 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 
 	@Test
 	public void calculoDeCercaniaConZonasDeCoberturaDeCGPPersistido() {
-		CGP cgpVillaDelParque = new CGP("CGP Numero 4 Villa del Parque", new Posicion(883.11245, 67.28328));
+		CGP cgpVillaDelParque = new CGP("CGP Numero 4 Villa del Parque", new Posicion(883.11245, 67.28328), null);
 
 		Poligono zonasDeCobertura = new Poligono();
 		zonasDeCobertura.agregarCoordenada(new Posicion(1.23456, 6.78901));
@@ -177,7 +177,7 @@ public class PersistenciaDePuntosDeInteresTest implements Persistible {
 	public void persistenciaMedianteMapa() {
 		MapaEnBaseDeDatos mapaEnBaseDeDatos = new MapaEnBaseDeDatos();
 		ParadaDeColectivo paradaDel141 = new ParadaDeColectivo("Linea 141 Plaza Italia",
-				new Posicion(150.3123, -150.43838));
+				new Posicion(150.3123, -150.43838), null);
 		mapaEnBaseDeDatos.agregar(paradaDel141);
 		Assert.assertTrue(mapaEnBaseDeDatos.obtenerPuntosDeInteres().stream()
 				.anyMatch(unPuntoDeInteres -> unPuntoDeInteres.contienePalabraClave("plaza italia")));

@@ -26,18 +26,18 @@ public class BusquedaDePOIsLocalesTest {
 
 	@Before
 	public void inicializar() {
-		unBanco = new Banco("Ciudad", null);
+		unBanco = new Banco("Ciudad", null, null);
 
-		unCGP = new CGP("CGP Balvanera", null);
+		unCGP = new CGP("CGP Balvanera", null, null);
 		unCGP.agregarServicio(new Servicio("Rentas"));
 
-		kioscoDeDario = new LocalComercial("El matutino", null, new Rubro("Kiosco de diario", 0.0));
+		kioscoDeDario = new LocalComercial("El matutino", null, new Rubro("Kiosco de diario", 0.0), null);
 
-		libreriaEscolar = new LocalComercial("El ateneo", null, new Rubro("Libreria Escolar", 0.0));
+		libreriaEscolar = new LocalComercial("El ateneo", null, new Rubro("Libreria Escolar", 0.0), null);
 
-		paradaDel114EnRivadaviaYNazca = new ParadaDeColectivo("144 Rivadavia y Nazca", null);
-		paradaDel114EnPasajeMozart = new ParadaDeColectivo("144 Pasaje Mozart ", null);
-		paradaDel114EnPrimeraJunta = new ParadaDeColectivo("144 Primera Junta", null);
+		paradaDel114EnRivadaviaYNazca = new ParadaDeColectivo("144 Rivadavia y Nazca", null, null);
+		paradaDel114EnPasajeMozart = new ParadaDeColectivo("144 Pasaje Mozart ", null, null);
+		paradaDel114EnPrimeraJunta = new ParadaDeColectivo("144 Primera Junta", null, null);
 
 		mapa = new MapaEnMemoria();
 

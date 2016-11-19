@@ -20,7 +20,7 @@ public class CGPServiceConverter {
 
 	public static CGP convertirCGPDelServicioACGP(CentroDTO cgpDelServicio) {
 		String nombreDelCGP = "Centros de Gestion y Participacion CGP N° " + cgpDelServicio.getComuna();
-		CGP cgp = new CGP(nombreDelCGP, null);
+		CGP cgp = new CGP(nombreDelCGP, null,null);
 		cgpDelServicio.getServiciosDTO()
 				.forEach(unServicioDTO -> cgp.agregarServicio(convertirServicioDTOAServicio(unServicioDTO)));
 		return cgp;

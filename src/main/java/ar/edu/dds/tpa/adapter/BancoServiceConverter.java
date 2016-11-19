@@ -29,7 +29,7 @@ public class BancoServiceConverter {
 
 	public static Banco convertirBancoDelServicioABanco(BancoDelServicio bancoDelServicio) {
 		Banco banco = new Banco(bancoDelServicio.getBanco(),
-				new Posicion(bancoDelServicio.getX(), bancoDelServicio.getY()));
+				new Posicion(bancoDelServicio.getX(), bancoDelServicio.getY()),null);
 		bancoDelServicio.getServicios().stream().forEach(unServicio -> banco.agregarServicio(new Servicio(unServicio)));
 		return banco;
 	}

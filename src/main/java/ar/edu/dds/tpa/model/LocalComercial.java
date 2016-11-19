@@ -27,8 +27,8 @@ public class LocalComercial extends PuntoDeInteres {
 		return horarioDeAtencion;
 	}
 
-	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro) {
-		super(nombre, coordenadas);
+	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro,String direccion) {
+		super(nombre, coordenadas,direccion);
 		this.rubro = rubro;
 		horarioDeAtencion = new HorarioDeAtencion();
 		if (rubro != null) {

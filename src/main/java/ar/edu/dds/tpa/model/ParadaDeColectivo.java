@@ -13,8 +13,8 @@ public class ParadaDeColectivo extends PuntoDeInteres {
 		super();
 	}
 
-	public ParadaDeColectivo(String nombre, Posicion coordenadas) {
-		super(nombre, coordenadas);
+	public ParadaDeColectivo(String nombre, Posicion coordenadas,String direccion) {
+		super(nombre, coordenadas,direccion);
 	}
 
 	@Override

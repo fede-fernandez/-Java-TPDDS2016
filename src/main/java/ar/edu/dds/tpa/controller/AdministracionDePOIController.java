@@ -68,13 +68,13 @@ public class AdministracionDePOIController implements Route, Persistible {
 		switch (id) {
 
 	    case "0":
-	    	poi = new ParadaDeColectivo(nombre, coordenadas);	break;
+	    	poi = new ParadaDeColectivo(nombre, coordenadas,null);	break;
 		case "1":
-			poi = new LocalComercial(nombre, coordenadas,null);	break;
+			poi = new LocalComercial(nombre, coordenadas,null,null);	break;
 		case "2":
-			poi = new Banco(nombre, coordenadas);   break;
+			poi = new Banco(nombre, coordenadas,null);   break;
 		case "3":
-			poi = new CGP(nombre, coordenadas);	break;
+			poi = new CGP(nombre, coordenadas,null);	break;
 
 		}
 

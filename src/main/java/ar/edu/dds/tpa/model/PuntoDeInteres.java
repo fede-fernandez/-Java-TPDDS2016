@@ -18,7 +18,7 @@ public abstract class PuntoDeInteres {
 	private Integer id;
 
 	private String nombre;
-	
+
 	private String direccion;
 
 	@Embedded
@@ -45,6 +45,10 @@ public abstract class PuntoDeInteres {
 
 	public Integer getId() {
 		return id;
+	}
+	
+	public String getDireccion() {
+		return direccion;
 	}
 
 	public String getNombre() {

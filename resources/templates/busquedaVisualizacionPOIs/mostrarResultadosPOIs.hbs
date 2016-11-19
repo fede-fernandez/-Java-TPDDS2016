@@ -1,21 +1,21 @@
 <html>
-<h1>POIs encontrados</h1>
+<h1>Lugares Encontrados</h1>
 
 <table class="table table-stripped">
     <tr>
         <th>Nombre</th>
-        <th>Longitud</th>
-        <th>Latitud</th>        
+        <th>direccion</th>  
         <th></th>
     </tr>
     
     {{#each pois}}
         <tr>
-            <td>{{nombre}}</td>   
-            <td>{{coordenadas.longitud}}</td>
-            <td>{{coordenadas.latitud}}</td>        
-            <td><a href="{{url}}">Ver</a><td>
+            <td>{{nombre}}</td>  
+            <td>{{direccion}}</td>
+            <td><a href="{{url}}"><strong>Ver</strong></a><td>
         </tr>
     {{/each}}
 </table>
+	<link rel="stylesheet"  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="css/estilo.css">
 </html>

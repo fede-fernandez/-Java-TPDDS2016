@@ -31,6 +31,7 @@ public class CargarPOIs implements Persistible {
 		
 		ParadaDeColectivo paradaDel46 = new ParadaDeColectivo("Linea 46 Estacion Mozart",
 				new Posicion(53.97583, 12.21985));
+		paradaDel46.agregarPalabraClave("colectivo");
 
 		Rubro kioscoDeDiarios = new Rubro("Kiosco de Diarios", 10.5);
 		LocalComercial localDeDiarios = new LocalComercial("Diarin", new Posicion(734.1523, 751.2312), kioscoDeDiarios);

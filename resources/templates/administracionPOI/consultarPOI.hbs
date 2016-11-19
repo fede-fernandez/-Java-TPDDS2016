@@ -1,34 +1,78 @@
-<html>
-    <head>
-        <title>Administracion de Puntos de Interes</title>
-    </head>
-    <body>
-    	<form>
-    		<div class='form-group'>
-    			<label>Ingrese texto de busqueda:</label>
-    			<input type='text' value='{{textoBuscado}}' name='textoBuscado'/>
-    			<a href='altaPOI'>Alta de Puntos de Interes</a>
-    		</div>
-    		<div class='form-group'>
-    			<table>
-    				<tr>
-    					<th>#</th>
-    					<th>Nombre</th>
-    					<th>Coordenadas</th>    						
-    				</tr>
-    				{{#poi}}
-    					<tr>
-    						<td>{{@index}}</td>
-    						<td>{{nombre}}</td>
-    						<td>{{coordenadas}}</td>    						
-    					</tr>
-    				{{else}}
-    				<tr>
-    					<td><em>No se han encontrado resultados.</em></td>
-    				</tr>
-    				{{/poi}}
-    			</table>
-    		</div>
-    	</form>
-    </body>
-</html>
+{{#partial "contenido"}}
+	<script>
+		function eliminar(self, nombre){
+			if(confirm('Esta seguro de que desea eleminar el punto de interes:\n' + nombre)){
+				self.parentElement.submit();
+				
+			}
+		}
+	</script>
+  	<form>
+ 		 <div class="row">
+            <div class="form-group col-xs-3">
+				<!-- <label>Tipo:</label> -->
+				<select class="form-control input-group-lg" name="tipoPOI" id="tipoPOI">
+					{{#tipo}}
+						<option value="{{this}}">{{this}}</option>
+					{{/tipo}}
+				</select>
+				{{#if tipoBuscado}}
+				<script type="text/javascript">
+					$(document).ready(function(){
+						$("#tipoPOI").val("{{tipoBuscado}}");
+					})
+				</script>
+				{{/if}}
+			</div>
+            <div class="form-group col-xs-7">
+				<!-- <label>Ingrese texto de busqueda:</label> -->
+				<input class="form-control input-group-lg" type='text' value='{{textoBuscado}}' name='textoBuscado' placeholder="ej: Banco Patagonia"/>
+				<!-- <a href='altaPOI'>Alta de Puntos de Interes</a> -->
+			</div>
+
+            <div class="form-group col-xs-2">
+            	<input class="btn btn-success" type="submit" value="Buscar"/>
+			</div>
+		</div>
+	</form>
+ 		<table class="table table-striped table-bordered">
+		{{#if poi}}
+		<tr>
+			<th>#</th>
+			<th>Nombre</th>
+			<th>Coordenadas</th>  				
+			<th></th>		
+		</tr>
+		{{#poi}}
+			<tr>
+				<td>{{@index}}</td>
+				<td>{{nombre}}</td>
+				<td>{{coordenadas.latitud}} : {{coordenadas.longitud}}</td>
+				<td>
+					<div class="row">
+						<div class="form-group col-xs-2">
+							<button type="button" class="btn btn-info"><span class="glyphicon glyphicon-map-marker" ></span></button>
+						</div>
+            			<div class="form-group col-xs-2">
+							<button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit" ></span></button>
+						</div>
+						<div class="form-group col-xs-2">
+							<form method="post" action="/administracion/eliminar">
+								<input type="hidden" value="{{id}}" name="id"/>
+								<button type="button" class="btn btn-danger" onclick="eliminar(this, '{{nombre}}');"><span class="glyphicon glyphicon-remove" ></span></button>
+							</form>
+						</div>
+					</div>
+				</td>    						
+			</tr>
+		{{/poi}}
+		{{else}}
+		<tr>
+			<td><em>No se han encontrado resultados.</em></td>
+		</tr>
+		{{/if}}
+	</table>
+  	
+{{/partial}}
+
+{{>PaginaBase.hbs}}

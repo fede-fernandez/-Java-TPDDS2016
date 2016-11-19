@@ -1,29 +1,31 @@
-package ar.edu.dds.tpa.server.controllers;
+package ar.edu.dds.tpa.controller;
 
-import java.time.LocalDateTime;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
+
+import com.google.common.collect.ImmutableMap;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.Banco;
-import ar.edu.dds.tpa.model.Buscador;
-import ar.edu.dds.tpa.model.Busqueda;
 import ar.edu.dds.tpa.model.CGP;
 import ar.edu.dds.tpa.model.LocalComercial;
 import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
-import ar.edu.dds.tpa.model.Usuario;
 import ar.edu.dds.tpa.persistencia.Mapa;
+import ar.edu.dds.tpa.persistencia.MapaEnBaseDeDatos;
 import ar.edu.dds.tpa.persistencia.Persistible;
-import ar.edu.dds.tpa.persistencia.Repositorio;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 import spark.Route;
 
 public class AdministracionDePOIController implements Route, Persistible {
-
+	
+	private Map<String, Class> tiposPOI = ImmutableMap.of("Parada de colectivo", ParadaDeColectivo.class, 
+														  "Local comercial", LocalComercial.class,
+														  "Banco", Banco.class,
+														  "CGP", CGP.class);
+	
 	@Override
 	public Object handle(Request arg0, Response arg1) throws Exception {
 		// TODO Auto-generated method stub
@@ -32,12 +34,22 @@ public class AdministracionDePOIController implements Route, Persistible {
 	
 	public ModelAndView buscar(Request request, Response response){
 		Map<String, Object> model = new HashMap<>();
+		model.put("tipo", tiposPOI.keySet());
+		
 		String textoBuscado = request.queryMap("textoBuscado").value();
-		if (textoBuscado == null || textoBuscado.isEmpty()){
-			return new ModelAndView(null, "administracionPOI/consultarPOI.hbs");
-		}
+		
 		model.put("textoBuscado", textoBuscado);
+		
+		String tipoBuscado = request.queryMap("tipoPOI").value();
+		model.put("tipoBuscado", tipoBuscado);
 		//model.put("poi", new Buscador(new Mapa()).buscar(textoBuscado, new Usuario()));
+		model.put("poi", new MapaEnBaseDeDatos()
+							.obtenerPuntosDeInteres()
+							.stream()
+							.filter(poi -> poi.getClass() == tiposPOI.get(tipoBuscado))
+							.filter(poi -> poi.getNombre().contains(textoBuscado))
+							.toArray());
+	
 		return new ModelAndView(model, "administracionPOI/consultarPOI.hbs");
 	}
 
@@ -53,7 +65,6 @@ public class AdministracionDePOIController implements Route, Persistible {
 		Posicion coordenadas = new Posicion(longitud, latitud);
 		String id = request.queryMap("tipoPOIs").value();
 		PuntoDeInteres poi=null;
-		System. out. println(id);
 		switch (id) {
 
 	    case "0":
@@ -70,5 +81,25 @@ public class AdministracionDePOIController implements Route, Persistible {
 		
 		repositorio.persistir(poi);
 		return new ModelAndView(null, "administracionPOI/altaPOI.hbs");
+	}
+	
+	public ModelAndView presentarEdicion(Request request, Response response){
+		return null;
+	}
+	
+	public ModelAndView editar(Request request, Response response){
+		return null;
+	}
+	
+	public ModelAndView eliminar(Request request, Response response){
+		Mapa mapa = new MapaEnBaseDeDatos();
+		PuntoDeInteres p = mapa.obtenerPuntosDeInteres()
+			.stream()
+			.filter(poi -> poi.getId() == request.queryMap("id").integerValue())
+			.findFirst()
+			.get();
+		mapa.sacar(p);
+		response.redirect("/administracion/consulta");
+		return null;
 	}
 }

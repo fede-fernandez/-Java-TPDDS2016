@@ -21,7 +21,7 @@ import spark.Route;
 
 <span class="nc" id="L22">public class AdministracionDePOIController implements Route, Persistible {</span>
 	
-<span class="nc" id="L24">	private Map&lt;String, Class&gt; tiposPOI = ImmutableMap.of(&quot;Parada de colectivo&quot;, ParadaDeColectivo.class, </span>
+<span class="nc" id="L24">	private Map&lt;String, Class&lt;? extends PuntoDeInteres&gt;&gt; tiposPOI = ImmutableMap.of(&quot;Parada de colectivo&quot;, ParadaDeColectivo.class, </span>
 														  &quot;Local comercial&quot;, LocalComercial.class,
 														  &quot;Banco&quot;, Banco.class,
 														  &quot;CGP&quot;, CGP.class);
@@ -78,8 +78,8 @@ import spark.Route;
 
 		}
 
-		
-<span class="nc" id="L82">		repositorio.persistir(poi);</span>
+<span class="nc" id="L81">		new MapaEnBaseDeDatos().agregar(poi);</span>
+		//repositorio.persistir(poi);
 <span class="nc" id="L83">		return new ModelAndView(null, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
 	}
 	
@@ -99,7 +99,7 @@ import spark.Route;
 <span class="nc" id="L99">			.findFirst()</span>
 <span class="nc" id="L100">			.get();</span>
 <span class="nc" id="L101">		mapa.sacar(p);</span>
-<span class="nc" id="L102">		response.redirect(&quot;/administracion/consulta&quot;);</span>
+<span class="nc" id="L102">		response.redirect(&quot;/administracion/consultar&quot;);</span>
 <span class="nc" id="L103">		return null;</span>
 	}
 }

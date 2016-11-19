@@ -20,8 +20,8 @@ public class AdministradorABMDePOITest {
 	public void inicializar() {
 		administrador = new Administrador(null);
 		mapa = new MapaEnMemoria();
-		paradaDel7 = new ParadaDeColectivo("parada del colectivo linea 7", null);
-		bancoSantanderRio = new Banco("Banco Santander Rio Sucursal Ramos Mejia", null);
+		paradaDel7 = new ParadaDeColectivo("parada del colectivo linea 7", null, null);
+		bancoSantanderRio = new Banco("Banco Santander Rio Sucursal Ramos Mejia", null, null);
 		buscador = new Buscador(mapa, new HistorialDeBusquedaEnMemoria());
 	}
 
@@ -43,7 +43,7 @@ public class AdministradorABMDePOITest {
 	@Test
 	public void modificacionDePuntoDeInteres() {
 		administrador.agregarPuntoDeInteres(paradaDel7, mapa);
-		ParadaDeColectivo paradaDel7Modificada = new ParadaDeColectivo("terminal de bondi 7", null);
+		ParadaDeColectivo paradaDel7Modificada = new ParadaDeColectivo("terminal de bondi 7", null, null);
 		administrador.modificarPuntoDeInteres(paradaDel7, paradaDel7Modificada, mapa);
 
 		Assert.assertTrue(buscador.buscar("bondi", null).contains(paradaDel7Modificada)

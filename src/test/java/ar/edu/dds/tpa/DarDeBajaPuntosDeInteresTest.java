@@ -37,20 +37,20 @@ public class DarDeBajaPuntosDeInteresTest {
 	@Before
 	public void initialize() {
 
-		unBanco = new Banco("Ciudad", new Posicion(10.0, 10.0));
+		unBanco = new Banco("Ciudad", new Posicion(10.0, 10.0), null);
 
-		unCGP = new CGP("CGP Balvanera", new Posicion(-1.0, -1.0));
+		unCGP = new CGP("CGP Balvanera", new Posicion(-1.0, -1.0), null);
 		unCGP.agregarServicio(new Servicio("Rentas"));
 
 		Rubro kioscoDeDario = new Rubro("Kiosco De Diarios", 2.0);
-		unLocal = new LocalComercial("El matutino", new Posicion(2.0, 2.0), kioscoDeDario);
+		unLocal = new LocalComercial("El matutino", new Posicion(2.0, 2.0), kioscoDeDario, null);
 
 		Rubro libreriaEscolar = new Rubro("libreria escolar", 3.0);
-		unLocal2 = new LocalComercial("El ateneo", new Posicion(0.0, 0.0), libreriaEscolar);
+		unLocal2 = new LocalComercial("El ateneo", new Posicion(0.0, 0.0), libreriaEscolar, null);
 
-		un144_1 = new ParadaDeColectivo("144", new Posicion(-1.0, -1.0));
-		un144_2 = new ParadaDeColectivo("144", new Posicion(0.0, 0.0));
-		un144_3 = new ParadaDeColectivo("144", new Posicion(1.0, 1.0));
+		un144_1 = new ParadaDeColectivo("144", new Posicion(-1.0, -1.0), null);
+		un144_2 = new ParadaDeColectivo("144", new Posicion(0.0, 0.0), null);
+		un144_3 = new ParadaDeColectivo("144", new Posicion(1.0, 1.0), null);
 
 		mapa = new MapaEnMemoria();
 

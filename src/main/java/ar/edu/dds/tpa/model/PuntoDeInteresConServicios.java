@@ -24,8 +24,8 @@ public abstract class PuntoDeInteresConServicios extends PuntoDeInteres {
 		servicios = new HashSet<Servicio>();
 	}
 
-	public PuntoDeInteresConServicios(String nombre, Posicion coordenadas) {
-		super(nombre, coordenadas);
+	public PuntoDeInteresConServicios(String nombre, Posicion coordenadas,String direccion) {
+		super(nombre, coordenadas,direccion);
 		servicios = new HashSet<Servicio>();
 	}
 

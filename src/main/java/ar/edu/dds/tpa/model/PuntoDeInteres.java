@@ -19,6 +19,8 @@ public abstract class PuntoDeInteres {
 
 	private String nombre;
 
+	private String direccion;
+
 	@Embedded
 	private Posicion coordenadas;
 
@@ -33,15 +35,20 @@ public abstract class PuntoDeInteres {
 
 	}
 
-	public PuntoDeInteres(String nombre, Posicion coordenadas) {
+	public PuntoDeInteres(String nombre, Posicion coordenadas,String direccion) {
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
+		this.direccion = direccion;
 		palabrasClave = new ArrayList<String>();
 		agregarPalabraClave(nombre);
 	}
 
 	public Integer getId() {
 		return id;
+	}
+	
+	public String getDireccion() {
+		return direccion;
 	}
 
 	public String getNombre() {

@@ -60,7 +60,7 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		repositorio = new HistorialDeBusquedaEnMongo(db);
 		
 		comuna12 = new Comuna(1, "Comuna");
-		puntoDeInteres = new ParadaDeColectivo("Linea 180",new Posicion(10.0,10.0));
+		puntoDeInteres = new ParadaDeColectivo("Linea 180",new Posicion(10.0,10.0),null);
 		terminalChacabuco = new Terminal("Terminal Chacabuco", new Posicion(5.0, 5.0), comuna12);
 		busqueda1 = new Busqueda(terminalChacabuco, "180", new PuntosDeInteresEncontrados(Arrays.asList(puntoDeInteres)), LocalDate.now(), 5.0);
 		

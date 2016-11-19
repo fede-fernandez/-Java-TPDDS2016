@@ -27,19 +27,19 @@ public class CalculoDeCercaniaTest {
 
 	@Before
 	public void inicializar() {
-		bondi114 = new ParadaDeColectivo("114", new Posicion(200.0006, 100.0));
+		bondi114 = new ParadaDeColectivo("114", new Posicion(200.0006, 100.0), null);
 
 		unLocalDeDiarios1 = new LocalComercial("Diarin", new Posicion(100.000002, 50.0),
-				new Rubro("Kiosco de diarios", 2.00));
+				new Rubro("Kiosco de diarios", 2.00), null);
 
 		puntos = new ArrayList<Posicion>(Arrays.asList(new Posicion(10.0, 10.0), new Posicion(10.0, -10.0),
 				new Posicion(-10.0, 10.0), new Posicion(-10.0, -10.0)));
 		barrioDeFlores = new Poligono(puntos);
 
-		cgpDeFlores = new CGP("CGPFlores", new Posicion(100.0, 5.0));
+		cgpDeFlores = new CGP("CGPFlores", new Posicion(100.0, 5.0), null);
 		cgpDeFlores.agregarZonaDeCobertura(barrioDeFlores);
 
-		bancoPatagonia = new Banco("Banco Patagonia", new Posicion(100.000004, 50.0));
+		bancoPatagonia = new Banco("Banco Patagonia", new Posicion(100.000004, 50.0), null);
 
 		posicionDeUsuario1 = new Posicion(100.000001, 50.0);
 		posicionDeUsuario2 = new Posicion(200.0005, 100.0);

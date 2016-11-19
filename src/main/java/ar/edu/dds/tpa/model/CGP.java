@@ -20,8 +20,8 @@ public class CGP extends PuntoDeInteresConServicios {
 		super();
 	}
 
-	public CGP(String nombre, Posicion coordenadas) {
-		super(nombre, coordenadas);
+	public CGP(String nombre, Posicion coordenadas,String direccion) {
+		super(nombre, coordenadas,direccion);
 		zonasDeCobertura = new HashSet<Poligono>();
 	}
 

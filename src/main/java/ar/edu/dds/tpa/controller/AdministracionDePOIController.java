@@ -21,7 +21,7 @@ import spark.Route;
 
 public class AdministracionDePOIController implements Route, Persistible {
 	
-	private Map<String, Class> tiposPOI = ImmutableMap.of("Parada de colectivo", ParadaDeColectivo.class, 
+	private Map<String, Class<? extends PuntoDeInteres>> tiposPOI = ImmutableMap.of("Parada de colectivo", ParadaDeColectivo.class, 
 														  "Local comercial", LocalComercial.class,
 														  "Banco", Banco.class,
 														  "CGP", CGP.class);
@@ -78,8 +78,8 @@ public class AdministracionDePOIController implements Route, Persistible {
 
 		}
 
-		
-		repositorio.persistir(poi);
+		new MapaEnBaseDeDatos().agregar(poi);
+		//repositorio.persistir(poi);
 		return new ModelAndView(null, "administracionPOI/altaPOI.hbs");
 	}
 	
@@ -99,7 +99,7 @@ public class AdministracionDePOIController implements Route, Persistible {
 			.findFirst()
 			.get();
 		mapa.sacar(p);
-		response.redirect("/administracion/consulta");
+		response.redirect("/administracion/consultar");
 		return null;
 	}
 }

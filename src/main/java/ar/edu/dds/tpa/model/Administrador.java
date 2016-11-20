@@ -39,6 +39,6 @@ public class Administrador extends Usuario{
 	}
 	@Override
 	public String getUrl(){
-		return "historial/consultas.hbs";
+		return "administracionPOI/consultarPOI.hbs";
 	}
 }

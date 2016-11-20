@@ -19,7 +19,7 @@ public class Router {
 		
 		POIsBusquedaController poisController = new POIsBusquedaController();
 		
-		Spark.get("/poisEncontrados", poisController::listarPOIS, engine);
+		Spark.get("/pois", poisController::listarPOIS, engine);
 		Spark.get("/pois/:id", poisController::mostrarInformacionPOIs, engine);
 		Spark.get("/terminal", poisController::mostrarTerminal, engine);
 		

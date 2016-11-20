@@ -1,8 +1,9 @@
 <html>
+<body>
 {{#with pois}}
-    <h1> POIs: {{nombre}} </h1>
+    <h1>  {{nombre}} </h1>
     
-    <p><strong>Nombre:</strong> {{nombre}}</p>
+    <p><strong>Direccion:</strong> {{direccion}}</p>
     <p><strong>Longitud:</strong> {{coordenadas.longitud}}</p>
     <p><strong>Latitud:</strong> {{coordenadas.latitud}}</p>
     <p><strong>palabra Clave:</strong> {{palabrasClave}}</p>
@@ -41,5 +42,9 @@
     {{/each}}
     
 {{/with}}
+
+</body>
+<link rel="stylesheet" type="text/css" href="/css/estilo.css">
+
 
 </html>

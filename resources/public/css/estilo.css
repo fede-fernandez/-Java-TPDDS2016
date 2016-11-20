@@ -1,6 +1,13 @@
 @charset "UTF-8";
 /*A Flat Design Login Page by Codelator.com*/
 
+head{
+
+	text-align:center;
+	font-family:"Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, sans-serif;
+}
+
+
 body{
 	background-color:#7F7F7F;
 	color:#FFFFFF;

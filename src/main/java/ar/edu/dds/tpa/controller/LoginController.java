@@ -24,7 +24,7 @@ public class LoginController implements Persistible{
 		try {
 			Usuario usuario = new RepositorioDeUsuarios().loginDeUsuario(nick, pass);
 			
-			request.session().attribute("usuario",usuario.getUsuario());
+			request.session().attribute("usuario",usuario);
 			
 			return new ModelAndView(null, usuario.getUrl());
 		} catch (NoResultException e) {

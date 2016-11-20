@@ -6,7 +6,7 @@ import java.util.Map;
 
 import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
 import ar.edu.dds.tpa.model.Busqueda;
-import ar.edu.dds.tpa.model.PuntosDeInteresEncontrados;
+import ar.edu.dds.tpa.model.Usuario;
 import ar.edu.dds.tpa.persistencia.Persistible;
 import spark.ModelAndView;
 import spark.Request;
@@ -21,34 +21,36 @@ public class HistoricoDeConsultasController implements Persistible{
 <span class="nc" id="L21">	}	</span>
 	
 	public ModelAndView listarPoisConsultados(Request request, Response response){
-<span class="nc" id="L24">		Map&lt;String,List&lt;Busqueda&gt;&gt; model = new HashMap&lt;String,List&lt;Busqueda&gt;&gt;();</span>
+<span class="nc" id="L24">		Map&lt;String,Object&gt; model = new HashMap&lt;&gt;();</span>
 				
 <span class="nc" id="L26">		List&lt;Busqueda&gt; busquedas = historial.traerTodasLasBusquedas();</span>
+<span class="nc" id="L27">		Usuario usuario = request.session().attribute(&quot;usuario&quot;);</span>
+<span class="nc" id="L28">		model.put(&quot;nombre&quot;,usuario.getUsuario());</span>
+<span class="nc" id="L29">		model.put(&quot;busquedas&quot;, busquedas);</span>
 		
-<span class="nc" id="L28">		model.put(&quot;busquedas&quot;, busquedas);</span>
-		
-<span class="nc" id="L30">		return new ModelAndView(model, &quot;historial/consultas.hbs&quot;);</span>
+<span class="nc" id="L31">		return new ModelAndView(model, &quot;historial/consultas.hbs&quot;);</span>
 	}
 	
 	public ModelAndView mostrarPOIsEncontradosDeUnaBusqueda(Request request, Response response){
-<span class="nc" id="L34">		Map&lt;String,PuntosDeInteresEncontrados&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L35">		Map&lt;String,Object&gt; model = new HashMap&lt;&gt;();</span>
 		
-<span class="nc" id="L36">		String id = request.params(&quot;id&quot;);</span>
-<span class="nc" id="L37">		Busqueda busqueda = historial.encontrarBusquedaPorId(id);</span>
 		
-<span class="nc" id="L39">		model.put(&quot;poisEncontrados&quot;, busqueda.getPuntosDeInteresEncontrados());</span>
+<span class="nc" id="L38">		String id = request.params(&quot;id&quot;);</span>
+<span class="nc" id="L39">		Busqueda busqueda = historial.encontrarBusquedaPorId(id);		</span>
 		
-<span class="nc" id="L41">		return new ModelAndView(model, &quot;historial/poisEncontrados.hbs&quot;);</span>
+<span class="nc" id="L41">		model.put(&quot;poisEncontrados&quot;, busqueda.getPuntosDeInteresEncontrados());</span>
+		
+<span class="nc" id="L43">		return new ModelAndView(model, &quot;historial/poisEncontrados.hbs&quot;);</span>
 	}
 	
 
 	public HistorialDeBusqueda getHistorial() {
-<span class="nc" id="L46">		return historial;</span>
+<span class="nc" id="L48">		return historial;</span>
 	}
 
 	public void setHistorial(HistorialDeBusqueda historial) {
-<span class="nc" id="L50">		this.historial = historial;</span>
-<span class="nc" id="L51">	}</span>
+<span class="nc" id="L52">		this.historial = historial;</span>
+<span class="nc" id="L53">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

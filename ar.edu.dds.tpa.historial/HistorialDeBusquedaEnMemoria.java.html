@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.bson.types.ObjectId;
+
 import ar.edu.dds.tpa.model.Busqueda;
 
 
@@ -12,116 +14,128 @@ public class HistorialDeBusquedaEnMemoria implements HistorialDeBusqueda{
 
 	List&lt;Busqueda&gt; busquedasRealizadas;
 
-<span class="fc" id="L15">	public HistorialDeBusquedaEnMemoria() {</span>
-<span class="fc" id="L16">		busquedasRealizadas = new ArrayList&lt;Busqueda&gt;();</span>
-<span class="fc" id="L17">	}</span>
+<span class="fc" id="L17">	public HistorialDeBusquedaEnMemoria() {</span>
+<span class="fc" id="L18">		busquedasRealizadas = new ArrayList&lt;Busqueda&gt;();</span>
+<span class="fc" id="L19">	}</span>
 	
-<span class="nc" id="L19">	public HistorialDeBusquedaEnMemoria(List&lt;Busqueda&gt; busquedasRealizadas){</span>
-<span class="nc" id="L20">		this.busquedasRealizadas = busquedasRealizadas;</span>
-<span class="nc" id="L21">	}</span>
+<span class="nc" id="L21">	public HistorialDeBusquedaEnMemoria(List&lt;Busqueda&gt; busquedasRealizadas){</span>
+<span class="nc" id="L22">		this.busquedasRealizadas = busquedasRealizadas;</span>
+<span class="nc" id="L23">	}</span>
 
 	
 	public List&lt;LocalDate&gt; fechasDeBusquedas() {
-<span class="fc" id="L25">		return busquedasRealizadas.stream().map(unaBusqueda -&gt; unaBusqueda.getFechaDeBusqueda()).distinct()</span>
-<span class="fc" id="L26">				.collect(Collectors.toList());</span>
+<span class="fc" id="L27">		return busquedasRealizadas.stream().map(unaBusqueda -&gt; unaBusqueda.getFechaDeBusqueda()).distinct()</span>
+<span class="fc" id="L28">				.collect(Collectors.toList());</span>
 	}
 
 	public List&lt;String&gt; textosBuscados() {
-<span class="nc" id="L30">		return busquedasRealizadas.stream().map(unaBusqueda -&gt; unaBusqueda.getTextoBuscado())</span>
-<span class="nc" id="L31">				.collect(Collectors.toList());</span>
+<span class="nc" id="L32">		return busquedasRealizadas.stream().map(unaBusqueda -&gt; unaBusqueda.getTextoBuscado())</span>
+<span class="nc" id="L33">				.collect(Collectors.toList());</span>
 	}
 
 	public int cantidadDeResultadosTotales() {
-<span class="fc" id="L35">		return busquedasRealizadas.stream().mapToInt(unaBusqueda -&gt; unaBusqueda.getPuntosDeInteresEncontrados().getCantidadDeResultados()).sum();</span>
+<span class="fc" id="L37">		return busquedasRealizadas.stream().mapToInt(unaBusqueda -&gt; unaBusqueda.getPuntosDeInteresEncontrados().getCantidadDeResultados()).sum();</span>
 	}
 
 	public int cantidadDeBusquedasEnUnaFecha(LocalDate unaFecha) {
-<span class="fc" id="L39">		return (int) busquedasRealizadas.stream()</span>
-<span class="fc" id="L40">				.filter(unaBusqueda -&gt; unaBusqueda.getFechaDeBusqueda().equals(unaFecha)).count();</span>
+<span class="fc" id="L41">		return (int) busquedasRealizadas.stream()</span>
+<span class="fc" id="L42">				.filter(unaBusqueda -&gt; unaBusqueda.getFechaDeBusqueda().equals(unaFecha)).count();</span>
 	}
 
 	public List&lt;Integer&gt; resultadosParcialesPorBusqueda(String textoBuscado) {
-<span class="nc" id="L44">		return busquedasRealizadas.parallelStream()</span>
-<span class="nc" id="L45">				.filter(unaBusqueda -&gt; unaBusqueda.getTextoBuscado().equals(textoBuscado))</span>
-<span class="nc" id="L46">				.map(unaBusquedaFiltrada -&gt; (Integer) unaBusquedaFiltrada.getPuntosDeInteresEncontrados().getCantidadDeResultados())</span>
-<span class="nc" id="L47">				.collect(Collectors.toList());</span>
+<span class="nc" id="L46">		return busquedasRealizadas.parallelStream()</span>
+<span class="nc" id="L47">				.filter(unaBusqueda -&gt; unaBusqueda.getTextoBuscado().equals(textoBuscado))</span>
+<span class="nc" id="L48">				.map(unaBusquedaFiltrada -&gt; (Integer) unaBusquedaFiltrada.getPuntosDeInteresEncontrados().getCantidadDeResultados())</span>
+<span class="nc" id="L49">				.collect(Collectors.toList());</span>
 	}
 
 
 	public List&lt;String&gt; nombresDeUsuarios() {
-<span class="nc" id="L52">		return busquedasRealizadas.stream().map(unaBusqueda -&gt; unaBusqueda.getTerminal().getNombre()).distinct()</span>
-<span class="nc" id="L53">				.collect(Collectors.toList());</span>
+<span class="nc" id="L54">		return busquedasRealizadas.stream().map(unaBusqueda -&gt; unaBusqueda.getTerminal().getNombre()).distinct()</span>
+<span class="nc" id="L55">				.collect(Collectors.toList());</span>
 	}
 
 	public int cantidadDeResultadosTotalesDeUnUsuario(String unNombreDeUsuario) {
-<span class="nc" id="L57">		return busquedasRealizadas.stream()</span>
-<span class="nc" id="L58">				.filter(unaBusqueda -&gt; unaBusqueda.getTerminal().getNombre().equals(unNombreDeUsuario))</span>
-<span class="nc" id="L59">				.mapToInt(unaBusquedaFiltrada -&gt; unaBusquedaFiltrada.getPuntosDeInteresEncontrados().getCantidadDeResultados()).sum();</span>
+<span class="nc" id="L59">		return busquedasRealizadas.stream()</span>
+<span class="nc" id="L60">				.filter(unaBusqueda -&gt; unaBusqueda.getTerminal().getNombre().equals(unNombreDeUsuario))</span>
+<span class="nc" id="L61">				.mapToInt(unaBusquedaFiltrada -&gt; unaBusquedaFiltrada.getPuntosDeInteresEncontrados().getCantidadDeResultados()).sum();</span>
 	}
 	
 
 	public void registrarBusqueda(Busqueda unaBusqueda) {
-<span class="fc" id="L64">		busquedasRealizadas.add(unaBusqueda);</span>
-<span class="fc" id="L65">	}</span>
+<span class="fc" id="L66">		busquedasRealizadas.add(unaBusqueda);</span>
+<span class="fc" id="L67">	}</span>
 	
 	public void eliminarBusqueda(Busqueda unaBusqueda){
-<span class="nc" id="L68">		busquedasRealizadas.remove(unaBusqueda);</span>
-<span class="nc" id="L69">	}</span>
+<span class="nc" id="L70">		busquedasRealizadas.remove(unaBusqueda);</span>
+<span class="nc" id="L71">	}</span>
 	
 	public int cantidadDeBusquedasRealizadas(){
-<span class="nc" id="L72">		return busquedasRealizadas.size();</span>
+<span class="nc" id="L74">		return busquedasRealizadas.size();</span>
 	}
 
 	public void setBusquedasRealizadas(List&lt;Busqueda&gt; busquedasRealizadas) {
-<span class="nc" id="L76">		this.busquedasRealizadas = busquedasRealizadas;</span>
-<span class="nc" id="L77">	}</span>
+<span class="nc" id="L78">		this.busquedasRealizadas = busquedasRealizadas;</span>
+<span class="nc" id="L79">	}</span>
 
 	public List&lt;Busqueda&gt; traerTodasLasBusquedas() {
-<span class="nc" id="L80">		return busquedasRealizadas;</span>
+<span class="nc" id="L82">		return busquedasRealizadas;</span>
 	}
 
 	
 	public List&lt;Busqueda&gt; encontrarTodasLasBusquedasPorTextoBuscado(String unTexto) {
-<span class="nc" id="L85">		return busquedasRealizadas.stream()</span>
-<span class="nc" id="L86">		.filter(unaBusqueda -&gt; unaBusqueda.getTextoBuscado().equals(unTexto))</span>
-<span class="nc" id="L87">		.collect(Collectors.toList());</span>
+<span class="nc" id="L87">		return busquedasRealizadas.stream()</span>
+<span class="nc" id="L88">		.filter(unaBusqueda -&gt; unaBusqueda.getTextoBuscado().equals(unTexto))</span>
+<span class="nc" id="L89">		.collect(Collectors.toList());</span>
 		
 	}
 	
 	public List&lt;Busqueda&gt; encontrarLasBusquedasEntreDosFechas(LocalDate fechaDeInicio, LocalDate fechaDeFin) {
-<span class="nc" id="L92">		return busquedasRealizadas.stream()</span>
-<span class="nc" id="L93">				.filter(unaBusqueda -&gt; estaEnUnRangoDeFechas(unaBusqueda.getFechaDeBusqueda(), fechaDeInicio, fechaDeFin))</span>
-<span class="nc" id="L94">				.collect(Collectors.toList());</span>
+<span class="nc" id="L94">		return busquedasRealizadas.stream()</span>
+<span class="nc" id="L95">				.filter(unaBusqueda -&gt; estaEnUnRangoDeFechas(unaBusqueda.getFechaDeBusqueda(), fechaDeInicio, fechaDeFin))</span>
+<span class="nc" id="L96">				.collect(Collectors.toList());</span>
 	}
 	
 	public List&lt;Busqueda&gt; encontrarLasBusquedasEntreDosFechasYPorTextoBuscado(String textoBuscado,
 			LocalDate fechaDeInicio, LocalDate fechaDeFin) {
-<span class="nc" id="L99">		return busquedasRealizadas.stream()</span>
-<span class="nc bnc" id="L100" title="All 2 branches missed.">				.filter(unaBusqueda -&gt; estaEnUnRangoDeFechas(unaBusqueda.getFechaDeBusqueda(), fechaDeInicio, fechaDeFin)</span>
-<span class="nc bnc" id="L101" title="All 2 branches missed.">						&amp;&amp; unaBusqueda.getTextoBuscado().equals(textoBuscado))</span>
-<span class="nc" id="L102">				.collect(Collectors.toList());</span>
+<span class="nc" id="L101">		return busquedasRealizadas.stream()</span>
+<span class="nc bnc" id="L102" title="All 2 branches missed.">				.filter(unaBusqueda -&gt; estaEnUnRangoDeFechas(unaBusqueda.getFechaDeBusqueda(), fechaDeInicio, fechaDeFin)</span>
+<span class="nc bnc" id="L103" title="All 2 branches missed.">						&amp;&amp; unaBusqueda.getTextoBuscado().equals(textoBuscado))</span>
+<span class="nc" id="L104">				.collect(Collectors.toList());</span>
 	}
 	
 	public List&lt;Busqueda&gt; encontrarLasBusquedasQueSeRealizaronEnUnaFecha(LocalDate unaFecha) {
-<span class="nc" id="L106">		return busquedasRealizadas.stream()</span>
-<span class="nc" id="L107">				.filter(unaBusqueda -&gt; unaBusqueda.getFechaDeBusqueda().equals(unaFecha))</span>
-<span class="nc" id="L108">				.collect(Collectors.toList());</span>
+<span class="nc" id="L108">		return busquedasRealizadas.stream()</span>
+<span class="nc" id="L109">				.filter(unaBusqueda -&gt; unaBusqueda.getFechaDeBusqueda().equals(unaFecha))</span>
+<span class="nc" id="L110">				.collect(Collectors.toList());</span>
 	}
 	
 	public List&lt;Busqueda&gt; encontrarLasBusquedasDeUnaTerminal(String nombreDeTerminal){
-<span class="nc" id="L112">		return busquedasRealizadas.stream()</span>
-<span class="nc" id="L113">				.filter(unaBusqueda -&gt; unaBusqueda.getTerminal().getNombre().equals(nombreDeTerminal))</span>
-<span class="nc" id="L114">				.collect(Collectors.toList());</span>
+<span class="nc" id="L114">		return busquedasRealizadas.stream()</span>
+<span class="nc" id="L115">				.filter(unaBusqueda -&gt; unaBusqueda.getTerminal().getNombre().equals(nombreDeTerminal))</span>
+<span class="nc" id="L116">				.collect(Collectors.toList());</span>
 	}
 	
 	public List&lt;Busqueda&gt; encontrarLasBusquedasPorCantidadDeResultados(int cantidadDeResultados){
-<span class="nc" id="L118">		return busquedasRealizadas.stream()</span>
-<span class="nc bnc" id="L119" title="All 2 branches missed.">				.filter(unaBusqueda -&gt; unaBusqueda.getPuntosDeInteresEncontrados().getCantidadDeResultados() == cantidadDeResultados)</span>
-<span class="nc" id="L120">				.collect(Collectors.toList());</span>
+<span class="nc" id="L120">		return busquedasRealizadas.stream()</span>
+<span class="nc bnc" id="L121" title="All 2 branches missed.">				.filter(unaBusqueda -&gt; unaBusqueda.getPuntosDeInteresEncontrados().getCantidadDeResultados() == cantidadDeResultados)</span>
+<span class="nc" id="L122">				.collect(Collectors.toList());</span>
 	}
 	
 	private boolean estaEnUnRangoDeFechas(LocalDate fecha, LocalDate fechaDeInicio, LocalDate fechaDeFin){
-<span class="nc bnc" id="L124" title="All 4 branches missed.">		return !fecha.isBefore(fechaDeInicio) &amp;&amp; !fecha.isAfter(fechaDeFin);</span>
+<span class="nc bnc" id="L126" title="All 4 branches missed.">		return !fecha.isBefore(fechaDeInicio) &amp;&amp; !fecha.isAfter(fechaDeFin);</span>
+	}
+
+	@Override
+	public Busqueda encontrarBusquedaPorId(String id) {
+		// TODO Auto-generated method stub
+<span class="nc" id="L132">		return null;</span>
+	}
+
+	@Override
+	public Busqueda encontrarBusquedaPorId(ObjectId id) {
+		// TODO Auto-generated method stub
+<span class="nc" id="L138">		return null;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

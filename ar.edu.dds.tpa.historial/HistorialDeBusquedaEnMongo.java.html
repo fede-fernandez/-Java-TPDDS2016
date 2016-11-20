@@ -3,6 +3,7 @@
 import java.time.LocalDate;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 
 import ar.edu.dds.tpa.model.Busqueda;
@@ -11,69 +12,79 @@ public class HistorialDeBusquedaEnMongo implements HistorialDeBusqueda{
 
 	private Datastore datastore;
 
-<span class="fc" id="L14">	public HistorialDeBusquedaEnMongo(Datastore datastore) {</span>
-<span class="fc" id="L15">		this.datastore = datastore;</span>
-<span class="fc" id="L16">	}</span>
+<span class="fc" id="L15">	public HistorialDeBusquedaEnMongo(Datastore datastore) {</span>
+<span class="fc" id="L16">		this.datastore = datastore;</span>
+<span class="fc" id="L17">	}</span>
 
 	public void registrarBusqueda(Busqueda busqueda){
-<span class="fc" id="L19">		datastore.save(busqueda.getPuntosDeInteresEncontrados());</span>
-<span class="fc" id="L20">		datastore.save(busqueda);</span>
-<span class="fc" id="L21">	}</span>
+<span class="fc" id="L20">		datastore.save(busqueda.getPuntosDeInteresEncontrados());</span>
+<span class="fc" id="L21">		datastore.save(busqueda);</span>
+<span class="fc" id="L22">	}</span>
 	
 	public List&lt;Busqueda&gt; traerTodasLasBusquedas(){
-<span class="fc" id="L24">		List&lt;Busqueda&gt; todasLasBusquedas = datastore.find(Busqueda.class).asList();</span>
+<span class="fc" id="L25">		List&lt;Busqueda&gt; todasLasBusquedas = datastore.find(Busqueda.class).asList();</span>
 		
-<span class="fc" id="L26">		return todasLasBusquedas;				</span>
+<span class="fc" id="L27">		return todasLasBusquedas;				</span>
 	}
 	
 	public List&lt;Busqueda&gt; encontrarTodasLasBusquedasPorTextoBuscado(String unTexto){
-<span class="fc" id="L30">		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)</span>
-<span class="fc" id="L31">				.field(&quot;textoBuscado&quot;).equal(unTexto).asList();</span>
+<span class="fc" id="L31">		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)</span>
+<span class="fc" id="L32">				.field(&quot;textoBuscado&quot;).equal(unTexto).asList();</span>
 		
-<span class="fc" id="L33">		return resultado;</span>
+<span class="fc" id="L34">		return resultado;</span>
 	}
 	
 	public List&lt;Busqueda&gt; encontrarLasBusquedasEntreDosFechas(LocalDate fechaDeInicio, LocalDate fechaDeFin){
-<span class="fc" id="L37">		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)</span>
-<span class="fc" id="L38">				.field(&quot;fechaDeBusqueda&quot;).greaterThanOrEq(fechaDeInicio)</span>
-<span class="fc" id="L39">				.field(&quot;fechaDeBusqueda&quot;).lessThanOrEq(fechaDeFin).asList();</span>
+<span class="fc" id="L38">		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)</span>
+<span class="fc" id="L39">				.field(&quot;fechaDeBusqueda&quot;).greaterThanOrEq(fechaDeInicio)</span>
+<span class="fc" id="L40">				.field(&quot;fechaDeBusqueda&quot;).lessThanOrEq(fechaDeFin).asList();</span>
 		
-<span class="fc" id="L41">		return resultado;</span>
+<span class="fc" id="L42">		return resultado;</span>
 	}
 	
 	public List&lt;Busqueda&gt; encontrarLasBusquedasEntreDosFechasYPorTextoBuscado(String textoBuscado, LocalDate fechaDeInicio, LocalDate fechaDeFin){
-<span class="fc" id="L45">		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)</span>
-<span class="fc" id="L46">				.field(&quot;fechaDeBusqueda&quot;).greaterThanOrEq(fechaDeInicio)</span>
-<span class="fc" id="L47">				.field(&quot;fechaDeBusqueda&quot;).lessThanOrEq(fechaDeFin)</span>
-<span class="fc" id="L48">				.field(&quot;textoBuscado&quot;).equal(textoBuscado).asList();</span>
+<span class="fc" id="L46">		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)</span>
+<span class="fc" id="L47">				.field(&quot;fechaDeBusqueda&quot;).greaterThanOrEq(fechaDeInicio)</span>
+<span class="fc" id="L48">				.field(&quot;fechaDeBusqueda&quot;).lessThanOrEq(fechaDeFin)</span>
+<span class="fc" id="L49">				.field(&quot;textoBuscado&quot;).equal(textoBuscado).asList();</span>
 		
-<span class="fc" id="L50">		return resultado;	</span>
+<span class="fc" id="L51">		return resultado;	</span>
 	}
 	
 	public List&lt;Busqueda&gt; encontrarLasBusquedasQueSeRealizaronEnUnaFecha(LocalDate unaFecha){
-<span class="fc" id="L54">		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)</span>
-<span class="fc" id="L55">				.field(&quot;fechaDeBusqueda&quot;).equal(unaFecha).asList();</span>
+<span class="fc" id="L55">		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)</span>
+<span class="fc" id="L56">				.field(&quot;fechaDeBusqueda&quot;).equal(unaFecha).asList();</span>
 		
-<span class="fc" id="L57">		return resultado;</span>
+<span class="fc" id="L58">		return resultado;</span>
 	}
 	
 	public List&lt;Busqueda&gt; encontrarLasBusquedasDeUnaTerminal(String nombreDeTerminal){
-<span class="fc" id="L61">		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)</span>
-<span class="fc" id="L62">				.field(&quot;terminal.nombre&quot;).equal(nombreDeTerminal).asList();</span>
+<span class="fc" id="L62">		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)</span>
+<span class="fc" id="L63">				.field(&quot;terminal.nombre&quot;).equal(nombreDeTerminal).asList();</span>
 		
-<span class="fc" id="L64">		return resultado;</span>
+<span class="fc" id="L65">		return resultado;</span>
 	}
 	
 	public List&lt;Busqueda&gt; encontrarLasBusquedasPorCantidadDeResultados(int cantidadDeResultados){
-<span class="nc" id="L68">		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)</span>
-<span class="nc" id="L69">				.field(&quot;puntosDeInteresEncontrados.puntosDeInteresEncontrados&quot;).sizeEq(cantidadDeResultados).asList();</span>
+<span class="nc" id="L69">		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)</span>
+<span class="nc" id="L70">				.field(&quot;puntosDeInteresEncontrados.puntosDeInteresEncontrados&quot;).sizeEq(cantidadDeResultados).asList();</span>
 		
-<span class="nc" id="L71">		return resultado; </span>
+<span class="nc" id="L72">		return resultado; </span>
 	}
 	
 	public void eliminarBusqueda(Busqueda unaBusqueda){
-<span class="fc" id="L75">		datastore.delete(unaBusqueda);</span>
-<span class="fc" id="L76">	}</span>
+<span class="fc" id="L76">		datastore.delete(unaBusqueda);</span>
+<span class="fc" id="L77">	}</span>
+	
+	public Busqueda encontrarBusquedaPorId(String id){
+<span class="nc" id="L80">		ObjectId objectId = new ObjectId(id);</span>
+		
+<span class="nc" id="L82">		return datastore.find(Busqueda.class).field(&quot;id&quot;).equal(objectId).get();</span>
+	}
+	
+	public Busqueda encontrarBusquedaPorId(ObjectId id){
+<span class="fc" id="L86">		return datastore.find(Busqueda.class).field(&quot;id&quot;).equal(id).get();</span>
+	}
 	
 
 }

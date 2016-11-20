@@ -55,7 +55,7 @@ public class Busqueda {
 	}
 
 	public ObjectId getId() {
-<span class="nc" id="L58">		return id;</span>
+<span class="fc" id="L58">		return id;</span>
 	}
 
 	public void setId(ObjectId id) {
@@ -69,5 +69,9 @@ public class Busqueda {
 	public void setPuntosDeInteresEncontrados(PuntosDeInteresEncontrados puntosDeInteresEncontrados) {
 <span class="nc" id="L70">		this.puntosDeInteresEncontrados = puntosDeInteresEncontrados;</span>
 <span class="nc" id="L71">	}</span>
+	
+	public String getUrl(){
+<span class="nc" id="L74">		return &quot;historico/&quot; + getId().toString(); </span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

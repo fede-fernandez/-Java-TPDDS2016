@@ -5,41 +5,41 @@ import javax.persistence.*;
 import ar.edu.dds.tpa.persistencia.Mapa;
 
 @Entity
-public class Administrador {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class Administrador extends Usuario{
 
 	private String mail;
 
-<span class="fc" id="L16">	public Administrador() {</span>
+<span class="fc" id="L12">	public Administrador() {</span>
 
+<span class="fc" id="L14">	}</span>
+
+<span class="fc" id="L16">	public Administrador(String mail) {</span>
+<span class="fc" id="L17">		this.mail = mail;</span>
 <span class="fc" id="L18">	}</span>
 
-<span class="fc" id="L20">	public Administrador(String mail) {</span>
-<span class="fc" id="L21">		this.mail = mail;</span>
-<span class="fc" id="L22">	}</span>
-
-	public Integer getId() {
-<span class="nc" id="L25">		return id;</span>
-	}
-
 	public String getMail() {
-<span class="fc" id="L29">		return mail;</span>
+<span class="fc" id="L21">		return mail;</span>
 	}
+	
+	public void setMail(String mail){
+<span class="nc" id="L25">		this.mail = mail;</span>
+<span class="nc" id="L26">	}</span>
 
 	public void agregarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, Mapa enUnMapa) {
-<span class="fc" id="L33">		enUnMapa.agregar(unPuntoDeInteres);</span>
-<span class="fc" id="L34">	}</span>
+<span class="fc" id="L29">		enUnMapa.agregar(unPuntoDeInteres);</span>
+<span class="fc" id="L30">	}</span>
 
 	public void sacarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, Mapa enUnMapa) {
-<span class="fc" id="L37">		enUnMapa.sacar(unPuntoDeInteres);</span>
-<span class="fc" id="L38">	}</span>
+<span class="fc" id="L33">		enUnMapa.sacar(unPuntoDeInteres);</span>
+<span class="fc" id="L34">	}</span>
 
 	public void modificarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado,
 			Mapa enUnMapa) {
-<span class="fc" id="L42">		enUnMapa.modificar(unPuntoDeInteres, puntoDeInteresModificado);</span>
-<span class="fc" id="L43">	}</span>
+<span class="fc" id="L38">		enUnMapa.modificar(unPuntoDeInteres, puntoDeInteresModificado);</span>
+<span class="fc" id="L39">	}</span>
+	@Override
+	public String getUrl(){
+<span class="nc" id="L42">		return &quot;historial/consultas.hbs&quot;;</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

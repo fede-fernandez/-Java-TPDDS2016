@@ -9,11 +9,7 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.observer.BusquedaObserver;
 
 @Entity
-public class Terminal {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class Terminal extends Usuario{
 
 	private String nombre;
 
@@ -27,47 +23,47 @@ public class Terminal {
 	@JoinColumn(name = &quot;terminal_id&quot;)
 	private List&lt;BusquedaObserver&gt; observadoresDeBusqueda;
 
-<span class="fc" id="L30">	public Terminal() {</span>
+<span class="fc" id="L26">	public Terminal() {</span>
 
-<span class="fc" id="L32">	}</span>
+<span class="fc" id="L28">	}</span>
 
-<span class="fc" id="L34">	public Terminal(String nombre, Posicion coordenadas, Comuna comuna) {</span>
-<span class="fc" id="L35">		this.nombre = nombre;</span>
-<span class="fc" id="L36">		this.coordenadas = coordenadas;</span>
-<span class="fc" id="L37">		this.comuna = comuna;</span>
-<span class="fc" id="L38">		observadoresDeBusqueda = new ArrayList&lt;BusquedaObserver&gt;();</span>
-<span class="fc" id="L39">	}</span>
-
-	public Integer getId() {
-<span class="fc" id="L42">		return id;</span>
-	}
+<span class="fc" id="L30">	public Terminal(String nombre, Posicion coordenadas, Comuna comuna) {</span>
+<span class="fc" id="L31">		this.nombre = nombre;</span>
+<span class="fc" id="L32">		this.coordenadas = coordenadas;</span>
+<span class="fc" id="L33">		this.comuna = comuna;</span>
+<span class="fc" id="L34">		observadoresDeBusqueda = new ArrayList&lt;BusquedaObserver&gt;();</span>
+<span class="fc" id="L35">	}</span>
 
 	public String getNombre() {
-<span class="fc" id="L46">		return nombre;</span>
+<span class="fc" id="L38">		return nombre;</span>
 	}
 
 	public Posicion getCoordenadas() {
-<span class="fc" id="L50">		return coordenadas;</span>
+<span class="fc" id="L42">		return coordenadas;</span>
 	}
 
 	public Comuna getComuna() {
-<span class="fc" id="L54">		return comuna;</span>
+<span class="fc" id="L46">		return comuna;</span>
 	}
 
 	public List&lt;BusquedaObserver&gt; getObservadoresDeBusqueda() {
-<span class="fc" id="L58">		return observadoresDeBusqueda;</span>
+<span class="fc" id="L50">		return observadoresDeBusqueda;</span>
 	}
 
 	public void notificarBusqueda(Busqueda unaBusquedaRealizada) {
-<span class="fc" id="L62">		observadoresDeBusqueda.forEach(unObservador -&gt; unObservador.informar(unaBusquedaRealizada));</span>
-<span class="fc" id="L63">	}</span>
+<span class="fc" id="L54">		observadoresDeBusqueda.forEach(unObservador -&gt; unObservador.informar(unaBusquedaRealizada));</span>
+<span class="fc" id="L55">	}</span>
 
 	public void agregarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
-<span class="fc" id="L66">		observadoresDeBusqueda.add(unObservadorDeBusqueda);</span>
-<span class="fc" id="L67">	}</span>
+<span class="fc" id="L58">		observadoresDeBusqueda.add(unObservadorDeBusqueda);</span>
+<span class="fc" id="L59">	}</span>
 
 	public void quitarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
-<span class="fc" id="L70">		observadoresDeBusqueda.remove(unObservadorDeBusqueda);</span>
-<span class="fc" id="L71">	}</span>
+<span class="fc" id="L62">		observadoresDeBusqueda.remove(unObservadorDeBusqueda);</span>
+<span class="fc" id="L63">	}</span>
+	@Override
+	public String getUrl(){
+<span class="nc" id="L66">		return &quot;busquedaVisualizacionPOIs/buscarPOIs.hbs&quot;;</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

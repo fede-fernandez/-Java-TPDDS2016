@@ -19,7 +19,7 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 		
 <span class="nc" id="L20">		POIsBusquedaController poisController = new POIsBusquedaController();</span>
 		
-<span class="nc" id="L22">		Spark.get(&quot;/poisEncontrados&quot;, poisController::listarPOIS, engine);</span>
+<span class="nc" id="L22">		Spark.get(&quot;/pois&quot;, poisController::listarPOIS, engine);</span>
 <span class="nc" id="L23">		Spark.get(&quot;/pois/:id&quot;, poisController::mostrarInformacionPOIs, engine);</span>
 <span class="nc" id="L24">		Spark.get(&quot;/terminal&quot;, poisController::mostrarTerminal, engine);</span>
 		

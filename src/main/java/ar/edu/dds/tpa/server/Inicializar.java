@@ -72,56 +72,6 @@ public class Inicializar implements Persistible {
 		Busqueda busqueda2 = new Busqueda(terminalUTN, "46", new PuntosDeInteresEncontrados(Arrays.asList(paradaDel46)),diezDeEneroDe2016,1.1);
 		Busqueda busqueda3 = new Busqueda(terminalUTN, "colectivo", new PuntosDeInteresEncontrados(Arrays.asList(paradaDel46)), cuatroDeFebreroDe2016, 2.0);
 		
-//		Busqueda busqueda2;
-//		Busqueda busqueda3;
-//		Busqueda busqueda4;
-//		Busqueda busqueda5;
-//
-//		LocalComercial localComercial;
-//		 ParadaDeColectivo paradaDeColectivo;
-//		 Banco banco;
-//		 List<PuntoDeInteres> poisEncontrados1;
-//		 List<PuntoDeInteres> poisEncontrados2;
-//		 List<PuntoDeInteres> poisEncontrados3;
-//		 List<PuntoDeInteres> poisEncontrados4;
-//				
-//		
-//		
-//		
-//		
-//		localComercial = new LocalComercial();
-//		paradaDeColectivo = new ParadaDeColectivo();
-//		banco = new Banco();
-//		poisEncontrados1 = new ArrayList<PuntoDeInteres>();
-//		poisEncontrados2 = new ArrayList<PuntoDeInteres>();
-//		poisEncontrados3 = new ArrayList<PuntoDeInteres>();
-//		poisEncontrados1.add(banco);
-//		poisEncontrados1.add(paradaDeColectivo);
-//		poisEncontrados2.add(localComercial);
-//		poisEncontrados2.add(banco);
-//		poisEncontrados3.add(paradaDeColectivo);
-//		poisEncontrados3.add(banco);
-//		poisEncontrados3.add(localComercial);
-//		poisEncontrados4 = Arrays.asList(banco,paradaDeColectivo);
-//
-//		
-//		busqueda2 = new Busqueda(terminalChacabuco, "Florida", new PuntosDeInteresEncontrados(poisEncontrados1), cuatroDeFebreroDe2016, 5.0);
-//		busqueda3 = new Busqueda(terminalChacabuco, "Ahorro",  new PuntosDeInteresEncontrados(poisEncontrados2), cuatroDeFebreroDe2016, 5.0);
-//		busqueda4 = new Busqueda(terminalChacabuco, "Subte",  new PuntosDeInteresEncontrados(poisEncontrados3), diezDeEneroDe2016, 5.0);
-//		busqueda5 = new Busqueda(terminalChacabuco, "Florida", new PuntosDeInteresEncontrados(poisEncontrados4),cincoDeSeptiembreDe2014,10.0);
-//		
-//		historial.registrarBusqueda(busqueda2);
-//		historial.registrarBusqueda(busqueda3);
-//		historial.registrarBusqueda(busqueda4);
-//		historial.registrarBusqueda(busqueda5);
-//		
-		
-		
-		
-		
-		
-		
-		
 
 		repositorio.persistir(administrador);
 		repositorio.persistir(terminalUTN);

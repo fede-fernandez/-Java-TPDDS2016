@@ -250,5 +250,14 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		
 		Assert.assertEquals(1, historial.size());
 	}
+	
+	@Test
+	public void encontrarBusquedaPorId(){
+		repositorio.registrarBusqueda(busqueda1);
+		
+		Busqueda busqueda = repositorio.encontrarBusquedaPorId(busqueda1.getId());
+		
+		Assert.assertEquals(busqueda.getId(), busqueda1.getId());
+	}
 		
 }

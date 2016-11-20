@@ -69,4 +69,8 @@ public class Busqueda {
 	public void setPuntosDeInteresEncontrados(PuntosDeInteresEncontrados puntosDeInteresEncontrados) {
 		this.puntosDeInteresEncontrados = puntosDeInteresEncontrados;
 	}
+	
+	public String getUrl(){
+		return "historico/" + getId().toString(); 
+	}
 }

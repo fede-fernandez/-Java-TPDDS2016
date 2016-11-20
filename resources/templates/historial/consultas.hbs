@@ -1,10 +1,34 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+{{#partial "contenido"}}
+	
+<table class="table table-stripped table-bordered">
+	<thead>
+	<tr>
+		<td><strong>Texto buscado</strong></td>
+		<td><strong>Terminal</strong></td>
+		<td><strong>Fecha de busqueda</strong></td>
+		<td><strong>Tiempo de respuesta</strong></td>
+		<td></td>
+		
+	</tr>
+	</thead>
+	<tbody>
+	{{#each busquedas}}
+	<tr>
+		<td>{{textoBuscado}}</td>
+		<td>{{terminal.nombre}}</td>
+		<td>{{fechaDeBusqueda}}</td>
+		<td>{{tiempoDeRespuesta}}</td>
+		<td>
+			<a href="{{url}}" class="btn btn-info btn-lg" title="Mostrar POIs encontrados">
+          		<span class="glyphicon glyphicon-list-alt"></span>
+        	</a>
+		</tr>
+	{{/each}}
+	</tbody>
 
-</body>
-</html>
+</table>
+ 		
+  	
+{{/partial}}
+
+{{>PaginaBase.hbs}}

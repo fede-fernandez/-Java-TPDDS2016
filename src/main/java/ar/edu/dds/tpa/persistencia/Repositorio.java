@@ -1,17 +1,10 @@
 package ar.edu.dds.tpa.persistencia;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import org.mongodb.morphia.Datastore;
-
-import ar.edu.dds.tpa.datastoreTest.MorphiaDatastoreTest;
-import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
-import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMongo;
-import ar.edu.dds.tpa.model.*;
 
 public class Repositorio {
 

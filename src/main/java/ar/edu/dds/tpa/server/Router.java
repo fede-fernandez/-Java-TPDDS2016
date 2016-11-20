@@ -1,7 +1,14 @@
 package ar.edu.dds.tpa.server;
 
 
-import ar.edu.dds.tpa.controller.*;
+import ar.edu.dds.tpa.controller.AdministracionDePOIController;
+import ar.edu.dds.tpa.controller.HistoricoDeConsultasController;
+import ar.edu.dds.tpa.controller.LoginController;
+import ar.edu.dds.tpa.controller.POIsBusquedaController;
+import ar.edu.dds.tpa.controller.TerminalController;
+import ar.edu.dds.tpa.datastoreTest.MorphiaDatastoreTest;
+import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
+import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMongo;
 import ar.edu.dds.tpa.spark.utils.HandlebarsTemplateEngineBuilder;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -18,6 +25,10 @@ public class Router {
 		Spark.staticFiles.location("/public");
 		
 		POIsBusquedaController poisController = new POIsBusquedaController();
+		HistorialDeBusqueda historial = new HistorialDeBusquedaEnMongo(MorphiaDatastoreTest.obtenerInstancia().getDatastore());
+		HistoricoDeConsultasController historicoController = new HistoricoDeConsultasController(historial);
+		
+		LoginController loginController = new LoginController();
 		
 		Spark.get("/pois", poisController::listarPOIS, engine);
 		Spark.get("/pois/:id", poisController::mostrarInformacionPOIs, engine);
@@ -30,6 +41,12 @@ public class Router {
 		Spark.post("/administracion/eliminar", new AdministracionDePOIController()::eliminar, engine);
 		
 		Spark.get("/gestionDeTerminales", new TerminalController()::mostrarTerminales, engine);
+		
+		Spark.get("/historico", historicoController::listarPoisConsultados,engine);
+		Spark.get("/historico/:id", historicoController::mostrarPOIsEncontradosDeUnaBusqueda,engine);
+		
+		Spark.get("/login", loginController::mostrarLogin,engine);
+		Spark.post("/login", loginController::login,engine);
 		
 	}
 

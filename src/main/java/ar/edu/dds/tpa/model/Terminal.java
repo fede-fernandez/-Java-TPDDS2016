@@ -9,11 +9,7 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.observer.BusquedaObserver;
 
 @Entity
-public class Terminal {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class Terminal extends Usuario{
 
 	private String nombre;
 
@@ -36,10 +32,6 @@ public class Terminal {
 		this.coordenadas = coordenadas;
 		this.comuna = comuna;
 		observadoresDeBusqueda = new ArrayList<BusquedaObserver>();
-	}
-
-	public Integer getId() {
-		return id;
 	}
 
 	public String getNombre() {
@@ -68,5 +60,9 @@ public class Terminal {
 
 	public void quitarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
 		observadoresDeBusqueda.remove(unObservadorDeBusqueda);
+	}
+	@Override
+	public String getUrl(){
+		return "busquedaVisualizacionPOIs/buscarPOIs.hbs";
 	}
 }

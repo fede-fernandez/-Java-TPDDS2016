@@ -5,11 +5,7 @@ import javax.persistence.*;
 import ar.edu.dds.tpa.persistencia.Mapa;
 
 @Entity
-public class Administrador {
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+public class Administrador extends Usuario{
 
 	private String mail;
 
@@ -21,12 +17,12 @@ public class Administrador {
 		this.mail = mail;
 	}
 
-	public Integer getId() {
-		return id;
-	}
-
 	public String getMail() {
 		return mail;
+	}
+	
+	public void setMail(String mail){
+		this.mail = mail;
 	}
 
 	public void agregarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, Mapa enUnMapa) {
@@ -40,5 +36,9 @@ public class Administrador {
 	public void modificarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado,
 			Mapa enUnMapa) {
 		enUnMapa.modificar(unPuntoDeInteres, puntoDeInteresModificado);
+	}
+	@Override
+	public String getUrl(){
+		return "historial/consultas.hbs";
 	}
 }

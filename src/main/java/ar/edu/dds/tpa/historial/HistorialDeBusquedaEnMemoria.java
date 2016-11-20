@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.bson.types.ObjectId;
+
 import ar.edu.dds.tpa.model.Busqueda;
 
 
@@ -122,5 +124,17 @@ public class HistorialDeBusquedaEnMemoria implements HistorialDeBusqueda{
 	
 	private boolean estaEnUnRangoDeFechas(LocalDate fecha, LocalDate fechaDeInicio, LocalDate fechaDeFin){
 		return !fecha.isBefore(fechaDeInicio) && !fecha.isAfter(fechaDeFin);
+	}
+
+	@Override
+	public Busqueda encontrarBusquedaPorId(String id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Busqueda encontrarBusquedaPorId(ObjectId id) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

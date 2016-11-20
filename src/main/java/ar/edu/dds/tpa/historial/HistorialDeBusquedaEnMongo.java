@@ -3,6 +3,7 @@ package ar.edu.dds.tpa.historial;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.bson.types.ObjectId;
 import org.mongodb.morphia.Datastore;
 
 import ar.edu.dds.tpa.model.Busqueda;
@@ -73,6 +74,16 @@ public class HistorialDeBusquedaEnMongo implements HistorialDeBusqueda{
 	
 	public void eliminarBusqueda(Busqueda unaBusqueda){
 		datastore.delete(unaBusqueda);
+	}
+	
+	public Busqueda encontrarBusquedaPorId(String id){
+		ObjectId objectId = new ObjectId(id);
+		
+		return datastore.find(Busqueda.class).field("id").equal(objectId).get();
+	}
+	
+	public Busqueda encontrarBusquedaPorId(ObjectId id){
+		return datastore.find(Busqueda.class).field("id").equal(id).get();
 	}
 	
 

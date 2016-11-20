@@ -1,0 +1,15 @@
+{{#partial "contenido"}}
+
+<form action="/login" method="POST">
+<div id="login">
+
+	<input type="text" name="usuario" placeholder="Usuario"/>
+	<input type="password" name="pass" placeholder="Contraseña"/>
+	<input class="btn btn-success" type="submit" value="Log In"/>
+	<span>El usuario/contraseña ingresado es inválido</span>
+</div>
+</form>
+  	
+{{/partial}}
+
+{{>PaginaBase.hbs}}

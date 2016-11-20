@@ -21,10 +21,12 @@ import spark.Route;
 
 public class AdministracionDePOIController implements Route, Persistible {
 	
-	private Map<String, Class<? extends PuntoDeInteres>> tiposPOI = ImmutableMap.of("Parada de colectivo", ParadaDeColectivo.class, 
-														  "Local comercial", LocalComercial.class,
-														  "Banco", Banco.class,
-														  "CGP", CGP.class);
+	private Map<String, Class<? extends PuntoDeInteres>> tiposPOI = 
+				ImmutableMap.of("Todos", PuntoDeInteres.class,
+								"Parada de colectivo", ParadaDeColectivo.class, 
+								"Local comercial", LocalComercial.class,
+								"Banco", Banco.class,
+								"CGP", CGP.class);
 	
 	@Override
 	public Object handle(Request arg0, Response arg1) throws Exception {
@@ -42,14 +44,15 @@ public class AdministracionDePOIController implements Route, Persistible {
 		
 		String tipoBuscado = request.queryMap("tipoPOI").value();
 		model.put("tipoBuscado", tipoBuscado);
-		//model.put("poi", new Buscador(new Mapa()).buscar(textoBuscado, new Usuario()));
-		model.put("poi", new MapaEnBaseDeDatos()
+		
+		/*model.put("poi", new MapaEnBaseDeDatos()
 							.obtenerPuntosDeInteres()
 							.stream()
 							.filter(poi -> poi.getClass() == tiposPOI.get(tipoBuscado))
 							.filter(poi -> poi.getNombre().contains(textoBuscado))
 							.toArray());
-	
+		*/
+		model.put("poi", new MapaEnBaseDeDatos().obtenerPuntosDeInteresPorTipoYNombre(tiposPOI.getOrDefault(tipoBuscado, PuntoDeInteres.class), textoBuscado));
 		return new ModelAndView(model, "administracionPOI/consultarPOI.hbs");
 	}
 

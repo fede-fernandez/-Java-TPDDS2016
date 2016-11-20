@@ -23,6 +23,8 @@ public class Busqueda {
 	private LocalDate fechaDeBusqueda;
 
 	private Double tiempoDeRespuesta;
+	
+	private int cantidadDeResultados;
 
 	public Busqueda() {
 
@@ -35,6 +37,7 @@ public class Busqueda {
 		this.puntosDeInteresEncontrados = poisEncontrados;
 		this.fechaDeBusqueda = fechaDeBusqueda;
 		this.tiempoDeRespuesta = tiempoDeRespuesta;
+		cantidadDeResultados = poisEncontrados.getCantidadDeResultados();
 	}
 
 
@@ -72,5 +75,13 @@ public class Busqueda {
 	
 	public String getUrl(){
 		return "historico/" + getId().toString(); 
+	}
+
+	public int getCantidadDeResultados() {
+		return cantidadDeResultados;
+	}
+
+	public void setCantidadDeResultados(int cantidadDeResultados) {
+		this.cantidadDeResultados = cantidadDeResultados;
 	}
 }

@@ -24,7 +24,7 @@ import spark.Response;
 		try {
 <span class="nc" id="L25">			Usuario usuario = new RepositorioDeUsuarios().loginDeUsuario(nick, pass);</span>
 			
-<span class="nc" id="L27">			request.session().attribute(&quot;usuario&quot;,usuario.getUsuario());</span>
+<span class="nc" id="L27">			request.session().attribute(&quot;usuario&quot;,usuario);</span>
 			
 <span class="nc" id="L29">			return new ModelAndView(null, usuario.getUrl());</span>
 <span class="nc" id="L30">		} catch (NoResultException e) {</span>

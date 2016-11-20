@@ -2,6 +2,7 @@
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import ar.edu.dds.tpa.model.BajaPuntoDeInteres;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
@@ -9,39 +10,47 @@ import ar.edu.dds.tpa.model.PuntoDeInteres;
 public class MapaEnMemoria implements Mapa {
 	private List&lt;PuntoDeInteres&gt; puntosDeInteres;
 
-<span class="fc" id="L12">	public MapaEnMemoria() {</span>
-<span class="fc" id="L13">		puntosDeInteres = new ArrayList&lt;PuntoDeInteres&gt;();</span>
-<span class="fc" id="L14">	}</span>
+<span class="fc" id="L13">	public MapaEnMemoria() {</span>
+<span class="fc" id="L14">		puntosDeInteres = new ArrayList&lt;PuntoDeInteres&gt;();</span>
+<span class="fc" id="L15">	}</span>
 
 	@Override
 	public void agregar(PuntoDeInteres unPuntoDeInteres) {
-<span class="fc" id="L18">		puntosDeInteres.add(unPuntoDeInteres);</span>
-<span class="fc" id="L19">	}</span>
+<span class="fc" id="L19">		puntosDeInteres.add(unPuntoDeInteres);</span>
+<span class="fc" id="L20">	}</span>
 
 	@Override
 	public void agregar(List&lt;PuntoDeInteres&gt; variosPuntosDeInteres) {
-<span class="nc" id="L23">		puntosDeInteres.addAll(variosPuntosDeInteres);</span>
-<span class="nc" id="L24">	}</span>
+<span class="nc" id="L24">		puntosDeInteres.addAll(variosPuntosDeInteres);</span>
+<span class="nc" id="L25">	}</span>
 
 	@Override
 	public void sacar(PuntoDeInteres unPuntoDeInteres) {
-<span class="fc" id="L28">		puntosDeInteres.remove(unPuntoDeInteres);</span>
-<span class="fc" id="L29">	}</span>
+<span class="fc" id="L29">		puntosDeInteres.remove(unPuntoDeInteres);</span>
+<span class="fc" id="L30">	}</span>
 
 	@Override
 	public void modificar(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado) {
-<span class="fc" id="L33">		puntosDeInteres.remove(unPuntoDeInteres);</span>
-<span class="fc" id="L34">		puntosDeInteres.add(puntoDeInteresModificado);</span>
-<span class="fc" id="L35">	}</span>
+<span class="fc" id="L34">		puntosDeInteres.remove(unPuntoDeInteres);</span>
+<span class="fc" id="L35">		puntosDeInteres.add(puntoDeInteresModificado);</span>
+<span class="fc" id="L36">	}</span>
 
 	@Override
 	public List&lt;PuntoDeInteres&gt; obtenerPuntosDeInteres() {
-<span class="fc" id="L39">		return puntosDeInteres;</span>
+<span class="fc" id="L40">		return puntosDeInteres;</span>
 	}
 
 	public void darDeBaja(BajaPuntoDeInteres puntoADarDeBaja) {
-<span class="fc" id="L43">		puntosDeInteres.stream().filter(puntoADarDeBaja::equals).findFirst()</span>
-<span class="fc" id="L44">				.ifPresent(punto -&gt; punto.setFechaBaja(puntoADarDeBaja.getFechaBaja()));</span>
-<span class="fc" id="L45">	}</span>
+<span class="fc" id="L44">		puntosDeInteres.stream().filter(puntoADarDeBaja::equals).findFirst()</span>
+<span class="fc" id="L45">				.ifPresent(punto -&gt; punto.setFechaBaja(puntoADarDeBaja.getFechaBaja()));</span>
+<span class="fc" id="L46">	}</span>
+
+	@Override
+	public List&lt;PuntoDeInteres&gt; obtenerPuntosDeInteresPorTipoYNombre(Class&lt;? extends PuntoDeInteres&gt; tipo, String nombre) {
+<span class="nc" id="L50">		return puntosDeInteres</span>
+<span class="nc" id="L51">				.stream()</span>
+<span class="nc bnc" id="L52" title="All 4 branches missed.">				.filter(poi -&gt; tipo.isAssignableFrom(poi.getClass()) &amp;&amp; poi.getNombre().contains(nombre))</span>
+<span class="nc" id="L53">				.collect(Collectors.toList());</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

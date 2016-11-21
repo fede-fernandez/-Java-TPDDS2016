@@ -48,17 +48,17 @@ public class PersistenciaDeUsuariosTest implements Persistible {
 				repositorio.buscarPorID(Terminal.class, terminalDePrueba2.getId()).getComuna().getNombre());
 	}
 
-//	@Test
-//	public void persistenciaDeUsuarios() {
-//		Terminal terminalDePrueba3 = new Terminal("Terminal Acoyte y Rivadavia", new Posicion(15.15, 9.3848), caballito);		
-//		Terminal terminalDePrueba4 = new Terminal("Terminal Central Olivera", new Posicion(8.3, 8.7), villaLugano);
-//		
-//		repositorio.persistir(terminalDePrueba3);
-//		repositorio.persistir(terminalDePrueba4);
-//		
-//		Assert.assertTrue(repositorio.traerTodos(Terminal.class).stream()
-//				.anyMatch(unUsuario -> unUsuario.getNombre().equals("Terminal Acoyte y Rivadavia")));
-//	}
+	@Test
+	public void persistenciaDeUsuarios() {
+		Terminal terminalDePrueba3 = new Terminal("Terminal Acoyte y Rivadavia", new Posicion(15.15, 9.3848), caballito);		
+		Terminal terminalDePrueba4 = new Terminal("Terminal Central Olivera", new Posicion(8.3, 8.7), villaLugano);
+		
+		repositorio.persistir(terminalDePrueba3);
+		repositorio.persistir(terminalDePrueba4);
+		
+		Assert.assertTrue(repositorio.traerTodos(Terminal.class).stream()
+				.anyMatch(unUsuario -> unUsuario.getNombre().equals("Terminal Acoyte y Rivadavia")));
+	}
 
 	@Test
 	public void persistenciaDeUsuarioConNotificador() {

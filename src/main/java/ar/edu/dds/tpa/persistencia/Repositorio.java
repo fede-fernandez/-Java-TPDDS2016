@@ -26,11 +26,13 @@ public class Repositorio {
 	public static Session obtenerSesion() {
 		if (sesion == null || !sesion.isOpen()) {
 			sesion = sessionFactory.openSession();
+			sesion.getTransaction().begin();
 		}
 		return sesion;
 	}
 
 	public void cerrarSesion() {
+		obtenerSesion().getTransaction().commit();
 		sesion.close();
 	}
 
@@ -51,5 +53,4 @@ public class Repositorio {
 		List<T> objetosEncontrados = obtenerSesion().createQuery("from " + clase.getName()).getResultList();
 		return objetosEncontrados;
 	}
-
 }

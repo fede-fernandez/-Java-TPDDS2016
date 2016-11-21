@@ -49,6 +49,18 @@ public class Terminal extends Usuario{
 	public List<BusquedaObserver> getObservadoresDeBusqueda() {
 		return observadoresDeBusqueda;
 	}
+	
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+	public void setCoordenadas(Posicion coordenadas) {
+		this.coordenadas = coordenadas;
+	}
+
+	public void setComuna(Comuna comuna) {
+		this.comuna = comuna;
+	}
 
 	public void notificarBusqueda(Busqueda unaBusquedaRealizada) {
 		observadoresDeBusqueda.forEach(unObservador -> unObservador.informar(unaBusquedaRealizada));

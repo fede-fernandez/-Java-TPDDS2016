@@ -25,65 +25,80 @@ import ar.edu.dds.tpa.model.Terminal;
 import ar.edu.dds.tpa.persistencia.Persistible;
 
 <span class="nc" id="L27">public class Inicializar implements Persistible {</span>
-	
-	public void init(){
-		
-<span class="nc" id="L31">		HistorialDeBusqueda historial = new HistorialDeBusquedaEnMongo(MorphiaDatastoreTest.obtenerInstancia().getDatastore());</span>
-		
-<span class="nc" id="L33">		List&lt;DayOfWeek&gt;deLunesAViernes = new ArrayList&lt;DayOfWeek&gt;();</span>
-<span class="nc" id="L34">		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,</span>
+
+	public void init() {
+
+<span class="nc" id="L31">		HistorialDeBusqueda historial = new HistorialDeBusquedaEnMongo(</span>
+<span class="nc" id="L32">				MorphiaDatastoreTest.obtenerInstancia().getDatastore());</span>
+
+<span class="nc" id="L34">		List&lt;DayOfWeek&gt; deLunesAViernes = new ArrayList&lt;DayOfWeek&gt;();</span>
+<span class="nc" id="L35">		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,</span>
 				DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));
-		
-<span class="nc" id="L37">		Comuna comuna12 = new Comuna(1, &quot;Comuna 12&quot;);</span>
-		
-<span class="nc" id="L39">		Terminal terminalUTN = new Terminal(&quot;Terminal UTN Campus&quot;, new Posicion(5.0, 5.0), comuna12);</span>
-<span class="nc" id="L40">		terminalUTN.setUsuario(&quot;utn&quot;);</span>
-<span class="nc" id="L41">		terminalUTN.setPassword(&quot;1234&quot;);</span>
-		
-<span class="nc" id="L43">		Administrador administrador = new Administrador(&quot;admin@admin.com&quot;);</span>
-<span class="nc" id="L44">		administrador.setUsuario(&quot;admin&quot;);</span>
-<span class="nc" id="L45">		administrador.setPassword(&quot;admin&quot;);</span>
-		
-		
 
-		
-<span class="nc" id="L50">		ParadaDeColectivo paradaDel46 = new ParadaDeColectivo(&quot;Linea 46 Estacion Mozart&quot;,</span>
-<span class="nc" id="L51">				new Posicion(53.97583, 12.21985),&quot;calle falsa 123&quot;);</span>
-<span class="nc" id="L52">		paradaDel46.agregarPalabraClave(&quot;colectivo&quot;);</span>
+<span class="nc" id="L38">		Comuna comuna12 = new Comuna(1, &quot;Comuna 12&quot;);</span>
 
-<span class="nc" id="L54">		Rubro kioscoDeDiarios = new Rubro(&quot;Kiosco de Diarios&quot;, 10.5);</span>
-<span class="nc" id="L55">		LocalComercial localDeDiarios = new LocalComercial(&quot;Diarin&quot;, new Posicion(734.1523, 751.2312), kioscoDeDiarios,&quot;calle kiosco 123&quot;);</span>
+<span class="nc" id="L40">		Terminal terminalUTN = new Terminal(&quot;Terminal UTN Campus&quot;, new Posicion(5.0, 5.0), comuna12);</span>
+<span class="nc" id="L41">		terminalUTN.setUsuario(&quot;utn&quot;);</span>
+<span class="nc" id="L42">		terminalUTN.setPassword(&quot;1234&quot;);</span>
 
-<span class="nc" id="L57">		localDeDiarios.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(9, 30),</span>
-<span class="nc" id="L58">				LocalTime.of(18, 30));</span>
-		
-<span class="nc" id="L60">		Banco bancoPatagonia = new Banco(&quot;Banco Patagonia Sucursal Villa Fiorito&quot;, new Posicion(73.002005, 148.42205),&quot;calle banco 123&quot;);</span>
+<span class="nc" id="L44">		Administrador administrador = new Administrador(&quot;admin@admin.com&quot;);</span>
+<span class="nc" id="L45">		administrador.setUsuario(&quot;admin&quot;);</span>
+<span class="nc" id="L46">		administrador.setPassword(&quot;admin&quot;);</span>
+
+<span class="nc" id="L48">		ParadaDeColectivo paradaDel46 = new ParadaDeColectivo(&quot;Linea 46 Estacion Mozart&quot;,</span>
+<span class="nc" id="L49">				new Posicion(53.97583, 12.21985), &quot;calle falsa 123&quot;);</span>
+<span class="nc" id="L50">		paradaDel46.agregarPalabraClave(&quot;colectivo&quot;);</span>
+
+<span class="nc" id="L52">		Rubro kioscoDeDiarios = new Rubro(&quot;Kiosco de Diarios&quot;, 10.5);</span>
+<span class="nc" id="L53">		LocalComercial localDeDiarios = new LocalComercial(&quot;Diarin&quot;, new Posicion(734.1523, 751.2312), kioscoDeDiarios,</span>
+				&quot;calle kiosco 123&quot;);
+
+<span class="nc" id="L56">		localDeDiarios.agregarHorarioDeAtencionComunEnVariosDias(deLunesAViernes, LocalTime.of(9, 30),</span>
+<span class="nc" id="L57">				LocalTime.of(18, 30));</span>
+
+<span class="nc" id="L59">		Banco bancoPatagonia = new Banco(&quot;Banco Patagonia Sucursal Villa Fiorito&quot;, new Posicion(73.002005, 148.42205),</span>
+				&quot;calle banco 123&quot;);
 <span class="nc" id="L61">		Servicio extracciones = new Servicio(&quot;extracciones&quot;);</span>
 <span class="nc" id="L62">		extracciones.agregarHorarioDeAtencion(DayOfWeek.WEDNESDAY, LocalTime.of(9, 50), LocalTime.of(23, 45));</span>
 <span class="nc" id="L63">		bancoPatagonia.agregarServicio(extracciones);</span>
-		
-				
-			
-<span class="nc" id="L67">		LocalDate cuatroDeFebreroDe2016 = LocalDate.of(2016, Month.FEBRUARY, 4);</span>
-<span class="nc" id="L68">		LocalDate diezDeEneroDe2016 = LocalDate.of(2016, Month.JANUARY, 10);</span>
-		
 
-<span class="nc" id="L71">		Busqueda busqueda1 = new Busqueda(terminalUTN, &quot;Banco&quot;, new PuntosDeInteresEncontrados(Arrays.asList(bancoPatagonia)), cuatroDeFebreroDe2016, 5.5);</span>
-<span class="nc" id="L72">		Busqueda busqueda2 = new Busqueda(terminalUTN, &quot;46&quot;, new PuntosDeInteresEncontrados(Arrays.asList(paradaDel46)),diezDeEneroDe2016,1.1);</span>
-<span class="nc" id="L73">		Busqueda busqueda3 = new Busqueda(terminalUTN, &quot;colectivo&quot;, new PuntosDeInteresEncontrados(Arrays.asList(paradaDel46)), cuatroDeFebreroDe2016, 2.0);</span>
-		
+<span class="nc" id="L65">		LocalDate cuatroDeFebreroDe2016 = LocalDate.of(2016, Month.FEBRUARY, 4);</span>
+<span class="nc" id="L66">		LocalDate diezDeEneroDe2016 = LocalDate.of(2016, Month.JANUARY, 10);</span>
 
-<span class="nc" id="L76">		repositorio.persistir(administrador);</span>
-<span class="nc" id="L77">		repositorio.persistir(terminalUTN);</span>
-		
-<span class="nc" id="L79">		repositorio.persistir(paradaDel46);</span>
-<span class="nc" id="L80">		repositorio.persistir(localDeDiarios);</span>
-<span class="nc" id="L81">		repositorio.persistir(bancoPatagonia);</span>
-		
-<span class="nc" id="L83">		historial.registrarBusqueda(busqueda1);</span>
-<span class="nc" id="L84">		historial.registrarBusqueda(busqueda2);</span>
-<span class="nc" id="L85">		historial.registrarBusqueda(busqueda3);</span>
-<span class="nc" id="L86">	}</span>
+<span class="nc" id="L68">		Busqueda busqueda1 = new Busqueda(terminalUTN, &quot;Banco&quot;,</span>
+<span class="nc" id="L69">				new PuntosDeInteresEncontrados(Arrays.asList(bancoPatagonia)), cuatroDeFebreroDe2016, 5.5);</span>
+<span class="nc" id="L70">		Busqueda busqueda2 = new Busqueda(terminalUTN, &quot;46&quot;, new PuntosDeInteresEncontrados(Arrays.asList(paradaDel46)),</span>
+<span class="nc" id="L71">				diezDeEneroDe2016, 1.1);</span>
+<span class="nc" id="L72">		Busqueda busqueda3 = new Busqueda(terminalUTN, &quot;colectivo&quot;,</span>
+<span class="nc" id="L73">				new PuntosDeInteresEncontrados(Arrays.asList(paradaDel46)), cuatroDeFebreroDe2016, 2.0);</span>
+
+<span class="nc" id="L75">		repositorio.persistir(administrador);</span>
+<span class="nc" id="L76">		repositorio.persistir(terminalUTN);</span>
+
+<span class="nc" id="L78">		repositorio.persistir(paradaDel46);</span>
+<span class="nc" id="L79">		repositorio.persistir(localDeDiarios);</span>
+<span class="nc" id="L80">		repositorio.persistir(bancoPatagonia);</span>
+
+<span class="nc" id="L82">		historial.registrarBusqueda(busqueda1);</span>
+<span class="nc" id="L83">		historial.registrarBusqueda(busqueda2);</span>
+<span class="nc" id="L84">		historial.registrarBusqueda(busqueda3);</span>
+
+<span class="nc" id="L86">		Comuna flores = new Comuna(7, &quot;Flores&quot;);</span>
+<span class="nc" id="L87">		Comuna caballito = new Comuna(9, &quot;Caballito&quot;);</span>
+<span class="nc" id="L88">		Comuna villaLugano = new Comuna(14, &quot;Villa Lugano&quot;);</span>
+<span class="nc" id="L89">		Terminal terminalDePrueba1 = new Terminal(&quot;Terminal Subte Linea E Virreyes&quot;, new Posicion(2.42300, 2.04212),</span>
+				flores);
+<span class="nc" id="L91">		repositorio.persistir(terminalDePrueba1);</span>
+
+<span class="nc" id="L93">		Terminal terminalDePrueba2 = new Terminal(&quot;Terminal Eva Peron y Varela&quot;, new Posicion(1.9353, 9.3493), flores);</span>
+<span class="nc" id="L94">		repositorio.persistir(terminalDePrueba2);</span>
+
+<span class="nc" id="L96">		Terminal terminalDePrueba3 = new Terminal(&quot;Terminal Acoyte y Rivadavia&quot;, new Posicion(15.15, 9.3848),</span>
+				caballito);
+<span class="nc" id="L98">		Terminal terminalDePrueba4 = new Terminal(&quot;Terminal Central Olivera&quot;, new Posicion(8.3, 8.7), villaLugano);</span>
+<span class="nc" id="L99">		repositorio.persistir(terminalDePrueba3);</span>
+<span class="nc" id="L100">		repositorio.persistir(terminalDePrueba4);</span>
+<span class="nc" id="L101">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

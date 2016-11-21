@@ -49,21 +49,33 @@ public class Terminal extends Usuario{
 	public List&lt;BusquedaObserver&gt; getObservadoresDeBusqueda() {
 <span class="fc" id="L50">		return observadoresDeBusqueda;</span>
 	}
+	
+	public void setNombre(String nombre) {
+<span class="nc" id="L54">		this.nombre = nombre;</span>
+<span class="nc" id="L55">	}</span>
+
+	public void setCoordenadas(Posicion coordenadas) {
+<span class="nc" id="L58">		this.coordenadas = coordenadas;</span>
+<span class="nc" id="L59">	}</span>
+
+	public void setComuna(Comuna comuna) {
+<span class="nc" id="L62">		this.comuna = comuna;</span>
+<span class="nc" id="L63">	}</span>
 
 	public void notificarBusqueda(Busqueda unaBusquedaRealizada) {
-<span class="fc" id="L54">		observadoresDeBusqueda.forEach(unObservador -&gt; unObservador.informar(unaBusquedaRealizada));</span>
-<span class="fc" id="L55">	}</span>
+<span class="fc" id="L66">		observadoresDeBusqueda.forEach(unObservador -&gt; unObservador.informar(unaBusquedaRealizada));</span>
+<span class="fc" id="L67">	}</span>
 
 	public void agregarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
-<span class="fc" id="L58">		observadoresDeBusqueda.add(unObservadorDeBusqueda);</span>
-<span class="fc" id="L59">	}</span>
+<span class="fc" id="L70">		observadoresDeBusqueda.add(unObservadorDeBusqueda);</span>
+<span class="fc" id="L71">	}</span>
 
 	public void quitarObservadorDeBusqueda(BusquedaObserver unObservadorDeBusqueda) {
-<span class="fc" id="L62">		observadoresDeBusqueda.remove(unObservadorDeBusqueda);</span>
-<span class="fc" id="L63">	}</span>
+<span class="fc" id="L74">		observadoresDeBusqueda.remove(unObservadorDeBusqueda);</span>
+<span class="fc" id="L75">	}</span>
 	@Override
 	public String getUrl(){
-<span class="nc" id="L66">		return &quot;/terminal&quot;;</span>
+<span class="nc" id="L78">		return &quot;/terminal&quot;;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

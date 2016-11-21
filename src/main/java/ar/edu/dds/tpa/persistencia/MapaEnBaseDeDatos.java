@@ -3,6 +3,8 @@ package ar.edu.dds.tpa.persistencia;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 
 public class MapaEnBaseDeDatos implements Mapa, Persistible {
@@ -36,9 +38,16 @@ public class MapaEnBaseDeDatos implements Mapa, Persistible {
 	public List<PuntoDeInteres> obtenerPuntosDeInteresPorTipoYNombre(Class<? extends PuntoDeInteres> tipo, String nombre){
 		return this.obtenerPuntosDeInteres()
 				.stream()
-				.filter(poi -> tipo.isAssignableFrom(poi.getClass()) && (nombre == null || poi.getNombre().contains(nombre)))
+				.filter(poi -> tipo.isAssignableFrom(poi.getClass()) && (nombre == null || StringUtils.containsIgnoreCase(poi.getNombre(), nombre)))
 				.collect(Collectors.toList());
 	}
 	
-	
+	@Override
+	public PuntoDeInteres obtenerPorID(int id){
+		return this.obtenerPuntosDeInteres()
+					.stream()
+					.filter(poi -> poi.getId() == id)
+					.findFirst()
+					.get();
+	}
 }

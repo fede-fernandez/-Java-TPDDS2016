@@ -16,4 +16,6 @@ public interface Mapa {
 	public List<PuntoDeInteres> obtenerPuntosDeInteres();
 	
 	public List<PuntoDeInteres> obtenerPuntosDeInteresPorTipoYNombre(Class<? extends PuntoDeInteres> tipo, String nombre);
+
+	public PuntoDeInteres obtenerPorID(int id);
 }

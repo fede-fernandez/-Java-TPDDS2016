@@ -36,8 +36,8 @@ public class Router {
 		
 		Spark.get("/administracion/consultar", new AdministracionDePOIController()::buscar, engine);
 		Spark.get("/administracion/consultar/:tipo/:nombre", new AdministracionDePOIController()::buscar, engine);
+		Spark.post("/administracion/editar/:poi", new AdministracionDePOIController()::editar, engine);
 		Spark.get("/administracion/editar/:poi", new AdministracionDePOIController()::presentarEdicion, engine);
-		Spark.post("/administracion/editar", new AdministracionDePOIController()::editar, engine);
 		Spark.post("/administracion/eliminar", new AdministracionDePOIController()::eliminar, engine);
 		
 		Spark.get("/gestionDeTerminales", new TerminalController()::mostrarTerminales, engine);

@@ -52,4 +52,9 @@ public class MapaEnMemoria implements Mapa {
 				.filter(poi -> tipo.isAssignableFrom(poi.getClass()) && poi.getNombre().contains(nombre))
 				.collect(Collectors.toList());
 	}
+
+	@Override
+	public PuntoDeInteres obtenerPorID(int id) {
+		return puntosDeInteres.stream().filter(poi -> poi.getId() == id).findFirst().get();
+	}
 }

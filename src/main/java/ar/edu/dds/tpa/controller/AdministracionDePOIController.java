@@ -87,20 +87,19 @@ public class AdministracionDePOIController implements Route, Persistible {
 	}
 	
 	public ModelAndView presentarEdicion(Request request, Response response){
-		return null;
+		int id = Integer.parseInt(request.params(":poi"));
+		Object model = new MapaEnBaseDeDatos().obtenerPorID(id);
+		return new ModelAndView(model, "administracionPOI/altaPOI.hbs");
 	}
 	
 	public ModelAndView editar(Request request, Response response){
+		response.redirect("/administracion/consultar");
 		return null;
 	}
 	
 	public ModelAndView eliminar(Request request, Response response){
 		Mapa mapa = new MapaEnBaseDeDatos();
-		PuntoDeInteres p = mapa.obtenerPuntosDeInteres()
-			.stream()
-			.filter(poi -> poi.getId() == request.queryMap("id").integerValue())
-			.findFirst()
-			.get();
+		PuntoDeInteres p = mapa.obtenerPorID(request.queryMap("id").integerValue());
 		mapa.sacar(p);
 		response.redirect("/administracion/consultar");
 		return null;

@@ -1,35 +1,54 @@
-<html>
-    <head>
-        <title>Alta de Puntos de Interes</title>
-        <script src='setearCoordenadaAltaPOI.js'></script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5cZQudoyNqxV-MXAd8fg4pQSS0ph4czs&callback=initMap" async defer></script>
-    </head>
-    <body>
-    	<form method='POST'>
-    		<div class='form-group'>
-    			<label>Nombre:</label>
-    			<input type='text' value='{{nombre}}' name='nombre'/>
-    			<label>Tipo de punto de interés</label>
-    			<select name="tipoPOIs">
-    				<option value="0">Parada de colectivo</option>
-    				<option value="1">Local comercial</option>
-    				<option value="2">Banco</option>
-    				<option value="3">CGP</option>
-    			</select>
-    			<div>
-    				<div>
-    					<label>Coordenadas:</label>
-    					<input type='text'  name='latitud' id='latitud'/>
-    					<input type='text'  name='longitud' id='longitud'/>
-    				</div>
-	    			<div id="map" style='width: 50%; height: 50%;'></div>
-	    		</div>
-	    		<label></label>
-	    		
-	    		
-	    		<input type='submit' value='Enviar'/>
-	    		<a href='consultarPOI'>Cancelar</a>
-	    	</div>
-    	</form>
-    </body>
-</html>
+{{#partial "contenido"}}
+<script src='/js/setearCoordenadaAltaPOI.js'></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB5cZQudoyNqxV-MXAd8fg4pQSS0ph4czs&callback=initMap" async defer></script>
+<form method='POST' action="">
+		<input type="hidden" value="{{id}}" name="id"/>	
+		<div class="row">
+			<div class="form-group col-xs-6">
+				<label>Nombre:</label>
+		<!-- 	</div>
+			<div class="form-group col-xs-7"> --> 
+				<input class="form-control input-group-lg" type='text' value='{{nombre}}' name='nombre' />
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-xs-6">
+				<label>Dirección:</label>
+		<!-- 	</div>
+			<div class="form-group col-xs-7"> --> 
+				<input class="form-control input-group-lg" type='text' value='{{direccion}}' name='direccion' />
+			</div>
+		</div>  
+		<div>
+			<div class="row">
+            	<div class="form-group col-xs-3">
+					<label>Latitud:</label> 
+				<!-- </div>
+				<div class="form-group col-xs-3"> -->
+					<input class="form-control input-group-lg" type='text' name='latitud' id='latitud' value="{{coordenadas.latitud}}" />
+				</div>
+				<div class="form-group col-xs-3">
+					<label>Longitud:</label> 
+				<!-- </div>
+				<div class="form-group col-xs-3"> --> 
+					<input class="form-control input-group-lg" type='text' name='longitud' id='longitud' value="{{coordenadas.longitud}}"/>
+				</div>
+			</div>
+			<!-- <div class="container-fluid"> -->
+				<div class="row">
+					<div class="col-md-6">
+						<div id="map"></div>
+					</div>
+				</div>
+			<!-- </div> -->
+		</div>
+		<div class="row">
+			<div class="form-group col-xs-6">
+				<a href='/administracion/consultar'><button type="button" class="btn btn-danger"><span>Cancelar</span></button></a>
+				<input class="btn btn-success" type='submit' value='Enviar'/>
+			</div>
+		</div> 
+</form>
+{{/partial}}
+
+{{>PaginaBase.hbs}}

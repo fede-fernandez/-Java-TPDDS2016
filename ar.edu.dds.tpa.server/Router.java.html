@@ -36,8 +36,8 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 		
 <span class="nc" id="L37">		Spark.get(&quot;/administracion/consultar&quot;, new AdministracionDePOIController()::buscar, engine);</span>
 <span class="nc" id="L38">		Spark.get(&quot;/administracion/consultar/:tipo/:nombre&quot;, new AdministracionDePOIController()::buscar, engine);</span>
-<span class="nc" id="L39">		Spark.get(&quot;/administracion/editar/:poi&quot;, new AdministracionDePOIController()::presentarEdicion, engine);</span>
-<span class="nc" id="L40">		Spark.post(&quot;/administracion/editar&quot;, new AdministracionDePOIController()::editar, engine);</span>
+<span class="nc" id="L39">		Spark.post(&quot;/administracion/editar/:poi&quot;, new AdministracionDePOIController()::editar, engine);</span>
+<span class="nc" id="L40">		Spark.get(&quot;/administracion/editar/:poi&quot;, new AdministracionDePOIController()::presentarEdicion, engine);</span>
 <span class="nc" id="L41">		Spark.post(&quot;/administracion/eliminar&quot;, new AdministracionDePOIController()::eliminar, engine);</span>
 		
 <span class="nc" id="L43">		Spark.get(&quot;/gestionDeTerminales&quot;, new TerminalController()::mostrarTerminales, engine);</span>

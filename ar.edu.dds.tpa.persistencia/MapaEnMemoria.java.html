@@ -52,5 +52,10 @@ public class MapaEnMemoria implements Mapa {
 <span class="nc bnc" id="L52" title="All 4 branches missed.">				.filter(poi -&gt; tipo.isAssignableFrom(poi.getClass()) &amp;&amp; poi.getNombre().contains(nombre))</span>
 <span class="nc" id="L53">				.collect(Collectors.toList());</span>
 	}
+
+	@Override
+	public PuntoDeInteres obtenerPorID(int id) {
+<span class="nc bnc" id="L58" title="All 2 branches missed.">		return puntosDeInteres.stream().filter(poi -&gt; poi.getId() == id).findFirst().get();</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

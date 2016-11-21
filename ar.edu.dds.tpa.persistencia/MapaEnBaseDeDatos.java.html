@@ -3,43 +3,52 @@
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.StringUtils;
+
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 
-<span class="fc" id="L8">public class MapaEnBaseDeDatos implements Mapa, Persistible {</span>
+<span class="fc" id="L10">public class MapaEnBaseDeDatos implements Mapa, Persistible {</span>
 
 	@Override
 	public void agregar(PuntoDeInteres unPuntoDeInteres) {
-<span class="fc" id="L12">		repositorio.persistir(unPuntoDeInteres);</span>
-<span class="fc" id="L13">	}</span>
+<span class="fc" id="L14">		repositorio.persistir(unPuntoDeInteres);</span>
+<span class="fc" id="L15">	}</span>
 
 	@Override
 	public void agregar(List&lt;PuntoDeInteres&gt; variosPuntosDeInteres) {
-<span class="nc" id="L17">		variosPuntosDeInteres.forEach(unPuntoDeInteres -&gt; repositorio.persistir(unPuntoDeInteres));</span>
-<span class="nc" id="L18">	}</span>
+<span class="nc" id="L19">		variosPuntosDeInteres.forEach(unPuntoDeInteres -&gt; repositorio.persistir(unPuntoDeInteres));</span>
+<span class="nc" id="L20">	}</span>
 
 	@Override
 	public void sacar(PuntoDeInteres unPuntoDeInteres) {
-<span class="nc" id="L22">		repositorio.eliminar(unPuntoDeInteres);</span>
-<span class="nc" id="L23">	}</span>
+<span class="nc" id="L24">		repositorio.eliminar(unPuntoDeInteres);</span>
+<span class="nc" id="L25">	}</span>
 
 	@Override
 	public void modificar(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado) {
-<span class="nc" id="L27">		repositorio.persistir(puntoDeInteresModificado);</span>
-<span class="nc" id="L28">	}</span>
+<span class="nc" id="L29">		repositorio.persistir(puntoDeInteresModificado);</span>
+<span class="nc" id="L30">	}</span>
 
 	@Override
 	public List&lt;PuntoDeInteres&gt; obtenerPuntosDeInteres() {
-<span class="fc" id="L32">		return repositorio.traerTodos(PuntoDeInteres.class);</span>
+<span class="fc" id="L34">		return repositorio.traerTodos(PuntoDeInteres.class);</span>
 	}
 	
 	@Override
 	public List&lt;PuntoDeInteres&gt; obtenerPuntosDeInteresPorTipoYNombre(Class&lt;? extends PuntoDeInteres&gt; tipo, String nombre){
-<span class="nc" id="L37">		return this.obtenerPuntosDeInteres()</span>
-<span class="nc" id="L38">				.stream()</span>
-<span class="nc bnc" id="L39" title="All 6 branches missed.">				.filter(poi -&gt; tipo.isAssignableFrom(poi.getClass()) &amp;&amp; (nombre == null || poi.getNombre().contains(nombre)))</span>
-<span class="nc" id="L40">				.collect(Collectors.toList());</span>
+<span class="nc" id="L39">		return this.obtenerPuntosDeInteres()</span>
+<span class="nc" id="L40">				.stream()</span>
+<span class="nc bnc" id="L41" title="All 6 branches missed.">				.filter(poi -&gt; tipo.isAssignableFrom(poi.getClass()) &amp;&amp; (nombre == null || StringUtils.containsIgnoreCase(poi.getNombre(), nombre)))</span>
+<span class="nc" id="L42">				.collect(Collectors.toList());</span>
 	}
 	
-	
+	@Override
+	public PuntoDeInteres obtenerPorID(int id){
+<span class="nc" id="L47">		return this.obtenerPuntosDeInteres()</span>
+<span class="nc" id="L48">					.stream()</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">					.filter(poi -&gt; poi.getId() == id)</span>
+<span class="nc" id="L50">					.findFirst()</span>
+<span class="nc" id="L51">					.get();</span>
+	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

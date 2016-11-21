@@ -87,23 +87,22 @@ import spark.Route;
 	}
 	
 	public ModelAndView presentarEdicion(Request request, Response response){
-<span class="nc" id="L90">		return null;</span>
+<span class="nc" id="L90">		int id = Integer.parseInt(request.params(&quot;:poi&quot;));</span>
+<span class="nc" id="L91">		Object model = new MapaEnBaseDeDatos().obtenerPorID(id);</span>
+<span class="nc" id="L92">		return new ModelAndView(model, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
 	}
 	
 	public ModelAndView editar(Request request, Response response){
-<span class="nc" id="L94">		return null;</span>
+<span class="nc" id="L96">		response.redirect(&quot;/administracion/consultar&quot;);</span>
+<span class="nc" id="L97">		return null;</span>
 	}
 	
 	public ModelAndView eliminar(Request request, Response response){
-<span class="nc" id="L98">		Mapa mapa = new MapaEnBaseDeDatos();</span>
-<span class="nc" id="L99">		PuntoDeInteres p = mapa.obtenerPuntosDeInteres()</span>
-<span class="nc" id="L100">			.stream()</span>
-<span class="nc bnc" id="L101" title="All 2 branches missed.">			.filter(poi -&gt; poi.getId() == request.queryMap(&quot;id&quot;).integerValue())</span>
-<span class="nc" id="L102">			.findFirst()</span>
-<span class="nc" id="L103">			.get();</span>
-<span class="nc" id="L104">		mapa.sacar(p);</span>
-<span class="nc" id="L105">		response.redirect(&quot;/administracion/consultar&quot;);</span>
-<span class="nc" id="L106">		return null;</span>
+<span class="nc" id="L101">		Mapa mapa = new MapaEnBaseDeDatos();</span>
+<span class="nc" id="L102">		PuntoDeInteres p = mapa.obtenerPorID(request.queryMap(&quot;id&quot;).integerValue());</span>
+<span class="nc" id="L103">		mapa.sacar(p);</span>
+<span class="nc" id="L104">		response.redirect(&quot;/administracion/consultar&quot;);</span>
+<span class="nc" id="L105">		return null;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

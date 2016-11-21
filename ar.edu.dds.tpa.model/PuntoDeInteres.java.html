@@ -109,5 +109,17 @@ public abstract class PuntoDeInteres {
 	public boolean estaActivo() {
 <span class="pc bpc" id="L110" title="1 of 4 branches missed.">		return fechaBaja == null || fechaBaja.isAfter(LocalDateTime.now());</span>
 	}
+	
+	public void setCoordenadas(Posicion posicion){
+<span class="nc" id="L114">		this.coordenadas = posicion;</span>
+<span class="nc" id="L115">	}</span>
+	
+	public void setNombre(String nombre){
+<span class="nc" id="L118">		this.nombre = nombre;</span>
+<span class="nc" id="L119">	}</span>
+	
+	public void setDireccion(String direccion){
+<span class="nc" id="L122">		this.direccion = direccion;</span>
+<span class="nc" id="L123">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

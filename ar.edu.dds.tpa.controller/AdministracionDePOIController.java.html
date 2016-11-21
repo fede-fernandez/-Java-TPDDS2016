@@ -3,6 +3,8 @@
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.SerializationUtils;
+
 import com.google.common.collect.ImmutableMap;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
@@ -19,10 +21,10 @@ import spark.Request;
 import spark.Response;
 import spark.Route;
 
-<span class="nc" id="L22">public class AdministracionDePOIController implements Route, Persistible {</span>
+<span class="nc" id="L24">public class AdministracionDePOIController implements Route, Persistible {</span>
 	
-<span class="nc" id="L24">	private Map&lt;String, Class&lt;? extends PuntoDeInteres&gt;&gt; tiposPOI = </span>
-<span class="nc" id="L25">				ImmutableMap.of(&quot;Todos&quot;, PuntoDeInteres.class,</span>
+<span class="nc" id="L26">	private Map&lt;String, Class&lt;? extends PuntoDeInteres&gt;&gt; tiposPOI = </span>
+<span class="nc" id="L27">				ImmutableMap.of(&quot;Todos&quot;, PuntoDeInteres.class,</span>
 								&quot;Parada de colectivo&quot;, ParadaDeColectivo.class, 
 								&quot;Local comercial&quot;, LocalComercial.class,
 								&quot;Banco&quot;, Banco.class,
@@ -31,19 +33,19 @@ import spark.Route;
 	@Override
 	public Object handle(Request arg0, Response arg1) throws Exception {
 		// TODO Auto-generated method stub
-<span class="nc" id="L34">		return null;</span>
+<span class="nc" id="L36">		return null;</span>
 	}
 	
 	public ModelAndView buscar(Request request, Response response){
-<span class="nc" id="L38">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L39">		model.put(&quot;tipo&quot;, tiposPOI.keySet());</span>
+<span class="nc" id="L40">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L41">		model.put(&quot;tipo&quot;, tiposPOI.keySet());</span>
 		
-<span class="nc" id="L41">		String textoBuscado = request.queryMap(&quot;textoBuscado&quot;).value();</span>
+<span class="nc" id="L43">		String textoBuscado = request.queryMap(&quot;textoBuscado&quot;).value();</span>
 		
-<span class="nc" id="L43">		model.put(&quot;textoBuscado&quot;, textoBuscado);</span>
+<span class="nc" id="L45">		model.put(&quot;textoBuscado&quot;, textoBuscado);</span>
 		
-<span class="nc" id="L45">		String tipoBuscado = request.queryMap(&quot;tipoPOI&quot;).value();</span>
-<span class="nc" id="L46">		model.put(&quot;tipoBuscado&quot;, tipoBuscado);</span>
+<span class="nc" id="L47">		String tipoBuscado = request.queryMap(&quot;tipoPOI&quot;).value();</span>
+<span class="nc" id="L48">		model.put(&quot;tipoBuscado&quot;, tipoBuscado);</span>
 		
 		/*model.put(&quot;poi&quot;, new MapaEnBaseDeDatos()
 							.obtenerPuntosDeInteres()
@@ -52,57 +54,63 @@ import spark.Route;
 							.filter(poi -&gt; poi.getNombre().contains(textoBuscado))
 							.toArray());
 		*/
-<span class="nc" id="L55">		model.put(&quot;poi&quot;, new MapaEnBaseDeDatos().obtenerPuntosDeInteresPorTipoYNombre(tiposPOI.getOrDefault(tipoBuscado, PuntoDeInteres.class), textoBuscado));</span>
-<span class="nc" id="L56">		return new ModelAndView(model, &quot;administracionPOI/consultarPOI.hbs&quot;);</span>
+<span class="nc" id="L57">		model.put(&quot;poi&quot;, new MapaEnBaseDeDatos().obtenerPuntosDeInteresPorTipoYNombre(tiposPOI.getOrDefault(tipoBuscado, PuntoDeInteres.class), textoBuscado));</span>
+<span class="nc" id="L58">		return new ModelAndView(model, &quot;administracionPOI/consultarPOI.hbs&quot;);</span>
 	}
 
 	public ModelAndView formularioAlta(Request request, Response response){
-<span class="nc" id="L60">		return new ModelAndView(null, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
+<span class="nc" id="L62">		return new ModelAndView(null, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
 	}
 	
 	public ModelAndView alta(Request request, Response response){
-<span class="nc" id="L64">		Map&lt;String, Object&gt; model  = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L65">		String nombre = request.queryMap(&quot;nombre&quot;).value();</span>
-<span class="nc" id="L66">		Double longitud = Double.valueOf(request.queryMap(&quot;longitud&quot;).value());</span>
-<span class="nc" id="L67">		Double latitud = Double.valueOf(request.queryMap(&quot;latitud&quot;).value());</span>
-<span class="nc" id="L68">		Posicion coordenadas = new Posicion(longitud, latitud);</span>
-<span class="nc" id="L69">		String id = request.queryMap(&quot;tipoPOIs&quot;).value();</span>
-<span class="nc" id="L70">		PuntoDeInteres poi=null;</span>
-<span class="nc bnc" id="L71" title="All 18 branches missed.">		switch (id) {</span>
+<span class="nc" id="L66">		Map&lt;String, Object&gt; model  = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L67">		String nombre = request.queryMap(&quot;nombre&quot;).value();</span>
+<span class="nc" id="L68">		Double longitud = Double.valueOf(request.queryMap(&quot;longitud&quot;).value());</span>
+<span class="nc" id="L69">		Double latitud = Double.valueOf(request.queryMap(&quot;latitud&quot;).value());</span>
+<span class="nc" id="L70">		Posicion coordenadas = new Posicion(longitud, latitud);</span>
+<span class="nc" id="L71">		String id = request.queryMap(&quot;tipoPOIs&quot;).value();</span>
+<span class="nc" id="L72">		PuntoDeInteres poi=null;</span>
+<span class="nc bnc" id="L73" title="All 18 branches missed.">		switch (id) {</span>
 
 	    case &quot;0&quot;:
-<span class="nc" id="L74">	    	poi = new ParadaDeColectivo(nombre, coordenadas,null);	break;</span>
+<span class="nc" id="L76">	    	poi = new ParadaDeColectivo(nombre, coordenadas,null);	break;</span>
 		case &quot;1&quot;:
-<span class="nc" id="L76">			poi = new LocalComercial(nombre, coordenadas,null,null);	break;</span>
+<span class="nc" id="L78">			poi = new LocalComercial(nombre, coordenadas,null,null);	break;</span>
 		case &quot;2&quot;:
-<span class="nc" id="L78">			poi = new Banco(nombre, coordenadas,null);   break;</span>
+<span class="nc" id="L80">			poi = new Banco(nombre, coordenadas,null);   break;</span>
 		case &quot;3&quot;:
-<span class="nc" id="L80">			poi = new CGP(nombre, coordenadas,null);	break;</span>
+<span class="nc" id="L82">			poi = new CGP(nombre, coordenadas,null);	break;</span>
 
 		}
 
-<span class="nc" id="L84">		new MapaEnBaseDeDatos().agregar(poi);</span>
+<span class="nc" id="L86">		new MapaEnBaseDeDatos().agregar(poi);</span>
 		//repositorio.persistir(poi);
-<span class="nc" id="L86">		return new ModelAndView(null, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
+<span class="nc" id="L88">		return new ModelAndView(null, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
 	}
 	
 	public ModelAndView presentarEdicion(Request request, Response response){
-<span class="nc" id="L90">		int id = Integer.parseInt(request.params(&quot;:poi&quot;));</span>
-<span class="nc" id="L91">		Object model = new MapaEnBaseDeDatos().obtenerPorID(id);</span>
-<span class="nc" id="L92">		return new ModelAndView(model, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
+<span class="nc" id="L92">		int id = Integer.parseInt(request.params(&quot;:poi&quot;));</span>
+<span class="nc" id="L93">		Object model = new MapaEnBaseDeDatos().obtenerPorID(id);</span>
+<span class="nc" id="L94">		return new ModelAndView(model, &quot;administracionPOI/altaPOI.hbs&quot;);</span>
 	}
 	
 	public ModelAndView editar(Request request, Response response){
-<span class="nc" id="L96">		response.redirect(&quot;/administracion/consultar&quot;);</span>
-<span class="nc" id="L97">		return null;</span>
+<span class="nc" id="L98">		PuntoDeInteres poi = new MapaEnBaseDeDatos().obtenerPorID(request.queryMap(&quot;id&quot;).integerValue());</span>
+<span class="nc" id="L99">		poi.setNombre(request.queryMap(&quot;nombre&quot;).value());</span>
+<span class="nc" id="L100">		poi.setCoordenadas(new Posicion(request.queryMap(&quot;longitud&quot;).doubleValue(), request.queryMap(&quot;latitud&quot;).doubleValue()));</span>
+<span class="nc" id="L101">		poi.setDireccion(request.queryMap(&quot;direccion&quot;).value());</span>
+<span class="nc" id="L102">		new MapaEnBaseDeDatos().modificar(new MapaEnBaseDeDatos().obtenerPorID(request.queryMap(&quot;id&quot;).integerValue()) //Lo vuelvo a sacar de la base de datos para tener una copia nueva del objeto</span>
+				, poi);
+<span class="nc" id="L104">		response.redirect(&quot;/administracion/consultar&quot;);</span>
+<span class="nc" id="L105">		return null;</span>
 	}
 	
 	public ModelAndView eliminar(Request request, Response response){
-<span class="nc" id="L101">		Mapa mapa = new MapaEnBaseDeDatos();</span>
-<span class="nc" id="L102">		PuntoDeInteres p = mapa.obtenerPorID(request.queryMap(&quot;id&quot;).integerValue());</span>
-<span class="nc" id="L103">		mapa.sacar(p);</span>
-<span class="nc" id="L104">		response.redirect(&quot;/administracion/consultar&quot;);</span>
-<span class="nc" id="L105">		return null;</span>
+<span class="nc" id="L109">		Mapa mapa = new MapaEnBaseDeDatos();</span>
+<span class="nc" id="L110">		PuntoDeInteres p = mapa.obtenerPorID(request.queryMap(&quot;id&quot;).integerValue());</span>
+<span class="nc" id="L111">		mapa.sacar(p);</span>
+<span class="nc" id="L112">		response.redirect(&quot;/administracion/consultar&quot;);</span>
+<span class="nc" id="L113">		return null;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

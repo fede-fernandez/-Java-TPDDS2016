@@ -6,7 +6,7 @@ import java.util.Map;
 
 import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
 import ar.edu.dds.tpa.model.Busqueda;
-import ar.edu.dds.tpa.model.PuntosDeInteresEncontrados;
+import ar.edu.dds.tpa.model.Usuario;
 import ar.edu.dds.tpa.persistencia.Persistible;
 import spark.ModelAndView;
 import spark.Request;
@@ -21,20 +21,22 @@ public class HistoricoDeConsultasController implements Persistible{
 	}	
 	
 	public ModelAndView listarPoisConsultados(Request request, Response response){
-		Map<String,List<Busqueda>> model = new HashMap<String,List<Busqueda>>();
+		Map<String,Object> model = new HashMap<>();
 				
 		List<Busqueda> busquedas = historial.traerTodasLasBusquedas();
-		
+		Usuario usuario = request.session().attribute("usuario");
+		model.put("nombre",usuario.getUsuario());
 		model.put("busquedas", busquedas);
 		
 		return new ModelAndView(model, "historial/consultas.hbs");
 	}
 	
 	public ModelAndView mostrarPOIsEncontradosDeUnaBusqueda(Request request, Response response){
-		Map<String,PuntosDeInteresEncontrados> model = new HashMap<>();
+		Map<String,Object> model = new HashMap<>();
+		
 		
 		String id = request.params("id");
-		Busqueda busqueda = historial.encontrarBusquedaPorId(id);
+		Busqueda busqueda = historial.encontrarBusquedaPorId(id);		
 		
 		model.put("poisEncontrados", busqueda.getPuntosDeInteresEncontrados());
 		

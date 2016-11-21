@@ -25,8 +25,8 @@ import spark.Response;
 <span class="nc" id="L25">			Usuario usuario = new RepositorioDeUsuarios().loginDeUsuario(nick, pass);</span>
 			
 <span class="nc" id="L27">			request.session().attribute(&quot;usuario&quot;,usuario);</span>
-			
-<span class="nc" id="L29">			return new ModelAndView(null, usuario.getUrl());</span>
+<span class="nc" id="L28">			response.redirect(usuario.getUrl());</span>
+<span class="nc" id="L29">			return null;</span>
 <span class="nc" id="L30">		} catch (NoResultException e) {</span>
 <span class="nc" id="L31">			return new ModelAndView(null, &quot;login/loginFallido.hbs&quot;);</span>
 		}				

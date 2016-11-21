@@ -44,11 +44,8 @@ import ar.edu.dds.tpa.model.PuntoDeInteres;
 	
 	@Override
 	public PuntoDeInteres obtenerPorID(int id){
-<span class="nc" id="L47">		return this.obtenerPuntosDeInteres()</span>
-<span class="nc" id="L48">					.stream()</span>
-<span class="nc bnc" id="L49" title="All 2 branches missed.">					.filter(poi -&gt; poi.getId() == id)</span>
-<span class="nc" id="L50">					.findFirst()</span>
-<span class="nc" id="L51">					.get();</span>
+<span class="nc" id="L47">		return repositorio.buscarPorID(PuntoDeInteres.class, id);</span>
+		//return this.obtenerPuntosDeInteres().stream().filter(poi -&gt; poi.getId() == id).findFirst().get();
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

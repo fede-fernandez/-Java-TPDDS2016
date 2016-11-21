@@ -25,8 +25,8 @@ public class LoginController implements Persistible{
 			Usuario usuario = new RepositorioDeUsuarios().loginDeUsuario(nick, pass);
 			
 			request.session().attribute("usuario",usuario);
-			
-			return new ModelAndView(null, usuario.getUrl());
+			response.redirect(usuario.getUrl());
+			return null;
 		} catch (NoResultException e) {
 			return new ModelAndView(null, "login/loginFallido.hbs");
 		}				

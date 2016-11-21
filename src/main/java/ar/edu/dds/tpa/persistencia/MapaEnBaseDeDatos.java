@@ -44,10 +44,7 @@ public class MapaEnBaseDeDatos implements Mapa, Persistible {
 	
 	@Override
 	public PuntoDeInteres obtenerPorID(int id){
-		return this.obtenerPuntosDeInteres()
-					.stream()
-					.filter(poi -> poi.getId() == id)
-					.findFirst()
-					.get();
+		return repositorio.buscarPorID(PuntoDeInteres.class, id);
+		//return this.obtenerPuntosDeInteres().stream().filter(poi -> poi.getId() == id).findFirst().get();
 	}
 }

@@ -63,6 +63,6 @@ public class Terminal extends Usuario{
 	}
 	@Override
 	public String getUrl(){
-		return "busquedaVisualizacionPOIs/buscarPOIs.hbs";
+		return "/terminal";
 	}
 }

@@ -109,4 +109,16 @@ public abstract class PuntoDeInteres {
 	public boolean estaActivo() {
 		return fechaBaja == null || fechaBaja.isAfter(LocalDateTime.now());
 	}
+	
+	public void setCoordenadas(Posicion posicion){
+		this.coordenadas = posicion;
+	}
+	
+	public void setNombre(String nombre){
+		this.nombre = nombre;
+	}
+	
+	public void setDireccion(String direccion){
+		this.direccion = direccion;
+	}
 }

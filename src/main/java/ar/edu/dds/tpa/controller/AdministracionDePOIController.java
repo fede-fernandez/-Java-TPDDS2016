@@ -3,6 +3,8 @@ package ar.edu.dds.tpa.controller;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.SerializationUtils;
+
 import com.google.common.collect.ImmutableMap;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
@@ -93,6 +95,12 @@ public class AdministracionDePOIController implements Route, Persistible {
 	}
 	
 	public ModelAndView editar(Request request, Response response){
+		PuntoDeInteres poi = new MapaEnBaseDeDatos().obtenerPorID(request.queryMap("id").integerValue());
+		poi.setNombre(request.queryMap("nombre").value());
+		poi.setCoordenadas(new Posicion(request.queryMap("longitud").doubleValue(), request.queryMap("latitud").doubleValue()));
+		poi.setDireccion(request.queryMap("direccion").value());
+		new MapaEnBaseDeDatos().modificar(new MapaEnBaseDeDatos().obtenerPorID(request.queryMap("id").integerValue()) //Lo vuelvo a sacar de la base de datos para tener una copia nueva del objeto
+				, poi);
 		response.redirect("/administracion/consultar");
 		return null;
 	}

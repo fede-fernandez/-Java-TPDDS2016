@@ -26,9 +26,9 @@ public class Router {
 
 		LoginController loginController = new LoginController();
 
-		Spark.get("/pois", poisController::listarPOIS, engine);
-		Spark.get("/pois/:id", poisController::mostrarInformacionPOIs, engine);
-		Spark.get("/terminal", poisController::mostrarTerminal, engine);
+		Spark.get("/terminal/lugares", poisController::listarPOIS, engine);
+		Spark.get("/terminal/lugares/:id", poisController::mostrarInformacionPOIs, engine);
+		Spark.get("/terminal/:id", poisController::mostrarTerminal, engine);
 
 		Spark.get("/administracion/consultar", new AdministracionDePOIController()::buscar, engine);
 		Spark.get("/administracion/consultar/:tipo/:nombre", new AdministracionDePOIController()::buscar, engine);

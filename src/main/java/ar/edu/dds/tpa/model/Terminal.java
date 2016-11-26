@@ -75,6 +75,6 @@ public class Terminal extends Usuario{
 	}
 	@Override
 	public String getUrl(){
-		return "/terminal";
+		return "/terminal/"+this.getId();
 	}
 }

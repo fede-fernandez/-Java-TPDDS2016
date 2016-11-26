@@ -60,7 +60,7 @@ public abstract class PuntoDeInteres {
 	}
 	
 	public String getUrl() {
-		return "pois/" + getId();
+		return "lugares/" + getId();
 	}
 
 	public List<String> getPalabrasClave() {

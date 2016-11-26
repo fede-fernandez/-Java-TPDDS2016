@@ -3,14 +3,15 @@
 <body>
 
 
-<form id="loginform" action="/pois" method="GET">
-<input class="input" readonly="readonly" value="Terminal UTN Campus"  name="nombre"/>
-<input class="input" readonly="readonly" value="Comuna 12"  name="comuna" />
+<form id="loginform" action="/terminal/lugares" method="GET">
+<input type="hidden" name="id" value="{{id}}">
+<input class="input" readonly="readonly" value="{{nombre}}"  name="nombre"/>
+<input class="input" readonly="readonly" value="Comuna {{comuna}}"  name="comuna" />
 <p><strong> Ingresar Texto Para Encontrar Lugares</strong></p>
 <input class="input" placeholder="ej. colectivo" name="textoLibre">
 <input type="submit" class="button" value="Buscar" />
 </form>
-<link rel="stylesheet" type="text/css" href="css/estilo.css">
+<link rel="stylesheet" type="text/css" href="/css/estilo.css">
 
 </body>
 </html>

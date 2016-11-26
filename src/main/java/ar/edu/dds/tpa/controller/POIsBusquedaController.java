@@ -3,7 +3,6 @@ package ar.edu.dds.tpa.controller;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.mongodb.morphia.Datastore;
 
@@ -33,7 +32,12 @@ public class POIsBusquedaController implements Persistible {
 	}
 	
 	public ModelAndView mostrarTerminal(Request req, Response res){
-		Map<String, Object> model = new HashMap<>();
+		Map<String, String> model = new HashMap<>();
+		String id = req.params("id");
+		Terminal terminal = repositorio.buscarPorID(Terminal.class,Integer.parseInt(id));
+		model.put("id", id);
+		model.put("nombre", terminal.getNombre());
+		model.put("comuna", terminal.getComuna().getNumero().toString());
 
 		return new ModelAndView(model, "busquedaVisualizacionPOIs/buscarPOIs.hbs");
 	}
@@ -41,18 +45,12 @@ public class POIsBusquedaController implements Persistible {
 	public ModelAndView listarPOIS(Request req, Response res){
 		Map<String, List<PuntoDeInteres>> model = new HashMap<>();
 		String textoLibre = req.queryParams("textoLibre");
-		String nombre = req.queryParams("nombre");
-		String comuna = req.queryParams("comuna");
-		Terminal terminal;
 		
-		List<Terminal> terminales = repositorio.traerTodos(Terminal.class);
-
-		try {
-			terminal = terminales.stream().filter(unaTerminal -> unaTerminal.getNombre().equals(nombre)
-					&& unaTerminal.getComuna().getNombre().equals(comuna)).collect(Collectors.toList()).get(0);
-		} catch (Exception e) {
-			return new ModelAndView(null, "busquedaVisualizacionPOIs/errorTerminal.hbs");
-		}
+		String id = req.queryParams("id");
+		
+		System.out.println(id);
+		
+		Terminal terminal = repositorio.buscarPorID(Terminal.class,Integer.parseInt(id));
 
 		List<PuntoDeInteres> pois = buscador.buscar(textoLibre, terminal);
 		

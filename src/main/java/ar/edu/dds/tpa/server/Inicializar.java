@@ -95,6 +95,9 @@ public class Inicializar implements Persistible {
 
 		Terminal terminalDePrueba3 = new Terminal("Terminal Acoyte y Rivadavia", new Posicion(15.15, 9.3848),
 				caballito);
+		
+		terminalDePrueba3.setUsuario("terminalDePrueba3");
+		terminalDePrueba3.setPassword("1234");
 		Terminal terminalDePrueba4 = new Terminal("Terminal Central Olivera", new Posicion(8.3, 8.7), villaLugano);
 		repositorio.persistir(terminalDePrueba3);
 		repositorio.persistir(terminalDePrueba4);

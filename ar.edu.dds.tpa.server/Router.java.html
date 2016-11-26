@@ -26,9 +26,9 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 
 <span class="nc" id="L27">		LoginController loginController = new LoginController();</span>
 
-<span class="nc" id="L29">		Spark.get(&quot;/pois&quot;, poisController::listarPOIS, engine);</span>
-<span class="nc" id="L30">		Spark.get(&quot;/pois/:id&quot;, poisController::mostrarInformacionPOIs, engine);</span>
-<span class="nc" id="L31">		Spark.get(&quot;/terminal&quot;, poisController::mostrarTerminal, engine);</span>
+<span class="nc" id="L29">		Spark.get(&quot;/terminal/lugares&quot;, poisController::listarPOIS, engine);</span>
+<span class="nc" id="L30">		Spark.get(&quot;/terminal/lugares/:id&quot;, poisController::mostrarInformacionPOIs, engine);</span>
+<span class="nc" id="L31">		Spark.get(&quot;/terminal/:id&quot;, poisController::mostrarTerminal, engine);</span>
 
 <span class="nc" id="L33">		Spark.get(&quot;/administracion/consultar&quot;, new AdministracionDePOIController()::buscar, engine);</span>
 <span class="nc" id="L34">		Spark.get(&quot;/administracion/consultar/:tipo/:nombre&quot;, new AdministracionDePOIController()::buscar, engine);</span>

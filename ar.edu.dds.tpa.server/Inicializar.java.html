@@ -95,10 +95,13 @@ import ar.edu.dds.tpa.persistencia.Persistible;
 
 <span class="nc" id="L96">		Terminal terminalDePrueba3 = new Terminal(&quot;Terminal Acoyte y Rivadavia&quot;, new Posicion(15.15, 9.3848),</span>
 				caballito);
-<span class="nc" id="L98">		Terminal terminalDePrueba4 = new Terminal(&quot;Terminal Central Olivera&quot;, new Posicion(8.3, 8.7), villaLugano);</span>
-<span class="nc" id="L99">		repositorio.persistir(terminalDePrueba3);</span>
-<span class="nc" id="L100">		repositorio.persistir(terminalDePrueba4);</span>
-<span class="nc" id="L101">	}</span>
+		
+<span class="nc" id="L99">		terminalDePrueba3.setUsuario(&quot;terminalDePrueba3&quot;);</span>
+<span class="nc" id="L100">		terminalDePrueba3.setPassword(&quot;1234&quot;);</span>
+<span class="nc" id="L101">		Terminal terminalDePrueba4 = new Terminal(&quot;Terminal Central Olivera&quot;, new Posicion(8.3, 8.7), villaLugano);</span>
+<span class="nc" id="L102">		repositorio.persistir(terminalDePrueba3);</span>
+<span class="nc" id="L103">		repositorio.persistir(terminalDePrueba4);</span>
+<span class="nc" id="L104">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

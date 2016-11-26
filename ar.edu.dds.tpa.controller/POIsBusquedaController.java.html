@@ -3,7 +3,6 @@
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import org.mongodb.morphia.Datastore;
 
@@ -24,51 +23,50 @@ public class POIsBusquedaController implements Persistible {
 	
 	private Buscador buscador;
 	
-<span class="nc" id="L27">	public POIsBusquedaController() {</span>
-<span class="nc" id="L28">		MorphiaDatastoreTest morphiaDatastore = MorphiaDatastoreTest.obtenerInstancia();</span>
-<span class="nc" id="L29">		Datastore dbMongo = morphiaDatastore.getDatastore();</span>
-<span class="nc" id="L30">		HistorialDeBusqueda historialBusqueda = new HistorialDeBusquedaEnMongo(dbMongo);</span>
-<span class="nc" id="L31">		Mapa mapa = new MapaEnBaseDeDatos();</span>
-<span class="nc" id="L32">		this.buscador = new Buscador(mapa, historialBusqueda);</span>
-<span class="nc" id="L33">	}</span>
+<span class="nc" id="L26">	public POIsBusquedaController() {</span>
+<span class="nc" id="L27">		MorphiaDatastoreTest morphiaDatastore = MorphiaDatastoreTest.obtenerInstancia();</span>
+<span class="nc" id="L28">		Datastore dbMongo = morphiaDatastore.getDatastore();</span>
+<span class="nc" id="L29">		HistorialDeBusqueda historialBusqueda = new HistorialDeBusquedaEnMongo(dbMongo);</span>
+<span class="nc" id="L30">		Mapa mapa = new MapaEnBaseDeDatos();</span>
+<span class="nc" id="L31">		this.buscador = new Buscador(mapa, historialBusqueda);</span>
+<span class="nc" id="L32">	}</span>
 	
 	public ModelAndView mostrarTerminal(Request req, Response res){
-<span class="nc" id="L36">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L35">		Map&lt;String, String&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L36">		String id = req.params(&quot;id&quot;);</span>
+<span class="nc" id="L37">		Terminal terminal = repositorio.buscarPorID(Terminal.class,Integer.parseInt(id));</span>
+<span class="nc" id="L38">		model.put(&quot;id&quot;, id);</span>
+<span class="nc" id="L39">		model.put(&quot;nombre&quot;, terminal.getNombre());</span>
+<span class="nc" id="L40">		model.put(&quot;comuna&quot;, terminal.getComuna().getNumero().toString());</span>
 
-<span class="nc" id="L38">		return new ModelAndView(model, &quot;busquedaVisualizacionPOIs/buscarPOIs.hbs&quot;);</span>
+<span class="nc" id="L42">		return new ModelAndView(model, &quot;busquedaVisualizacionPOIs/buscarPOIs.hbs&quot;);</span>
 	}
 	
 	public ModelAndView listarPOIS(Request req, Response res){
-<span class="nc" id="L42">		Map&lt;String, List&lt;PuntoDeInteres&gt;&gt; model = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L43">		String textoLibre = req.queryParams(&quot;textoLibre&quot;);</span>
-<span class="nc" id="L44">		String nombre = req.queryParams(&quot;nombre&quot;);</span>
-<span class="nc" id="L45">		String comuna = req.queryParams(&quot;comuna&quot;);</span>
-		Terminal terminal;
+<span class="nc" id="L46">		Map&lt;String, List&lt;PuntoDeInteres&gt;&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L47">		String textoLibre = req.queryParams(&quot;textoLibre&quot;);</span>
 		
-<span class="nc" id="L48">		List&lt;Terminal&gt; terminales = repositorio.traerTodos(Terminal.class);</span>
+<span class="nc" id="L49">		String id = req.queryParams(&quot;id&quot;);</span>
+		
+<span class="nc" id="L51">		System.out.println(id);</span>
+		
+<span class="nc" id="L53">		Terminal terminal = repositorio.buscarPorID(Terminal.class,Integer.parseInt(id));</span>
 
-		try {
-<span class="nc bnc" id="L51" title="All 2 branches missed.">			terminal = terminales.stream().filter(unaTerminal -&gt; unaTerminal.getNombre().equals(nombre)</span>
-<span class="nc bnc" id="L52" title="All 2 branches missed.">					&amp;&amp; unaTerminal.getComuna().getNombre().equals(comuna)).collect(Collectors.toList()).get(0);</span>
-<span class="nc" id="L53">		} catch (Exception e) {</span>
-<span class="nc" id="L54">			return new ModelAndView(null, &quot;busquedaVisualizacionPOIs/errorTerminal.hbs&quot;);</span>
-<span class="nc" id="L55">		}</span>
-
-<span class="nc" id="L57">		List&lt;PuntoDeInteres&gt; pois = buscador.buscar(textoLibre, terminal);</span>
+<span class="nc" id="L55">		List&lt;PuntoDeInteres&gt; pois = buscador.buscar(textoLibre, terminal);</span>
 		
-<span class="nc" id="L59">		model.put(&quot;pois&quot;, pois);</span>
+<span class="nc" id="L57">		model.put(&quot;pois&quot;, pois);</span>
 		
-<span class="nc" id="L61">		return new ModelAndView(model, &quot;busquedaVisualizacionPOIs/mostrarResultadosPOIs.hbs&quot;);</span>
+<span class="nc" id="L59">		return new ModelAndView(model, &quot;busquedaVisualizacionPOIs/mostrarResultadosPOIs.hbs&quot;);</span>
 	}
 	
 	
 	public ModelAndView mostrarInformacionPOIs(Request req, Response res){
-<span class="nc" id="L66">		Map&lt;String, PuntoDeInteres&gt; model = new HashMap&lt;&gt;();</span>
-<span class="nc" id="L67">		String id = req.params(&quot;id&quot;);</span>
+<span class="nc" id="L64">		Map&lt;String, PuntoDeInteres&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L65">		String id = req.params(&quot;id&quot;);</span>
 		
-<span class="nc" id="L69">		PuntoDeInteres pois = repositorio.buscarPorID(PuntoDeInteres.class,Integer.parseInt(id));</span>
-<span class="nc" id="L70">		model.put(&quot;pois&quot;, pois);</span>
-<span class="nc" id="L71">		return new ModelAndView(model, &quot;busquedaVisualizacionPOIs/mostrarPOIs.hbs&quot;);</span>
+<span class="nc" id="L67">		PuntoDeInteres pois = repositorio.buscarPorID(PuntoDeInteres.class,Integer.parseInt(id));</span>
+<span class="nc" id="L68">		model.put(&quot;pois&quot;, pois);</span>
+<span class="nc" id="L69">		return new ModelAndView(model, &quot;busquedaVisualizacionPOIs/mostrarPOIs.hbs&quot;);</span>
 	}
 
 }

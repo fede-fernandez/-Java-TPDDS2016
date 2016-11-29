@@ -40,6 +40,7 @@ public class DarDeBajaPuntosDeInteresTest {
 		mapa = new MapaEnMemoria();
 		mapa.agregar(unLocal);
 		mapa.agregar(unBanco);
+		mapa.agregar(unaParadaDeColectivo);
 
 		procesoDarDeBajaPuntosDeInteres = new DarDeBajaPuntosDeInteres();
 		procesoDarDeBajaPuntosDeInteres.setMapa(mapa);

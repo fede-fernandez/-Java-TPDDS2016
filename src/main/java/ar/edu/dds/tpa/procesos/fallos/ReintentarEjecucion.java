@@ -1,7 +1,7 @@
 package ar.edu.dds.tpa.procesos.fallos;
 
 import ar.edu.dds.tpa.adapter.EnviadorDeMail;
-import ar.edu.dds.tpa.model.Administrador;
+import ar.edu.dds.tpa.model.usuario.Administrador;
 import ar.edu.dds.tpa.procesos.Proceso;
 
 public class ReintentarEjecucion implements AccionEnCasoDeFalloDeProceso {

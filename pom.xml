@@ -102,16 +102,13 @@
 		</dependency>
 		<!-- #################### FONGO #################### -->
 
-		<!-- #################### LOGGER FACTORY (Necesario para Fongo) #################### -->
-
+		<!-- #################### LOGGER FACTORY #################### -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.version}</version>
 		</dependency>
-
 		<!-- #################### LOGGER FACTORY #################### -->
-
 
 		<!-- #################### REDIS #################### -->
 		<dependency>
@@ -142,7 +139,6 @@
 		<!-- #################### SPARK #################### -->
 		
 		<!-- #################### HANDLEBARS ############### -->
-		
 		<dependency>
 			<groupId>com.github.jknack</groupId>
 			<artifactId>handlebars-helpers</artifactId>
@@ -154,9 +150,7 @@
 			<artifactId>handlebars-humanize</artifactId>
 			<version>4.0.6</version>
 		</dependency>
-		
 		<!-- #################### HANDLEBARS ############### -->
-
 
 	</dependencies>
 

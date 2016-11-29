@@ -2,7 +2,7 @@ package ar.edu.dds.tpa.criterio;
 
 import java.util.List;
 
-import ar.edu.dds.tpa.model.Terminal;
+import ar.edu.dds.tpa.model.usuario.Terminal;
 
 public class FiltradoSelectivo implements Criterio {
 

@@ -5,6 +5,9 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 import ar.edu.dds.tpa.model.*;
+import ar.edu.dds.tpa.model.usuario.Administrador;
+import ar.edu.dds.tpa.model.usuario.Terminal;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +16,7 @@ import ar.edu.dds.tpa.adapter.EnviadorDeMail;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta;
-import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
+import ar.edu.dds.tpa.persistencia.repository.MapaEnMemoria;
 import ar.edu.dds.tpa.service.MailServiceImpostor;
 
 public class BusquedaQueTardaNotificarPorMailTest {

@@ -1,4 +1,4 @@
-package ar.edu.dds.tpa.model;
+package ar.edu.dds.tpa.model.usuario;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

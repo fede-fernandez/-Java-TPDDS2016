@@ -8,6 +8,8 @@ import java.util.List;
 
 import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.*;
+import ar.edu.dds.tpa.model.usuario.Terminal;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.Assert;

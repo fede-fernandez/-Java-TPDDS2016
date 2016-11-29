@@ -10,7 +10,7 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "TIPO_DE_POI")
+@DiscriminatorColumn(name = "tipo_de_poi")
 public abstract class PuntoDeInteres {
 
 	@Id
@@ -28,17 +28,19 @@ public abstract class PuntoDeInteres {
 	@JoinTable(name = "PalabrasClave")
 	private List<String> palabrasClave;
 
-	@Transient
-	private LocalDateTime fechaBaja;
+	private LocalDateTime fechaDeBaja;
+
+	private boolean activo;
 
 	public PuntoDeInteres() {
 
 	}
 
-	public PuntoDeInteres(String nombre, Posicion coordenadas,String direccion) {
+	public PuntoDeInteres(String nombre, Posicion coordenadas, String direccion) {
 		this.nombre = nombre;
 		this.coordenadas = coordenadas;
 		this.direccion = direccion;
+		activo = true;
 		palabrasClave = new ArrayList<String>();
 		agregarPalabraClave(nombre);
 	}
@@ -46,7 +48,7 @@ public abstract class PuntoDeInteres {
 	public Integer getId() {
 		return id;
 	}
-	
+
 	public String getDireccion() {
 		return direccion;
 	}
@@ -58,7 +60,7 @@ public abstract class PuntoDeInteres {
 	public Posicion getCoordenadas() {
 		return coordenadas;
 	}
-	
+
 	public String getUrl() {
 		return "lugares/" + getId();
 	}
@@ -66,7 +68,6 @@ public abstract class PuntoDeInteres {
 	public List<String> getPalabrasClave() {
 		return palabrasClave;
 	}
-	
 
 	public void agregarPalabraClave(String unaPalabraClave) {
 		palabrasClave.add(unaPalabraClave.toLowerCase());
@@ -88,37 +89,35 @@ public abstract class PuntoDeInteres {
 
 	}
 
-	public LocalDateTime getFechaBaja() {
-		return fechaBaja;
+	public LocalDateTime getFechaDeBaja() {
+		return fechaDeBaja;
 	}
 
-	public void setFechaBaja(LocalDateTime fechaBaja) {
-		this.fechaBaja = fechaBaja;
-	}
-
-	@Override
-	public boolean equals(Object otro) {
-		// Nos referimos al mismo punto de interes si ambos objetos son
-		// exactamente el mismo, o si tienen el mismo nombre y la ubicacion es
-		// aproximadamente la misma con un leve margen de error (2mm)
-		return otro != null && (otro == this
-				|| (Math.abs(this.coordenadas.distanciaA(((PuntoDeInteres) otro).getCoordenadas())) <= 0.0000002
-						&& this.getNombre().equals(((PuntoDeInteres) otro).getNombre())));
+	public void setFechaDeBaja(LocalDateTime fechaDeBaja) {
+		this.fechaDeBaja = fechaDeBaja;
 	}
 
 	public boolean estaActivo() {
-		return fechaBaja == null || fechaBaja.isAfter(LocalDateTime.now());
+		return activo;
 	}
-	
-	public void setCoordenadas(Posicion posicion){
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public void setCoordenadas(Posicion posicion) {
 		this.coordenadas = posicion;
 	}
-	
-	public void setNombre(String nombre){
+
+	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
-	
-	public void setDireccion(String direccion){
+
+	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
 }

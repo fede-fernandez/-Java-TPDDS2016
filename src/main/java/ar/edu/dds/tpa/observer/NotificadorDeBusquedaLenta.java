@@ -5,8 +5,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 import ar.edu.dds.tpa.adapter.EnviadorDeMail;
-import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.model.Busqueda;
+import ar.edu.dds.tpa.model.usuario.Administrador;
 
 @Entity
 public class NotificadorDeBusquedaLenta extends BusquedaObserver {

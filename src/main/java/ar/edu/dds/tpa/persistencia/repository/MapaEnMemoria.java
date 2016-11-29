@@ -1,13 +1,13 @@
-package ar.edu.dds.tpa.persistencia;
+package ar.edu.dds.tpa.persistencia.repository;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import ar.edu.dds.tpa.model.BajaPuntoDeInteres;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 
 public class MapaEnMemoria implements Mapa {
+
 	private List<PuntoDeInteres> puntosDeInteres;
 
 	public MapaEnMemoria() {
@@ -25,8 +25,13 @@ public class MapaEnMemoria implements Mapa {
 	}
 
 	@Override
-	public void sacar(PuntoDeInteres unPuntoDeInteres) {
+	public void remover(PuntoDeInteres unPuntoDeInteres) {
 		puntosDeInteres.remove(unPuntoDeInteres);
+	}
+
+	@Override
+	public void removerPor(Integer id) {
+		puntosDeInteres.remove(obtenerPor(id));
 	}
 
 	@Override
@@ -40,21 +45,24 @@ public class MapaEnMemoria implements Mapa {
 		return puntosDeInteres;
 	}
 
-	public void darDeBaja(BajaPuntoDeInteres puntoADarDeBaja) {
-		puntosDeInteres.stream().filter(puntoADarDeBaja::equals).findFirst()
-				.ifPresent(punto -> punto.setFechaBaja(puntoADarDeBaja.getFechaBaja()));
-	}
-
 	@Override
-	public List<PuntoDeInteres> obtenerPuntosDeInteresPorTipoYNombre(Class<? extends PuntoDeInteres> tipo, String nombre) {
-		return puntosDeInteres
-				.stream()
+	public List<PuntoDeInteres> obtenerPuntosDeInteresPorTipoYNombre(Class<? extends PuntoDeInteres> tipo,
+			String nombre) {
+		return puntosDeInteres.stream()
 				.filter(poi -> tipo.isAssignableFrom(poi.getClass()) && poi.getNombre().contains(nombre))
 				.collect(Collectors.toList());
 	}
 
 	@Override
-	public PuntoDeInteres obtenerPorID(int id) {
+	public PuntoDeInteres obtenerPor(Integer id) {
 		return puntosDeInteres.stream().filter(poi -> poi.getId() == id).findFirst().get();
+	}
+
+	@Override
+	public void darDeBaja(Integer idDelPuntoDeInteres, LocalDateTime fechaDeBaja) {
+		PuntoDeInteres puntoDeInteresADarDeBaja = puntosDeInteres.stream()
+				.filter(unPuntoDeInteres -> unPuntoDeInteres.getId().equals(idDelPuntoDeInteres)).findFirst().get();
+		puntoDeInteresADarDeBaja.setActivo(false);
+		puntoDeInteresADarDeBaja.setFechaDeBaja(fechaDeBaja);
 	}
 }

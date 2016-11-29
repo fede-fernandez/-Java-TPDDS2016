@@ -1,9 +1,10 @@
 package ar.edu.dds.tpa.procesos;
 
 import java.util.List;
-import ar.edu.dds.tpa.model.Terminal;
+
 import ar.edu.dds.tpa.accion.AccionDeUsuario;
 import ar.edu.dds.tpa.criterio.Criterio;
+import ar.edu.dds.tpa.model.usuario.Terminal;
 
 public class GestorDeAccionesDeTerminales extends Proceso {
 

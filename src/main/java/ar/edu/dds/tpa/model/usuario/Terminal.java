@@ -1,4 +1,4 @@
-package ar.edu.dds.tpa.model;
+package ar.edu.dds.tpa.model.usuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,6 +6,8 @@ import java.util.List;
 import javax.persistence.*;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
+import ar.edu.dds.tpa.model.Busqueda;
+import ar.edu.dds.tpa.model.Comuna;
 import ar.edu.dds.tpa.observer.BusquedaObserver;
 
 @Entity

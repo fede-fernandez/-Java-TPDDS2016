@@ -5,7 +5,7 @@ import java.util.Map;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.Comuna;
-import ar.edu.dds.tpa.model.Terminal;
+import ar.edu.dds.tpa.model.usuario.Terminal;
 import ar.edu.dds.tpa.persistencia.Persistible;
 import spark.ModelAndView;
 import spark.Request;

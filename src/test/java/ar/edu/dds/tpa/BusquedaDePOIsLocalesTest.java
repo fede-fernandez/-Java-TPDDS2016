@@ -9,13 +9,13 @@ import org.junit.Test;
 
 import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.*;
-import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
+import ar.edu.dds.tpa.persistencia.repository.MapaEnMemoria;
 
 public class BusquedaDePOIsLocalesTest {
 
 	private Banco unBanco;
 	private CGP unCGP;
-	private LocalComercial kioscoDeDario;
+	private LocalComercial kioscoDeDiario;
 	private LocalComercial libreriaEscolar;
 	private ParadaDeColectivo paradaDel114EnRivadaviaYNazca;
 	private ParadaDeColectivo paradaDel114EnPasajeMozart;
@@ -31,7 +31,7 @@ public class BusquedaDePOIsLocalesTest {
 		unCGP = new CGP("CGP Balvanera", null, null);
 		unCGP.agregarServicio(new Servicio("Rentas"));
 
-		kioscoDeDario = new LocalComercial("El matutino", null, new Rubro("Kiosco de diario", 0.0), null);
+		kioscoDeDiario = new LocalComercial("El matutino", null, new Rubro("Kiosco de diario", 0.0), null);
 
 		libreriaEscolar = new LocalComercial("El ateneo", null, new Rubro("Libreria Escolar", 0.0), null);
 
@@ -44,7 +44,7 @@ public class BusquedaDePOIsLocalesTest {
 		mapa.agregar(paradaDel114EnRivadaviaYNazca);
 		mapa.agregar(paradaDel114EnPasajeMozart);
 		mapa.agregar(paradaDel114EnPrimeraJunta);
-		mapa.agregar(kioscoDeDario);
+		mapa.agregar(kioscoDeDiario);
 		mapa.agregar(libreriaEscolar);
 		mapa.agregar(unBanco);
 		mapa.agregar(unCGP);
@@ -53,7 +53,7 @@ public class BusquedaDePOIsLocalesTest {
 		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnRivadaviaYNazca);
 		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnPasajeMozart);
 		baseDeConocimientosDePuntosDeInteres.add(paradaDel114EnPrimeraJunta);
-		baseDeConocimientosDePuntosDeInteres.add(kioscoDeDario);
+		baseDeConocimientosDePuntosDeInteres.add(kioscoDeDiario);
 		baseDeConocimientosDePuntosDeInteres.add(libreriaEscolar);
 		baseDeConocimientosDePuntosDeInteres.add(unCGP);
 

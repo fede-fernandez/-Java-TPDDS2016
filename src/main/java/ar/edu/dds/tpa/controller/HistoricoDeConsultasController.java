@@ -6,7 +6,7 @@ import java.util.Map;
 
 import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
 import ar.edu.dds.tpa.model.Busqueda;
-import ar.edu.dds.tpa.model.Usuario;
+import ar.edu.dds.tpa.model.usuario.Usuario;
 import ar.edu.dds.tpa.persistencia.Persistible;
 import spark.ModelAndView;
 import spark.Request;

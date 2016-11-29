@@ -8,7 +8,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.dds.tpa.adapter.EnviadorDeMail;
-import ar.edu.dds.tpa.model.Administrador;
+import ar.edu.dds.tpa.model.usuario.Administrador;
 import ar.edu.dds.tpa.procesos.PlanificadorDeProcesos;
 import ar.edu.dds.tpa.procesos.ProcesoImpostor;
 import ar.edu.dds.tpa.procesos.ProcesoQueFallaImpostor;

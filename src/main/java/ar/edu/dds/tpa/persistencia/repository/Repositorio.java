@@ -1,4 +1,4 @@
-package ar.edu.dds.tpa.persistencia;
+package ar.edu.dds.tpa.persistencia.repository;
 
 import java.util.List;
 

@@ -1,109 +1,82 @@
 package ar.edu.dds.tpa;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import java.util.ArrayList;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
-import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.*;
-import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
+import ar.edu.dds.tpa.persistencia.repository.Mapa;
+import ar.edu.dds.tpa.persistencia.repository.MapaEnMemoria;
 import ar.edu.dds.tpa.procesos.DarDeBajaPuntosDeInteres;
+import ar.edu.dds.tpa.service.BajaDePuntoDeInteresServiceReal;
 
 public class DarDeBajaPuntosDeInteresTest {
 
 	private Banco unBanco;
-
-	private CGP unCGP;
-
+	private Rubro kioscoDeDiario;
 	private LocalComercial unLocal;
-
-	private LocalComercial unLocal2;
-
-	private ParadaDeColectivo un144_1;
-	private ParadaDeColectivo un144_2;
-	private ParadaDeColectivo un144_3;
-
-	private MapaEnMemoria mapa;
-
-	private Buscador buscador;
-
-	private DarDeBajaPuntosDeInteres bajaPuntosDeInteres;
-	ServicioPuntosDeInteresBajados_Impostor servicioBajas;
+	private ParadaDeColectivo unaParadaDeColectivo;
+	private Mapa mapa;
+	private DarDeBajaPuntosDeInteres procesoDarDeBajaPuntosDeInteres;
+	private BajaDePuntoDeInteresServiceReal servicioDeBajaDePuntosDeInteres;
 
 	@Before
-	public void initialize() {
+	public void inicializar() {
 
-		unBanco = new Banco("Ciudad", new Posicion(10.0, 10.0), null);
+		unBanco = new Banco("Banco Ciudad", new Posicion(10.0, 10.0), "Rivadavia 4934");
+		unBanco.setId(122);
 
-		unCGP = new CGP("CGP Balvanera", new Posicion(-1.0, -1.0), null);
-		unCGP.agregarServicio(new Servicio("Rentas"));
+		kioscoDeDiario = new Rubro("Kiosco De Diarios", 2.0);
+		unLocal = new LocalComercial("El matutino", new Posicion(2.0, 2.0), kioscoDeDiario, "Directorio 2392");
+		unLocal.setId(123);
 
-		Rubro kioscoDeDario = new Rubro("Kiosco De Diarios", 2.0);
-		unLocal = new LocalComercial("El matutino", new Posicion(2.0, 2.0), kioscoDeDario, null);
-
-		Rubro libreriaEscolar = new Rubro("libreria escolar", 3.0);
-		unLocal2 = new LocalComercial("El ateneo", new Posicion(0.0, 0.0), libreriaEscolar, null);
-
-		un144_1 = new ParadaDeColectivo("144", new Posicion(-1.0, -1.0), null);
-		un144_2 = new ParadaDeColectivo("144", new Posicion(0.0, 0.0), null);
-		un144_3 = new ParadaDeColectivo("144", new Posicion(1.0, 1.0), null);
+		unaParadaDeColectivo = new ParadaDeColectivo("Parada de colectivo 133", new Posicion(4.4, 5.5), "Tandil 834");
+		unaParadaDeColectivo.setId(124);
 
 		mapa = new MapaEnMemoria();
-
-		mapa.agregar(un144_1);
-		mapa.agregar(un144_2);
-		mapa.agregar(un144_3);
 		mapa.agregar(unLocal);
-		mapa.agregar(unLocal2);
 		mapa.agregar(unBanco);
-		mapa.agregar(unCGP);
 
-		String jsonDarDeBaja = "[{\"nombre\" : \"144\",\"x\" : 1,\"y\" : 1,\"dia\" : 30,\"mes\" : 6,\"anio\" : 2016}, {\"nombre\" : \"El_ateneo\",\"x\" : 100,\"y\" : 100,\"dia\" : 30,\"mes\" : 6,\"anio\" : 2016}, {\"nombre\" : \"Mal_nombre\",\"x\" : 2,\"y\" : 2,\"dia\" : 30,\"mes\" : 6,\"anio\" : 2016}]";
-
-		bajaPuntosDeInteres = new DarDeBajaPuntosDeInteres();
-		bajaPuntosDeInteres.setMapa(mapa);
-
-		servicioBajas = new ServicioPuntosDeInteresBajados_Impostor();
-		servicioBajas.setPuntosDeInteresJSON(jsonDarDeBaja);
-
-		bajaPuntosDeInteres.setServicioBajas(servicioBajas);
-
-		buscador = new Buscador(mapa, new HistorialDeBusquedaEnMemoria());
-
+		procesoDarDeBajaPuntosDeInteres = new DarDeBajaPuntosDeInteres();
+		procesoDarDeBajaPuntosDeInteres.setMapa(mapa);
+		servicioDeBajaDePuntosDeInteres = new BajaDePuntoDeInteresServiceReal();
+		procesoDarDeBajaPuntosDeInteres.setServicioDeBajaDePuntosDeInteres(servicioDeBajaDePuntosDeInteres);
+		procesoDarDeBajaPuntosDeInteres.ejecutar();
 	}
 
 	@Test
-	public void seLlamaAlServicio() throws Exception {
-		bajaPuntosDeInteres.ejecutar();
-		assertTrue(servicioBajas.getFueLlamado());
+	public void seDioDeBajaElPuntoDeInteresConId122() {
+		Assert.assertFalse(unBanco.estaActivo());
 	}
 
 	@Test
-	public void seDaDeBajaSoloLaParadaDel114ConCoordenadas_x1y1() throws Exception {
-		bajaPuntosDeInteres.ejecutar();
-		ArrayList<String> palabras = new ArrayList<String>();
-		palabras.add("144");
-		assertFalse(buscador.buscarLocalmente(palabras).contains(un144_3));
+	public void seDioDeBajaElPuntoDeInteresConId123() {
+		Assert.assertFalse(unLocal.estaActivo());
 	}
 
 	@Test
-	public void noSeDaDeBajaAElAteneo() throws Exception {
-		bajaPuntosDeInteres.ejecutar();
-		ArrayList<String> palabras = new ArrayList<String>();
-		palabras.add("El");
-		palabras.add("Ateneo");
-		assertTrue(buscador.buscarLocalmente(palabras).contains(unLocal2));
+	public void noSeDioDeBajaElPuntoDeInteresConId123PorqueNoLoDaElServicio() {
+		Assert.assertTrue(unaParadaDeColectivo.estaActivo());
 	}
 
 	@Test
-	public void noSeDioDeBajaElKioscoConCoordenadas_x2y2() throws Exception {
-		bajaPuntosDeInteres.ejecutar();
-		ArrayList<String> palabras = new ArrayList<String>();
-		palabras.add("matutino");
-		assertTrue(buscador.buscarLocalmente(palabras).contains(unLocal));
+	public void seLeAsignoLaFechaDeBajaAlPuntoDadoDeBajaConId122() {
+		Assert.assertEquals(unBanco.getFechaDeBaja(),
+				LocalDateTime.parse("2016-06-22T02:12:58.128Z", DateTimeFormatter.ISO_DATE_TIME));
+	}
+
+	@Test
+	public void seLeAsignoLaFechaDeBajaAlPuntoDadoDeBajaConId123() {
+		Assert.assertEquals(unBanco.getFechaDeBaja(),
+				LocalDateTime.parse("2016-06-22T02:12:58.128Z", DateTimeFormatter.ISO_DATE_TIME));
+	}
+
+	@Test
+	public void noSeLeAsignoLaFechaDeBajaAlPuntoQueNoLoDaElServicio() {
+		Assert.assertNull(unaParadaDeColectivo.getFechaDeBaja());
 	}
 }

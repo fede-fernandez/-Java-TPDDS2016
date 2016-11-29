@@ -18,17 +18,13 @@ public class LocalComercial extends PuntoDeInteres {
 
 	@OneToOne(cascade = CascadeType.ALL)
 	private HorarioDeAtencion horarioDeAtencion;
-	
+
 	public LocalComercial() {
-		
+
 	}
 
-	public HorarioDeAtencion getHorarioDeAtencion() {
-		return horarioDeAtencion;
-	}
-
-	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro,String direccion) {
-		super(nombre, coordenadas,direccion);
+	public LocalComercial(String nombre, Posicion coordenadas, Rubro rubro, String direccion) {
+		super(nombre, coordenadas, direccion);
 		this.rubro = rubro;
 		horarioDeAtencion = new HorarioDeAtencion();
 		if (rubro != null) {
@@ -38,6 +34,10 @@ public class LocalComercial extends PuntoDeInteres {
 
 	public Rubro getRubro() {
 		return rubro;
+	}
+
+	public HorarioDeAtencion getHorarioDeAtencion() {
+		return horarioDeAtencion;
 	}
 
 	public void agregarHorarioDeAtencion(DayOfWeek unDia, LocalTime horarioDesde, LocalTime horarioHasta) {

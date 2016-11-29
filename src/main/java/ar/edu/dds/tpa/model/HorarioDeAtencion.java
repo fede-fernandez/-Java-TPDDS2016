@@ -45,9 +45,8 @@ public class HorarioDeAtencion {
 				unDiaYHorarioDeAtencion -> unDiaYHorarioDeAtencion.getDia().equals(unDiaYHorario.getDayOfWeek()))
 				.anyMatch(unDiaYHorarioDeAtencion -> unDiaYHorarioDeAtencion.seAtiendeEn(unDiaYHorario));
 	}
-	
+
 	public Set<DiaYHorarioDeAtencion> getHorariosDeAtencionPorDia() {
 		return horariosDeAtencionPorDia;
 	}
-
 }

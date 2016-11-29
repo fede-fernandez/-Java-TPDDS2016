@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mongodb.morphia.Datastore;
 
-import ar.edu.dds.tpa.datastoreTest.MorphiaDatastoreTest;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMongo;
 import ar.edu.dds.tpa.model.Banco;
@@ -21,11 +20,11 @@ import ar.edu.dds.tpa.model.LocalComercial;
 import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.PuntosDeInteresEncontrados;
-import ar.edu.dds.tpa.model.Terminal;
+import ar.edu.dds.tpa.model.usuario.Terminal;
 
 public class PersistenciaDeBusquedasEnMongoTest {
 	
-	private MorphiaDatastoreTest morphiaDatastore;
+	private MorphiaDatastoreMock morphiaDatastore;
 	private Datastore db;
 	
 	private Busqueda busqueda1;
@@ -55,7 +54,7 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	
 	@Before
 	public void inicializar(){
-		morphiaDatastore = MorphiaDatastoreTest.obtenerInstancia();
+		morphiaDatastore = MorphiaDatastoreMock.obtenerInstancia();
 		db = morphiaDatastore.getDatastore();
 		repositorio = new HistorialDeBusquedaEnMongo(db);
 		

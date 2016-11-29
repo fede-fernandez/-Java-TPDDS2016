@@ -6,7 +6,8 @@ import org.junit.Test;
 
 import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.*;
-import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
+import ar.edu.dds.tpa.model.usuario.Administrador;
+import ar.edu.dds.tpa.persistencia.repository.MapaEnMemoria;
 
 public class AdministradorABMDePOITest {
 

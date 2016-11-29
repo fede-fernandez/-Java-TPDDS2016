@@ -5,9 +5,9 @@ import ar.edu.dds.tpa.controller.HistoricoDeConsultasController;
 import ar.edu.dds.tpa.controller.LoginController;
 import ar.edu.dds.tpa.controller.POIsBusquedaController;
 import ar.edu.dds.tpa.controller.TerminalController;
-import ar.edu.dds.tpa.datastoreTest.MorphiaDatastoreTest;
 import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
 import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMongo;
+import ar.edu.dds.tpa.persistencia.MorphiaDatastoreMock;
 import ar.edu.dds.tpa.spark.utils.HandlebarsTemplateEngineBuilder;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -21,7 +21,7 @@ public class Router {
 
 		POIsBusquedaController poisController = new POIsBusquedaController();
 		HistorialDeBusqueda historial = new HistorialDeBusquedaEnMongo(
-				MorphiaDatastoreTest.obtenerInstancia().getDatastore());
+				MorphiaDatastoreMock.obtenerInstancia().getDatastore());
 		HistoricoDeConsultasController historicoController = new HistoricoDeConsultasController(historial);
 
 		LoginController loginController = new LoginController();

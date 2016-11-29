@@ -9,7 +9,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
-import ar.edu.dds.tpa.persistencia.Mapa;
+import ar.edu.dds.tpa.model.usuario.Terminal;
+import ar.edu.dds.tpa.persistencia.repository.Mapa;
 import ar.edu.dds.tpa.service.BuscadorExterno;
 
 public class Buscador {

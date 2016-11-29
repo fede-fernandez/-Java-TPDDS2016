@@ -3,8 +3,6 @@ package ar.edu.dds.tpa.controller;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.lang3.SerializationUtils;
-
 import com.google.common.collect.ImmutableMap;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
@@ -13,9 +11,9 @@ import ar.edu.dds.tpa.model.CGP;
 import ar.edu.dds.tpa.model.LocalComercial;
 import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
-import ar.edu.dds.tpa.persistencia.Mapa;
-import ar.edu.dds.tpa.persistencia.MapaEnBaseDeDatos;
 import ar.edu.dds.tpa.persistencia.Persistible;
+import ar.edu.dds.tpa.persistencia.repository.Mapa;
+import ar.edu.dds.tpa.persistencia.repository.MapaEnBaseDeDatos;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -32,7 +30,7 @@ public class AdministracionDePOIController implements Route, Persistible {
 	
 	@Override
 	public Object handle(Request arg0, Response arg1) throws Exception {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 	
@@ -63,7 +61,6 @@ public class AdministracionDePOIController implements Route, Persistible {
 	}
 	
 	public ModelAndView alta(Request request, Response response){
-		Map<String, Object> model  = new HashMap<>();
 		String nombre = request.queryMap("nombre").value();
 		Double longitud = Double.valueOf(request.queryMap("longitud").value());
 		Double latitud = Double.valueOf(request.queryMap("latitud").value());
@@ -90,16 +87,16 @@ public class AdministracionDePOIController implements Route, Persistible {
 	
 	public ModelAndView presentarEdicion(Request request, Response response){
 		int id = Integer.parseInt(request.params(":poi"));
-		Object model = new MapaEnBaseDeDatos().obtenerPorID(id);
+		Object model = new MapaEnBaseDeDatos().obtenerPor(id);
 		return new ModelAndView(model, "administracionPOI/altaPOI.hbs");
 	}
 	
 	public ModelAndView editar(Request request, Response response){
-		PuntoDeInteres poi = new MapaEnBaseDeDatos().obtenerPorID(request.queryMap("id").integerValue());
+		PuntoDeInteres poi = new MapaEnBaseDeDatos().obtenerPor(request.queryMap("id").integerValue());
 		poi.setNombre(request.queryMap("nombre").value());
 		poi.setCoordenadas(new Posicion(request.queryMap("longitud").doubleValue(), request.queryMap("latitud").doubleValue()));
 		poi.setDireccion(request.queryMap("direccion").value());
-		new MapaEnBaseDeDatos().modificar(new MapaEnBaseDeDatos().obtenerPorID(request.queryMap("id").integerValue()) //Lo vuelvo a sacar de la base de datos para tener una copia nueva del objeto
+		new MapaEnBaseDeDatos().modificar(new MapaEnBaseDeDatos().obtenerPor(request.queryMap("id").integerValue()) 
 				, poi);
 		response.redirect("/administracion/consultar");
 		return null;
@@ -107,8 +104,8 @@ public class AdministracionDePOIController implements Route, Persistible {
 	
 	public ModelAndView eliminar(Request request, Response response){
 		Mapa mapa = new MapaEnBaseDeDatos();
-		PuntoDeInteres p = mapa.obtenerPorID(request.queryMap("id").integerValue());
-		mapa.sacar(p);
+		PuntoDeInteres p = mapa.obtenerPor(request.queryMap("id").integerValue());
+		mapa.remover(p);
 		response.redirect("/administracion/consultar");
 		return null;
 	}

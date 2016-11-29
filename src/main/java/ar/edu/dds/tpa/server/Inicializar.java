@@ -8,11 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import ar.edu.dds.tpa.datastoreTest.MorphiaDatastoreTest;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
 import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMongo;
-import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.model.Banco;
 import ar.edu.dds.tpa.model.Busqueda;
 import ar.edu.dds.tpa.model.Comuna;
@@ -21,7 +19,9 @@ import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntosDeInteresEncontrados;
 import ar.edu.dds.tpa.model.Rubro;
 import ar.edu.dds.tpa.model.Servicio;
-import ar.edu.dds.tpa.model.Terminal;
+import ar.edu.dds.tpa.model.usuario.Administrador;
+import ar.edu.dds.tpa.model.usuario.Terminal;
+import ar.edu.dds.tpa.persistencia.MorphiaDatastoreMock;
 import ar.edu.dds.tpa.persistencia.Persistible;
 
 public class Inicializar implements Persistible {
@@ -29,7 +29,7 @@ public class Inicializar implements Persistible {
 	public void init() {
 
 		HistorialDeBusqueda historial = new HistorialDeBusquedaEnMongo(
-				MorphiaDatastoreTest.obtenerInstancia().getDatastore());
+				MorphiaDatastoreMock.obtenerInstancia().getDatastore());
 
 		List<DayOfWeek> deLunesAViernes = new ArrayList<DayOfWeek>();
 		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,

@@ -7,9 +7,9 @@ import org.junit.Test;
 
 import ar.edu.dds.tpa.adapter.EnviadorDeMail;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
-import ar.edu.dds.tpa.model.Administrador;
 import ar.edu.dds.tpa.model.Comuna;
-import ar.edu.dds.tpa.model.Terminal;
+import ar.edu.dds.tpa.model.usuario.Administrador;
+import ar.edu.dds.tpa.model.usuario.Terminal;
 import ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta;
 import ar.edu.dds.tpa.service.MailServiceImpostor;
 

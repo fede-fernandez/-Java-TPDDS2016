@@ -38,7 +38,6 @@ public class DiaYHorarioDeAtencion {
 		return dia;
 	}
 	
-	
 	public Set<RangoDeHorario> getRangosDeHorario() {
 		return rangosDeHorario;
 	}

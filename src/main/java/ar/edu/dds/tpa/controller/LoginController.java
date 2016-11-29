@@ -2,9 +2,9 @@ package ar.edu.dds.tpa.controller;
 
 import javax.persistence.NoResultException;
 
-import ar.edu.dds.tpa.model.Usuario;
+import ar.edu.dds.tpa.model.usuario.Usuario;
 import ar.edu.dds.tpa.persistencia.Persistible;
-import ar.edu.dds.tpa.persistencia.RepositorioDeUsuarios;
+import ar.edu.dds.tpa.persistencia.repository.UsuarioRepository;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -22,7 +22,7 @@ public class LoginController implements Persistible{
 		String pass = request.queryParams("pass");
 		
 		try {
-			Usuario usuario = new RepositorioDeUsuarios().loginDeUsuario(nick, pass);
+			Usuario usuario = new UsuarioRepository().loginDeUsuario(nick, pass);
 			
 			request.session().attribute("usuario",usuario);
 			response.redirect(usuario.getUrl());

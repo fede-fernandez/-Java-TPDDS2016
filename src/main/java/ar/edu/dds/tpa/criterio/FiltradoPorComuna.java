@@ -1,7 +1,7 @@
 package ar.edu.dds.tpa.criterio;
 
 import ar.edu.dds.tpa.model.Comuna;
-import ar.edu.dds.tpa.model.Terminal;
+import ar.edu.dds.tpa.model.usuario.Terminal;
 
 public class FiltradoPorComuna implements Criterio {
 

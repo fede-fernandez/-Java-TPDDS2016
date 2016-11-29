@@ -3,6 +3,8 @@ package ar.edu.dds.tpa.persistencia;
 import java.util.HashMap;
 import java.util.Map;
 
+import ar.edu.dds.tpa.persistencia.repository.RepositorioCache;
+
 public class Fedis implements RepositorioCache {
 	
 	private static Fedis instancia;

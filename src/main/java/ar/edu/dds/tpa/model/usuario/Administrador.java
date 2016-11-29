@@ -1,8 +1,9 @@
-package ar.edu.dds.tpa.model;
+package ar.edu.dds.tpa.model.usuario;
 
 import javax.persistence.*;
 
-import ar.edu.dds.tpa.persistencia.Mapa;
+import ar.edu.dds.tpa.model.PuntoDeInteres;
+import ar.edu.dds.tpa.persistencia.repository.Mapa;
 
 @Entity
 public class Administrador extends Usuario{
@@ -30,7 +31,7 @@ public class Administrador extends Usuario{
 	}
 
 	public void sacarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, Mapa enUnMapa) {
-		enUnMapa.sacar(unPuntoDeInteres);
+		enUnMapa.remover(unPuntoDeInteres);
 	}
 
 	public void modificarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado,

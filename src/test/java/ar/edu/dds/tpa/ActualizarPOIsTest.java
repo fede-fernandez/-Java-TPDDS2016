@@ -16,7 +16,7 @@ import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.Rubro;
 import ar.edu.dds.tpa.model.Servicio;
-import ar.edu.dds.tpa.persistencia.MapaEnMemoria;
+import ar.edu.dds.tpa.persistencia.repository.MapaEnMemoria;
 import ar.edu.dds.tpa.procesos.ActualizarPOIs;
 
 public class ActualizarPOIsTest {

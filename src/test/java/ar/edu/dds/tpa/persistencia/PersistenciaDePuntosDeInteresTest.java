@@ -8,6 +8,8 @@ import org.junit.Test;
 import ar.edu.dds.tpa.geolocalizacion.Poligono;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.*;
+import ar.edu.dds.tpa.model.usuario.Terminal;
+import ar.edu.dds.tpa.persistencia.repository.MapaEnBaseDeDatos;
 
 import java.time.*;
 import java.util.Arrays;

@@ -34,9 +34,9 @@
 		<mapping class="ar.edu.dds.tpa.model.Servicio" />
 		<mapping class="ar.edu.dds.tpa.geolocalizacion.Posicion" />
 		<mapping class="ar.edu.dds.tpa.geolocalizacion.Poligono" />
-		<mapping class="ar.edu.dds.tpa.model.Usuario" />
-		<mapping class="ar.edu.dds.tpa.model.Terminal" />
-		<mapping class="ar.edu.dds.tpa.model.Administrador" />
+		<mapping class="ar.edu.dds.tpa.model.usuario.Usuario" />
+		<mapping class="ar.edu.dds.tpa.model.usuario.Terminal" />
+		<mapping class="ar.edu.dds.tpa.model.usuario.Administrador" />
 		<mapping class="ar.edu.dds.tpa.model.Comuna" />
 		<mapping class="ar.edu.dds.tpa.model.Busqueda" />
 		<mapping class="ar.edu.dds.tpa.model.HorarioDeAtencion" />

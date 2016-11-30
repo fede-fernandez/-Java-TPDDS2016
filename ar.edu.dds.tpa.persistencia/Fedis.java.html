@@ -3,30 +3,28 @@
 import java.util.HashMap;
 import java.util.Map;
 
-import ar.edu.dds.tpa.persistencia.repository.RepositorioCache;
-
 public class Fedis implements RepositorioCache {
 	
 	private static Fedis instancia;
 	private Map&lt;String, String&gt; datos;
 
-<span class="fc" id="L13">	private Fedis() {</span>
-<span class="fc" id="L14">		datos = new HashMap&lt;String, String&gt;();</span>
-<span class="fc" id="L15">	}</span>
+<span class="fc" id="L11">	private Fedis() {</span>
+<span class="fc" id="L12">		datos = new HashMap&lt;String, String&gt;();</span>
+<span class="fc" id="L13">	}</span>
 	
 	public static Fedis obtenerConexion() {
-<span class="fc bfc" id="L18" title="All 2 branches covered.">		if(instancia == null) {</span>
-<span class="fc" id="L19">			instancia = new Fedis();</span>
+<span class="fc bfc" id="L16" title="All 2 branches covered.">		if(instancia == null) {</span>
+<span class="fc" id="L17">			instancia = new Fedis();</span>
 		}
-<span class="fc" id="L21">		return instancia;</span>
+<span class="fc" id="L19">		return instancia;</span>
 	}
 	
 	public String consultarValorPor(String unaClave) {
-<span class="fc" id="L25">		return datos.get(unaClave);</span>
+<span class="fc" id="L23">		return datos.get(unaClave);</span>
 	}
 	
 	public void insertar(String unaClave, String unValor) {
-<span class="fc" id="L29">		datos.put(unaClave, unValor);</span>
-<span class="fc" id="L30">	}	</span>
+<span class="fc" id="L27">		datos.put(unaClave, unValor);</span>
+<span class="fc" id="L28">	}	</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

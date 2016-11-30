@@ -1,6 +1,5 @@
 package ar.edu.dds.tpa.persistencia;
 
-import ar.edu.dds.tpa.persistencia.repository.RepositorioCache;
 import ar.edu.dds.tpa.properties.Propiedades;
 import redis.clients.jedis.Jedis;
 

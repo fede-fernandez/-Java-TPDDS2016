@@ -7,16 +7,19 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.Comuna;
 import ar.edu.dds.tpa.model.usuario.Terminal;
 import ar.edu.dds.tpa.persistencia.Persistible;
+import ar.edu.dds.tpa.persistencia.repository.TerminalRepository;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
 public class TerminalController implements Persistible {
 
+	TerminalRepository terminalRepository = new TerminalRepository();
+
 	public ModelAndView mostrarTerminales(Request request, Response response) {
 		Map<String, Object> model = new HashMap<>();
-		model.put("comuna", repositorio.traerTodos(Comuna.class));
-		model.put("terminal", repositorio.traerTodos(Terminal.class));
+		model.put("comuna", terminalRepository.obtenerComunas());
+		model.put("terminal", terminalRepository.obtenerTerminales());
 		return new ModelAndView(model, "GestionDeTerminales/Terminales.hbs");
 	}
 
@@ -58,10 +61,7 @@ public class TerminalController implements Persistible {
 	}
 
 	public Void eliminarTerminal(Request request, Response response) {
-		Terminal terminalAEliminar = repositorio.buscarPorID(Terminal.class,
-				Integer.parseInt(request.queryParams("id")));
-
-		repositorio.eliminar(terminalAEliminar);
+		terminalRepository.eliminarTerminal(Integer.parseInt(request.queryParams("id")));
 
 		response.redirect("/terminales");
 

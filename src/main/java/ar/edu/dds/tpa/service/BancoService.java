@@ -6,7 +6,7 @@ import java.util.stream.Collectors;
 
 import ar.edu.dds.tpa.adapter.BancoServiceConverter;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
-import ar.edu.dds.tpa.persistencia.repository.RepositorioCache;
+import ar.edu.dds.tpa.persistencia.RepositorioCache;
 
 public abstract class BancoService extends ServicioExternoWeb implements BuscadorExterno {
 	public abstract String getSucursalesBancosByNombreBanco(String nombreBanco);

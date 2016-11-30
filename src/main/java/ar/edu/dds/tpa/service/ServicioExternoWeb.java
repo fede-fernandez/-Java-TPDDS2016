@@ -1,6 +1,6 @@
 package ar.edu.dds.tpa.service;
 
-import ar.edu.dds.tpa.persistencia.repository.RepositorioCache;
+import ar.edu.dds.tpa.persistencia.RepositorioCache;
 import ar.edu.dds.tpa.properties.Propiedades;
 
 public abstract class ServicioExternoWeb {

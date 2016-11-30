@@ -1,4 +1,4 @@
-package ar.edu.dds.tpa.persistencia.repository;
+package ar.edu.dds.tpa.persistencia;
 
 public interface RepositorioCache {
 

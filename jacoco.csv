@@ -34,7 +34,7 @@ tpa,ar.edu.dds.tpa.model.usuario,Terminal,22,54,0,0,7,18,4,10,4,10
 tpa,ar.edu.dds.tpa.controller,POIsBusquedaController,129,0,0,0,27,0,4,0,4,0
 tpa,ar.edu.dds.tpa.controller,AdministracionDePOIController,274,0,18,0,41,0,20,0,8,0
 tpa,ar.edu.dds.tpa.controller,HistoricoDeConsultasController,69,0,0,0,17,0,5,0,5,0
-tpa,ar.edu.dds.tpa.controller,TerminalController,112,32,0,0,25,6,3,2,3,2
+tpa,ar.edu.dds.tpa.controller,TerminalController,82,37,0,0,18,7,4,2,4,2
 tpa,ar.edu.dds.tpa.controller,LoginController,42,0,0,0,10,0,3,0,3,0
 tpa,ar.edu.dds.tpa.persistencia,Fedis,0,29,0,2,0,9,0,5,0,4
 tpa,ar.edu.dds.tpa.persistencia,Redis,42,0,2,0,12,0,6,0,5,0
@@ -74,8 +74,9 @@ tpa,ar.edu.dds.tpa.observer,NotificadorDeBusquedaLenta,0,50,0,2,0,13,0,4,0,3
 tpa,ar.edu.dds.tpa.observer,BusquedaObserver,7,3,0,0,3,2,2,1,2,1
 tpa,ar.edu.dds.tpa.persistencia.repository,MapaEnBaseDeDatos,75,11,6,0,18,4,12,3,9,3
 tpa,ar.edu.dds.tpa.persistencia.repository,UsuarioRepository,23,0,0,0,5,0,2,0,2,0
-tpa,ar.edu.dds.tpa.persistencia.repository,TerminalRepository,46,15,0,0,12,5,4,4,4,4
+tpa,ar.edu.dds.tpa.persistencia.repository,TerminalRepository,51,11,0,0,13,4,4,3,4,3
 tpa,ar.edu.dds.tpa.persistencia.repository,MapaEnMemoria,57,56,6,0,8,16,9,7,6,7
+tpa,ar.edu.dds.tpa.persistencia.repository,ComunaRepository,7,7,0,0,1,2,1,2,1,2
 tpa,ar.edu.dds.tpa.procesos,GestorDeAccionesDeTerminales,0,50,0,0,0,10,0,6,0,6
 tpa,ar.edu.dds.tpa.procesos,ProcesoQueFallaImpostor,0,18,0,0,0,6,0,3,0,3
 tpa,ar.edu.dds.tpa.procesos,ResultadoDeEjecucion,3,25,0,0,1,10,1,4,1,4

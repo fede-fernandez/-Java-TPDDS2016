@@ -8,7 +8,7 @@ import ar.edu.dds.tpa.persistencia.Persistible;
 
 <span class="fc" id="L9">public class TerminalRepository implements Persistible {</span>
 
-	public Terminal obtenerTerminalPorID(Integer id) {
+	public Terminal obtenerTerminalPor(Integer id) {
 <span class="nc" id="L12">		return repositorio.buscarPorID(Terminal.class, id);</span>
 	}
 
@@ -17,7 +17,7 @@ import ar.edu.dds.tpa.persistencia.Persistible;
 <span class="fc" id="L17">	}</span>
 
 	public void modificarTerminal(Integer idDeTerminal, Terminal terminalModificada) {
-<span class="nc" id="L20">		Terminal terminalAModificar = obtenerTerminalPorID(idDeTerminal);</span>
+<span class="nc" id="L20">		Terminal terminalAModificar = obtenerTerminalPor(idDeTerminal);</span>
 <span class="nc" id="L21">		terminalAModificar.setNombre(terminalModificada.getNombre());</span>
 <span class="nc" id="L22">		terminalAModificar.setCoordenadas(terminalModificada.getCoordenadas());</span>
 <span class="nc" id="L23">		terminalAModificar.setComuna(terminalModificada.getComuna());</span>
@@ -26,21 +26,18 @@ import ar.edu.dds.tpa.persistencia.Persistible;
 <span class="nc" id="L26">	}</span>
 
 	public void eliminarTerminal(Integer idDeTerminal) {
-<span class="nc" id="L29">		repositorio.eliminar(obtenerTerminalPorID(idDeTerminal));</span>
-<span class="nc" id="L30">	}</span>
+<span class="nc" id="L29">		obtenerTerminalPor(idDeTerminal).setComuna(null);</span>
+<span class="nc" id="L30">		repositorio.eliminar(obtenerTerminalPor(idDeTerminal));</span>
+<span class="nc" id="L31">	}</span>
 
 	public List&lt;Terminal&gt; obtenerTerminales() {
-<span class="fc" id="L33">		return repositorio.traerTodos(Terminal.class);</span>
+<span class="fc" id="L34">		return repositorio.traerTodos(Terminal.class);</span>
 	}
 
 	public List&lt;Terminal&gt; obtenerTerminalesPor(Integer numeroDeComuna) {
-<span class="nc" id="L37">		List&lt;Terminal&gt; terminalesEncontradas = repositorio</span>
-<span class="nc" id="L38">				.ejecutarQuery(&quot;from Terminal as terminal terminal.comuna.numero = &quot; + numeroDeComuna);</span>
-<span class="nc" id="L39">		return terminalesEncontradas;</span>
-	}
-
-	public List&lt;Comuna&gt; obtenerComunas() {
-<span class="fc" id="L43">		return repositorio.traerTodos(Comuna.class);</span>
+<span class="nc" id="L38">		List&lt;Terminal&gt; terminalesEncontradas = repositorio</span>
+<span class="nc" id="L39">				.ejecutarQuery(&quot;from Terminal as terminal terminal.comuna.numero = &quot; + numeroDeComuna);</span>
+<span class="nc" id="L40">		return terminalesEncontradas;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

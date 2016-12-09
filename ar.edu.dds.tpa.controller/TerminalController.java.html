@@ -7,65 +7,60 @@ import ar.edu.dds.tpa.geolocalizacion.Posicion;
 import ar.edu.dds.tpa.model.Comuna;
 import ar.edu.dds.tpa.model.usuario.Terminal;
 import ar.edu.dds.tpa.persistencia.Persistible;
+import ar.edu.dds.tpa.persistencia.repository.ComunaRepository;
 import ar.edu.dds.tpa.persistencia.repository.TerminalRepository;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-<span class="fc" id="L15">public class TerminalController implements Persistible {</span>
+<span class="fc" id="L16">public class TerminalController implements Persistible {</span>
 
-<span class="fc" id="L17">	TerminalRepository terminalRepository = new TerminalRepository();</span>
+<span class="fc" id="L18">	TerminalRepository terminalRepository = new TerminalRepository();</span>
+<span class="fc" id="L19">	ComunaRepository comunaRepository = new ComunaRepository();</span>
 
 	public ModelAndView mostrarTerminales(Request request, Response response) {
-<span class="fc" id="L20">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
-<span class="fc" id="L21">		model.put(&quot;comuna&quot;, terminalRepository.obtenerComunas());</span>
-<span class="fc" id="L22">		model.put(&quot;terminal&quot;, terminalRepository.obtenerTerminales());</span>
-<span class="fc" id="L23">		return new ModelAndView(model, &quot;GestionDeTerminales/Terminales.hbs&quot;);</span>
+<span class="fc" id="L22">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L23">		model.put(&quot;comuna&quot;, comunaRepository.obtenerComunas());</span>
+<span class="fc" id="L24">		model.put(&quot;terminal&quot;, terminalRepository.obtenerTerminales());</span>
+<span class="fc" id="L25">		return new ModelAndView(model, &quot;GestionDeTerminales/Terminales.hbs&quot;);</span>
 	}
 
 	public Void nuevaTerminal(Request request, Response response) {
-<span class="nc" id="L27">		String nombre = request.queryParams(&quot;nombre&quot;);</span>
-<span class="nc" id="L28">		Double longitud = Double.valueOf(request.queryParams(&quot;longitud&quot;));</span>
-<span class="nc" id="L29">		Double latitud = Double.valueOf(request.queryParams(&quot;latitud&quot;));</span>
-<span class="nc" id="L30">		Posicion coordenadas = new Posicion(longitud, latitud);</span>
-<span class="nc" id="L31">		Comuna comuna = repositorio.buscarPorID(Comuna.class, Integer.parseInt(request.queryParams(&quot;comuna&quot;)));</span>
+<span class="nc" id="L29">		Terminal nuevaTerminal = construirTerminalAPartirDeParametros(request);</span>
+<span class="nc" id="L30">		terminalRepository.agregarTerminal(nuevaTerminal);</span>
 
-<span class="nc" id="L33">		Terminal nuevaTerminal = new Terminal(nombre, coordenadas, comuna);</span>
+<span class="nc" id="L32">		response.redirect(&quot;/terminales&quot;);</span>
 
-<span class="nc" id="L35">		repositorio.persistir(nuevaTerminal);</span>
-
-<span class="nc" id="L37">		response.redirect(&quot;/terminales&quot;);</span>
-
-<span class="nc" id="L39">		return null;</span>
+<span class="nc" id="L34">		return null;</span>
 	}
 
 	public Void modificarTerminal(Request request, Response response) {
-<span class="nc" id="L43">		String nombre = request.queryParams(&quot;nombre&quot;);</span>
-<span class="nc" id="L44">		Double longitud = Double.valueOf(request.queryParams(&quot;longitud&quot;));</span>
-<span class="nc" id="L45">		Double latitud = Double.valueOf(request.queryParams(&quot;latitud&quot;));</span>
-<span class="nc" id="L46">		Posicion coordenadas = new Posicion(longitud, latitud);</span>
-<span class="nc" id="L47">		Comuna comuna = repositorio.buscarPorID(Comuna.class, Integer.parseInt(request.queryParams(&quot;comuna&quot;)));</span>
+<span class="nc" id="L38">		Integer idDeTerminalAModificar = Integer.parseInt(request.queryParams(&quot;id&quot;));</span>
+<span class="nc" id="L39">		Terminal terminalModificada = construirTerminalAPartirDeParametros(request);</span>
 
-<span class="nc" id="L49">		Terminal terminalModificada = repositorio.buscarPorID(Terminal.class,</span>
-<span class="nc" id="L50">				Integer.parseInt(request.queryParams(&quot;id&quot;)));</span>
+<span class="nc" id="L41">		terminalRepository.modificarTerminal(idDeTerminalAModificar, terminalModificada);</span>
 
-<span class="nc" id="L52">		terminalModificada.setNombre(nombre);</span>
-<span class="nc" id="L53">		terminalModificada.setCoordenadas(coordenadas);</span>
-<span class="nc" id="L54">		terminalModificada.setComuna(comuna);</span>
+<span class="nc" id="L43">		response.redirect(&quot;/terminales&quot;);</span>
 
-<span class="nc" id="L56">		repositorio.persistir(terminalModificada);</span>
-
-<span class="nc" id="L58">		response.redirect(&quot;/terminales&quot;);</span>
-
-<span class="nc" id="L60">		return null;</span>
+<span class="nc" id="L45">		return null;</span>
 	}
 
 	public Void eliminarTerminal(Request request, Response response) {
-<span class="nc" id="L64">		terminalRepository.eliminarTerminal(Integer.parseInt(request.queryParams(&quot;id&quot;)));</span>
+<span class="nc" id="L49">		terminalRepository.eliminarTerminal(Integer.parseInt(request.queryParams(&quot;id&quot;)));</span>
 
-<span class="nc" id="L66">		response.redirect(&quot;/terminales&quot;);</span>
+<span class="nc" id="L51">		response.redirect(&quot;/terminales&quot;);</span>
 
-<span class="nc" id="L68">		return null;</span>
+<span class="nc" id="L53">		return null;</span>
+	}
+
+	public Terminal construirTerminalAPartirDeParametros(Request request) {
+<span class="nc" id="L57">		String nombre = request.queryParams(&quot;nombre&quot;);</span>
+<span class="nc" id="L58">		Double longitud = Double.valueOf(request.queryParams(&quot;longitud&quot;));</span>
+<span class="nc" id="L59">		Double latitud = Double.valueOf(request.queryParams(&quot;latitud&quot;));</span>
+<span class="nc" id="L60">		Posicion coordenadas = new Posicion(longitud, latitud);</span>
+<span class="nc" id="L61">		Comuna comuna = comunaRepository.obtenerComunaPor(Integer.parseInt(request.queryParams(&quot;comuna&quot;)));</span>
+
+<span class="nc" id="L63">		return new Terminal(nombre, coordenadas, comuna);</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

@@ -1,0 +1,20 @@
+<div class="modal fade" id="modalEliminarTerminal" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Confirmar decisión</h4>
+            </div>
+            <form class="form-horizontal" action="eliminarTerminal" method="POST">
+                <input type="hidden" name="id" id="terminalAEliminar">
+                <div class="modal-body">
+                    ¿Está seguro que desea eliminar esta terminal?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">No</button>
+                    <button type="submit" class="btn btn-success btn-lg">Sí</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

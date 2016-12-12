@@ -13,7 +13,6 @@ services:
 
 before_script:
   - mysql -e "CREATE DATABASE tpa"
-  - sleep 15
   - mongo busquedas --eval 'db.addUser("travis", "test");'
 
 after_script:

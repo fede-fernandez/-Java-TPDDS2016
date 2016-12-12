@@ -9,9 +9,11 @@ jdk:
   
 services:
   - mysql
+  - mongodb
 
 before_script:
   - mysql -e "CREATE DATABASE tpa"
+  - mongo busquedas
 
 after_script:
   - mvn clean package

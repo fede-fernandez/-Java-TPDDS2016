@@ -2,7 +2,6 @@ package ar.edu.dds.tpa.persistencia.repository;
 
 import java.util.List;
 
-import ar.edu.dds.tpa.model.Comuna;
 import ar.edu.dds.tpa.model.usuario.Terminal;
 import ar.edu.dds.tpa.persistencia.Persistible;
 

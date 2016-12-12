@@ -32,7 +32,7 @@ tpa,ar.edu.dds.tpa.model.usuario,Usuario,27,6,0,0,12,3,6,2,6,2
 tpa,ar.edu.dds.tpa.model.usuario,Administrador,6,25,0,0,3,12,2,6,2,6
 tpa,ar.edu.dds.tpa.model.usuario,Terminal,22,54,0,0,7,18,4,10,4,10
 tpa,ar.edu.dds.tpa.controller,POIsBusquedaController,129,0,0,0,27,0,4,0,4,0
-tpa,ar.edu.dds.tpa.controller,AdministracionDePOIController,274,0,18,0,41,0,20,0,8,0
+tpa,ar.edu.dds.tpa.controller,AdministracionDePOIController,272,0,18,0,40,0,19,0,7,0
 tpa,ar.edu.dds.tpa.controller,HistoricoDeConsultasController,69,0,0,0,17,0,5,0,5,0
 tpa,ar.edu.dds.tpa.controller,TerminalController,82,37,0,0,18,7,4,2,4,2
 tpa,ar.edu.dds.tpa.controller,LoginController,42,0,0,0,10,0,3,0,3,0

@@ -11,15 +11,13 @@ import ar.edu.dds.tpa.model.CGP;
 import ar.edu.dds.tpa.model.LocalComercial;
 import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
-import ar.edu.dds.tpa.persistencia.Persistible;
 import ar.edu.dds.tpa.persistencia.repository.Mapa;
 import ar.edu.dds.tpa.persistencia.repository.MapaEnBaseDeDatos;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
-import spark.Route;
 
-public class AdministracionDePOIController implements Route, Persistible {
+public class AdministracionDePOIController {
 	
 	private Map<String, Class<? extends PuntoDeInteres>> tiposPOI = 
 				ImmutableMap.of("Todos", PuntoDeInteres.class,
@@ -27,12 +25,6 @@ public class AdministracionDePOIController implements Route, Persistible {
 								"Local comercial", LocalComercial.class,
 								"Banco", Banco.class,
 								"CGP", CGP.class);
-	
-	@Override
-	public Object handle(Request arg0, Response arg1) throws Exception {
-		
-		return null;
-	}
 	
 	public ModelAndView buscar(Request request, Response response){
 		Map<String, Object> model = new HashMap<>();
@@ -44,14 +36,6 @@ public class AdministracionDePOIController implements Route, Persistible {
 		
 		String tipoBuscado = request.queryMap("tipoPOI").value();
 		model.put("tipoBuscado", tipoBuscado);
-		
-		/*model.put("poi", new MapaEnBaseDeDatos()
-							.obtenerPuntosDeInteres()
-							.stream()
-							.filter(poi -> poi.getClass() == tiposPOI.get(tipoBuscado))
-							.filter(poi -> poi.getNombre().contains(textoBuscado))
-							.toArray());
-		*/
 		model.put("poi", new MapaEnBaseDeDatos().obtenerPuntosDeInteresPorTipoYNombre(tiposPOI.getOrDefault(tipoBuscado, PuntoDeInteres.class), textoBuscado));
 		return new ModelAndView(model, "administracionPOI/consultarPOI.hbs");
 	}
@@ -81,7 +65,6 @@ public class AdministracionDePOIController implements Route, Persistible {
 		}
 
 		new MapaEnBaseDeDatos().agregar(poi);
-		//repositorio.persistir(poi);
 		return new ModelAndView(null, "administracionPOI/altaPOI.hbs");
 	}
 	

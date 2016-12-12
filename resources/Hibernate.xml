@@ -14,7 +14,7 @@
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		
 		<!-- BASE DE DATOS MYSQL (TRAVIS) -->
-		<property name="connection.url">jdbc:mysql://localhost</property>
+		<property name="connection.url">jdbc:mysql://localhost/tpa</property>
 
 		<!-- BASE DE DATOS EN MEMORIA -->
 		<!-- <property name="connection.url">jdbc:h2:mem:test</property> -->

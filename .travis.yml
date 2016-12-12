@@ -10,6 +10,9 @@ jdk:
 services:
   - mysql
 
+before_script:
+  - mysql -e "CREATE DATABASE tpa"
+
 after_script:
   - mvn clean package
   - "./.utility/.coverage.sh"

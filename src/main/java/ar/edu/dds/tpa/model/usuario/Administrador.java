@@ -6,7 +6,7 @@ import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.persistencia.repository.Mapa;
 
 @Entity
-public class Administrador extends Usuario{
+public class Administrador extends Usuario {
 
 	private String mail;
 
@@ -21,8 +21,8 @@ public class Administrador extends Usuario{
 	public String getMail() {
 		return mail;
 	}
-	
-	public void setMail(String mail){
+
+	public void setMail(String mail) {
 		this.mail = mail;
 	}
 
@@ -38,8 +38,9 @@ public class Administrador extends Usuario{
 			Mapa enUnMapa) {
 		enUnMapa.modificar(unPuntoDeInteres, puntoDeInteresModificado);
 	}
+
 	@Override
-	public String getUrl(){
+	public String getUrl() {
 		return "/administracion/consultar";
 	}
 }

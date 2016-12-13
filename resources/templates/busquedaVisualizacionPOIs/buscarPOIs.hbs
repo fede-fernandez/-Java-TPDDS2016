@@ -1,12 +1,10 @@
 <html>
 
 <body>
-
+<h1>{{nombre}} - Comuna {{comuna}}</h1>
 
 <form id="loginform" action="/terminal/lugares" method="GET">
 <input type="hidden" name="id" value="{{id}}">
-<input class="input" readonly="readonly" value="{{nombre}}"  name="nombre"/>
-<input class="input" readonly="readonly" value="Comuna {{comuna}}"  name="comuna" />
 <p><strong> Ingresar Texto Para Encontrar Lugares</strong></p>
 <input class="input" placeholder="ej. colectivo" name="textoLibre">
 <input type="submit" class="button" value="Buscar" />

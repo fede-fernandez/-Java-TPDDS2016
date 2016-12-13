@@ -11,7 +11,7 @@
 		<!-- <property name="connection.driver_class">org.h2.Driver</property> -->
 		
 		<!-- DRIVER MYSQL -->
-		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
 		
 		<!-- BASE DE DATOS MYSQL (TRAVIS) -->
 		<property name="connection.url">jdbc:mysql://localhost/tpa</property>

@@ -35,15 +35,13 @@ public class Inicializar implements Persistible {
 		deLunesAViernes.addAll(Arrays.asList(DayOfWeek.MONDAY, DayOfWeek.TUESDAY, DayOfWeek.WEDNESDAY,
 				DayOfWeek.THURSDAY, DayOfWeek.FRIDAY));
 
-		Comuna comuna12 = new Comuna(1, "Comuna 12");
+		Comuna comuna12 = new Comuna(8, "Lugano");
 
 		Terminal terminalUTN = new Terminal("Terminal UTN Campus", new Posicion(5.0, 5.0), comuna12);
 		terminalUTN.setUsuario("utn");
 		terminalUTN.setPassword("1234");
 
-		Administrador administrador = new Administrador("admin@admin.com");
-		administrador.setUsuario("admin");
-		administrador.setPassword("admin");
+		Administrador administrador = new Administrador("admin@admin.com", "admin", "admin");
 
 		ParadaDeColectivo paradaDel46 = new ParadaDeColectivo("Linea 46 Estacion Mozart",
 				new Posicion(53.97583, 12.21985), "calle falsa 123");
@@ -85,7 +83,7 @@ public class Inicializar implements Persistible {
 
 		Comuna flores = new Comuna(7, "Flores");
 		Comuna caballito = new Comuna(9, "Caballito");
-		Comuna villaLugano = new Comuna(14, "Villa Lugano");
+		Comuna mataderos = new Comuna(14, "Mataderos");
 		Terminal terminalDePrueba1 = new Terminal("Terminal Subte Linea E Virreyes", new Posicion(2.42300, 2.04212),
 				flores);
 		repositorio.persistir(terminalDePrueba1);
@@ -98,7 +96,7 @@ public class Inicializar implements Persistible {
 		
 		terminalDePrueba3.setUsuario("terminalDePrueba3");
 		terminalDePrueba3.setPassword("1234");
-		Terminal terminalDePrueba4 = new Terminal("Terminal Central Olivera", new Posicion(8.3, 8.7), villaLugano);
+		Terminal terminalDePrueba4 = new Terminal("Terminal Central Olivera", new Posicion(8.3, 8.7), mataderos);
 		repositorio.persistir(terminalDePrueba3);
 		repositorio.persistir(terminalDePrueba4);
 	}

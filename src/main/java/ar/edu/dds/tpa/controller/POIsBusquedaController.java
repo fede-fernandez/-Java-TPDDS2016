@@ -32,14 +32,10 @@ public class POIsBusquedaController implements Persistible {
 	}
 
 	public ModelAndView mostrarTerminal(Request req, Response res) {
-		Map<String, String> model = new HashMap<>();
 		String id = req.params("id");
 		Terminal terminal = repositorio.buscarPorID(Terminal.class, Integer.parseInt(id));
-		model.put("id", id);
-		model.put("nombre", terminal.getNombre());
-		model.put("comuna", terminal.getComuna().getNumero().toString());
 
-		return new ModelAndView(model, "Terminal/busquedaVisualizacionPOIs/buscarPOIs.hbs");
+		return new ModelAndView(terminal, "Terminal/busquedaVisualizacionPOIs/buscarPOIs.hbs");
 	}
 
 	public ModelAndView listarPOIS(Request req, Response res) {

@@ -11,48 +11,71 @@ import org.hibernate.cfg.Configuration;
 
 public class Repositorio {
 
-	private static Repositorio instancia;
+	private static ThreadLocal<Repositorio> instaciaThread = new ThreadLocal<Repositorio>();
 	private static SessionFactory sessionFactory;
 	private static Session sesion;
 
 	private Repositorio() {
 		try {
 			sessionFactory = new Configuration().configure("Hibernate.xml").buildSessionFactory();
-		}
-		catch (Exception excepcion){
+		} catch (Exception excepcion) {
 			sessionFactory = new Configuration().configure("HibernateConDBEnMemoria.xml").buildSessionFactory();
 		}
 	}
 
-	public static Repositorio obtenerRepositorio() {
-		if (instancia == null) {
-			instancia = new Repositorio();
+	public static Repositorio obtenerRepositorioANivelThread() {
+		Repositorio repositorio = instaciaThread.get();
+		if (repositorio == null) {
+			repositorio = new Repositorio();
+			instaciaThread.set(repositorio);
 		}
-		return instancia;
+		return repositorio;
 	}
 
 	public static Session obtenerSesion() {
 		if (sesion == null || !sesion.isOpen()) {
 			sesion = sessionFactory.openSession();
-			sesion.getTransaction().begin();
 		}
 		return sesion;
 	}
 
 	public void cerrarSesion() {
-		Transaction transaccion = obtenerSesion().getTransaction();
-		if (transaccion.isActive()) {
-			transaccion.commit();
-		}
+		instaciaThread.set(null);
 		sesion.close();
 	}
 
+	public void comenzarTransaccion() {
+		obtenerSesion().getTransaction().begin();
+	}
+
+	public void realizarTransaccion() {
+		Transaction transaccion = obtenerSesion().getTransaction();
+		try {
+			if (transaccion.isActive()) {
+				transaccion.commit();
+			}
+		} catch (Exception excepcion) {
+			rollbackearTransaccion();
+		}
+	}
+
+	public void rollbackearTransaccion() {
+		Transaction transaccion = obtenerSesion().getTransaction();
+		if (transaccion.isActive()) {
+			transaccion.rollback();
+		}
+	}
+
 	public void persistir(Object unObjeto) {
+		comenzarTransaccion();
 		obtenerSesion().saveOrUpdate(unObjeto);
+		realizarTransaccion();
 	}
 
 	public void eliminar(Object unObjeto) {
+		comenzarTransaccion();
 		obtenerSesion().delete(unObjeto);
+		realizarTransaccion();
 	}
 
 	public <T> T buscarPorID(Class<T> clase, int id) {
@@ -67,6 +90,7 @@ public class Repositorio {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public <T> List<T> ejecutarQuery(String query) {
+		;
 		Query queryAEjecutar = obtenerSesion().createQuery(query);
 		return (List<T>) queryAEjecutar.getResultList();
 	}
@@ -78,16 +102,13 @@ public class Repositorio {
 		return (List<T>) queryAEjecutar.getResultList();
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked" })
 	public <T> T ejecutarQueryGetPrimerResultado(String query) {
-		Query queryAEjecutar = obtenerSesion().createQuery(query);
-		return (T) queryAEjecutar.getSingleResult();
+		return (T) ejecutarQuery(query).get(0);
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked" })
 	public <T> T ejecutarQueryGetPrimerResultado(String query, Map<String, String> parametros) {
-		Query queryAEjecutar = obtenerSesion().createQuery(query);
-		parametros.forEach((parametro, valorDeParametro) -> queryAEjecutar.setParameter(parametro, valorDeParametro));
-		return (T) queryAEjecutar.getSingleResult();
+		return (T) ejecutarQuery(query, parametros).get(0);
 	}
 }

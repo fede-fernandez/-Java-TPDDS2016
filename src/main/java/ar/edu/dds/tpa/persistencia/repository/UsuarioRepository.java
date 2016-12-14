@@ -8,9 +8,9 @@ import ar.edu.dds.tpa.persistencia.Persistible;
 
 public class UsuarioRepository implements Persistible {
 
-	public Usuario loginDeUsuario(String usuario, String contrasenia) {
+	public Usuario obtenerUsuarioPor(String nombreDeUsuario, String contrasenia) {
 		Map<String, String> parametros = new HashMap<>();
-		parametros.put("usuario", usuario);
+		parametros.put("usuario", nombreDeUsuario);
 		parametros.put("password", contrasenia);
 		return repositorio.ejecutarQueryGetPrimerResultado("from Usuario where usuario=:usuario and password=:password",
 				parametros);

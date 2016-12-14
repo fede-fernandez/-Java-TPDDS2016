@@ -22,7 +22,7 @@ public class LoginController implements Persistible {
 		String pass = request.queryParams("pass");
 
 		try {
-			Usuario usuario = new UsuarioRepository().loginDeUsuario(nick, pass);
+			Usuario usuario = new UsuarioRepository().obtenerUsuarioPor(nick, pass);
 
 			request.session().attribute("usuario", usuario);
 			response.redirect(usuario.getUrl());

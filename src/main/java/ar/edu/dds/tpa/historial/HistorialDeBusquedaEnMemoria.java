@@ -128,13 +128,11 @@ public class HistorialDeBusquedaEnMemoria implements HistorialDeBusqueda{
 
 	@Override
 	public Busqueda encontrarBusquedaPorId(String id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Busqueda encontrarBusquedaPorId(ObjectId id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 }

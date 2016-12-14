@@ -7,16 +7,15 @@
 	<session-factory>
 
 		<!-- CONFIGURACIONES -->
-		
-		<!-- DRIVER MYSQL -->
-		<property name="connection.driver_class">com.mysql.cj.jdbc.Driver</property>
-		
-		<!-- BASE DE DATOS MYSQL (TRAVIS) -->
-		<property name="connection.url">jdbc:mysql://localhost/tpa</property>
+		<!-- DRIVER H2 DATABASE -->
+		<property name="connection.driver_class">org.h2.Driver</property>
 
-		<property name="connection.username">root</property>
+		<!-- BASE DE DATOS EN MEMORIA -->
+		<property name="connection.url">jdbc:h2:mem:test</property>
+
+		<property name="connection.username">sa</property>
 		<property name="connection.password"></property>
-		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="dialect">org.hibernate.dialect.H2Dialect</property>
 		<property name="format_sql">true</property>
 		<property name="show_sql">true</property>
 		<property name="hbm2ddl.auto">create</property>

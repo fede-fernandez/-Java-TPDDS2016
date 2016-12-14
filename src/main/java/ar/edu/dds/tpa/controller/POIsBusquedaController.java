@@ -20,9 +20,9 @@ import spark.Request;
 import spark.Response;
 
 public class POIsBusquedaController implements Persistible {
-	
+
 	private Buscador buscador;
-	
+
 	public POIsBusquedaController() {
 		MorphiaDatastoreMock morphiaDatastore = MorphiaDatastoreMock.obtenerInstancia();
 		Datastore dbMongo = morphiaDatastore.getDatastore();
@@ -30,43 +30,42 @@ public class POIsBusquedaController implements Persistible {
 		Mapa mapa = new MapaEnBaseDeDatos();
 		this.buscador = new Buscador(mapa, historialBusqueda);
 	}
-	
-	public ModelAndView mostrarTerminal(Request req, Response res){
+
+	public ModelAndView mostrarTerminal(Request req, Response res) {
 		Map<String, String> model = new HashMap<>();
 		String id = req.params("id");
-		Terminal terminal = repositorio.buscarPorID(Terminal.class,Integer.parseInt(id));
+		Terminal terminal = repositorio.buscarPorID(Terminal.class, Integer.parseInt(id));
 		model.put("id", id);
 		model.put("nombre", terminal.getNombre());
 		model.put("comuna", terminal.getComuna().getNumero().toString());
 
-		return new ModelAndView(model, "busquedaVisualizacionPOIs/buscarPOIs.hbs");
+		return new ModelAndView(model, "Terminal/busquedaVisualizacionPOIs/buscarPOIs.hbs");
 	}
-	
-	public ModelAndView listarPOIS(Request req, Response res){
+
+	public ModelAndView listarPOIS(Request req, Response res) {
 		Map<String, List<PuntoDeInteres>> model = new HashMap<>();
 		String textoLibre = req.queryParams("textoLibre");
-		
+
 		String id = req.queryParams("id");
-		
+
 		System.out.println(id);
-		
-		Terminal terminal = repositorio.buscarPorID(Terminal.class,Integer.parseInt(id));
+
+		Terminal terminal = repositorio.buscarPorID(Terminal.class, Integer.parseInt(id));
 
 		List<PuntoDeInteres> pois = buscador.buscar(textoLibre, terminal);
-		
+
 		model.put("pois", pois);
-		
-		return new ModelAndView(model, "busquedaVisualizacionPOIs/mostrarResultadosPOIs.hbs");
+
+		return new ModelAndView(model, "Terminal/busquedaVisualizacionPOIs/mostrarResultadosPOIs.hbs");
 	}
-	
-	
-	public ModelAndView mostrarInformacionPOIs(Request req, Response res){
+
+	public ModelAndView mostrarInformacionPOIs(Request req, Response res) {
 		Map<String, PuntoDeInteres> model = new HashMap<>();
 		String id = req.params("id");
-		
-		PuntoDeInteres pois = repositorio.buscarPorID(PuntoDeInteres.class,Integer.parseInt(id));
+
+		PuntoDeInteres pois = repositorio.buscarPorID(PuntoDeInteres.class, Integer.parseInt(id));
 		model.put("pois", pois);
-		return new ModelAndView(model, "busquedaVisualizacionPOIs/mostrarPOIs.hbs");
+		return new ModelAndView(model, "Terminal/busquedaVisualizacionPOIs/mostrarPOIs.hbs");
 	}
 
 }

@@ -9,26 +9,26 @@ import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
 
-public class LoginController implements Persistible{
-	
-	public ModelAndView mostrarLogin(Request request, Response response){
-		
-		return new ModelAndView(null, "login/login.hbs");
+public class LoginController implements Persistible {
+
+	public ModelAndView mostrarLogin(Request request, Response response) {
+
+		return new ModelAndView(null, "Login/login.hbs");
 	}
 
-	public ModelAndView login(Request request, Response response){
+	public ModelAndView login(Request request, Response response) {
 
 		String nick = request.queryParams("usuario");
 		String pass = request.queryParams("pass");
-		
+
 		try {
 			Usuario usuario = new UsuarioRepository().loginDeUsuario(nick, pass);
-			
-			request.session().attribute("usuario",usuario);
+
+			request.session().attribute("usuario", usuario);
 			response.redirect(usuario.getUrl());
 			return null;
 		} catch (NoResultException e) {
-			return new ModelAndView(null, "login/loginFallido.hbs");
-		}				
+			return new ModelAndView(null, "Login/loginFallido.hbs");
+		}
 	}
 }

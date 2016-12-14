@@ -16,7 +16,12 @@ public class Repositorio {
 	private static Session sesion;
 
 	private Repositorio() {
-		sessionFactory = new Configuration().configure("Hibernate.xml").buildSessionFactory();
+		try {
+			sessionFactory = new Configuration().configure("Hibernate.xml").buildSessionFactory();
+		}
+		catch (Exception excepcion){
+			sessionFactory = new Configuration().configure("HibernateConDBEnMemoria.xml").buildSessionFactory();
+		}
 	}
 
 	public static Repositorio obtenerRepositorio() {

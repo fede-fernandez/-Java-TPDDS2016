@@ -22,7 +22,7 @@ public class TerminalController implements Persistible {
 		Map<String, Object> model = new HashMap<>();
 		model.put("comuna", comunaRepository.obtenerComunas());
 		model.put("terminal", terminalRepository.obtenerTerminales());
-		return new ModelAndView(model, "GestionDeTerminales/Terminales.hbs");
+		return new ModelAndView(model, "Administrador/GestionDeTerminales/Terminales.hbs");
 	}
 
 	public Void nuevaTerminal(Request request, Response response) {

@@ -90,7 +90,6 @@ public class Repositorio {
 
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public <T> List<T> ejecutarQuery(String query) {
-		;
 		Query queryAEjecutar = obtenerSesion().createQuery(query);
 		return (List<T>) queryAEjecutar.getResultList();
 	}

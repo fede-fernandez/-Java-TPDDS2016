@@ -44,7 +44,7 @@ public class AdministracionDePOIController {
 	}
 
 	public ModelAndView formularioAlta(Request request, Response response) {
-		return new ModelAndView(null, "Administrador/administracionPOI/altaPOI.hbs");
+		return new ModelAndView(null, "Administrador/administracionPOI/modificacionPOI.hbs");
 	}
 
 	public ModelAndView alta(Request request, Response response) {
@@ -72,13 +72,13 @@ public class AdministracionDePOIController {
 		}
 
 		unMapa.agregar(poi);
-		return new ModelAndView(null, "Administrador/administracionPOI/altaPOI.hbs");
+		return new ModelAndView(null, "Administrador/administracionPOI/modificacionPOI.hbs");
 	}
 
 	public ModelAndView presentarEdicion(Request request, Response response) {
 		int id = Integer.parseInt(request.params(":poi"));
 		Object model = unMapa.obtenerPor(id);
-		return new ModelAndView(model, "Administrador/administracionPOI/altaPOI.hbs");
+		return new ModelAndView(model, "Administrador/administracionPOI/modificacionPOI.hbs");
 	}
 
 	public ModelAndView editar(Request request, Response response) {

@@ -10,7 +10,6 @@
   	<form>
  		 <div class="row">
             <div class="form-group col-xs-3">
-				<!-- <label>Tipo:</label> -->
 				<select class="form-control input-group-lg" name="tipoPOI" id="tipoPOI">
 					{{#tipo}}
 						<option value="{{this}}">{{this}}</option>
@@ -25,9 +24,7 @@
 				{{/if}}
 			</div>
             <div class="form-group col-xs-7">
-				<!-- <label>Ingrese texto de busqueda:</label> -->
 				<input class="form-control input-group-lg" type='text' value='{{textoBuscado}}' name='textoBuscado' placeholder="ej: Banco Patagonia"/>
-				<!-- <a href='altaPOI'>Alta de Puntos de Interes</a> -->
 			</div>
 
             <div class="form-group col-xs-2">
@@ -38,7 +35,6 @@
  		<table class="table table-striped table-bordered">
 		{{#if poi}}
 		<tr>
-			<!-- <th>#</th> -->
 			<th>Nombre</th>
 			<th>Dirección</th>
 			<th>Coordenadas</th>  				
@@ -46,15 +42,11 @@
 		</tr>
 		{{#poi}}
 			<tr>
-				<!-- <td>{{@index}}</td> -->
 				<td>{{nombre}}</td>
 				<td>{{direccion}}</td>
 				<td>{{coordenadas.latitud}} : {{coordenadas.longitud}}</td>
 				<td>
 					<div class="row">
-						<div class="form-group col-xs-2">
-							<button type="button" class="btn btn-info"><span class="glyphicon glyphicon-map-marker" ></span></button>
-						</div>
             			<div class="form-group col-xs-2">
 							<a href="/administracion/editar/{{id}}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit" ></span></button></a>
 						</div>

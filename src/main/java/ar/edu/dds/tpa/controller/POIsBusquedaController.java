@@ -4,17 +4,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.mongodb.morphia.Datastore;
 
 import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
-import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMongo;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.usuario.Terminal;
-import ar.edu.dds.tpa.persistencia.MorphiaDatastoreMock;
 import ar.edu.dds.tpa.persistencia.Persistible;
 import ar.edu.dds.tpa.persistencia.repository.Mapa;
-import ar.edu.dds.tpa.persistencia.repository.MapaEnBaseDeDatos;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;
@@ -23,12 +19,8 @@ public class POIsBusquedaController implements Persistible {
 
 	private Buscador buscador;
 
-	public POIsBusquedaController() {
-		MorphiaDatastoreMock morphiaDatastore = MorphiaDatastoreMock.obtenerInstancia();
-		Datastore dbMongo = morphiaDatastore.getDatastore();
-		HistorialDeBusqueda historialBusqueda = new HistorialDeBusquedaEnMongo(dbMongo);
-		Mapa mapa = new MapaEnBaseDeDatos();
-		this.buscador = new Buscador(mapa, historialBusqueda);
+	public POIsBusquedaController(HistorialDeBusqueda historial,Mapa mapa) {
+		this.buscador = new Buscador(mapa, historial);
 	}
 
 	public ModelAndView mostrarTerminal(Request req, Response res) {

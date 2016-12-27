@@ -8,6 +8,8 @@ import ar.edu.dds.tpa.controller.TerminalController;
 import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
 import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMongo;
 import ar.edu.dds.tpa.persistencia.MorphiaDatastoreMock;
+import ar.edu.dds.tpa.persistencia.repository.Mapa;
+import ar.edu.dds.tpa.persistencia.repository.MapaEnBaseDeDatos;
 import ar.edu.dds.tpa.spark.utils.HandlebarsTemplateEngineBuilder;
 import spark.Spark;
 import spark.template.handlebars.HandlebarsTemplateEngine;
@@ -18,11 +20,15 @@ public class Router {
 		HandlebarsTemplateEngine engine = HandlebarsTemplateEngineBuilder.create().withDefaultHelpers().build();
 
 		Spark.staticFiles.location("/public");
-
-		POIsBusquedaController poisController = new POIsBusquedaController();
+		
 		HistorialDeBusqueda historial = new HistorialDeBusquedaEnMongo(
 				MorphiaDatastoreMock.obtenerInstancia().getDatastore());
+		Mapa mapa = new MapaEnBaseDeDatos();
+
+		POIsBusquedaController poisController = new POIsBusquedaController(historial,mapa);
 		HistoricoDeConsultasController historicoController = new HistoricoDeConsultasController(historial);
+		TerminalController terminalController = new TerminalController();
+		AdministracionDePOIController poisAdministracionController =new AdministracionDePOIController(mapa);
 
 		LoginController loginController = new LoginController();
 
@@ -30,13 +36,11 @@ public class Router {
 		Spark.get("/terminal/lugares/:id", poisController::mostrarInformacionPOIs, engine);
 		Spark.get("/terminal/:id", poisController::mostrarTerminal, engine);
 
-		Spark.get("/administracion/consultar", new AdministracionDePOIController()::buscar, engine);
-		Spark.get("/administracion/consultar/:tipo/:nombre", new AdministracionDePOIController()::buscar, engine);
-		Spark.post("/administracion/editar/:poi", new AdministracionDePOIController()::editar, engine);
-		Spark.get("/administracion/editar/:poi", new AdministracionDePOIController()::presentarEdicion, engine);
-		Spark.post("/administracion/eliminar", new AdministracionDePOIController()::eliminar, engine);
-
-		TerminalController terminalController = new TerminalController();
+		Spark.get("/administracion/consultar", poisAdministracionController::buscar, engine);
+		Spark.get("/administracion/consultar/:tipo/:nombre", poisAdministracionController::buscar, engine);
+		Spark.post("/administracion/editar/:poi", poisAdministracionController::editar, engine);
+		Spark.get("/administracion/editar/:poi", poisAdministracionController::presentarEdicion, engine);
+		Spark.post("/administracion/eliminar", poisAdministracionController::eliminar, engine);
 
 		Spark.get("/terminales", terminalController::mostrarTerminales, engine);
 		Spark.post("/nuevaTerminal", terminalController::nuevaTerminal);

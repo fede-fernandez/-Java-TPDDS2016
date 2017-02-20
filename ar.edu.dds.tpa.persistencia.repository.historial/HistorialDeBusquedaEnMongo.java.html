@@ -43,61 +43,7 @@ public class HistorialDeBusquedaEnMongo implements HistorialDeBusqueda{
 	
 	public List&lt;Busqueda&gt; ejecutarConsulta(Query&lt;Busqueda&gt; consulta){
 <span class="fc" id="L45">		return consulta.asList();</span>
-	}
-	
-	
-	
-	
-	
-	
-	
-//	public List&lt;Busqueda&gt; encontrarTodasLasBusquedasPorTextoBuscado(String unTexto){
-//		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)
-//				.field(&quot;textoBuscado&quot;).equal(unTexto).asList();
-//		
-//		return resultado;
-//	}
-//	
-//	public List&lt;Busqueda&gt; encontrarLasBusquedasEntreDosFechas(LocalDate fechaDeInicio, LocalDate fechaDeFin){
-//		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)
-//				.field(&quot;fechaDeBusqueda&quot;).greaterThanOrEq(fechaDeInicio)
-//				.field(&quot;fechaDeBusqueda&quot;).lessThanOrEq(fechaDeFin).asList();
-//		
-//		return resultado;
-//	}
-//	
-//	public List&lt;Busqueda&gt; encontrarLasBusquedasEntreDosFechasYPorTextoBuscado(String textoBuscado, LocalDate fechaDeInicio, LocalDate fechaDeFin){
-//		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)
-//				.field(&quot;fechaDeBusqueda&quot;).greaterThanOrEq(fechaDeInicio)
-//				.field(&quot;fechaDeBusqueda&quot;).lessThanOrEq(fechaDeFin)
-//				.field(&quot;textoBuscado&quot;).equal(textoBuscado).asList();
-//		
-//		return resultado;	
-//	}
-//	
-//	public List&lt;Busqueda&gt; encontrarLasBusquedasQueSeRealizaronEnUnaFecha(LocalDate unaFecha){
-//		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)
-//				.field(&quot;fechaDeBusqueda&quot;).equal(unaFecha).asList();
-//		
-//		return resultado;
-//	}
-//	
-//	public List&lt;Busqueda&gt; encontrarLasBusquedasDeUnaTerminal(String nombreDeTerminal){
-//		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)
-//				.field(&quot;terminal.nombre&quot;).equal(nombreDeTerminal).asList();
-//		
-//		return resultado;
-//	}
-//	
-//	public List&lt;Busqueda&gt; encontrarLasBusquedasPorCantidadDeResultados(int cantidadDeResultados){
-//		List&lt;Busqueda&gt; resultado = datastore.createQuery(Busqueda.class)
-//				.field(&quot;puntosDeInteresEncontrados.puntosDeInteresEncontrados&quot;).sizeEq(cantidadDeResultados).asList();
-//		
-//		return resultado; 
-//	}
-	
-	
-	
+	}	
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

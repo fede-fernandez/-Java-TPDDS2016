@@ -84,63 +84,19 @@ public class HistorialDeBusquedaEnMemoria implements HistorialDeBusqueda{
 	}
 
 	
-	public List&lt;Busqueda&gt; encontrarTodasLasBusquedasPorTextoBuscado(String unTexto) {
-<span class="nc" id="L88">		return busquedasRealizadas.stream()</span>
-<span class="nc" id="L89">		.filter(unaBusqueda -&gt; unaBusqueda.getTextoBuscado().equals(unTexto))</span>
-<span class="nc" id="L90">		.collect(Collectors.toList());</span>
-		
-	}
-	
-	public List&lt;Busqueda&gt; encontrarLasBusquedasEntreDosFechas(LocalDate fechaDeInicio, LocalDate fechaDeFin) {
-<span class="nc" id="L95">		return busquedasRealizadas.stream()</span>
-<span class="nc" id="L96">				.filter(unaBusqueda -&gt; estaEnUnRangoDeFechas(unaBusqueda.getFechaDeBusqueda(), fechaDeInicio, fechaDeFin))</span>
-<span class="nc" id="L97">				.collect(Collectors.toList());</span>
-	}
-	
-	public List&lt;Busqueda&gt; encontrarLasBusquedasEntreDosFechasYPorTextoBuscado(String textoBuscado,
-			LocalDate fechaDeInicio, LocalDate fechaDeFin) {
-<span class="nc" id="L102">		return busquedasRealizadas.stream()</span>
-<span class="nc bnc" id="L103" title="All 2 branches missed.">				.filter(unaBusqueda -&gt; estaEnUnRangoDeFechas(unaBusqueda.getFechaDeBusqueda(), fechaDeInicio, fechaDeFin)</span>
-<span class="nc bnc" id="L104" title="All 2 branches missed.">						&amp;&amp; unaBusqueda.getTextoBuscado().equals(textoBuscado))</span>
-<span class="nc" id="L105">				.collect(Collectors.toList());</span>
-	}
-	
-	public List&lt;Busqueda&gt; encontrarLasBusquedasQueSeRealizaronEnUnaFecha(LocalDate unaFecha) {
-<span class="nc" id="L109">		return busquedasRealizadas.stream()</span>
-<span class="nc" id="L110">				.filter(unaBusqueda -&gt; unaBusqueda.getFechaDeBusqueda().equals(unaFecha))</span>
-<span class="nc" id="L111">				.collect(Collectors.toList());</span>
-	}
-	
-	public List&lt;Busqueda&gt; encontrarLasBusquedasDeUnaTerminal(String nombreDeTerminal){
-<span class="nc" id="L115">		return busquedasRealizadas.stream()</span>
-<span class="nc" id="L116">				.filter(unaBusqueda -&gt; unaBusqueda.getTerminal().getNombre().equals(nombreDeTerminal))</span>
-<span class="nc" id="L117">				.collect(Collectors.toList());</span>
-	}
-	
-	public List&lt;Busqueda&gt; encontrarLasBusquedasPorCantidadDeResultados(int cantidadDeResultados){
-<span class="nc" id="L121">		return busquedasRealizadas.stream()</span>
-<span class="nc bnc" id="L122" title="All 2 branches missed.">				.filter(unaBusqueda -&gt; unaBusqueda.getPuntosDeInteresEncontrados().getCantidadDeResultados() == cantidadDeResultados)</span>
-<span class="nc" id="L123">				.collect(Collectors.toList());</span>
-	}
-	
-	private boolean estaEnUnRangoDeFechas(LocalDate fecha, LocalDate fechaDeInicio, LocalDate fechaDeFin){
-<span class="nc bnc" id="L127" title="All 4 branches missed.">		return !fecha.isBefore(fechaDeInicio) &amp;&amp; !fecha.isAfter(fechaDeFin);</span>
-	}
-
-	
-	public Busqueda encontrarBusquedaPorId(String id) {
-<span class="nc" id="L132">		return null;</span>
+		public Busqueda encontrarBusquedaPorId(String id) {
+<span class="nc" id="L88">		return null;</span>
 	}
 
 	
 	public Busqueda encontrarBusquedaPorId(ObjectId id) {
-<span class="nc" id="L137">		return null;</span>
+<span class="nc" id="L93">		return null;</span>
 	}
 
 	@Override
 	public List&lt;Busqueda&gt; ejecutarConsulta(Query&lt;Busqueda&gt; consulta) {
 		// TODO Auto-generated method stub
-<span class="nc" id="L143">		return null;</span>
+<span class="nc" id="L99">		return null;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

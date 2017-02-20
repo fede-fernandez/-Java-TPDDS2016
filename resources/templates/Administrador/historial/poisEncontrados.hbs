@@ -1,5 +1,4 @@
-<html>
-<body>
+{{#partial "contenido"}}
 {{#if pois}}
     {{#each pois}}
 
@@ -7,7 +6,7 @@
         
         <p><strong>Direccion:</strong> {{direccion}}</p>
         <p><strong>Longitud:</strong> {{coordenadas.longitud}}, {{coordenadas.latitud}}</p>        
-        <p><strong>palabra Clave:</strong> {{palabrasClave}}</p>
+        <p><strong>Palabras clave:</strong> {{palabrasClave}}</p>
         
         {{#if rubro}}
         <p><strong>Rubro:</strong> {{nombre}}</p>
@@ -36,7 +35,6 @@
 No se encontraron puntos de interes.
 {{/if}}
 
-</body>
+{{/partial}}
 
-
-</html>
+{{>Administrador/PaginaBaseAdministrador.hbs}}

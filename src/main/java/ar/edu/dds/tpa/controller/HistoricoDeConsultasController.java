@@ -33,17 +33,14 @@ public class HistoricoDeConsultasController implements Persistible {
 		this.historial = historial;
 	}
 
-	public ModelAndView listarPoisConsultados(Request request, Response response) {
+	public ModelAndView mostrarFiltrosDeHistorial(Request request, Response response) {
 		Map<String, Object> model = new HashMap<>();
-
-		List<Busqueda> busquedas = historial.traerTodasLasBusquedas();
-		List<Terminal> terminales = repositorioDeTerminales.obtenerTerminales();
-
+		
+		List<Terminal> terminales = repositorioDeTerminales.obtenerTerminales();		
 		
 		model.put("terminales", terminales);
-		model.put("busquedas", busquedas);
-
-		return new ModelAndView(model, "Administrador/historial/consultas.hbs");
+		
+		return new ModelAndView(model, "Administrador/historial/filtros.hbs");
 	}
 
 	public ModelAndView mostrarPOIsEncontradosDeUnaBusqueda(Request request, Response response) {

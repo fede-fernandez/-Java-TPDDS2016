@@ -76,7 +76,7 @@ public class Busqueda {
 	}
 	
 	public String getUrl(){
-		return "historico/" + getId().toString(); 
+		return "busqueda/" + getId().toString(); 
 	}
 
 	public int getCantidadDeResultados() {

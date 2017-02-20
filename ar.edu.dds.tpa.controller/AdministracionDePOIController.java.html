@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>AdministracionDePOIController.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpa</a> &gt; <a href="index.source.html" class="el_package">ar.edu.dds.tpa.controller</a> &gt; <span class="el_source">AdministracionDePOIController.java</span></div><h1>AdministracionDePOIController.java</h1><pre class="source lang-java linenums">package ar.edu.dds.tpa.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.google.common.collect.ImmutableMap;
+
+import ar.edu.dds.tpa.geolocalizacion.Posicion;
+import ar.edu.dds.tpa.model.Banco;
+import ar.edu.dds.tpa.model.CGP;
+import ar.edu.dds.tpa.model.LocalComercial;
+import ar.edu.dds.tpa.model.ParadaDeColectivo;
+import ar.edu.dds.tpa.model.PuntoDeInteres;
+import ar.edu.dds.tpa.persistencia.repository.Mapa;
+import spark.ModelAndView;
+import spark.Request;
+import spark.Response;
+
+public class AdministracionDePOIController {
+	
+	private Mapa unMapa;
+
+<span class="nc" id="L23">	private Map&lt;String, Class&lt;? extends PuntoDeInteres&gt;&gt; tiposPOI = ImmutableMap.of(&quot;Todos&quot;, PuntoDeInteres.class,</span>
+			&quot;Parada de colectivo&quot;, ParadaDeColectivo.class, &quot;Local comercial&quot;, LocalComercial.class, &quot;Banco&quot;,
+			Banco.class, &quot;CGP&quot;, CGP.class);
+
+<span class="nc" id="L27">	public AdministracionDePOIController(Mapa unMapa) {</span>
+<span class="nc" id="L28">		this.unMapa = unMapa;</span>
+<span class="nc" id="L29">	}</span>
+
+	public ModelAndView buscar(Request request, Response response) {
+<span class="nc" id="L32">		Map&lt;String, Object&gt; model = new HashMap&lt;&gt;();</span>
+<span class="nc" id="L33">		model.put(&quot;tipo&quot;, tiposPOI.keySet());</span>
+
+<span class="nc" id="L35">		String textoBuscado = request.queryMap(&quot;textoBuscado&quot;).value();</span>
+
+<span class="nc" id="L37">		model.put(&quot;textoBuscado&quot;, textoBuscado);</span>
+
+<span class="nc" id="L39">		String tipoBuscado = request.queryMap(&quot;tipoPOI&quot;).value();</span>
+<span class="nc" id="L40">		model.put(&quot;tipoBuscado&quot;, tipoBuscado);</span>
+<span class="nc" id="L41">		model.put(&quot;poi&quot;, unMapa.obtenerPuntosDeInteresPorTipoYNombre(</span>
+<span class="nc" id="L42">				tiposPOI.getOrDefault(tipoBuscado, PuntoDeInteres.class), textoBuscado));</span>
+<span class="nc" id="L43">		return new ModelAndView(model, &quot;Administrador/administracionPOI/consultarPOI.hbs&quot;);</span>
+	}
+
+	public ModelAndView formularioAlta(Request request, Response response) {
+<span class="nc" id="L47">		return new ModelAndView(null, &quot;Administrador/administracionPOI/modificacionPOI.hbs&quot;);</span>
+	}
+
+	public ModelAndView alta(Request request, Response response) {
+<span class="nc" id="L51">		String nombre = request.queryMap(&quot;nombre&quot;).value();</span>
+<span class="nc" id="L52">		Double longitud = Double.valueOf(request.queryMap(&quot;longitud&quot;).value());</span>
+<span class="nc" id="L53">		Double latitud = Double.valueOf(request.queryMap(&quot;latitud&quot;).value());</span>
+<span class="nc" id="L54">		Posicion coordenadas = new Posicion(longitud, latitud);</span>
+<span class="nc" id="L55">		String id = request.queryMap(&quot;tipoPOIs&quot;).value();</span>
+<span class="nc" id="L56">		PuntoDeInteres poi = null;</span>
+<span class="nc bnc" id="L57" title="All 18 branches missed.">		switch (id) {</span>
+
+		case &quot;0&quot;:
+<span class="nc" id="L60">			poi = new ParadaDeColectivo(nombre, coordenadas, null);</span>
+<span class="nc" id="L61">			break;</span>
+		case &quot;1&quot;:
+<span class="nc" id="L63">			poi = new LocalComercial(nombre, coordenadas, null, null);</span>
+<span class="nc" id="L64">			break;</span>
+		case &quot;2&quot;:
+<span class="nc" id="L66">			poi = new Banco(nombre, coordenadas, null);</span>
+<span class="nc" id="L67">			break;</span>
+		case &quot;3&quot;:
+<span class="nc" id="L69">			poi = new CGP(nombre, coordenadas, null);</span>
+			break;
+
+		}
+
+<span class="nc" id="L74">		unMapa.agregar(poi);</span>
+<span class="nc" id="L75">		return new ModelAndView(null, &quot;Administrador/administracionPOI/modificacionPOI.hbs&quot;);</span>
+	}
+
+	public ModelAndView presentarEdicion(Request request, Response response) {
+<span class="nc" id="L79">		int id = Integer.parseInt(request.params(&quot;:poi&quot;));</span>
+<span class="nc" id="L80">		Object model = unMapa.obtenerPor(id);</span>
+<span class="nc" id="L81">		return new ModelAndView(model, &quot;Administrador/administracionPOI/modificacionPOI.hbs&quot;);</span>
+	}
+
+	public ModelAndView editar(Request request, Response response) {
+<span class="nc" id="L85">		PuntoDeInteres poi = unMapa.obtenerPor(request.queryMap(&quot;id&quot;).integerValue());</span>
+<span class="nc" id="L86">		poi.setNombre(request.queryMap(&quot;nombre&quot;).value());</span>
+<span class="nc" id="L87">		poi.setCoordenadas(</span>
+<span class="nc" id="L88">				new Posicion(request.queryMap(&quot;longitud&quot;).doubleValue(), request.queryMap(&quot;latitud&quot;).doubleValue()));</span>
+<span class="nc" id="L89">		poi.setDireccion(request.queryMap(&quot;direccion&quot;).value());</span>
+<span class="nc" id="L90">		unMapa.modificar(unMapa.obtenerPor(request.queryMap(&quot;id&quot;).integerValue()),</span>
+				poi);
+<span class="nc" id="L92">		response.redirect(&quot;/administracion/consultar&quot;);</span>
+<span class="nc" id="L93">		return null;</span>
+	}
+
+	public ModelAndView eliminar(Request request, Response response) {
+<span class="nc" id="L97">		Mapa mapa = unMapa;</span>
+<span class="nc" id="L98">		PuntoDeInteres p = mapa.obtenerPor(request.queryMap(&quot;id&quot;).integerValue());</span>
+<span class="nc" id="L99">		mapa.remover(p);</span>
+<span class="nc" id="L100">		response.redirect(&quot;/administracion/consultar&quot;);</span>
+<span class="nc" id="L101">		return null;</span>
+	}
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

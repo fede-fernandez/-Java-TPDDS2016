@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../.resources/report.css" type="text/css"/><link rel="shortcut icon" href="../.resources/report.gif" type="image/gif"/><title>MapaEnBaseDeDatos.java</title><link rel="stylesheet" href="../.resources/prettify.css" type="text/css"/><script type="text/javascript" src="../.resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../.sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">tpa</a> &gt; <a href="index.source.html" class="el_package">ar.edu.dds.tpa.persistencia.repository</a> &gt; <span class="el_source">MapaEnBaseDeDatos.java</span></div><h1>MapaEnBaseDeDatos.java</h1><pre class="source lang-java linenums">package ar.edu.dds.tpa.persistencia.repository;
+
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
+
+import ar.edu.dds.tpa.model.PuntoDeInteres;
+import ar.edu.dds.tpa.persistencia.Persistible;
+
+<span class="fc" id="L12">public class MapaEnBaseDeDatos implements Mapa, Persistible {</span>
+
+	@Override
+	public void agregar(PuntoDeInteres unPuntoDeInteres) {
+<span class="fc" id="L16">		repositorio.persistir(unPuntoDeInteres);</span>
+<span class="fc" id="L17">	}</span>
+
+	@Override
+	public void agregar(List&lt;PuntoDeInteres&gt; variosPuntosDeInteres) {
+<span class="nc" id="L21">		variosPuntosDeInteres.forEach(unPuntoDeInteres -&gt; repositorio.persistir(unPuntoDeInteres));</span>
+<span class="nc" id="L22">	}</span>
+
+	@Override
+	public void remover(PuntoDeInteres unPuntoDeInteres) {
+<span class="nc" id="L26">		repositorio.eliminar(unPuntoDeInteres);</span>
+<span class="nc" id="L27">	}</span>
+
+	@Override
+	public void removerPor(Integer id) {
+<span class="nc" id="L31">		repositorio.eliminar(repositorio.buscarPorID(PuntoDeInteres.class, id));</span>
+<span class="nc" id="L32">	}</span>
+
+	@Override
+	public void modificar(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado) {
+<span class="nc" id="L36">		repositorio.persistir(puntoDeInteresModificado);</span>
+<span class="nc" id="L37">	}</span>
+
+	@Override
+	public List&lt;PuntoDeInteres&gt; obtenerPuntosDeInteres() {
+<span class="fc" id="L41">		return repositorio.traerTodos(PuntoDeInteres.class);</span>
+	}
+
+	@Override
+	public List&lt;PuntoDeInteres&gt; obtenerPuntosDeInteresPorTipoYNombre(Class&lt;? extends PuntoDeInteres&gt; tipo,
+			String nombre) {
+<span class="nc" id="L47">		return this.obtenerPuntosDeInteres().stream()</span>
+<span class="nc bnc" id="L48" title="All 4 branches missed.">				.filter(poi -&gt; tipo.isAssignableFrom(poi.getClass())</span>
+<span class="nc bnc" id="L49" title="All 2 branches missed.">						&amp;&amp; (nombre == null || StringUtils.containsIgnoreCase(poi.getNombre(), nombre)))</span>
+<span class="nc" id="L50">				.collect(Collectors.toList());</span>
+	}
+
+	@Override
+	public PuntoDeInteres obtenerPor(Integer id) {
+<span class="nc" id="L55">		return repositorio.buscarPorID(PuntoDeInteres.class, id);</span>
+	}
+
+	@Override
+	public void darDeBaja(Integer idDelPuntoDeInteres, LocalDateTime fechaDeBaja) {
+<span class="nc" id="L60">		PuntoDeInteres puntoDeInteresADarDeBaja = repositorio.buscarPorID(PuntoDeInteres.class, idDelPuntoDeInteres);</span>
+<span class="nc" id="L61">		puntoDeInteresADarDeBaja.setFechaDeBaja(fechaDeBaja);</span>
+<span class="nc" id="L62">		puntoDeInteresADarDeBaja.setActivo(false);</span>
+<span class="nc" id="L63">		repositorio.persistir(puntoDeInteresADarDeBaja);</span>
+<span class="nc" id="L64">	}</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

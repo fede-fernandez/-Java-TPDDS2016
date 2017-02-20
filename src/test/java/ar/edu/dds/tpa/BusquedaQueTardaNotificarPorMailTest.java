@@ -14,9 +14,9 @@ import org.junit.Test;
 
 import ar.edu.dds.tpa.adapter.EnviadorDeMail;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
-import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta;
 import ar.edu.dds.tpa.persistencia.repository.MapaEnMemoria;
+import ar.edu.dds.tpa.persistencia.repository.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.service.MailServiceImpostor;
 
 public class BusquedaQueTardaNotificarPorMailTest {

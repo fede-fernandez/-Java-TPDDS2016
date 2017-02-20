@@ -1,6 +1,26 @@
 {{#partial "contenido"}}
-	
-<table class="table table-stripped table-bordered">
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+</script>
+
+<form action="filtro" method="GET" id="formFiltroTerminal">
+<select class="form-control" id="cmbFiltros" name="terminales">
+	<option value="">Mostrar todas las terminales</option>
+	{{#each terminales}}
+		<option value="{{nombre}}">{{nombre}}</option>
+	{{/each}}
+</select>
+
+<input type="date" class="form-control" id="txtFecha1" name="fechaInicial"/>
+<input type="date" class="form-control" id="txtFecha2" name="fechaFinal"/>
+<input type="number" class="form-control" id="txtNum" name="cantResultados"/>
+<button type="submit" class="btn btn-default">Filtrar</button>
+</form>
+<br>
+
+<table id="tabla" class="table table-stripped table-bordered">
 	<thead>
 	<tr>
 		<td><strong>Texto buscado</strong></td>
@@ -8,7 +28,7 @@
 		<td><strong>Fecha de busqueda</strong></td>
 		<td><strong>Tiempo de respuesta</strong></td>
 		<td></td>
-		
+
 	</tr>
 	</thead>
 	<tbody>
@@ -27,8 +47,8 @@
 	</tbody>
 
 </table>
- 		
-  	
+
+
 {{/partial}}
 
 {{>Administrador/PaginaBaseAdministrador.hbs}}

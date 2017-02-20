@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
+import ar.edu.dds.tpa.persistencia.repository.historial.HistorialDeBusqueda;
 
 public class Reporte {
 	

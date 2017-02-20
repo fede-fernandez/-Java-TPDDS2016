@@ -1,11 +1,42 @@
 <html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
 <body>
+{{#if pois}}
+    {{#each pois}}
 
-Detalle
+        <h1>  {{nombre}} </h1>
+        
+        <p><strong>Direccion:</strong> {{direccion}}</p>
+        <p><strong>Longitud:</strong> {{coordenadas.longitud}}, {{coordenadas.latitud}}</p>        
+        <p><strong>palabra Clave:</strong> {{palabrasClave}}</p>
+        
+        {{#if rubro}}
+        <p><strong>Rubro:</strong> {{nombre}}</p>
+        {{/if}}
+          
+        {{#if horarioDeAtencion}}
+        <p><strong>Dia y Horario de Atencion:</strong></p>
+        {{#each horarioDeAtencion.horariosDeAtencionPorDia}}
+            {{dia}},
+            {{#each rangosDeHorario}}
+            <strong>horarioInicio:</strong>
+            {{horarioInicio}}
+            <strong>horarioFin:</strong>
+            {{horarioFin}}
+            {{/each}}
+            <p></p>
+        {{/each}}
+        {{/if}}
+        
+        {{#each servicios}}
+        <h2> Servicio: {{nombre}} </h2>        
+        {{/each}}
+    {{/each}}
+
+{{else}}
+No se encontraron puntos de interes.
+{{/if}}
 
 </body>
+
+
 </html>

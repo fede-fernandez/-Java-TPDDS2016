@@ -17,9 +17,9 @@ import ar.edu.dds.tpa.accion.DesactivadorDeNotificadorDeBusquedaLenta;
 import ar.edu.dds.tpa.adapter.EnviadorDeMail;
 import ar.edu.dds.tpa.criterio.FiltradoPorComuna;
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
-import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.observer.NotificadorDeBusquedaLenta;
 import ar.edu.dds.tpa.persistencia.repository.MapaEnMemoria;
+import ar.edu.dds.tpa.persistencia.repository.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.procesos.GestorDeAccionesDeTerminales;
 import ar.edu.dds.tpa.service.MailServiceImpostor;
 

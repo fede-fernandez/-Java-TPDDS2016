@@ -8,10 +8,10 @@ import java.time.Month;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.Busqueda;
 import ar.edu.dds.tpa.model.PuntosDeInteresEncontrados;
 import ar.edu.dds.tpa.model.usuario.Terminal;
+import ar.edu.dds.tpa.persistencia.repository.historial.HistorialDeBusquedaEnMemoria;
 
 public class GeneracionDeReportesTest {
 

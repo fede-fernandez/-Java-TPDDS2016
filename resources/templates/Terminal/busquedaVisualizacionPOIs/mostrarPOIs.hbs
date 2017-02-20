@@ -1,6 +1,7 @@
 <html>
 <body>
-{{#with pois}}
+{{#if pois}}
+
     <h1>  {{nombre}} </h1>
     
     <p><strong>Direccion:</strong> {{direccion}}</p>
@@ -8,11 +9,11 @@
     <p><strong>Latitud:</strong> {{coordenadas.latitud}}</p>
     <p><strong>palabra Clave:</strong> {{palabrasClave}}</p>
     
-    {{#with rubro}}
+    {{#if rubro}}
     <p><strong>Rubro:</strong> {{nombre}}</p>
-    {{/with}}
+    {{/if}}
       
-    {{#with horarioDeAtencion}}
+    {{#if horarioDeAtencion}}
     <p><strong>Dia y Horario de Atencion:</strong></p>
     {{#each horarioDeAtencion.horariosDeAtencionPorDia}}
         {{dia}},
@@ -24,7 +25,7 @@
         {{/each}}
         <p></p>
     {{/each}}
-    {{/with}}
+    {{/if}}
     
     {{#each servicios}}
     <h2> Servicio: {{nombre}} </h2>
@@ -41,7 +42,7 @@
     {{/each}}
     {{/each}}
     
-{{/with}}
+{{/if}}
 
 </body>
 <link rel="stylesheet" type="text/css" href="/css/estilo.css">

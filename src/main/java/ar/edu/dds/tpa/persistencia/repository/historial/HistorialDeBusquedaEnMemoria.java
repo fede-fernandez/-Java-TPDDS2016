@@ -1,4 +1,4 @@
-package ar.edu.dds.tpa.historial;
+package ar.edu.dds.tpa.persistencia.repository.historial;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.bson.types.ObjectId;
+import org.mongodb.morphia.query.Query;
 
 import ar.edu.dds.tpa.model.Busqueda;
 
@@ -126,13 +127,19 @@ public class HistorialDeBusquedaEnMemoria implements HistorialDeBusqueda{
 		return !fecha.isBefore(fechaDeInicio) && !fecha.isAfter(fechaDeFin);
 	}
 
-	@Override
+	
 	public Busqueda encontrarBusquedaPorId(String id) {
 		return null;
 	}
 
-	@Override
+	
 	public Busqueda encontrarBusquedaPorId(ObjectId id) {
+		return null;
+	}
+
+	@Override
+	public List<Busqueda> ejecutarConsulta(Query<Busqueda> consulta) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 }

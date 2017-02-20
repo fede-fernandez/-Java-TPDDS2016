@@ -7,7 +7,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.Banco;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.CGP;
@@ -17,6 +16,7 @@ import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.Rubro;
 import ar.edu.dds.tpa.model.Servicio;
 import ar.edu.dds.tpa.persistencia.repository.MapaEnMemoria;
+import ar.edu.dds.tpa.persistencia.repository.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.procesos.ActualizarPOIs;
 
 public class ActualizarPOIsTest {

@@ -9,7 +9,7 @@ import com.github.fakemongo.Fongo;
 import ar.edu.dds.tpa.model.Busqueda;
 import ar.edu.dds.tpa.morphia.converter.LocalDateConverter;
 
-public class MorphiaDatastoreMock {
+public class MorphiaDatastoreMock{
 	
 	private static MorphiaDatastoreMock morphiaDatastore;
 	private Morphia morphia;

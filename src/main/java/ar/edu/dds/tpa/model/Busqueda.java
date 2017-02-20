@@ -19,7 +19,7 @@ public class Busqueda {
 	private Terminal terminal;
 
 	private String textoBuscado;
-	@Reference(lazy=true,idOnly=true)
+	@Reference(lazy=true)
 	private PuntosDeInteresEncontrados puntosDeInteresEncontrados;
 
 	private LocalDate fechaDeBusqueda;

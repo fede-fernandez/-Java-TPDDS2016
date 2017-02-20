@@ -4,13 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-
-import ar.edu.dds.tpa.historial.HistorialDeBusqueda;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.usuario.Terminal;
 import ar.edu.dds.tpa.persistencia.Persistible;
 import ar.edu.dds.tpa.persistencia.repository.Mapa;
+import ar.edu.dds.tpa.persistencia.repository.historial.HistorialDeBusqueda;
 import spark.ModelAndView;
 import spark.Request;
 import spark.Response;

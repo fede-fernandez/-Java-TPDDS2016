@@ -6,9 +6,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.*;
 import ar.edu.dds.tpa.model.usuario.Terminal;
+import ar.edu.dds.tpa.persistencia.repository.historial.HistorialDeBusquedaEnMemoria;
 
 import org.junit.Before;
 import org.junit.Test;

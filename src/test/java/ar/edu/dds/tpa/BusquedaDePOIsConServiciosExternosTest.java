@@ -7,10 +7,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.model.Buscador;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.persistencia.repository.MapaEnMemoria;
+import ar.edu.dds.tpa.persistencia.repository.historial.HistorialDeBusquedaEnMemoria;
 import ar.edu.dds.tpa.service.BancoServiceImpostor;
 import ar.edu.dds.tpa.service.CGPServiceImpostor;
 

@@ -38,8 +38,7 @@ public class HistoricoDeConsultasController implements Persistible {
 
 		List<Busqueda> busquedas = historial.traerTodasLasBusquedas();
 		List<Terminal> terminales = repositorioDeTerminales.obtenerTerminales();
-//		Usuario usuario = request.session().attribute("usuario");
-//		model.put("nombre", usuario.getUsuario());
+
 		
 		model.put("terminales", terminales);
 		model.put("busquedas", busquedas);
@@ -51,54 +50,35 @@ public class HistoricoDeConsultasController implements Persistible {
 		Map<String, Object> model = new HashMap<>();
 
 		String id = request.params("id");
-		List<Busqueda> busquedas = historial.traerTodasLasBusquedas();
+
 		Busqueda busqueda = historial.encontrarBusquedaPorId(id);
 		List<PuntoDeInteres> pois = busqueda.getPuntosDeInteresEncontrados().getPuntosDeInteresEncontrados();
 
 		model.put("pois", pois);
 
 		return new ModelAndView(model, "Administrador/historial/poisEncontrados.hbs");
-//		return new ModelAndView(model, "Terminal/busquedaVisualizacionPOIs/mostrarPOIs.hbs");
-		
-	}
-	
-	public ModelAndView filtrarPOISPorTerminal(Request request, Response response){
-		Map<String, Object> model = new HashMap<>();
-		
-		String nombreDeTerminal = request.queryParams("terminal");
-		ConsultaBusqueda consultaPorTerminal = new ConsultaPorTerminal(nombreDeTerminal);
-		ConsultaBusquedaBuilder builderDeConsultas = new ConsultaBusquedaBuilder();
-		
-		builderDeConsultas.setConsultas(Arrays.asList(consultaPorTerminal));
-		
-		List<Busqueda> busquedas = historial.ejecutarConsulta(builderDeConsultas.construirConsulta());
-		List<Terminal> terminales = repositorioDeTerminales.obtenerTerminales();
 
 		
-		model.put("terminales", terminales);
-		model.put("busquedas", busquedas);
-		
-		return new ModelAndView(model, "Administrador/historial/consultas.hbs");
 	}
 	
 	public ModelAndView filtrarPOIs(Request request, Response response){
 		Map<String, Object> model = new HashMap<>();
 		
-		//String textoBuscado = request.queryParams("textoBuscado");
+		String terminal = request.queryParams("terminales");
 		String fechaDeInicio = request.queryParams("fechaInicial");
 		String fechaDeFin = request.queryParams("fechaFinal");
 		String cantidadDeResultados = request.queryParams("cantResultados");
-		ConsultaBusqueda consultaPorTexto = new ConsultaNula();
+		ConsultaBusqueda consultaPorTerminal = new ConsultaNula();
 		ConsultaBusqueda consultaPorFechas = new ConsultaNula();
 		ConsultaBusqueda consultaPorCantidadDeResultados = new ConsultaNula();
 		List<ConsultaBusqueda> consultas;
 		ConsultaBusquedaBuilder builderDeConsultas = new ConsultaBusquedaBuilder();
 		Query<Busqueda> consulta;
 		List<Busqueda> busquedas;
-//		
-//		if (textoBuscado != null) {
-//			consultaPorTexto = new ConsultaPorTexto(textoBuscado);
-//		}
+
+		if (!terminal.isEmpty()) {
+			consultaPorTerminal = new ConsultaPorTerminal(terminal);
+		}
 		if (!fechaDeInicio.isEmpty() && !fechaDeFin.isEmpty()) {
 			LocalDate fechaInicial = LocalDate.parse(fechaDeInicio);
 			LocalDate fechaFinal = LocalDate.parse(fechaDeFin);
@@ -108,7 +88,7 @@ public class HistoricoDeConsultasController implements Persistible {
 			consultaPorCantidadDeResultados = new ConsultaPorCantidadDeResultados(Integer.parseInt(cantidadDeResultados));
 		}
 		
-		consultas = Arrays.asList(consultaPorTexto,consultaPorFechas,consultaPorCantidadDeResultados);
+		consultas = Arrays.asList(consultaPorTerminal,consultaPorFechas,consultaPorCantidadDeResultados);
 		builderDeConsultas.setConsultas(consultas);
 		consulta = builderDeConsultas.construirConsulta();
 		
@@ -118,14 +98,6 @@ public class HistoricoDeConsultasController implements Persistible {
 		
 		return new ModelAndView(model, "Administrador/historial/consultas.hbs");
 		
-	}
-	
-	private void recuperarParametrosDeFiltros(Request request){
-		
-	}
-
-	public HistorialDeBusqueda getHistorial() {
-		return historial;
 	}
 
 	public void setHistorial(HistorialDeBusqueda historial) {

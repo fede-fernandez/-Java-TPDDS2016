@@ -48,8 +48,7 @@ public class Router {
 		Spark.post("/nuevaTerminal", terminalController::nuevaTerminal);
 		Spark.post("/eliminarTerminal", terminalController::eliminarTerminal);
 		Spark.post("/modificarTerminal", terminalController::modificarTerminal);
-
-		Spark.get("/busquedasPorTerminal", historicoController::filtrarPOISPorTerminal,engine);
+		
 		Spark.get("/historico", historicoController::listarPoisConsultados, engine);
 		Spark.get("/historico/:id", historicoController::mostrarPOIsEncontradosDeUnaBusqueda, engine);
 		Spark.get("/filtro", historicoController::filtrarPOIs, engine);

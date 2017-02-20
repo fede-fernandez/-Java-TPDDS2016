@@ -43,60 +43,6 @@ public class HistorialDeBusquedaEnMongo implements HistorialDeBusqueda{
 	
 	public List<Busqueda> ejecutarConsulta(Query<Busqueda> consulta){
 		return consulta.asList();
-	}
-	
-	
-	
-	
-	
-	
-	
-//	public List<Busqueda> encontrarTodasLasBusquedasPorTextoBuscado(String unTexto){
-//		List<Busqueda> resultado = datastore.createQuery(Busqueda.class)
-//				.field("textoBuscado").equal(unTexto).asList();
-//		
-//		return resultado;
-//	}
-//	
-//	public List<Busqueda> encontrarLasBusquedasEntreDosFechas(LocalDate fechaDeInicio, LocalDate fechaDeFin){
-//		List<Busqueda> resultado = datastore.createQuery(Busqueda.class)
-//				.field("fechaDeBusqueda").greaterThanOrEq(fechaDeInicio)
-//				.field("fechaDeBusqueda").lessThanOrEq(fechaDeFin).asList();
-//		
-//		return resultado;
-//	}
-//	
-//	public List<Busqueda> encontrarLasBusquedasEntreDosFechasYPorTextoBuscado(String textoBuscado, LocalDate fechaDeInicio, LocalDate fechaDeFin){
-//		List<Busqueda> resultado = datastore.createQuery(Busqueda.class)
-//				.field("fechaDeBusqueda").greaterThanOrEq(fechaDeInicio)
-//				.field("fechaDeBusqueda").lessThanOrEq(fechaDeFin)
-//				.field("textoBuscado").equal(textoBuscado).asList();
-//		
-//		return resultado;	
-//	}
-//	
-//	public List<Busqueda> encontrarLasBusquedasQueSeRealizaronEnUnaFecha(LocalDate unaFecha){
-//		List<Busqueda> resultado = datastore.createQuery(Busqueda.class)
-//				.field("fechaDeBusqueda").equal(unaFecha).asList();
-//		
-//		return resultado;
-//	}
-//	
-//	public List<Busqueda> encontrarLasBusquedasDeUnaTerminal(String nombreDeTerminal){
-//		List<Busqueda> resultado = datastore.createQuery(Busqueda.class)
-//				.field("terminal.nombre").equal(nombreDeTerminal).asList();
-//		
-//		return resultado;
-//	}
-//	
-//	public List<Busqueda> encontrarLasBusquedasPorCantidadDeResultados(int cantidadDeResultados){
-//		List<Busqueda> resultado = datastore.createQuery(Busqueda.class)
-//				.field("puntosDeInteresEncontrados.puntosDeInteresEncontrados").sizeEq(cantidadDeResultados).asList();
-//		
-//		return resultado; 
-//	}
-	
-	
-	
+	}	
 
 }

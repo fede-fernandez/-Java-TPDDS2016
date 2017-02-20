@@ -21,20 +21,4 @@ public interface HistorialDeBusqueda {
 
 	public List<Busqueda> ejecutarConsulta(Query<Busqueda> consulta);
 
-//	public List<Busqueda> encontrarTodasLasBusquedasPorTextoBuscado(String unTexto);
-//
-//	public List<Busqueda> encontrarLasBusquedasEntreDosFechas(LocalDate fechaDeInicio, LocalDate fechaDeFin);
-//
-//	public List<Busqueda> encontrarLasBusquedasEntreDosFechasYPorTextoBuscado(String textoBuscado, LocalDate fechaDeInicio,
-//			LocalDate fechaDeFin);
-//
-//	public List<Busqueda> encontrarLasBusquedasQueSeRealizaronEnUnaFecha(LocalDate unaFecha);
-//
-//	
-//	
-//	public List<Busqueda> encontrarLasBusquedasDeUnaTerminal(String nombreDeTerminal);
-//	
-//	public List<Busqueda> encontrarLasBusquedasPorCantidadDeResultados(int cantidadDeResultados);
-	
-
 }

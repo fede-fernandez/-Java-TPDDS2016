@@ -84,51 +84,7 @@ public class HistorialDeBusquedaEnMemoria implements HistorialDeBusqueda{
 	}
 
 	
-	public List<Busqueda> encontrarTodasLasBusquedasPorTextoBuscado(String unTexto) {
-		return busquedasRealizadas.stream()
-		.filter(unaBusqueda -> unaBusqueda.getTextoBuscado().equals(unTexto))
-		.collect(Collectors.toList());
-		
-	}
-	
-	public List<Busqueda> encontrarLasBusquedasEntreDosFechas(LocalDate fechaDeInicio, LocalDate fechaDeFin) {
-		return busquedasRealizadas.stream()
-				.filter(unaBusqueda -> estaEnUnRangoDeFechas(unaBusqueda.getFechaDeBusqueda(), fechaDeInicio, fechaDeFin))
-				.collect(Collectors.toList());
-	}
-	
-	public List<Busqueda> encontrarLasBusquedasEntreDosFechasYPorTextoBuscado(String textoBuscado,
-			LocalDate fechaDeInicio, LocalDate fechaDeFin) {
-		return busquedasRealizadas.stream()
-				.filter(unaBusqueda -> estaEnUnRangoDeFechas(unaBusqueda.getFechaDeBusqueda(), fechaDeInicio, fechaDeFin)
-						&& unaBusqueda.getTextoBuscado().equals(textoBuscado))
-				.collect(Collectors.toList());
-	}
-	
-	public List<Busqueda> encontrarLasBusquedasQueSeRealizaronEnUnaFecha(LocalDate unaFecha) {
-		return busquedasRealizadas.stream()
-				.filter(unaBusqueda -> unaBusqueda.getFechaDeBusqueda().equals(unaFecha))
-				.collect(Collectors.toList());
-	}
-	
-	public List<Busqueda> encontrarLasBusquedasDeUnaTerminal(String nombreDeTerminal){
-		return busquedasRealizadas.stream()
-				.filter(unaBusqueda -> unaBusqueda.getTerminal().getNombre().equals(nombreDeTerminal))
-				.collect(Collectors.toList());
-	}
-	
-	public List<Busqueda> encontrarLasBusquedasPorCantidadDeResultados(int cantidadDeResultados){
-		return busquedasRealizadas.stream()
-				.filter(unaBusqueda -> unaBusqueda.getPuntosDeInteresEncontrados().getCantidadDeResultados() == cantidadDeResultados)
-				.collect(Collectors.toList());
-	}
-	
-	private boolean estaEnUnRangoDeFechas(LocalDate fecha, LocalDate fechaDeInicio, LocalDate fechaDeFin){
-		return !fecha.isBefore(fechaDeInicio) && !fecha.isAfter(fechaDeFin);
-	}
-
-	
-	public Busqueda encontrarBusquedaPorId(String id) {
+		public Busqueda encontrarBusquedaPorId(String id) {
 		return null;
 	}
 

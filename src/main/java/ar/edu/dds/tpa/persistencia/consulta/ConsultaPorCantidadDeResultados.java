@@ -14,7 +14,6 @@ public class ConsultaPorCantidadDeResultados implements ConsultaBusqueda{
 
 	@Override
 	public Query<Busqueda> generarConsulta(Query<Busqueda> consulta) {
-		//return consulta.field("puntosDeInteresEncontrados.puntosDeInteresEncontrados").sizeEq(cantidadDeResultados);
 		return consulta.field("cantidadDeResultados").equal(cantidadDeResultados);
 	}
 	

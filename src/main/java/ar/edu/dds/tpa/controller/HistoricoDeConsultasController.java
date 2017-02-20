@@ -18,7 +18,6 @@ import ar.edu.dds.tpa.persistencia.consulta.ConsultaNula;
 import ar.edu.dds.tpa.persistencia.consulta.ConsultaPorCantidadDeResultados;
 import ar.edu.dds.tpa.persistencia.consulta.ConsultaPorRangoDeFechas;
 import ar.edu.dds.tpa.persistencia.consulta.ConsultaPorTerminal;
-import ar.edu.dds.tpa.persistencia.consulta.ConsultaPorTexto;
 import ar.edu.dds.tpa.persistencia.repository.TerminalRepository;
 import ar.edu.dds.tpa.persistencia.repository.historial.HistorialDeBusqueda;
 import spark.ModelAndView;
@@ -72,7 +71,7 @@ public class HistoricoDeConsultasController implements Persistible {
 		
 		builderDeConsultas.setConsultas(Arrays.asList(consultaPorTerminal));
 		
-		List<Busqueda> busquedas = historial.ejecutarConsulta(builderDeConsultas.construirConsulta(datastoreMock.getDatastore()));
+		List<Busqueda> busquedas = historial.ejecutarConsulta(builderDeConsultas.construirConsulta());
 		List<Terminal> terminales = repositorioDeTerminales.obtenerTerminales();
 
 		
@@ -111,7 +110,7 @@ public class HistoricoDeConsultasController implements Persistible {
 		
 		consultas = Arrays.asList(consultaPorTexto,consultaPorFechas,consultaPorCantidadDeResultados);
 		builderDeConsultas.setConsultas(consultas);
-		consulta = builderDeConsultas.construirConsulta(datastoreMock.getDatastore());
+		consulta = builderDeConsultas.construirConsulta();
 		
 		busquedas = historial.ejecutarConsulta(consulta);
 		

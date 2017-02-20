@@ -12,7 +12,6 @@ import org.junit.Test;
 import org.mongodb.morphia.Datastore;
 
 import ar.edu.dds.tpa.geolocalizacion.Posicion;
-import ar.edu.dds.tpa.historial.HistorialDeBusquedaEnMongo;
 import ar.edu.dds.tpa.model.Banco;
 import ar.edu.dds.tpa.model.Busqueda;
 import ar.edu.dds.tpa.model.Comuna;
@@ -21,8 +20,15 @@ import ar.edu.dds.tpa.model.ParadaDeColectivo;
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 import ar.edu.dds.tpa.model.PuntosDeInteresEncontrados;
 import ar.edu.dds.tpa.model.usuario.Terminal;
+import ar.edu.dds.tpa.persistencia.builder.ConsultaBusquedaBuilder;
+import ar.edu.dds.tpa.persistencia.consulta.ConsultaBusqueda;
+import ar.edu.dds.tpa.persistencia.consulta.ConsultaPorFecha;
+import ar.edu.dds.tpa.persistencia.consulta.ConsultaPorRangoDeFechas;
+import ar.edu.dds.tpa.persistencia.consulta.ConsultaPorTerminal;
+import ar.edu.dds.tpa.persistencia.consulta.ConsultaPorTexto;
+import ar.edu.dds.tpa.persistencia.repository.historial.HistorialDeBusquedaEnMongo;
 
-public class PersistenciaDeBusquedasEnMongoTest {
+public class PersistenciaDeBusquedasEnMongoTest implements MorphiaDatastore{
 	
 	private MorphiaDatastoreMock morphiaDatastore;
 	private Datastore db;
@@ -50,6 +56,13 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	private List<PuntoDeInteres> poisEncontrados4;
 
 	private HistorialDeBusquedaEnMongo repositorio;
+	
+	private ConsultaBusqueda consultaPorTextoBuscado;
+	private ConsultaBusqueda consultaPorRangoDeFechas;	
+	private ConsultaBusqueda consultaPorFecha;
+	private ConsultaBusqueda consultaPorTerminal;
+	
+	private ConsultaBusquedaBuilder builderDeConsulta;
 
 	
 	@Before
@@ -87,6 +100,8 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		busqueda3 = new Busqueda(terminalChacabuco, "Ahorro",  new PuntosDeInteresEncontrados(poisEncontrados2), cuatroDeFebreroDe2016, 5.0);
 		busqueda4 = new Busqueda(terminalChacabuco, "Subte",  new PuntosDeInteresEncontrados(poisEncontrados3), diezDeEneroDe2016, 5.0);
 		busqueda5 = new Busqueda(terminalChacabuco, "Florida", new PuntosDeInteresEncontrados(poisEncontrados4),cincoDeSeptiembreDe2014,10.0);
+				
+		builderDeConsulta = new ConsultaBusquedaBuilder();
 	
 		
 	}
@@ -98,7 +113,10 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		repositorio.registrarBusqueda(busqueda3);
 		repositorio.registrarBusqueda(busqueda4);
 		
-		List<Busqueda> historial = repositorio.encontrarLasBusquedasEntreDosFechas(diezDeEneroDe2016, cuatroDeFebreroDe2016);
+		consultaPorRangoDeFechas = new ConsultaPorRangoDeFechas(diezDeEneroDe2016, cuatroDeFebreroDe2016);
+		builderDeConsulta.setConsultas(Arrays.asList(consultaPorRangoDeFechas));
+		
+		List<Busqueda> historial = repositorio.ejecutarConsulta(builderDeConsulta.construirConsulta());
 		
 		Assert.assertEquals(3, historial.size());
 		
@@ -114,8 +132,11 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		repositorio.registrarBusqueda(busqueda3);
 		repositorio.registrarBusqueda(busqueda4);
 		repositorio.registrarBusqueda(busqueda5);
+				
+		consultaPorTextoBuscado = new ConsultaPorTexto("Florida");
+		builderDeConsulta.setConsultas(Arrays.asList(consultaPorTextoBuscado));
 		
-		List<Busqueda> historial = repositorio.encontrarTodasLasBusquedasPorTextoBuscado("Florida");
+		List<Busqueda> historial = repositorio.ejecutarConsulta(builderDeConsulta.construirConsulta());
 		
 		Assert.assertEquals(2, historial.size());
 		
@@ -144,7 +165,11 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		repositorio.registrarBusqueda(busqueda4);
 		repositorio.registrarBusqueda(busqueda5);
 		
-		List<Busqueda> historial = repositorio.encontrarLasBusquedasEntreDosFechasYPorTextoBuscado("Florida", diezDeEneroDe2016, cuatroDeFebreroDe2016);
+		consultaPorTextoBuscado = new ConsultaPorTexto("Florida");
+		consultaPorRangoDeFechas = new ConsultaPorRangoDeFechas(diezDeEneroDe2016, cuatroDeFebreroDe2016);
+		builderDeConsulta.setConsultas(Arrays.asList(consultaPorTextoBuscado,consultaPorRangoDeFechas));
+		
+		List<Busqueda> historial = repositorio.ejecutarConsulta(builderDeConsulta.construirConsulta());
 		
 		Assert.assertEquals(1, historial.size());
 		
@@ -159,8 +184,11 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	public void enCuatroDeFebreroSeRealizaronDosBusquedas() {
 		repositorio.registrarBusqueda(busqueda2);
 		repositorio.registrarBusqueda(busqueda3);
-	
-		List<Busqueda> historial = repositorio.encontrarLasBusquedasQueSeRealizaronEnUnaFecha(cuatroDeFebreroDe2016);
+			
+		consultaPorFecha = new ConsultaPorFecha(cuatroDeFebreroDe2016);
+		builderDeConsulta.setConsultas(Arrays.asList(consultaPorFecha));
+		
+		List<Busqueda> historial = repositorio.ejecutarConsulta(builderDeConsulta.construirConsulta());
 		
 		Assert.assertEquals(2, historial.size());
 		
@@ -175,8 +203,11 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		repositorio.registrarBusqueda(busqueda2);
 		repositorio.registrarBusqueda(busqueda3);
 		repositorio.registrarBusqueda(busqueda4);
+				
+		consultaPorFecha = new ConsultaPorFecha(LocalDate.of(2000, 1, 1));
+		builderDeConsulta.setConsultas(Arrays.asList(consultaPorFecha));
 		
-		List<Busqueda> historial = repositorio.encontrarLasBusquedasQueSeRealizaronEnUnaFecha(LocalDate.of(2000, 1, 1));
+		List<Busqueda> historial = repositorio.ejecutarConsulta(builderDeConsulta.construirConsulta());
 		
 		Assert.assertEquals(0, historial.size());
 		
@@ -194,7 +225,10 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		repositorio.registrarBusqueda(busqueda3);
 		repositorio.registrarBusqueda(busqueda4);
 		
-		List<Busqueda> historial = repositorio.encontrarTodasLasBusquedasPorTextoBuscado("textoNuncaBuscado");
+		consultaPorTextoBuscado = new ConsultaPorTexto("Texto nunca buscado");
+		builderDeConsulta.setConsultas(Arrays.asList(consultaPorTextoBuscado));
+		
+		List<Busqueda> historial = repositorio.ejecutarConsulta(builderDeConsulta.construirConsulta());
 		
 		Assert.assertEquals(0, historial.size());
 		
@@ -211,8 +245,12 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		repositorio.registrarBusqueda(busqueda2);
 		repositorio.registrarBusqueda(busqueda3);
 		repositorio.registrarBusqueda(busqueda4);
+
+		consultaPorTextoBuscado = new ConsultaPorTexto("Texto nunca buscado");
+		consultaPorRangoDeFechas = new ConsultaPorRangoDeFechas(diezDeEneroDe2016, cuatroDeFebreroDe2016);
+		builderDeConsulta.setConsultas(Arrays.asList(consultaPorTextoBuscado,consultaPorRangoDeFechas));
 		
-		List<Busqueda> historial = repositorio.encontrarLasBusquedasEntreDosFechasYPorTextoBuscado("textoNuncaBuscado", diezDeEneroDe2016, cuatroDeFebreroDe2016);
+		List<Busqueda> historial = repositorio.ejecutarConsulta(builderDeConsulta.construirConsulta());
 		
 		Assert.assertEquals(0, historial.size());
 		
@@ -230,7 +268,11 @@ public class PersistenciaDeBusquedasEnMongoTest {
 		repositorio.registrarBusqueda(busqueda4);
 		repositorio.registrarBusqueda(busqueda5);
 		
-		List<Busqueda> historial = repositorio.encontrarLasBusquedasEntreDosFechasYPorTextoBuscado("Florida", LocalDate.of(2000, 1, 1), LocalDate.of(2000, 2, 1));
+		consultaPorTextoBuscado = new ConsultaPorTexto("Florida");
+		consultaPorRangoDeFechas = new ConsultaPorRangoDeFechas(LocalDate.of(2000, 1, 1), LocalDate.of(2000, 2, 1));
+		builderDeConsulta.setConsultas(Arrays.asList(consultaPorTextoBuscado,consultaPorRangoDeFechas));
+		
+		List<Busqueda> historial = repositorio.ejecutarConsulta(builderDeConsulta.construirConsulta());
 		
 		Assert.assertEquals(0, historial.size());
 		
@@ -245,7 +287,10 @@ public class PersistenciaDeBusquedasEnMongoTest {
 	public void encontrarLasBusquedasDeUnaTerminal(){
 		repositorio.registrarBusqueda(busqueda1);
 		
-		List<Busqueda> historial= repositorio.encontrarLasBusquedasDeUnaTerminal("Terminal Chacabuco");
+		consultaPorTerminal = new ConsultaPorTerminal("Terminal Chacabuco");
+		builderDeConsulta.setConsultas(Arrays.asList(consultaPorTerminal));
+		
+		List<Busqueda> historial = repositorio.ejecutarConsulta(builderDeConsulta.construirConsulta());
 		
 		Assert.assertEquals(1, historial.size());
 	}

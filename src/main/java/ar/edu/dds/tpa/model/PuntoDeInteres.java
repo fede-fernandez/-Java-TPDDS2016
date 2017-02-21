@@ -86,7 +86,6 @@ public abstract class PuntoDeInteres {
 	public void borrarPalabrasClaves() {
 		palabrasClave = new ArrayList<String>();
 		agregarPalabraClave(nombre);
-
 	}
 
 	public LocalDateTime getFechaDeBaja() {
@@ -114,14 +113,16 @@ public abstract class PuntoDeInteres {
 	}
 
 	public void setNombre(String nombre) {
+		palabrasClave.remove(this.nombre);
 		this.nombre = nombre;
+		agregarPalabraClave(nombre);
 	}
 
 	public void setDireccion(String direccion) {
 		this.direccion = direccion;
 	}
-	
-	public String getString(){
+
+	public String getString() {
 		return this.toString();
 	}
 

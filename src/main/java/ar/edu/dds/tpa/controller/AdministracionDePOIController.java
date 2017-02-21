@@ -87,8 +87,7 @@ public class AdministracionDePOIController {
 		poi.setCoordenadas(
 				new Posicion(request.queryMap("longitud").doubleValue(), request.queryMap("latitud").doubleValue()));
 		poi.setDireccion(request.queryMap("direccion").value());
-		unMapa.modificar(unMapa.obtenerPor(request.queryMap("id").integerValue()),
-				poi);
+		unMapa.modificar(poi);
 		response.redirect("/administracion/consultar");
 		return null;
 	}

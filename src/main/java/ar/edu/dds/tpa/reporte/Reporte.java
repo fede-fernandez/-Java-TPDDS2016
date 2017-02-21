@@ -11,8 +11,6 @@ public class Reporte {
 	public static List<ItemDeResultadosPorFecha> generarReporteDeResultadosPorFecha(LocalDate fechaDeInicio, LocalDate fechaDeFin, HistorialDeBusqueda historialDeBusqueda){
 		List<ItemDeResultadosPorFecha> reporteDeResultadosPorFecha = new ArrayList<ItemDeResultadosPorFecha>();
 		
-		//List<Busqueda> busquedas = historialDeBusqueda.encontrarLasBusquedasEntreDosFechas(fechaDeInicio, fechaDeFin);	
-		
 		return reporteDeResultadosPorFecha;
 	}
 

@@ -17,7 +17,7 @@ public interface Mapa {
 
 	public void darDeBaja(Integer idDelPuntoDeInteres, LocalDateTime fechaDeBaja);
 
-	public void modificar(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado);
+	public void modificar(PuntoDeInteres unPuntoDeInteres);
 
 	public List<PuntoDeInteres> obtenerPuntosDeInteres();
 

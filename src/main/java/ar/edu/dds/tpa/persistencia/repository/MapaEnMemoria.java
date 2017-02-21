@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 
 public class MapaEnMemoria implements Mapa {
@@ -35,9 +36,9 @@ public class MapaEnMemoria implements Mapa {
 	}
 
 	@Override
-	public void modificar(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado) {
-		puntosDeInteres.remove(unPuntoDeInteres);
-		puntosDeInteres.add(puntoDeInteresModificado);
+	public void modificar(PuntoDeInteres unPuntoDeInteres) {
+		// El punto de interes ya se encuentra modificado en memoria por
+		// identidad de objetos
 	}
 
 	@Override

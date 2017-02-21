@@ -18,8 +18,10 @@ public abstract class BusquedaObserver {
 	@GeneratedValue
 	private Integer id;
 
-	public BusquedaObserver() {
+	private Boolean activo;
 
+	public BusquedaObserver() {
+		activo = true;
 	}
 
 	public abstract void informar(Busqueda unaBusqueda);
@@ -30,5 +32,13 @@ public abstract class BusquedaObserver {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public Boolean estaActivo() {
+		return activo;
+	}
+
+	public void setActivo(Boolean activo) {
+		this.activo = activo;
 	}
 }

@@ -32,8 +32,8 @@ public class MapaEnBaseDeDatos implements Mapa, Persistible {
 	}
 
 	@Override
-	public void modificar(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado) {
-		repositorio.persistir(puntoDeInteresModificado);
+	public void modificar(PuntoDeInteres unPuntoDeInteres) {
+		repositorio.persistir(unPuntoDeInteres);
 	}
 
 	@Override

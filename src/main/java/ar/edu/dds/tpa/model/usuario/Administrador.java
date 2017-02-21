@@ -1,9 +1,6 @@
 package ar.edu.dds.tpa.model.usuario;
 
-import javax.persistence.*;
-
-import ar.edu.dds.tpa.model.PuntoDeInteres;
-import ar.edu.dds.tpa.persistencia.repository.Mapa;
+import javax.persistence.Entity;
 
 @Entity
 public class Administrador extends Usuario {
@@ -17,7 +14,7 @@ public class Administrador extends Usuario {
 	public Administrador(String mail) {
 		this.mail = mail;
 	}
-	
+
 	public Administrador(String mail, String nombreDeUsuario, String password) {
 		super(nombreDeUsuario, password);
 		this.mail = mail;
@@ -29,19 +26,6 @@ public class Administrador extends Usuario {
 
 	public void setMail(String mail) {
 		this.mail = mail;
-	}
-
-	public void agregarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, Mapa enUnMapa) {
-		enUnMapa.agregar(unPuntoDeInteres);
-	}
-
-	public void sacarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, Mapa enUnMapa) {
-		enUnMapa.remover(unPuntoDeInteres);
-	}
-
-	public void modificarPuntoDeInteres(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado,
-			Mapa enUnMapa) {
-		enUnMapa.modificar(unPuntoDeInteres, puntoDeInteresModificado);
 	}
 
 	@Override

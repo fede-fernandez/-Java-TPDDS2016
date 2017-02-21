@@ -35,7 +35,7 @@ public class TerminalRepository implements Persistible {
 
 	public List<Terminal> obtenerTerminalesPor(Integer numeroDeComuna) {
 		List<Terminal> terminalesEncontradas = repositorio
-				.ejecutarQuery("from Terminal as terminal terminal.comuna.numero = " + numeroDeComuna);
+				.ejecutarQuery("from Terminal as terminal where terminal.comuna.numero = " + numeroDeComuna);
 		return terminalesEncontradas;
 	}
 }

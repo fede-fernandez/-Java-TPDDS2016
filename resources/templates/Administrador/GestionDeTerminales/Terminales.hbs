@@ -30,11 +30,8 @@
 			<td><a href="https://www.google.com/maps?q=loc:{{coordenadas.longitud}},{{coordenadas.latitud}}">{{coordenadas.longitud}};{{coordenadas.latitud}}</a></td>
 			<td class="text-center">
 				<button type="button" class="btn btn-warning" title="Modificar terminal" data-toggle="modal" data-id="{{id}}" data-nombre="{{nombre}}"
-                        data-longitud="{{coordenadas.longitud}}" data-latitud="{{coordenadas.latitud}}" data-comuna="{{comuna.numero}}" data-target="#modalModificarTerminal">
+                        data-longitud="{{coordenadas.longitud}}" data-latitud="{{coordenadas.latitud}}" data-comuna="{{comuna.numero}}" data-busquedalenta="{{observadoresDeBusqueda.[0].activo}}" data-target="#modalModificarTerminal">
 					<span class="glyphicon glyphicon-pencil"></span>
-				</button>
-				<button type="button" class="btn btn-info" title="Configurar acciones de la terminal">
-					<span class="glyphicon glyphicon-cog"></span>
 				</button>
                 <button type="button" class="btn btn-danger" title="Eliminar terminal" data-toggle="modal" data-id="{{id}}" data-target="#modalEliminarTerminal">
                     <span class="glyphicon glyphicon-remove"></span>

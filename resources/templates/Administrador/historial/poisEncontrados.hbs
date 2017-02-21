@@ -26,9 +26,11 @@
         {{/each}}
         {{/if}}
         
+        {{#if servicios}}
         {{#each servicios}}
-        <h2> Servicio: {{nombre}} </h2>        
+        <p><strong>Servicio:</strong> {{nombre}} </p>        
         {{/each}}
+        {{/if}}
     {{/each}}
 
 {{else}}

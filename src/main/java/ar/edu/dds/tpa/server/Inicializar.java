@@ -57,6 +57,11 @@ public class Inicializar implements Persistible {
 		ParadaDeColectivo paradaDel46 = new ParadaDeColectivo("Linea 46 Estacion Mozart",
 				new Posicion(53.97583, 12.21985), "calle falsa 123");
 		paradaDel46.agregarPalabraClave("colectivo");
+		
+		ParadaDeColectivo paradaDel180 = new ParadaDeColectivo("Linea 180 Estacion Mozart",
+				new Posicion(153.97583, 22.21985), "calle falsa 123");
+		paradaDel46.agregarPalabraClave("180");
+
 
 		Rubro kioscoDeDiarios = new Rubro("Kiosco de Diarios", 10.5);
 		LocalComercial localDeDiarios = new LocalComercial("Diarin", new Posicion(734.1523, 751.2312), kioscoDeDiarios,
@@ -79,10 +84,10 @@ public class Inicializar implements Persistible {
 		Busqueda busqueda2 = new Busqueda(terminalUTN, "46", new PuntosDeInteresEncontrados(Arrays.asList(paradaDel46)),
 				diezDeEneroDe2016, 1.1);
 		Busqueda busqueda3 = new Busqueda(terminalUTN, "colectivo",
-				new PuntosDeInteresEncontrados(Arrays.asList(paradaDel46,paradaDel46)), cuatroDeFebreroDe2016, 2.0);
+				new PuntosDeInteresEncontrados(Arrays.asList(paradaDel46,paradaDel180)), cuatroDeFebreroDe2016, 2.0);
 		
-		Busqueda busqueda = new Busqueda(terminalDePrueba2, "colectivo",
-				new PuntosDeInteresEncontrados(Arrays.asList(paradaDel46,localDeDiarios)), cuatroDeFebreroDe2016, 10.4);
+		Busqueda busqueda = new Busqueda(terminalDePrueba2, "Banco",
+				new PuntosDeInteresEncontrados(Arrays.asList(bancoPatagonia)), cuatroDeFebreroDe2016, 10.4);
 				
 
 		repositorio.persistir(administrador);
@@ -97,9 +102,9 @@ public class Inicializar implements Persistible {
 		repositorio.persistir(localDeDiarios);
 		repositorio.persistir(bancoPatagonia);
 		
-//		historial.registrarBusqueda(busqueda);
+		historial.registrarBusqueda(busqueda);
 		historial.registrarBusqueda(busqueda1);
-//		historial.registrarBusqueda(busqueda2);
+		historial.registrarBusqueda(busqueda2);
 		historial.registrarBusqueda(busqueda3);
 		
 

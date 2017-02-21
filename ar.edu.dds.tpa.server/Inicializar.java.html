@@ -74,8 +74,8 @@ import ar.edu.dds.tpa.persistencia.repository.historial.HistorialDeBusquedaEnMon
 <span class="nc" id="L74">		LocalDate cuatroDeFebreroDe2016 = LocalDate.of(2016, Month.FEBRUARY, 4);</span>
 <span class="nc" id="L75">		LocalDate diezDeEneroDe2016 = LocalDate.of(2016, Month.JANUARY, 10);</span>
 
-<span class="nc" id="L77">		Busqueda busqueda1 = new Busqueda(terminalUTN, &quot;Banco&quot;,</span>
-<span class="nc" id="L78">				new PuntosDeInteresEncontrados(Arrays.asList(bancoPatagonia,paradaDel46)), cuatroDeFebreroDe2016, 5.5);</span>
+<span class="nc" id="L77">		Busqueda busqueda1 = new Busqueda(terminalUTN, &quot;Kiosco&quot;,</span>
+<span class="nc" id="L78">				new PuntosDeInteresEncontrados(Arrays.asList(localDeDiarios)), cuatroDeFebreroDe2016, 5.5);</span>
 <span class="nc" id="L79">		Busqueda busqueda2 = new Busqueda(terminalUTN, &quot;46&quot;, new PuntosDeInteresEncontrados(Arrays.asList(paradaDel46)),</span>
 <span class="nc" id="L80">				diezDeEneroDe2016, 1.1);</span>
 <span class="nc" id="L81">		Busqueda busqueda3 = new Busqueda(terminalUTN, &quot;colectivo&quot;,</span>
@@ -98,7 +98,7 @@ import ar.edu.dds.tpa.persistencia.repository.historial.HistorialDeBusquedaEnMon
 <span class="nc" id="L98">		repositorio.persistir(bancoPatagonia);</span>
 		
 //		historial.registrarBusqueda(busqueda);
-//		historial.registrarBusqueda(busqueda1);
+<span class="nc" id="L101">		historial.registrarBusqueda(busqueda1);</span>
 //		historial.registrarBusqueda(busqueda2);
 <span class="nc" id="L103">		historial.registrarBusqueda(busqueda3);</span>
 		

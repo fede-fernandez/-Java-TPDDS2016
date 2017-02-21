@@ -86,43 +86,44 @@ public abstract class PuntoDeInteres {
 	public void borrarPalabrasClaves() {
 <span class="fc" id="L87">		palabrasClave = new ArrayList&lt;String&gt;();</span>
 <span class="fc" id="L88">		agregarPalabraClave(nombre);</span>
-
-<span class="fc" id="L90">	}</span>
+<span class="fc" id="L89">	}</span>
 
 	public LocalDateTime getFechaDeBaja() {
-<span class="fc" id="L93">		return fechaDeBaja;</span>
+<span class="fc" id="L92">		return fechaDeBaja;</span>
 	}
 
 	public void setFechaDeBaja(LocalDateTime fechaDeBaja) {
-<span class="fc" id="L97">		this.fechaDeBaja = fechaDeBaja;</span>
-<span class="fc" id="L98">	}</span>
+<span class="fc" id="L96">		this.fechaDeBaja = fechaDeBaja;</span>
+<span class="fc" id="L97">	}</span>
 
 	public boolean estaActivo() {
-<span class="fc" id="L101">		return activo;</span>
+<span class="fc" id="L100">		return activo;</span>
 	}
 
 	public void setActivo(boolean activo) {
-<span class="fc" id="L105">		this.activo = activo;</span>
-<span class="fc" id="L106">	}</span>
+<span class="fc" id="L104">		this.activo = activo;</span>
+<span class="fc" id="L105">	}</span>
 
 	public void setId(Integer id) {
-<span class="fc" id="L109">		this.id = id;</span>
-<span class="fc" id="L110">	}</span>
+<span class="fc" id="L108">		this.id = id;</span>
+<span class="fc" id="L109">	}</span>
 
 	public void setCoordenadas(Posicion posicion) {
-<span class="nc" id="L113">		this.coordenadas = posicion;</span>
-<span class="nc" id="L114">	}</span>
+<span class="nc" id="L112">		this.coordenadas = posicion;</span>
+<span class="nc" id="L113">	}</span>
 
 	public void setNombre(String nombre) {
-<span class="nc" id="L117">		this.nombre = nombre;</span>
-<span class="nc" id="L118">	}</span>
+<span class="fc" id="L116">		palabrasClave.remove(this.nombre);</span>
+<span class="fc" id="L117">		this.nombre = nombre;</span>
+<span class="fc" id="L118">		agregarPalabraClave(nombre);</span>
+<span class="fc" id="L119">	}</span>
 
 	public void setDireccion(String direccion) {
-<span class="nc" id="L121">		this.direccion = direccion;</span>
-<span class="nc" id="L122">	}</span>
-	
-	public String getString(){
-<span class="nc" id="L125">		return this.toString();</span>
+<span class="nc" id="L122">		this.direccion = direccion;</span>
+<span class="nc" id="L123">	}</span>
+
+	public String getString() {
+<span class="nc" id="L126">		return this.toString();</span>
 	}
 
 }

@@ -4,66 +4,67 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
 import ar.edu.dds.tpa.model.PuntoDeInteres;
 
 public class MapaEnMemoria implements Mapa {
 
 	private List&lt;PuntoDeInteres&gt; puntosDeInteres;
 
-<span class="fc" id="L13">	public MapaEnMemoria() {</span>
-<span class="fc" id="L14">		puntosDeInteres = new ArrayList&lt;PuntoDeInteres&gt;();</span>
-<span class="fc" id="L15">	}</span>
+<span class="fc" id="L14">	public MapaEnMemoria() {</span>
+<span class="fc" id="L15">		puntosDeInteres = new ArrayList&lt;PuntoDeInteres&gt;();</span>
+<span class="fc" id="L16">	}</span>
 
 	@Override
 	public void agregar(PuntoDeInteres unPuntoDeInteres) {
-<span class="fc" id="L19">		puntosDeInteres.add(unPuntoDeInteres);</span>
-<span class="fc" id="L20">	}</span>
+<span class="fc" id="L20">		puntosDeInteres.add(unPuntoDeInteres);</span>
+<span class="fc" id="L21">	}</span>
 
 	@Override
 	public void agregar(List&lt;PuntoDeInteres&gt; variosPuntosDeInteres) {
-<span class="nc" id="L24">		puntosDeInteres.addAll(variosPuntosDeInteres);</span>
-<span class="nc" id="L25">	}</span>
+<span class="nc" id="L25">		puntosDeInteres.addAll(variosPuntosDeInteres);</span>
+<span class="nc" id="L26">	}</span>
 
 	@Override
 	public void remover(PuntoDeInteres unPuntoDeInteres) {
-<span class="fc" id="L29">		puntosDeInteres.remove(unPuntoDeInteres);</span>
-<span class="fc" id="L30">	}</span>
+<span class="fc" id="L30">		puntosDeInteres.remove(unPuntoDeInteres);</span>
+<span class="fc" id="L31">	}</span>
 
 	@Override
 	public void removerPor(Integer id) {
-<span class="nc" id="L34">		puntosDeInteres.remove(obtenerPor(id));</span>
-<span class="nc" id="L35">	}</span>
+<span class="nc" id="L35">		puntosDeInteres.remove(obtenerPor(id));</span>
+<span class="nc" id="L36">	}</span>
 
 	@Override
-	public void modificar(PuntoDeInteres unPuntoDeInteres, PuntoDeInteres puntoDeInteresModificado) {
-<span class="fc" id="L39">		puntosDeInteres.remove(unPuntoDeInteres);</span>
-<span class="fc" id="L40">		puntosDeInteres.add(puntoDeInteresModificado);</span>
-<span class="fc" id="L41">	}</span>
+	public void modificar(PuntoDeInteres unPuntoDeInteres) {
+		// El punto de interes ya se encuentra modificado en memoria por
+		// identidad de objetos
+<span class="nc" id="L42">	}</span>
 
 	@Override
 	public List&lt;PuntoDeInteres&gt; obtenerPuntosDeInteres() {
-<span class="fc" id="L45">		return puntosDeInteres;</span>
+<span class="fc" id="L46">		return puntosDeInteres;</span>
 	}
 
 	@Override
 	public List&lt;PuntoDeInteres&gt; obtenerPuntosDeInteresPorTipoYNombre(Class&lt;? extends PuntoDeInteres&gt; tipo,
 			String nombre) {
-<span class="nc" id="L51">		return puntosDeInteres.stream()</span>
-<span class="nc bnc" id="L52" title="All 4 branches missed.">				.filter(poi -&gt; tipo.isAssignableFrom(poi.getClass()) &amp;&amp; poi.getNombre().contains(nombre))</span>
-<span class="nc" id="L53">				.collect(Collectors.toList());</span>
+<span class="nc" id="L52">		return puntosDeInteres.stream()</span>
+<span class="nc bnc" id="L53" title="All 4 branches missed.">				.filter(poi -&gt; tipo.isAssignableFrom(poi.getClass()) &amp;&amp; poi.getNombre().contains(nombre))</span>
+<span class="nc" id="L54">				.collect(Collectors.toList());</span>
 	}
 
 	@Override
 	public PuntoDeInteres obtenerPor(Integer id) {
-<span class="nc bnc" id="L58" title="All 2 branches missed.">		return puntosDeInteres.stream().filter(poi -&gt; poi.getId() == id).findFirst().get();</span>
+<span class="nc bnc" id="L59" title="All 2 branches missed.">		return puntosDeInteres.stream().filter(poi -&gt; poi.getId() == id).findFirst().get();</span>
 	}
 
 	@Override
 	public void darDeBaja(Integer idDelPuntoDeInteres, LocalDateTime fechaDeBaja) {
-<span class="fc" id="L63">		PuntoDeInteres puntoDeInteresADarDeBaja = puntosDeInteres.stream()</span>
-<span class="fc" id="L64">				.filter(unPuntoDeInteres -&gt; unPuntoDeInteres.getId().equals(idDelPuntoDeInteres)).findFirst().get();</span>
-<span class="fc" id="L65">		puntoDeInteresADarDeBaja.setActivo(false);</span>
-<span class="fc" id="L66">		puntoDeInteresADarDeBaja.setFechaDeBaja(fechaDeBaja);</span>
-<span class="fc" id="L67">	}</span>
+<span class="fc" id="L64">		PuntoDeInteres puntoDeInteresADarDeBaja = puntosDeInteres.stream()</span>
+<span class="fc" id="L65">				.filter(unPuntoDeInteres -&gt; unPuntoDeInteres.getId().equals(idDelPuntoDeInteres)).findFirst().get();</span>
+<span class="fc" id="L66">		puntoDeInteresADarDeBaja.setActivo(false);</span>
+<span class="fc" id="L67">		puntoDeInteresADarDeBaja.setFechaDeBaja(fechaDeBaja);</span>
+<span class="fc" id="L68">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

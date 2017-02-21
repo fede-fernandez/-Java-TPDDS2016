@@ -87,18 +87,17 @@ public class AdministracionDePOIController {
 <span class="nc" id="L87">		poi.setCoordenadas(</span>
 <span class="nc" id="L88">				new Posicion(request.queryMap(&quot;longitud&quot;).doubleValue(), request.queryMap(&quot;latitud&quot;).doubleValue()));</span>
 <span class="nc" id="L89">		poi.setDireccion(request.queryMap(&quot;direccion&quot;).value());</span>
-<span class="nc" id="L90">		unMapa.modificar(unMapa.obtenerPor(request.queryMap(&quot;id&quot;).integerValue()),</span>
-				poi);
-<span class="nc" id="L92">		response.redirect(&quot;/administracion/consultar&quot;);</span>
-<span class="nc" id="L93">		return null;</span>
+<span class="nc" id="L90">		unMapa.modificar(poi);</span>
+<span class="nc" id="L91">		response.redirect(&quot;/administracion/consultar&quot;);</span>
+<span class="nc" id="L92">		return null;</span>
 	}
 
 	public ModelAndView eliminar(Request request, Response response) {
-<span class="nc" id="L97">		Mapa mapa = unMapa;</span>
-<span class="nc" id="L98">		PuntoDeInteres p = mapa.obtenerPor(request.queryMap(&quot;id&quot;).integerValue());</span>
-<span class="nc" id="L99">		mapa.remover(p);</span>
-<span class="nc" id="L100">		response.redirect(&quot;/administracion/consultar&quot;);</span>
-<span class="nc" id="L101">		return null;</span>
+<span class="nc" id="L96">		Mapa mapa = unMapa;</span>
+<span class="nc" id="L97">		PuntoDeInteres p = mapa.obtenerPor(request.queryMap(&quot;id&quot;).integerValue());</span>
+<span class="nc" id="L98">		mapa.remover(p);</span>
+<span class="nc" id="L99">		response.redirect(&quot;/administracion/consultar&quot;);</span>
+<span class="nc" id="L100">		return null;</span>
 	}
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

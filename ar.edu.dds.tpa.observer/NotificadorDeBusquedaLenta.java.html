@@ -10,34 +10,59 @@ import ar.edu.dds.tpa.model.usuario.Administrador;
 
 @Entity
 public class NotificadorDeBusquedaLenta extends BusquedaObserver {
-	
+
 	private double tiempoMaximoDeDemoraEnSegundos;
-	
+
 	@OneToOne
 	private Administrador administradorAContactar;
-	
+
 	@Transient
 	private EnviadorDeMail enviadorDeMail;
-	
-<span class="fc" id="L22">	public NotificadorDeBusquedaLenta(){</span>
-		
+
+<span class="fc" id="L22">	public NotificadorDeBusquedaLenta() {</span>
+
 <span class="fc" id="L24">	}</span>
 
-<span class="fc" id="L26">	public NotificadorDeBusquedaLenta(double tiempoMaximoDeDemora, EnviadorDeMail enviadorDeMail, Administrador administradorAContactar) {</span>
-<span class="fc" id="L27">		this.tiempoMaximoDeDemoraEnSegundos = tiempoMaximoDeDemora;</span>
-<span class="fc" id="L28">		this.administradorAContactar = administradorAContactar;</span>
-<span class="fc" id="L29">		this.enviadorDeMail = enviadorDeMail;</span>
-<span class="fc" id="L30">	}</span>
+	public NotificadorDeBusquedaLenta(double tiempoMaximoDeDemora, EnviadorDeMail enviadorDeMail,
+<span class="fc" id="L27">			Administrador administradorAContactar) {</span>
+<span class="fc" id="L28">		this.tiempoMaximoDeDemoraEnSegundos = tiempoMaximoDeDemora;</span>
+<span class="fc" id="L29">		this.administradorAContactar = administradorAContactar;</span>
+<span class="fc" id="L30">		this.enviadorDeMail = enviadorDeMail;</span>
+<span class="fc" id="L31">	}</span>
 
 	@Override
 	public void informar(Busqueda unaBusquedaRealizada) {
-<span class="fc bfc" id="L34" title="All 2 branches covered.">		if (unaBusquedaRealizada.getTiempoDeRespuesta() &gt; tiempoMaximoDeDemoraEnSegundos) {</span>
-<span class="fc" id="L35">			String asuntoDelMensaje = &quot;[ALERTA] Una busqueda demoro mucho tiempo.&quot;;</span>
-<span class="fc" id="L36">			String mensajeAEnviar = &quot;La busqueda de la palabra: &quot; + unaBusquedaRealizada.getTextoBuscado() + &quot; demoro &quot;</span>
-<span class="fc" id="L37">					+ unaBusquedaRealizada.getTiempoDeRespuesta() + &quot; segundos.&quot;;</span>
-			
-<span class="fc" id="L39">			enviadorDeMail.enviarMail(administradorAContactar.getMail(), asuntoDelMensaje, mensajeAEnviar);</span>
+<span class="pc bpc" id="L35" title="1 of 4 branches missed.">		if (unaBusquedaRealizada.getTiempoDeRespuesta() &gt; tiempoMaximoDeDemoraEnSegundos &amp;&amp; estaActivo()) {</span>
+<span class="fc" id="L36">			String asuntoDelMensaje = &quot;[ALERTA] Una busqueda demoro mucho tiempo.&quot;;</span>
+<span class="fc" id="L37">			String mensajeAEnviar = &quot;La busqueda de la palabra: &quot; + unaBusquedaRealizada.getTextoBuscado() + &quot; demoro &quot;</span>
+<span class="fc" id="L38">					+ unaBusquedaRealizada.getTiempoDeRespuesta() + &quot; segundos.&quot;;</span>
+
+<span class="fc" id="L40">			enviadorDeMail.enviarMail(administradorAContactar.getMail(), asuntoDelMensaje, mensajeAEnviar);</span>
 		}
-<span class="fc" id="L41">	}</span>
+<span class="fc" id="L42">	}</span>
+
+	public double getTiempoMaximoDeDemoraEnSegundos() {
+<span class="nc" id="L45">		return tiempoMaximoDeDemoraEnSegundos;</span>
+	}
+
+	public void setTiempoMaximoDeDemoraEnSegundos(double tiempoMaximoDeDemoraEnSegundos) {
+<span class="nc" id="L49">		this.tiempoMaximoDeDemoraEnSegundos = tiempoMaximoDeDemoraEnSegundos;</span>
+<span class="nc" id="L50">	}</span>
+
+	public Administrador getAdministradorAContactar() {
+<span class="nc" id="L53">		return administradorAContactar;</span>
+	}
+
+	public void setAdministradorAContactar(Administrador administradorAContactar) {
+<span class="nc" id="L57">		this.administradorAContactar = administradorAContactar;</span>
+<span class="nc" id="L58">	}</span>
+
+	public EnviadorDeMail getEnviadorDeMail() {
+<span class="nc" id="L61">		return enviadorDeMail;</span>
+	}
+
+	public void setEnviadorDeMail(EnviadorDeMail enviadorDeMail) {
+<span class="nc" id="L65">		this.enviadorDeMail = enviadorDeMail;</span>
+<span class="nc" id="L66">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

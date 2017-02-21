@@ -18,18 +18,28 @@ public abstract class BusquedaObserver {
 	@GeneratedValue
 	private Integer id;
 
-<span class="fc" id="L21">	public BusquedaObserver() {</span>
+	private Boolean activo;
 
-<span class="fc" id="L23">	}</span>
+<span class="fc" id="L23">	public BusquedaObserver() {</span>
+<span class="fc" id="L24">		activo = true;</span>
+<span class="fc" id="L25">	}</span>
 
 	public abstract void informar(Busqueda unaBusqueda);
 
 	public Integer getId() {
-<span class="nc" id="L28">		return id;</span>
+<span class="nc" id="L30">		return id;</span>
 	}
 
 	public void setId(Integer id) {
-<span class="nc" id="L32">		this.id = id;</span>
-<span class="nc" id="L33">	}</span>
+<span class="nc" id="L34">		this.id = id;</span>
+<span class="nc" id="L35">	}</span>
+
+	public Boolean estaActivo() {
+<span class="fc" id="L38">		return activo;</span>
+	}
+
+	public void setActivo(Boolean activo) {
+<span class="nc" id="L42">		this.activo = activo;</span>
+<span class="nc" id="L43">	}</span>
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

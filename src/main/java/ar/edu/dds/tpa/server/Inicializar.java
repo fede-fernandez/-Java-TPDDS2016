@@ -74,8 +74,8 @@ public class Inicializar implements Persistible {
 		LocalDate cuatroDeFebreroDe2016 = LocalDate.of(2016, Month.FEBRUARY, 4);
 		LocalDate diezDeEneroDe2016 = LocalDate.of(2016, Month.JANUARY, 10);
 
-		Busqueda busqueda1 = new Busqueda(terminalUTN, "Banco",
-				new PuntosDeInteresEncontrados(Arrays.asList(bancoPatagonia,paradaDel46)), cuatroDeFebreroDe2016, 5.5);
+		Busqueda busqueda1 = new Busqueda(terminalUTN, "Kiosco",
+				new PuntosDeInteresEncontrados(Arrays.asList(localDeDiarios)), cuatroDeFebreroDe2016, 5.5);
 		Busqueda busqueda2 = new Busqueda(terminalUTN, "46", new PuntosDeInteresEncontrados(Arrays.asList(paradaDel46)),
 				diezDeEneroDe2016, 1.1);
 		Busqueda busqueda3 = new Busqueda(terminalUTN, "colectivo",
@@ -98,7 +98,7 @@ public class Inicializar implements Persistible {
 		repositorio.persistir(bancoPatagonia);
 		
 //		historial.registrarBusqueda(busqueda);
-//		historial.registrarBusqueda(busqueda1);
+		historial.registrarBusqueda(busqueda1);
 //		historial.registrarBusqueda(busqueda2);
 		historial.registrarBusqueda(busqueda3);
 		

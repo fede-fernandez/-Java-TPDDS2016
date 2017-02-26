@@ -20,44 +20,41 @@ import spark.template.handlebars.HandlebarsTemplateEngine;
 <span class="nc" id="L20">		HandlebarsTemplateEngine engine = HandlebarsTemplateEngineBuilder.create().withDefaultHelpers().build();</span>
 
 <span class="nc" id="L22">		Spark.staticFiles.location(&quot;/public&quot;);</span>
-		
+
 <span class="nc" id="L24">		HistorialDeBusqueda historial = new HistorialDeBusquedaEnMongo(</span>
 <span class="nc" id="L25">				MorphiaDatastoreMock.obtenerInstancia().getDatastore());</span>
 <span class="nc" id="L26">		Mapa mapa = new MapaEnBaseDeDatos();</span>
-		
-		
 
-<span class="nc" id="L30">		POIsBusquedaController poisController = new POIsBusquedaController(historial,mapa);</span>
-<span class="nc" id="L31">		HistoricoDeConsultasController historicoController = new HistoricoDeConsultasController(historial);</span>
-<span class="nc" id="L32">		TerminalController terminalController = new TerminalController();</span>
-<span class="nc" id="L33">		AdministracionDePOIController poisAdministracionController =new AdministracionDePOIController(mapa);</span>
+<span class="nc" id="L28">		POIsBusquedaController poisController = new POIsBusquedaController(historial, mapa);</span>
+<span class="nc" id="L29">		HistoricoDeConsultasController historicoController = new HistoricoDeConsultasController(historial);</span>
+<span class="nc" id="L30">		TerminalController terminalController = new TerminalController();</span>
+<span class="nc" id="L31">		AdministracionDePOIController poisAdministracionController = new AdministracionDePOIController(mapa);</span>
 
-<span class="nc" id="L35">		LoginController loginController = new LoginController();</span>
+<span class="nc" id="L33">		LoginController loginController = new LoginController();</span>
 
-<span class="nc" id="L37">		Spark.get(&quot;/terminal/lugares&quot;, poisController::listarPOIS, engine);</span>
-<span class="nc" id="L38">		Spark.get(&quot;/terminal/lugares/:id&quot;, poisController::mostrarInformacionPOIs, engine);</span>
-<span class="nc" id="L39">		Spark.get(&quot;/terminal/:id&quot;, poisController::mostrarTerminal, engine);</span>
+<span class="nc" id="L35">		Spark.get(&quot;/terminal/lugares&quot;, poisController::listarPOIS, engine);</span>
+<span class="nc" id="L36">		Spark.get(&quot;/terminal/lugares/:id&quot;, poisController::mostrarInformacionPOIs, engine);</span>
+<span class="nc" id="L37">		Spark.get(&quot;/terminal/:id&quot;, poisController::mostrarTerminal, engine);</span>
 
-<span class="nc" id="L41">		Spark.get(&quot;/administracion/consultar&quot;, poisAdministracionController::buscar, engine);</span>
-<span class="nc" id="L42">		Spark.get(&quot;/administracion/consultar/:tipo/:nombre&quot;, poisAdministracionController::buscar, engine);</span>
-<span class="nc" id="L43">		Spark.post(&quot;/administracion/editar/:poi&quot;, poisAdministracionController::editar, engine);</span>
-<span class="nc" id="L44">		Spark.get(&quot;/administracion/editar/:poi&quot;, poisAdministracionController::presentarEdicion, engine);</span>
-<span class="nc" id="L45">		Spark.post(&quot;/administracion/eliminar&quot;, poisAdministracionController::eliminar, engine);</span>
+<span class="nc" id="L39">		Spark.get(&quot;/puntosDeInteres&quot;, poisAdministracionController::buscar, engine);</span>
+<span class="nc" id="L40">		Spark.get(&quot;/puntosDeInteres/buscar&quot;, poisAdministracionController::buscar, engine);</span>
+<span class="nc" id="L41">		Spark.post(&quot;/puntosDeInteres/modificar/:id&quot;, poisAdministracionController::editar, engine);</span>
+<span class="nc" id="L42">		Spark.get(&quot;/puntosDeInteres/modificar/:id&quot;, poisAdministracionController::presentarEdicion, engine);</span>
+<span class="nc" id="L43">		Spark.post(&quot;/puntosDeInteres/eliminar&quot;, poisAdministracionController::eliminar, engine);</span>
 
-<span class="nc" id="L47">		Spark.get(&quot;/terminales&quot;, terminalController::mostrarTerminales, engine);</span>
-<span class="nc" id="L48">		Spark.post(&quot;/nuevaTerminal&quot;, terminalController::nuevaTerminal);</span>
-<span class="nc" id="L49">		Spark.post(&quot;/eliminarTerminal&quot;, terminalController::eliminarTerminal);</span>
-<span class="nc" id="L50">		Spark.post(&quot;/modificarTerminal&quot;, terminalController::modificarTerminal);</span>
-		
-<span class="nc" id="L52">		Spark.get(&quot;/historico&quot;, historicoController::mostrarFiltrosDeHistorial, engine);</span>
-<span class="nc" id="L53">		Spark.get(&quot;/historico/filtro&quot;, historicoController::filtrarPOIs, engine);</span>
-<span class="nc" id="L54">		Spark.get(&quot;/historico/busqueda/:id&quot;, historicoController::mostrarPOIsEncontradosDeUnaBusqueda, engine);</span>
-		
+<span class="nc" id="L45">		Spark.get(&quot;/terminales&quot;, terminalController::mostrarTerminales, engine);</span>
+<span class="nc" id="L46">		Spark.post(&quot;/nuevaTerminal&quot;, terminalController::nuevaTerminal);</span>
+<span class="nc" id="L47">		Spark.post(&quot;/eliminarTerminal&quot;, terminalController::eliminarTerminal);</span>
+<span class="nc" id="L48">		Spark.post(&quot;/modificarTerminal&quot;, terminalController::modificarTerminal);</span>
 
-<span class="nc" id="L57">		Spark.get(&quot;/login&quot;, loginController::mostrarLogin, engine);</span>
-<span class="nc" id="L58">		Spark.post(&quot;/login&quot;, loginController::login, engine);</span>
+<span class="nc" id="L50">		Spark.get(&quot;/historico&quot;, historicoController::mostrarFiltrosDeHistorial, engine);</span>
+<span class="nc" id="L51">		Spark.get(&quot;/historico/filtro&quot;, historicoController::filtrarPOIs, engine);</span>
+<span class="nc" id="L52">		Spark.get(&quot;/historico/busqueda/:id&quot;, historicoController::mostrarPOIsEncontradosDeUnaBusqueda, engine);</span>
 
-<span class="nc" id="L60">	}</span>
+<span class="nc" id="L54">		Spark.get(&quot;/login&quot;, loginController::mostrarLogin, engine);</span>
+<span class="nc" id="L55">		Spark.post(&quot;/login&quot;, loginController::login, engine);</span>
+
+<span class="nc" id="L57">	}</span>
 
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.eclemma.org/jacoco">JaCoCo</a> 0.7.6.201602180812</span></div></body></html>

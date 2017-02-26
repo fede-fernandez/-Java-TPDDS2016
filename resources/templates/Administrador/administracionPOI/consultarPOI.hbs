@@ -1,12 +1,4 @@
 {{#partial "contenido"}}
-	<script>
-		function eliminar(self, nombre){
-			if(confirm('Esta seguro de que desea eleminar el punto de interes:\n' + nombre)){
-				self.parentElement.submit();
-				
-			}
-		}
-	</script>
   	<form>
  		 <div class="row">
             <div class="form-group col-xs-3">
@@ -28,7 +20,7 @@
 			</div>
 
             <div class="form-group col-xs-2">
-            	<input class="btn btn-success" type="submit" value="Buscar"/>
+            	<input class="btn btn-success" type="submit" value="buscar"/>
 			</div>
 		</div>
 	</form>
@@ -48,10 +40,10 @@
 				<td>
 					<div class="row">
             			<div class="form-group col-xs-2">
-							<a href="/administracion/editar/{{id}}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit" ></span></button></a>
+							<a href="/puntosDeInteres/modificar/{{id}}"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-edit" ></span></button></a>
 						</div>
 						<div class="form-group col-xs-2">
-							<form method="post" action="/administracion/eliminar">
+							<form method="post" action="/puntosDeInteres/eliminar">
 								<input type="hidden" value="{{id}}" name="id"/>
 								<button type="button" class="btn btn-danger" onclick="eliminar(this, '{{nombre}}');"><span class="glyphicon glyphicon-remove" ></span></button>
 							</form>
@@ -66,6 +58,14 @@
 		</tr>
 		{{/if}}
 	</table>
+	
+	<script>
+		function eliminar(self, nombre){
+			if(confirm('Esta seguro de que desea eleminar el punto de interes:\n' + nombre)){
+				self.parentElement.submit();	
+			}
+		}
+	</script>
 {{/partial}}
 
 {{>Administrador/PaginaBaseAdministrador.hbs}}

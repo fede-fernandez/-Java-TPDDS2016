@@ -30,6 +30,6 @@ public class Administrador extends Usuario {
 
 	@Override
 	public String getUrl() {
-		return "/administracion/consultar";
+		return "/puntosDeInteres";
 	}
 }

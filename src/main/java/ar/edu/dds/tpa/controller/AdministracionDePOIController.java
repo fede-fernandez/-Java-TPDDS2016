@@ -17,7 +17,7 @@ import spark.Request;
 import spark.Response;
 
 public class AdministracionDePOIController {
-	
+
 	private Mapa unMapa;
 
 	private Map<String, Class<? extends PuntoDeInteres>> tiposPOI = ImmutableMap.of("Todos", PuntoDeInteres.class,
@@ -32,71 +32,39 @@ public class AdministracionDePOIController {
 		Map<String, Object> model = new HashMap<>();
 		model.put("tipo", tiposPOI.keySet());
 
-		String textoBuscado = request.queryMap("textoBuscado").value();
+		String textoBuscado = request.queryParams("textoBuscado");
 
 		model.put("textoBuscado", textoBuscado);
 
-		String tipoBuscado = request.queryMap("tipoPOI").value();
+		String tipoBuscado = request.queryParams("tipoPOI");
 		model.put("tipoBuscado", tipoBuscado);
 		model.put("poi", unMapa.obtenerPuntosDeInteresPorTipoYNombre(
 				tiposPOI.getOrDefault(tipoBuscado, PuntoDeInteres.class), textoBuscado));
 		return new ModelAndView(model, "Administrador/administracionPOI/consultarPOI.hbs");
 	}
 
-	public ModelAndView formularioAlta(Request request, Response response) {
-		return new ModelAndView(null, "Administrador/administracionPOI/modificacionPOI.hbs");
-	}
-
-	public ModelAndView alta(Request request, Response response) {
-		String nombre = request.queryMap("nombre").value();
-		Double longitud = Double.valueOf(request.queryMap("longitud").value());
-		Double latitud = Double.valueOf(request.queryMap("latitud").value());
-		Posicion coordenadas = new Posicion(longitud, latitud);
-		String id = request.queryMap("tipoPOIs").value();
-		PuntoDeInteres poi = null;
-		switch (id) {
-
-		case "0":
-			poi = new ParadaDeColectivo(nombre, coordenadas, null);
-			break;
-		case "1":
-			poi = new LocalComercial(nombre, coordenadas, null, null);
-			break;
-		case "2":
-			poi = new Banco(nombre, coordenadas, null);
-			break;
-		case "3":
-			poi = new CGP(nombre, coordenadas, null);
-			break;
-
-		}
-
-		unMapa.agregar(poi);
-		return new ModelAndView(null, "Administrador/administracionPOI/modificacionPOI.hbs");
-	}
-
 	public ModelAndView presentarEdicion(Request request, Response response) {
-		int id = Integer.parseInt(request.params(":poi"));
+		int id = Integer.parseInt(request.params("id"));
 		Object model = unMapa.obtenerPor(id);
 		return new ModelAndView(model, "Administrador/administracionPOI/modificacionPOI.hbs");
 	}
 
 	public ModelAndView editar(Request request, Response response) {
-		PuntoDeInteres poi = unMapa.obtenerPor(request.queryMap("id").integerValue());
+		PuntoDeInteres poi = unMapa.obtenerPor(Integer.parseInt(request.params("id")));
 		poi.setNombre(request.queryMap("nombre").value());
 		poi.setCoordenadas(
 				new Posicion(request.queryMap("longitud").doubleValue(), request.queryMap("latitud").doubleValue()));
 		poi.setDireccion(request.queryMap("direccion").value());
 		unMapa.modificar(poi);
-		response.redirect("/administracion/consultar");
+		response.redirect("/puntosDeInteres");
 		return null;
 	}
 
 	public ModelAndView eliminar(Request request, Response response) {
 		Mapa mapa = unMapa;
-		PuntoDeInteres p = mapa.obtenerPor(request.queryMap("id").integerValue());
+		PuntoDeInteres p = mapa.obtenerPor(Integer.parseInt(request.queryParams("id")));
 		mapa.remover(p);
-		response.redirect("/administracion/consultar");
+		response.redirect("/puntosDeInteres");
 		return null;
 	}
 }

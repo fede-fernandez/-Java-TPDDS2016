@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/dds-utn/2016-vn-group-12.svg?token=HmjbwKiw6npoySu9LRg7&branch=master)](https://travis-ci.com/dds-utn/2016-vn-group-12)
+[![Build Status](https://travis-ci.org/FedericoFernandezBarra/-Java-TPDDS2016.svg?branch=master)](https://travis-ci.org/FedericoFernandezBarra/-Java-TPDDS2016)
 
 ###[Enunciado 1° Entrega](https://docs.google.com/document/d/17XAw_kcKj4MopI6coFzR_VE8Hg-6MFJkXd0nA0IU-aM/edit)
 ###[Enunciado 2° Entrega](https://docs.google.com/document/d/1hOUCw5lyVd0AG2IwgfFyyW02YcMEfoMKhuw7xsqR4Xw/edit)

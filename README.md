@@ -8,4 +8,4 @@
 ###[Enunciado 6° Entrega](https://docs.google.com/document/d/190ME2qXcp2EbBTY8VqrsKkmfZK_OwGkVxYvgxls8wEs/edit)
 
 
-###[Coverage](http://dds-utn.github.io/2016-vn-group-12/)
+###[Coverage](https://federicofernandezbarra.github.io/-Java-TPDDS2016/)
